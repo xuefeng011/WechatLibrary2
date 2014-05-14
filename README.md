@@ -1,2 +1,2 @@
-WechatLibrary2
+WechatLibrary
 ==============
