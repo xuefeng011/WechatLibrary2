@@ -39,11 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\ILocationHandler.cs" />
     <Compile Include="Handler\IImageHandler.cs" />
     <Compile Include="Handler\ILinkHandler.cs" />
     <Compile Include="Handler\IMenuButtonHandler.cs" />
+    <Compile Include="Handler\IQRScanHandler.cs" />
+    <Compile Include="Handler\IQRSubscribeHandler.cs" />
     <Compile Include="Handler\ISubscribeHandler.cs" />
     <Compile Include="Handler\ITextHandler.cs" />
+    <Compile Include="Handler\IUnsubscribeHandler.cs" />
+    <Compile Include="Handler\IUploadLocationHandler.cs" />
+    <Compile Include="Handler\IVideoHandler.cs" />
+    <Compile Include="Handler\IVoiceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
