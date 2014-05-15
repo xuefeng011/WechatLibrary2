@@ -20,6 +20,32 @@ namespace WechatLibrary.Core.Signature
         /// <summary>
         /// 指示 URL 验证是否成功。
         /// </summary>
+        /// <param name="signature">微信加密签名，signature 结合了开发者填写的 token 参数和请求中的 timestamp 参数、nonce 参数。</param>
+        /// <param name="timestamp">时间戳。</param>
+        /// <param name="nonce">随机数。</param>
+        /// <param name="token">Token。</param>
+        /// <returns>是否验证成功。</returns>
+        public static bool IsSignature(string signature, string timestamp, string nonce, string token)
+        {
+            signature = signature ?? string.Empty;
+            timestamp = timestamp ?? string.Empty;
+            nonce = nonce ?? string.Empty;
+            token = token ?? string.Empty;
+
+            // 将 token、timestamp、nonce 三个参数进行字典序排序并拼接成一个字符串。
+            string validateString = string.Join(string.Empty,
+                new string[] { token, timestamp, nonce }.OrderBy(temp => temp));
+
+            // 将验证字符串进行 sha1 加密并与 signature 对比，标识该请求来源于微信。
+            bool result = string.Equals(SHA1Helper.GetStringSHA1(validateString), signature,
+                StringComparison.OrdinalIgnoreCase);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 指示 URL 验证是否成功。
+        /// </summary>
         /// <param name="context">验证的 Http 上下文。</param>
         /// <returns>验证是否成功。</returns>
         /// <exception cref="System.ArgumentNullException"><c>context</c> 为 null。</exception>
@@ -67,15 +93,9 @@ namespace WechatLibrary.Core.Signature
 
                 foreach (string token in tokens)
                 {
-                    // 将 token、timestamp、nonce 三个参数进行字典序排序并拼接成一个字符串。
-                    string validateString = string.Join(string.Empty,
-                        new string[] { token, timestamp, nonce }.OrderBy(temp => temp));
+                    bool isSignature = IsSignature(signature, timestamp, nonce, token);
 
-                    // 将验证字符串进行 sha1 加密并与 signature 对比，标识该请求来源于微信。
-                    bool result = string.Equals(SHA1Helper.GetStringSHA1(validateString), signature,
-                        StringComparison.OrdinalIgnoreCase);
-
-                    if (result == true)
+                    if (isSignature == true)
                     {
                         return true;
                     }
