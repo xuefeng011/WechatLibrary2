@@ -56,6 +56,10 @@
     <Compile Include="Wechat.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WechatLibrary.Interface\WechatLibrary.Interface.Net45.csproj">
+      <Project>{e5a8a7e1-b4b1-4116-b945-575c5e0c614c}</Project>
+      <Name>WechatLibrary.Interface.Net45</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WechatLibrary.Model\WechatLibrary.Model.Net45.csproj">
       <Project>{e4b16d0f-dcb1-4575-a45b-0ef63ec1d332}</Project>
       <Name>WechatLibrary.Model.Net45</Name>
@@ -64,6 +68,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Init\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

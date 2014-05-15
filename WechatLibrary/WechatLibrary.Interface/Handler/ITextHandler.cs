@@ -8,6 +8,5 @@ namespace WechatLibrary.Interface.Handler
 {
     public interface ITextHandler
     {
-
     }
 }
