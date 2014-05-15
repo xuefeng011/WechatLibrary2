@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handler\IImageHandler.cs" />
+    <Compile Include="Handler\ILinkHandler.cs" />
     <Compile Include="Handler\IMenuButtonHandler.cs" />
+    <Compile Include="Handler\ISubscribeHandler.cs" />
     <Compile Include="Handler\ITextHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
