@@ -21,35 +21,18 @@ namespace WechatLibrary.Core
         {
         }
 
-
-
-        public static void Init(Assembly assembly)
+        public static void ProcessRequest(Assembly handlerAssembly)
         {
         }
 
-
-        public static void InitRoute(Assembly assembly)
+        public static void ProcessRequest(HttpContext context, Assembly handlerAssembly)
         {
-            Type[] types = assembly.GetTypes();
-            Type[] textHandlerTypes = types.Where(temp => typeof(ITextHandler).IsAssignableFrom(temp) == true).ToArray();
-            foreach (var textHandlerType in textHandlerTypes)
+            context = context ?? HttpContext.Current;
+            if (context == null)
             {
-                Action a = () => { string s = "aaa"; };
-                TextHandlerCollection.Dictionary.Add("",a );
+                throw new ArgumentNullException("context");
             }
-        }
-    }
 
-    internal class TextHandlerCollection
-    {
-        public static Dictionary<string, Delegate> Dictionary;
-
-        public Delegate this[string s]
-        {
-            get
-            {
-                return Dictionary[s];
-            }
         }
     }
 }

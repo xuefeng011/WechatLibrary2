@@ -36,5 +36,11 @@ namespace WechatLibrary.Model
             get;
             set;
         }
+
+        public Menu Menu
+        {
+            get;
+            set;
+        }
     }
 }

@@ -14,5 +14,11 @@ namespace WechatLibrary.Model
             get;
             set;
         }
+
+        public DbSet<Menu> Menus
+        {
+            get;
+            set;
+        }
     }
 }
