@@ -60,6 +60,11 @@
     <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Route\Route.cs" />
+    <Compile Include="Route\Route.GetHttpRequest.cs" />
+    <Compile Include="Route\Route.GetHttpResponse.cs" />
+    <Compile Include="Route\Route.GetMsgTypeFromXDocument.cs" />
+    <Compile Include="Route\Route.ParseXmlToXDocument.cs" />
+    <Compile Include="Route\Route.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
     <Compile Include="Wechat.cs" />
   </ItemGroup>
