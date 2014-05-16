@@ -37,6 +37,18 @@ namespace WechatLibrary.Model
             set;
         }
 
+        public string WechatId
+        {
+            get;
+            set;
+        }
+
+        public string Namespace
+        {
+            get;
+            set;
+        }
+
         public Menu Menu
         {
             get;

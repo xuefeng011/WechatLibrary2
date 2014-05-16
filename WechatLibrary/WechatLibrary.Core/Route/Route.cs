@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WechatLibrary.Interface.Handler
+namespace WechatLibrary.Core.Route
 {
-    public interface ILinkHandler
+    public partial class Route
     {
     }
 }
