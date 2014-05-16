@@ -42,6 +42,12 @@ namespace WechatLibrary.Core.Route
             set;
         }
 
+        public string RequestMessageType
+        {
+            get;
+            set;
+        }
+
         public RequestMessageBase RequestMessage
         {
             get;
