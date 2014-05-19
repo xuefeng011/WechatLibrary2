@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\XDocumentRequestMessageConverter.cs" />
+    <Compile Include="Menu\MenuManagement.PostToWechatServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

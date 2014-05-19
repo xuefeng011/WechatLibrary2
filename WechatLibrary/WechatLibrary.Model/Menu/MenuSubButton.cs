@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Serialization.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace WechatLibrary.Model.Menu
     /// </summary>
     public class MenuSubButton : MenuButtonBase
     {
+        /// <summary>
+        /// 数据库主键。
+        /// </summary>
         [Key]
+        [Json(Ignore = true)]
         public Guid Id
         {
             get;

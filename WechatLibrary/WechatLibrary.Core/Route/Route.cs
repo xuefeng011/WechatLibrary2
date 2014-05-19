@@ -66,6 +66,12 @@ namespace WechatLibrary.Core.Route
             set;
         }
 
+        public bool DbProcess
+        {
+            get;
+            set;
+        }
+
         public Route(HttpContext context)
         {
             this.HttpContext = context;

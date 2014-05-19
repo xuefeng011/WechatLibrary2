@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +8,24 @@ using Common.Serialization.Json;
 
 namespace WechatLibrary.Model.Menu
 {
-    public class MenuButton:MenuButtonBase
+    public class MenuButton : MenuButtonBase
     {
+        private Guid _id;
+
+        [Key]
+        [Json(Ignore = true)]
+        public Guid Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+            }
+        }
+
         private List<MenuSubButton> _subButtons;
 
         /// <summary>

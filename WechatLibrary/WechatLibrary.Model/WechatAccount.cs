@@ -49,7 +49,13 @@ namespace WechatLibrary.Model
             set;
         }
 
-        public Menu Menu
+        public AccessToken AccessToken
+        {
+            get;
+            set;
+        }
+
+        public Menu.Menu Menu
         {
             get;
             set;

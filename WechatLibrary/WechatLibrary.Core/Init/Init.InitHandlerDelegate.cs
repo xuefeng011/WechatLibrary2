@@ -33,26 +33,35 @@ namespace WechatLibrary.Core.Init
                 }
                 else if (typeof(ILocationHandler).IsAssignableFrom(type) == true)
                 {
-
+                    InitLocationHandlerDelegate(type);
                 }
                 else if (typeof(ILinkHandler).IsAssignableFrom(type) == true)
                 {
-
+                    InitLinkHandlerDelegate(type);
                 }
                 else if (typeof (ISubscribeHandler).IsAssignableFrom(type) == true)
                 {
+                    InitSubscribeHandlerDelegate(type);
                 }
                 else if (typeof(IQRSubscribeHandler).IsAssignableFrom(type)==true)
                 {
-                    
+                    InitQRSubscribeHandlerDelegate(type);
                 }
                 else if (typeof(IUnsubscribeHandler).IsAssignableFrom(type)==true)
                 {
-                    
+                    InitUnsubscribeHandlerDelegate(type);
                 }
                 else if (typeof(IQRScanHandler).IsAssignableFrom(type)==true)
                 {
-                    
+                    InitQRScanHandlerDelegate(type);
+                }
+                else if (typeof (IUploadLocationHandler).IsAssignableFrom(type) == true)
+                {
+                    InitUploadLocationHandlerDelegate(type);
+                }
+                else if (typeof (IMenuButtonHandler).IsAssignableFrom(type) == true)
+                {
+                    InitMenuButtonHandlerDelegate(type);
                 }
             }
         }
