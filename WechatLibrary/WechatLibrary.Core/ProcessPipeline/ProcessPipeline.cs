@@ -142,7 +142,7 @@ namespace WechatLibrary.Core.ProcessPipeline
 
                 this.SetDefaultValue();
             }
-            catch (WechatProcessRequestException)
+            catch (WechatProcessRequestException ex)
             {
             }
             finally

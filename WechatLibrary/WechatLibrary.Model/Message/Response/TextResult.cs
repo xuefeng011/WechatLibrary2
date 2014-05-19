@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.Message.Response
 {
-    class TextResult
+    public class TextResult : ResponseResultBase
     {
     }
 }

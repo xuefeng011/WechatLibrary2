@@ -87,11 +87,17 @@ namespace WechatLibrary.Core
                 if (string.Equals(method, "POST", StringComparison.OrdinalIgnoreCase) == true)
                 {
                     // Post 请求，创建处理管道，处理用户消息。
-                    ProcessPipeline.ProcessPipeline route = new ProcessPipeline.ProcessPipeline(context);
-                    route.Start();
+                    ProcessPipeline.ProcessPipeline pipeline = new ProcessPipeline.ProcessPipeline(context);
+                    pipeline.Start();
                 }
                 else if (string.Equals(method, "GET", StringComparison.OrdinalIgnoreCase) == true)
                 {
+#if DEBUG
+                    ProcessPipeline.ProcessPipeline pipeline = new ProcessPipeline.ProcessPipeline(context);
+                    pipeline.Start();
+                    return;
+#endif
+
                     // Get 请求，执行 URL 验证。
                     Signature.Signature.DoSignature(context);
                 }

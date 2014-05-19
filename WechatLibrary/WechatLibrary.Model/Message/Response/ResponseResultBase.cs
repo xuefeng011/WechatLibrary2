@@ -47,9 +47,53 @@ namespace WechatLibrary.Model.Message.Response
             set;
         }
 
+        /// <summary>
+        /// 序列化回复消息到 xml。
+        /// </summary>
+        /// <returns>xml。</returns>
         public virtual string Serialize()
         {
-            return "";
+            StringBuilder sb = new StringBuilder();
+            Type t = this.GetType();
+            sb.Append("<xml>");
+            foreach (var field in t.GetFields())
+            {
+                var value = field.GetValue(this);
+                if (value != null)
+                {
+                    string fieldName = field.Name;
+                    sb.Append("<" + fieldName + ">");
+                    if (field.FieldType.IsValueType == false)
+                    {
+                        sb.Append("<![CDATA[" + value.ToString() + "]]>");
+                    }
+                    else
+                    {
+                        sb.Append(value.ToString());
+                    }
+                    sb.Append("</" + fieldName + ">");
+                }
+            }
+            foreach (var property in t.GetProperties())
+            {
+                var value = property.GetValue(this, null);
+                if (value != null)
+                {
+                    string propertyName = property.Name;
+                    sb.Append("<" + propertyName + ">");
+                    if (property.PropertyType.IsValueType == false)
+                    {
+                        sb.Append("<![CDATA[" + value.ToString() + "");
+                    }
+                    else
+                    {
+                        sb.Append(value.ToString());
+                    }
+                    sb.Append("</" + propertyName + ">");
+                }
+            }
+            sb.Append("</xml>");
+            return sb.ToString();
         }
     }
 }

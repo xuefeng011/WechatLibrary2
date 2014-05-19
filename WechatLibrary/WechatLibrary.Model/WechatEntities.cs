@@ -15,7 +15,7 @@ namespace WechatLibrary.Model
             set;
         }
 
-        public DbSet<Menu> Menus
+        public DbSet<Menu.Menu> Menus
         {
             get;
             set;

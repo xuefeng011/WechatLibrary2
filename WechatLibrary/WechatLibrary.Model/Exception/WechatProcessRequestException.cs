@@ -17,5 +17,10 @@ namespace WechatLibrary.Model.Exception
             : base("处理微信请求失败！", innerException)
         {
         }
+
+        public WechatProcessRequestException(string message, System.Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }

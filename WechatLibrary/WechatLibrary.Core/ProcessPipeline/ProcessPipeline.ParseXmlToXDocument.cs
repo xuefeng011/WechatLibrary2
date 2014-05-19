@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using WechatLibrary.Model.Exception;
 
 namespace WechatLibrary.Core.ProcessPipeline
 {
@@ -14,7 +15,17 @@ namespace WechatLibrary.Core.ProcessPipeline
         /// </summary>
         public void ParseXmlToXDocument()
         {
-            this.RequestXDocument = XDocument.Parse(this.RequestXml);
+            if (string.IsNullOrEmpty(this.RequestXml) == false)
+            {
+                try
+                {
+                    this.RequestXDocument = XDocument.Parse(this.RequestXml);
+                }
+                catch (Exception ex)
+                {
+                    throw new WechatProcessRequestException("转化消息 xml 到 XDocument 失败！", ex);
+                }
+            }
         }
     }
 }
