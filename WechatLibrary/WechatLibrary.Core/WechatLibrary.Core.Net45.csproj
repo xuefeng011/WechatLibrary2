@@ -68,6 +68,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
     <Compile Include="Wechat.cs" />
+    <Compile Include="Wechat.Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WechatLibrary.Interface\WechatLibrary.Interface.Net45.csproj">
@@ -87,7 +88,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
-    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerDelegateFromCache.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerDelegateFromCacheByMessageType.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -86,8 +86,8 @@ namespace WechatLibrary.Core
 
                 if (string.Equals(method, "POST", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    // Post 请求，处理用户消息。
-                    Route.Route route = new Route.Route(context);
+                    // Post 请求，创建处理管道，处理用户消息。
+                    ProcessPipeline.ProcessPipeline route = new ProcessPipeline.ProcessPipeline(context);
                     route.Start();
                 }
                 else if (string.Equals(method, "GET", StringComparison.OrdinalIgnoreCase) == true)

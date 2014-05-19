@@ -13,6 +13,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 反序列化消息到对应消息类型的实例。
+        /// </summary>
         public void DeserializeXDocumentByMessageType()
         {
             switch (this.RequestMessageType)

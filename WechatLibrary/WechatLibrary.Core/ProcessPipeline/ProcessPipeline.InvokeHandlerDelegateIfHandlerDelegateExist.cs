@@ -8,6 +8,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 如果 Handler 的构造函数委托存在，则执行该 Handler。
+        /// </summary>
         public void InvokeHandlerDelegateIfHandlerDelegateExist()
         {
             if (this.HandlerDelegate != null)

@@ -9,6 +9,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 转换消息 xml 到 XDocument。
+        /// </summary>
         public void ParseXmlToXDocument()
         {
             this.RequestXDocument = XDocument.Parse(this.RequestXml);

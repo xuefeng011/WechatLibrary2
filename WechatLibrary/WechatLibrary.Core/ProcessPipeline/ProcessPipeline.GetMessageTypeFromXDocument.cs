@@ -8,6 +8,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 从消息 XDocument 中获取消息类型。
+        /// </summary>
         public void GetMessageTypeFromXDocument()
         {
             var root = this.RequestXDocument.Root;

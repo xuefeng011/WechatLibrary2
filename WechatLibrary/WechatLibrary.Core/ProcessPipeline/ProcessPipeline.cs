@@ -10,62 +10,97 @@ using WechatLibrary.Model.Message.Response;
 
 namespace WechatLibrary.Core.ProcessPipeline
 {
+    /// <summary>
+    /// 用户消息处理管道。
+    /// </summary>
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 存放处理的 Http 上下文。
+        /// </summary>
         public HttpContext HttpContext
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放处理的 Http 上下文的请求。
+        /// </summary>
         public HttpRequest HttpRequest
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放处理的 Http 上下文的响应。
+        /// </summary>
         public HttpResponse HttpResponse
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放请求消息。
+        /// </summary>
         public string RequestXml
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放请求消息。
+        /// </summary>
         public XDocument RequestXDocument
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放请求消息类型。
+        /// </summary>
         public string RequestMessageType
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放请求消息。
+        /// </summary>
         public RequestMessageBase RequestMessage
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放回复消息。
+        /// </summary>
         public ResponseResultBase ResponseResult
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 存放 Handler 类的构造函数。
+        /// </summary>
         public Delegate HandlerDelegate
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 是否由数据库处理。
+        /// 存在 HandlerDelegate 情况下，默认 false。
+        /// 不存在 HandlerDelegate 情况下，默认 true。
+        /// </summary>
         public bool DbProcess
         {
             get;
@@ -89,11 +124,17 @@ namespace WechatLibrary.Core.ProcessPipeline
             try
             {
                 this.GetHttpRequestAndHttpResponse();
+
                 this.ReadRequestXml();
+
                 this.ParseXmlToXDocument();
+
                 this.GetMessageTypeFromXDocument();
+
                 this.DeserializeXDocumentByMessageType();
-                this.GetHandlerDelegateFromCache();
+
+                this.GetHandlerDelegateFromCacheByMessageType();
+
                 this.InvokeHandlerDelegateIfHandlerDelegateExist();
             }
             catch (Exception)

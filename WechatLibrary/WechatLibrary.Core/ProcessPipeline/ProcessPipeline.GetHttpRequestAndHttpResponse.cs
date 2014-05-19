@@ -8,6 +8,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 从 Http 上下文中获取 Http 请求与响应。
+        /// </summary>
         public void GetHttpRequestAndHttpResponse()
         {
             this.HttpRequest = this.HttpContext.Request;
