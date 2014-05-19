@@ -59,6 +59,8 @@
     <Compile Include="Init\Init.InitTextHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.SetDefaultValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />

@@ -136,13 +136,17 @@ namespace WechatLibrary.Core.ProcessPipeline
                 this.GetHandlerDelegateFromCacheByMessageType();
 
                 this.InvokeHandlerDelegateIfHandlerDelegateExist();
+
+#warning go to db here
+
+                this.SetDefaultValue();
             }
             catch (Exception)
             {
             }
             finally
             {
-
+                this.SerializeResponseResultAndWriteToResponseStream();
             }
         }
     }
