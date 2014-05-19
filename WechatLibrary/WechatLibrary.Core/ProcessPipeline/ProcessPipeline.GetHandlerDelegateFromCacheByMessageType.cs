@@ -23,6 +23,34 @@ namespace WechatLibrary.Core.ProcessPipeline
                         }
                         break;
                     }
+                case "image":
+                    {
+                        if (Cache.Cache.ImageHandlerDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
+                        {
+                            this.HandlerDelegate = Cache.Cache.ImageHandlerDelegates[this.RequestMessage.ToUserName];
+                        }
+                        break;
+                    }
+                case "voice":
+                    {
+                        if (Cache.Cache.VoiceHandlerDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
+                        {
+                            this.HandlerDelegate = Cache.Cache.VoiceHandlerDelegates[this.RequestMessage.ToUserName];
+                        }
+                        break;
+                    }
+                case "video":
+                case "location":
+                case "link":
+                case "subscribe":
+                case "qrsubscribe":
+                case "unsubscribe":
+                case "scan":
+                case "uploadlocation":
+                case "click":
+                    {
+                        break;
+                    }
             }
         }
     }

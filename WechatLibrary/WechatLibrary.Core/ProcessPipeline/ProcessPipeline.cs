@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
+using WechatLibrary.Model.Exception;
 using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Response;
 
@@ -141,7 +142,7 @@ namespace WechatLibrary.Core.ProcessPipeline
 
                 this.SetDefaultValue();
             }
-            catch (Exception)
+            catch (WechatProcessRequestException)
             {
             }
             finally

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
+    <Compile Include="Exception\WechatProcessRequestException.cs" />
     <Compile Include="Menu\MenuButtonType.cs" />
     <Compile Include="Menu\MenuButtonTypeConverter.cs" />
     <Compile Include="Menu\MenuSubButton.cs" />
@@ -86,9 +87,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exception\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

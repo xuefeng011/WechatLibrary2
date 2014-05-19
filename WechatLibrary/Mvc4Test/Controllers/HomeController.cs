@@ -13,9 +13,8 @@ namespace Mvc4Test.Controllers
 
         public ActionResult Index()
         {
-            WechatLibrary.Core.Wechat.Process();
+            WechatLibrary.Core.Wechat.ProcessRequest();
             return new EmptyResult();
         }
-
     }
 }

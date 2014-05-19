@@ -55,6 +55,7 @@
     <Compile Include="Cache\Cache.HandlerDelegates.cs" />
     <Compile Include="Init\Init.InitHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitImageHandlerDelegate.cs" />
+    <Compile Include="Init\Init.InitLinkHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitLocationHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitTextHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
