@@ -51,7 +51,8 @@ namespace WechatLibrary.Core
             string method = context.Request.HttpMethod;
             if (string.Equals(method, "POST", StringComparison.OrdinalIgnoreCase) == true)
             {
-               
+                Route.Route route = new Route.Route(context);
+                route.Start();
             }
             else if (string.Equals(method, "GET", StringComparison.OrdinalIgnoreCase) == true)
             {

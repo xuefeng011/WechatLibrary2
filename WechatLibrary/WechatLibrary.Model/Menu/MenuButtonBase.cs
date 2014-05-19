@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Serialization.Json;
 
-namespace WechatLibrary.Model
+namespace WechatLibrary.Model.Menu
 {
-    /// <summary>
-    /// 微信菜单按钮基类。
-    /// </summary>
     public abstract class MenuButtonBase
     {
         /// <summary>

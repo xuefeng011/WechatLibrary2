@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Serialization.Json;
 
-namespace WechatLibrary.Model
+namespace WechatLibrary.Model.Menu
 {
     public class Menu
     {
@@ -16,8 +17,9 @@ namespace WechatLibrary.Model
             set;
         }
 
-        private List<MenuButton> _buttons; 
+        private List<MenuButton> _buttons;
 
+        [Json(Name = "button")]
         public List<MenuButton> Buttons
         {
             get

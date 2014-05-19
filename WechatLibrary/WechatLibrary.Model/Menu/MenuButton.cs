@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Serialization.Json;
 
-namespace WechatLibrary.Model
+namespace WechatLibrary.Model.Menu
 {
-    public class MenuButton : MenuButtonBase
+    public class MenuButton:MenuButtonBase
     {
         private List<MenuSubButton> _subButtons;
 

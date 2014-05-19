@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WechatLibrary.Model
+namespace WechatLibrary.Model.Menu
 {
     /// <summary>
     /// 菜单的响应动作类型，目前有 click、view 两种类型。

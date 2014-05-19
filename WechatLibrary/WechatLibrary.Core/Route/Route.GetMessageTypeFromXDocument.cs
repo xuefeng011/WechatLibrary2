@@ -11,7 +11,15 @@ namespace WechatLibrary.Core.Route
         public void GetMessageTypeFromXDocument()
         {
             var root = this.RequestXDocument.Root;
+            if (root == null)
+            {
+                return;
+            }
             var msgType = root.Element("MsgType");
+            if (msgType == null)
+            {
+                return;
+            }
             var msgTypeValue = msgType.Value.ToLower();
             switch (msgTypeValue)
             {

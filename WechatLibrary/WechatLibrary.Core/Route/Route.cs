@@ -59,5 +59,19 @@ namespace WechatLibrary.Core.Route
             get;
             set;
         }
+
+        public Route(HttpContext context)
+        {
+            this.HttpContext = context;
+        }
+
+        public void Start()
+        {
+            this.GetHttpRequestAndHttpResponse();
+            this.ReadRequestXml();
+            this.ParseXmlToXDocument();
+            this.GetMessageTypeFromXDocument();
+
+        }
     }
 }

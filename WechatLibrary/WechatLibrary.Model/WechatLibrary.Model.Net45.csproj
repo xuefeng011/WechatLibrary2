@@ -50,12 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuButton.cs" />
-    <Compile Include="MenuButtonBase.cs" />
-    <Compile Include="MenuButtonType.cs" />
-    <Compile Include="MenuButtonTypeConverter.cs" />
-    <Compile Include="MenuSubButton.cs" />
+    <Compile Include="Menu\MenuButtonType.cs" />
+    <Compile Include="Menu\MenuButtonTypeConverter.cs" />
+    <Compile Include="Menu\MenuSubButton.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuButton.cs" />
+    <Compile Include="Menu\MenuButtonBase.cs" />
     <Compile Include="Message\Request\Event\MenuButtonMessage.cs" />
     <Compile Include="Message\Request\Event\QRScanMessage.cs" />
     <Compile Include="Message\Request\Event\QRSubscribeMessage.cs" />

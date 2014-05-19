@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Serialization.Json;
+using WechatLibrary.Model.Menu;
 
-namespace WechatLibrary.Model
+namespace WechatLibrary.Model.Menu
 {
-    /// <summary>
-    /// 微信菜单按钮类型自定义转换。
-    /// </summary>
     public class MenuButtonTypeConverter : JsonConverter
     {
         public override object Deserialize(string value, Type type, ref bool skip)

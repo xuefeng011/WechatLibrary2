@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D0E7D99B-A119-464D-B64A-6583DF939736}</ProjectGuid>
+    <ProjectGuid>{3557C6BB-ED7E-49BB-9C9D-D9F3182B507D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WechatLibrary.Core</RootNamespace>
-    <AssemblyName>WechatLibrary.Core</AssemblyName>
+    <RootNamespace>WechatLibrary.Service</RootNamespace>
+    <AssemblyName>WechatLibrary.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,16 +16,16 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\net45\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Net45</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\net45\</OutputPath>
-    <DefineConstants>TRACE;Net45</DefineConstants>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -33,17 +33,8 @@
     <Reference Include="CommonDotNet">
       <HintPath>..\packages\CommonDotNet.1.1.5\lib\net45\CommonDotNet.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,38 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\Cache.HasInit.cs" />
-    <Compile Include="Cache\Cache.HandlerDelegates.cs" />
-    <Compile Include="Init\Init.InitHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitImageHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitTextHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
+    <Compile Include="Converter\XDocumentRequestMessageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Route\Route.cs" />
-    <Compile Include="Route\Route.GetHttpRequestAndHttpResponse.cs" />
-    <Compile Include="Route\Route.GetMessageTypeFromXDocument.cs" />
-    <Compile Include="Route\Route.ParseXmlToXDocument.cs" />
-    <Compile Include="Route\Route.ReadRequestXml.cs" />
-    <Compile Include="Signature\Signature.cs" />
-    <Compile Include="Wechat.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WechatLibrary.Interface\WechatLibrary.Interface.Net45.csproj">
-      <Project>{e5a8a7e1-b4b1-4116-b945-575c5e0c614c}</Project>
-      <Name>WechatLibrary.Interface.Net45</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\WechatLibrary.Model\WechatLibrary.Model.Net45.csproj">
       <Project>{e4b16d0f-dcb1-4575-a45b-0ef63ec1d332}</Project>
       <Name>WechatLibrary.Model.Net45</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-    <Compile Include="Route\Route.DeserializeXDocumentByMessageType.cs" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

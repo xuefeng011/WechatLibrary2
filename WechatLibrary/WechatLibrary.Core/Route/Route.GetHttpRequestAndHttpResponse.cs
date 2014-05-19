@@ -8,8 +8,9 @@ namespace WechatLibrary.Core.Route
 {
     public partial class Route
     {
-        public void GetHttpResponse()
+        public void GetHttpRequestAndHttpResponse()
         {
+            this.HttpRequest = this.HttpContext.Request;
             this.HttpResponse = this.HttpContext.Response;
         }
     }
