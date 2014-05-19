@@ -145,6 +145,9 @@ namespace WechatLibrary.Core.ProcessPipeline
             catch (WechatProcessRequestException ex)
             {
             }
+            catch (Exception ex)
+            {
+            }
             finally
             {
                 this.SerializeResponseResultAndWriteToResponseStream();

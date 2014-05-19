@@ -17,25 +17,25 @@ namespace WechatLibrary.Core.ProcessPipeline
             {
                 case "text":
                     {
-                        if (Cache.Cache.TextHandlerDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
+                        if (Cache.Cache.TextHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.TextHandlerDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerDelegate = Cache.Cache.TextHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }
                 case "image":
                     {
-                        if (Cache.Cache.ImageHandlerDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
+                        if (Cache.Cache.ImageHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.ImageHandlerDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerDelegate = Cache.Cache.ImageHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }
                 case "voice":
                     {
-                        if (Cache.Cache.VoiceHandlerDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
+                        if (Cache.Cache.VoiceHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.VoiceHandlerDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerDelegate = Cache.Cache.VoiceHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }

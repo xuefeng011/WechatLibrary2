@@ -23,11 +23,11 @@ namespace WechatLibrary.Core.Init
                     {
                         // 生成构造函数委托。
                         var constructorDelegate = Expression.Lambda(Expression.New(constructor)).Compile();
-                        lock (Cache.Cache.ImageHandlerDelegates)
+                        lock (Cache.Cache.ImageHandlerConstructorDelegates)
                         {
-                            if (Cache.Cache.ImageHandlerDelegates.ContainsKey(wechatAccount.WechatId) == false)
+                            if (Cache.Cache.ImageHandlerConstructorDelegates.ContainsKey(wechatAccount.WechatId) == false)
                             {
-                                Cache.Cache.ImageHandlerDelegates.Add(wechatAccount.WechatId, constructorDelegate);
+                                Cache.Cache.ImageHandlerConstructorDelegates.Add(wechatAccount.WechatId, constructorDelegate);
                             }
                             else
                             {

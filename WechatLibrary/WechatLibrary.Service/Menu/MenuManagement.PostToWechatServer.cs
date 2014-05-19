@@ -13,7 +13,7 @@ namespace WechatLibrary.Service.Menu
         {
 #warning not finish
 
-            WechatAccount account = menu.Account;
+            WechatAccount account = menu.WechatAccount;
             string accessToken = account.AccessToken.Value;
 
 

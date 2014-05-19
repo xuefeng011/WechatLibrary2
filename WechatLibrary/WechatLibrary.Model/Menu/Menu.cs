@@ -20,6 +20,7 @@ namespace WechatLibrary.Model.Menu
         /// 数据库主键。
         /// </summary>
         [Key]
+        [ForeignKey("WechatAccount")]
         [Json(Ignore = true)]
         public Guid Id
         {
@@ -52,8 +53,7 @@ namespace WechatLibrary.Model.Menu
             }
         }
 
-        [ForeignKey("Id")]
-        public WechatAccount Account
+        public virtual WechatAccount WechatAccount
         {
             get;
             set;

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WechatLibrary.Model.Message.Request;
 
 namespace WechatLibrary.Core.ProcessPipeline
 {
@@ -20,9 +22,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 
                 // 是否使用数据库执行。
                 bool dbProcess = false;
-
+                
                 // 执行 Handler 的 ProcessRequest 方法。
-                this.ResponseResult = handlerInstance.ProcessRequest(this.RequestMessage, ref dbProcess);
+                this.ResponseResult = handlerInstance.ProcessRequest(this.RequestMessage as TextMessage, ref dbProcess);
 
                 // 设置回是否由数据库执行。
                 this.DbProcess = dbProcess;
