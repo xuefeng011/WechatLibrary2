@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.Message.Request.Event
 {
-    class MenuButtonMessage
+    public class MenuButtonMessage : RequestMessageBase
     {
     }
 }

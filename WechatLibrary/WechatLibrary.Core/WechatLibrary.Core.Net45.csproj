@@ -62,6 +62,7 @@
     <Compile Include="Route\Route.cs" />
     <Compile Include="Route\Route.GetHttpRequestAndHttpResponse.cs" />
     <Compile Include="Route\Route.GetMessageTypeFromXDocument.cs" />
+    <Compile Include="Route\Route.InvokeHandlerDelegateIfHandlerDelegateExist.cs" />
     <Compile Include="Route\Route.ParseXmlToXDocument.cs" />
     <Compile Include="Route\Route.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
@@ -76,11 +77,16 @@
       <Project>{e4b16d0f-dcb1-4575-a45b-0ef63ec1d332}</Project>
       <Name>WechatLibrary.Model.Net45</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WechatLibrary.Service\WechatLibrary.Service.Net45.csproj">
+      <Project>{3557c6bb-ed7e-49bb-9c9d-d9f3182b507d}</Project>
+      <Name>WechatLibrary.Service.Net45</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
     <Compile Include="Route\Route.DeserializeXDocumentByMessageType.cs" />
+    <Compile Include="Route\Route.GetHandlerDelegateFromCache.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

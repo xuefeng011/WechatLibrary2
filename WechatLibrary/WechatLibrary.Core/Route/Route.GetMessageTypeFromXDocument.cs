@@ -64,7 +64,7 @@ namespace WechatLibrary.Core.Route
                                 }
                             case "location":
                                 {
-                                    this.RequestMessageType = "location";
+                                    this.RequestMessageType = "uploadlocation";
                                     break;
                                 }
                             case "click":

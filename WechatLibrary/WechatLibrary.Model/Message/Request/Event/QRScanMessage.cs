@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.Message.Request.Event
 {
-    class QRScanMessage
+    public
+       class QRScanMessage : RequestMessageBase
     {
     }
 }

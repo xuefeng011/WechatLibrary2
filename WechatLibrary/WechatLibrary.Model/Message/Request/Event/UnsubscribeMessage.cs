@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.Message.Request.Event
 {
-    class UnsubscribeMessage
+    public class UnsubscribeMessage : RequestMessageBase
     {
     }
 }

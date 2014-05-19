@@ -9,6 +9,12 @@ namespace WechatLibrary.Service.Converter
 {
     public class XDocumentRequestMessageConverter
     {
+        /// <summary>
+        /// 反序列化 XDocument 到指定的消息类。
+        /// </summary>
+        /// <param name="document">XDocument。</param>
+        /// <param name="type">消息类的类型。</param>
+        /// <returns>消息类的实例。</returns>
         public static object Deserialize(XDocument document, Type type)
         {
             if (document == null)
@@ -47,6 +53,17 @@ namespace WechatLibrary.Service.Converter
             }
 
             return instance;
+        }
+
+        /// <summary>
+        /// 反序列化 XDocument 到指定的消息类。
+        /// </summary>
+        /// <typeparam name="T">消息类的类型。</typeparam>
+        /// <param name="document">XDocument。</param>
+        /// <returns>消息类的实例。</returns>
+        public static T Deserialize<T>(XDocument document)
+        {
+            return (T) Deserialize(document, typeof (T));
         }
     }
 }

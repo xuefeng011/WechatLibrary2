@@ -60,6 +60,12 @@ namespace WechatLibrary.Core.Route
             set;
         }
 
+        public Delegate HandlerDelegate
+        {
+            get;
+            set;
+        }
+
         public Route(HttpContext context)
         {
             this.HttpContext = context;
@@ -71,7 +77,9 @@ namespace WechatLibrary.Core.Route
             this.ReadRequestXml();
             this.ParseXmlToXDocument();
             this.GetMessageTypeFromXDocument();
-
+            this.DeserializeXDocumentByMessageType();
+            this.GetHandlerDelegateFromCache();
+            this.InvokeHandlerDelegateIfHandlerDelegateExist();
         }
     }
 }
