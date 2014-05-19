@@ -8,9 +8,9 @@ using System.Xml.Linq;
 using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Response;
 
-namespace WechatLibrary.Core.Route
+namespace WechatLibrary.Core.ProcessPipeline
 {
-    public partial class Route
+    public partial class ProcessPipeline
     {
         public HttpContext HttpContext
         {
@@ -72,20 +72,37 @@ namespace WechatLibrary.Core.Route
             set;
         }
 
-        public Route(HttpContext context)
+        /// <summary>
+        /// 以 Http 上下文创建一个微信消息路由。
+        /// </summary>
+        /// <param name="context"></param>
+        public ProcessPipeline(HttpContext context)
         {
             this.HttpContext = context;
         }
 
+        /// <summary>
+        /// 开始消息处理管道。
+        /// </summary>
         public void Start()
         {
-            this.GetHttpRequestAndHttpResponse();
-            this.ReadRequestXml();
-            this.ParseXmlToXDocument();
-            this.GetMessageTypeFromXDocument();
-            this.DeserializeXDocumentByMessageType();
-            this.GetHandlerDelegateFromCache();
-            this.InvokeHandlerDelegateIfHandlerDelegateExist();
+            try
+            {
+                this.GetHttpRequestAndHttpResponse();
+                this.ReadRequestXml();
+                this.ParseXmlToXDocument();
+                this.GetMessageTypeFromXDocument();
+                this.DeserializeXDocumentByMessageType();
+                this.GetHandlerDelegateFromCache();
+                this.InvokeHandlerDelegateIfHandlerDelegateExist();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+
+            }
         }
     }
 }

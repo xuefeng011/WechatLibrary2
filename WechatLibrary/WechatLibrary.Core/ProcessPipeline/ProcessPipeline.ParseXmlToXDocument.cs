@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace WechatLibrary.Core.Route
+namespace WechatLibrary.Core.ProcessPipeline
 {
-    public partial class Route
+    public partial class ProcessPipeline
     {
         public void ParseXmlToXDocument()
         {

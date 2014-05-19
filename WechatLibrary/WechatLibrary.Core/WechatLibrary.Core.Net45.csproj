@@ -60,12 +60,12 @@
     <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Route\Route.cs" />
-    <Compile Include="Route\Route.GetHttpRequestAndHttpResponse.cs" />
-    <Compile Include="Route\Route.GetMessageTypeFromXDocument.cs" />
-    <Compile Include="Route\Route.InvokeHandlerDelegateIfHandlerDelegateExist.cs" />
-    <Compile Include="Route\Route.ParseXmlToXDocument.cs" />
-    <Compile Include="Route\Route.ReadRequestXml.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetMessageTypeFromXDocument.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerDelegateIfHandlerDelegateExist.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
     <Compile Include="Wechat.cs" />
   </ItemGroup>
@@ -86,8 +86,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <Compile Include="Route\Route.DeserializeXDocumentByMessageType.cs" />
-    <Compile Include="Route\Route.GetHandlerDelegateFromCache.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerDelegateFromCache.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

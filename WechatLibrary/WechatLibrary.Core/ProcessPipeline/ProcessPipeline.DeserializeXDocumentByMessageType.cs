@@ -9,9 +9,9 @@ using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Request.Event;
 using WechatLibrary.Service.Converter;
 
-namespace WechatLibrary.Core.Route
+namespace WechatLibrary.Core.ProcessPipeline
 {
-    public partial class Route
+    public partial class ProcessPipeline
     {
         public void DeserializeXDocumentByMessageType()
         {
