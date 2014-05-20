@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using WechatLibrary.Interface.Handler;
 using WechatLibrary.Model;
 using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Response;
@@ -30,24 +31,31 @@ namespace WechatLibrary.Core.Init
                         {
                             // 生成构造函数委托。
                             var constructorDelegate = Expression.Lambda(Expression.New(constructor)).Compile();
-                            
-                            // 生成 ProcessRequest 方法委托。
-                            var processRequestDelegate = processRequest.CreateDelegate(typeof (Func<TextMessage, bool,ResponseResultBase>));
 
-                            lock (Cache.Cache.TextHandlerConstructorDelegates)
+                            if (Cache.Cache.TextHandlerConstructorDelegates.ContainsKey(wechatAccount.WechatId) == false)
                             {
-                                if (Cache.Cache.TextHandlerConstructorDelegates.ContainsKey(wechatAccount.WechatId) == false)
+                                lock (Cache.Cache.TextHandlerConstructorDelegates)
                                 {
-                                    Cache.Cache.TextHandlerConstructorDelegates.Add(wechatAccount.WechatId, constructorDelegate);
+                                    if (Cache.Cache.TextHandlerConstructorDelegates.ContainsKey(wechatAccount.WechatId) == false)
+                                    {
+                                        Cache.Cache.TextHandlerConstructorDelegates.Add(wechatAccount.WechatId, constructorDelegate);
+                                    }
+                                    else
+                                    {
+                                        throw new TypeInitializationException(typeof(ITextHandler).Name, new Exception("已存在一个实现该接口的类。"));
+                                    }
                                 }
-                                else
-                                {
-                                    throw new TypeInitializationException("ITextHandler", new Exception("已存在一个实现该接口的类。"));
-                                }
+                            }
+
+                            if (Cache.Cache.TextHandlerProcessRequestMethod.ContainsKey(wechatAccount.WechatId) == false)
+                            {
+                            }
+                            {
+                                
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         continue;
                     }

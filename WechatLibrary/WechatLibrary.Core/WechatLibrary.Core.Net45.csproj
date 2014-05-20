@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
     <Compile Include="Cache\Cache.HasInit.cs" />
     <Compile Include="Cache\Cache.HandlerDelegates.cs" />
     <Compile Include="Init\Init.InitHandlerDelegate.cs" />
