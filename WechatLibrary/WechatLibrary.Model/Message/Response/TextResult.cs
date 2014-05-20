@@ -20,6 +20,11 @@ namespace WechatLibrary.Model.Message.Response
             set;
         }
 
+        public TextResult()
+        {
+            this.MsgType = "text";
+        }
+
         public override string Serialize()
         {
             return string.Format("<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName><CreateTime>{2}</CreateTime><MsgType><![CDATA[{3}]]></MsgType><Content><![CDATA[{4}]]></Content></xml>", ToUserName, FromUserName, CreateTime, MsgType, Content);

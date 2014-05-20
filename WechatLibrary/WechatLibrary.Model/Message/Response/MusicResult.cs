@@ -56,6 +56,11 @@ namespace WechatLibrary.Model.Message.Response
             set;
         }
 
+        public MusicResult()
+        {
+            this.MsgType = "music";
+        }
+
         public override string Serialize()
         {
             return string.Format("<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName><CreateTime>{2}</CreateTime><MsgType><![CDATA[{3}]]></MsgType><Music><Title><![CDATA[{4}]]></Title><Description><![CDATA[{5}]]></Description><MusicUrl><![CDATA[{6}]]></MusicUrl><HQMusicUrl><![CDATA[{7}]]></HQMusicUrl><ThumbMediaId><![CDATA[{8}]]></ThumbMediaId></Music></xml>", ToUserName, FromUserName, CreateTime, MsgType, Title, Description, MusicURL, HQMusicUrl, ThumbMediaId);

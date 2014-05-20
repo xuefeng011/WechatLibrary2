@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model.Message.Request;
+using WechatLibrary.Model.Message.Response;
 
 namespace WechatLibrary.Core.ProcessPipeline
 {
@@ -27,7 +28,7 @@ namespace WechatLibrary.Core.ProcessPipeline
                 object[] parameters = new object[] { this.RequestMessage, dbProcess };
 
                 // 执行 ProcessRequest 方法。
-                this.HandlerProcessRequestMethod.Invoke(handlerInstance, parameters);
+                this.ResponseResult = (ResponseResultBase)this.HandlerProcessRequestMethod.Invoke(handlerInstance, parameters);
 
                 // 写回 ref 参数。
                 this.DbProcess = (bool)parameters[1];

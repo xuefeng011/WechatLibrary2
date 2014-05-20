@@ -29,6 +29,11 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        public NewsResult()
+        {
+            this.MsgType = "news";
+        }
+
         public override string Serialize()
         {
             StringBuilder sb = new StringBuilder();
