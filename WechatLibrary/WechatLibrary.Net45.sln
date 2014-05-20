@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc4Test", "Mvc4Test\Mvc4Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary.Service.Net45", "WechatLibrary.Service\WechatLibrary.Service.Net45.csproj", "{3557C6BB-ED7E-49BB-9C9D-D9F3182B507D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary", "WechatLibrary\WechatLibrary.csproj", "{714FC665-0542-4E2E-AEF9-44F4B60A0384}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3557C6BB-ED7E-49BB-9C9D-D9F3182B507D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3557C6BB-ED7E-49BB-9C9D-D9F3182B507D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3557C6BB-ED7E-49BB-9C9D-D9F3182B507D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
