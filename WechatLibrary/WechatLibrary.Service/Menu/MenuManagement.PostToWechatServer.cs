@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Serialization.Json;
+using Common.Web;
 using WechatLibrary.Model;
+using WechatLibrary.Model.Return;
 
 namespace WechatLibrary.Service.Menu
 {
@@ -11,18 +14,32 @@ namespace WechatLibrary.Service.Menu
     {
         public static bool PostToWechatServer(Model.Menu.Menu menu)
         {
-#warning not finish
+            if (menu == null)
+            {
+                throw new ArgumentNullException("menu");
+            }
+            if (menu.WechatAccount == null)
+            {
+                throw new ArgumentException("menu 没有映射微信帐号", "menu");
+            }
+            string accessToken = menu.WechatAccount.GetAccessToken();
 
-            WechatAccount account = menu.WechatAccount;
-            string accessToken = account.AccessToken.Value;
+            string url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}";
 
+            url = string.Format(url, accessToken);
 
+            var json = HttpHelper.Post(url, menu.SerializeToJson());
 
-            string urlTemplate = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+            var returnBase = JsonHelper.Deserialize<ReturnBase>(json);
 
-
-
-            return false;
+            if (returnBase.ErrorCode == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
