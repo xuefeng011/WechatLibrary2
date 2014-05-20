@@ -34,6 +34,10 @@ namespace WechatLibrary.Model.Message.Response
             this.MsgType = "news";
         }
 
+        /// <summary>
+        /// 序列化回复消息到 xml。
+        /// </summary>
+        /// <returns>xml。</returns>
         public override string Serialize()
         {
             StringBuilder sb = new StringBuilder();

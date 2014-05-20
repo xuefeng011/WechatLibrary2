@@ -47,6 +47,10 @@ namespace WechatLibrary.Model.Message.Response
             set;
         }
 
+        /// <summary>
+        /// 序列化图文消息项到 xml。
+        /// </summary>
+        /// <returns>xml。</returns>
         public string Serialize()
         {
             return string.Format("<item><Title><![CDATA[{0}]]></Title><Description><![CDATA[{1}]]></Description><PicUrl><![CDATA[{2}]]></PicUrl><Url><![CDATA[{3}]]></Url></item>", Title, Description, PicUrl, Url);

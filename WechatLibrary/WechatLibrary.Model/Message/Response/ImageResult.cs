@@ -25,6 +25,10 @@ namespace WechatLibrary.Model.Message.Response
             this.MsgType = "image";
         }
 
+        /// <summary>
+        /// 序列化回复消息到 xml。
+        /// </summary>
+        /// <returns>xml。</returns>
         public override string Serialize()
         {
             return string.Format("<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName><CreateTime>{2}</CreateTime><MsgType><![CDATA[{3}]]></MsgType><Image><MediaId><![CDATA[{4}]]></MediaId></Image></xml>", ToUserName, FromUserName, CreateTime, MsgType, MediaId);

@@ -9,23 +9,47 @@ namespace WechatLibrary.Model
 {
     public class AccessToken
     {
+        private Guid _id;
+
         [Key]
         public Guid Id
         {
-            get;
-            set;
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+            }
         }
+
+        private string _value;
 
         public string Value
         {
-            get;
-            set;
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+            }
         }
+
+        private DateTime _expiresTime;
 
         public DateTime ExpiresTime
         {
-            get;
-            set;
+            get
+            {
+                return _expiresTime;
+            }
+            set
+            {
+                _expiresTime = value;
+            }
         }
     }
 }
