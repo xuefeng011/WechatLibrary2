@@ -158,13 +158,19 @@ namespace WechatLibrary.Core.ProcessPipeline
                 this.GetHandlerConstructorDelegateFromCacheByMessageType();
                 Wechat.FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(this);
 
+                Wechat.FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(this);
                 this.GetHandlerProcessRequestMethodFromCacheByMessageType();
+                Wechat.FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(this);
 
-                this.InvokeHandlerDelegateIfHandlerDelegateExist();
+                Wechat.FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(this);
+                this.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist();
+                Wechat.FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(this);
 
 #warning go to db here
 
+                Wechat.FireSetDefaultValueStart(this);
                 this.SetDefaultValue();
+                Wechat.FireSetDefaultValueEnd(this);
             }
             catch (WechatProcessRequestException ex)
             {
@@ -174,7 +180,10 @@ namespace WechatLibrary.Core.ProcessPipeline
             }
             finally
             {
+
+                //Wechat.FireSerializeResponseResultAndWriteToResponseStreamStart();
                 this.SerializeResponseResultAndWriteToResponseStream();
+                //Wechat.FireSerializeResponseResultAndWriteToResponseStreamEnd();
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Management;
 
 namespace WechatLibrary.Core
 {
@@ -14,6 +15,24 @@ namespace WechatLibrary.Core
         public static event EventHandler ReadRequestXmlEnd;
         public static event EventHandler ParseXmlToXDocumentStart;
         public static event EventHandler ParseXmlToXDocumentEnd;
+        public static event EventHandler GetMessageTypeFromXDocumentStart;
+        public static event EventHandler GetMessageTypeFromXDocumentEnd;
+        public static event EventHandler DeserializeXDocumentByMessageTypeStart;
+        public static event EventHandler DeserializeXDocumentByMessageTypeEnd;
+        public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeStart;
+        public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeEnd;
+        public static event EventHandler GetHandlerProcessRequestMethodFromCacheByMessageTypeStart;
+        public static event EventHandler GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd;
+        public static event EventHandler InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart;
+        public static event EventHandler InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd;
+
+#warning go to db here
+
+        public static event EventHandler SetDefaultValueStart;
+        public static event EventHandler SetDefaultValueEnd;
+
+
+
 
         public static void FireGetHttpRequestAndHttpResponseStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
@@ -65,26 +84,111 @@ namespace WechatLibrary.Core
 
         public static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (GetMessageTypeFromXDocumentStart != null)
+            {
+                GetMessageTypeFromXDocumentStart(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireGetMessageTypeFromXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (GetMessageTypeFromXDocumentEnd != null)
+            {
+                GetMessageTypeFromXDocumentEnd(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireDeserializeXDocumentByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (DeserializeXDocumentByMessageTypeStart != null)
+            {
+                DeserializeXDocumentByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireDeserializeXDocumentByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (DeserializeXDocumentByMessageTypeEnd != null)
+            {
+                DeserializeXDocumentByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
-
+            if (GetHandlerConstructorDelegateFromCacheByMessageTypeStart != null)
+            {
+                GetHandlerConstructorDelegateFromCacheByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerConstructorDelegateFromCacheByMessageTypeEnd != null)
+            {
+                GetHandlerConstructorDelegateFromCacheByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(
+            ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerProcessRequestMethodFromCacheByMessageTypeStart != null)
+            {
+                GetHandlerProcessRequestMethodFromCacheByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd != null)
+            {
+                GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart != null)
+            {
+                InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(processPipeline,
+                    EventArgs.Empty);
+            }
+        }
+
+        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd != null)
+            {
+                InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(processPipeline,
+                    EventArgs.Empty);
+            }
+        }
+
+#warning go to db here
+
+        public static void FireSetDefaultValueStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (SetDefaultValueStart != null)
+            {
+                SetDefaultValueStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static void FireSetDefaultValueEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (SetDefaultValueEnd != null)
+            {
+                SetDefaultValueEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static void FireSerializeResponseResultAndWriteToResponseStreamStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+        }
+
+        public static void FireSerializeResponseResultAndWriteToResponseStreamEnd(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
         }
     }

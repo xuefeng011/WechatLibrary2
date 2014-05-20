@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WechatLibrary.Core.ProcessPipeline;
+using WechatLibrary.Model.Message.Response;
 
 namespace Mvc4Test
 {
@@ -14,7 +16,7 @@ namespace Mvc4Test
     {
         protected void Application_Start()
         {
-            WechatLibrary.Core.Wechat.GetHttpRequestAndHttpResponseing += Wechat_GetHttpRequestAndHttpResponseing;
+            WechatLibrary.Core.Wechat.SetDefaultValueEnd += Wechat_GetHttpRequestAndHttpResponseing;
 
             AreaRegistration.RegisterAllAreas();
 
@@ -25,6 +27,8 @@ namespace Mvc4Test
 
         void Wechat_GetHttpRequestAndHttpResponseing(object sender, EventArgs e)
         {
+            var x = sender as ProcessPipeline;
+            (x.ResponseResult as TextResult).Content = "50000000000000";
             int a = 10;
         }
     }

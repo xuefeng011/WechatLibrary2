@@ -64,7 +64,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetMessageTypeFromXDocument.cs" />
-    <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerDelegateIfHandlerDelegateExist.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
