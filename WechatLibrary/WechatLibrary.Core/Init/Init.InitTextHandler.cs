@@ -67,7 +67,7 @@ namespace WechatLibrary.Core.Init
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         continue;
                     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -91,10 +92,18 @@ namespace WechatLibrary.Core.ProcessPipeline
         /// <summary>
         /// 存放 Handler 类的构造函数。
         /// </summary>
-        public Delegate HandlerDelegate
+        public Delegate HandlerConstructorDelegate
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// 存放 Handler 类的 ProcessRequest 方法。
+        /// </summary>
+        public MethodInfo HandlerProcessRequestMethod
+        {
+            get; set;
         }
 
         /// <summary>

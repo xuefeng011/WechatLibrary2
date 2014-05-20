@@ -69,7 +69,7 @@ namespace WechatLibrary.Core
                     if (Cache.Cache.HasInit == false)
                     {
                         // 缓存 Handler。
-                        Init.Init.InitHandlerDelegate(handlerAssembly);
+                        Init.Init.InitHandlers(handlerAssembly);
 
                         // 标识已经执行过初始化。
                         Cache.Cache.HasInit = true;

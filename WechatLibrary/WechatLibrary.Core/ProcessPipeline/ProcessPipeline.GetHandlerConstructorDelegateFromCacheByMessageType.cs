@@ -11,7 +11,7 @@ namespace WechatLibrary.Core.ProcessPipeline
         /// <summary>
         /// 根据消息类型，从缓存中获取 Handler 的构造函数委托。
         /// </summary>
-        public void GetHandlerDelegateFromCacheByMessageType()
+        public void GetHandlerConstructorDelegateFromCacheByMessageType()
         {
             switch (this.RequestMessageType)
             {
@@ -19,7 +19,7 @@ namespace WechatLibrary.Core.ProcessPipeline
                     {
                         if (Cache.Cache.TextHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.TextHandlerConstructorDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerConstructorDelegate = Cache.Cache.TextHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }
@@ -27,7 +27,7 @@ namespace WechatLibrary.Core.ProcessPipeline
                     {
                         if (Cache.Cache.ImageHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.ImageHandlerConstructorDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerConstructorDelegate = Cache.Cache.ImageHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }
@@ -35,7 +35,7 @@ namespace WechatLibrary.Core.ProcessPipeline
                     {
                         if (Cache.Cache.VoiceHandlerConstructorDelegates.ContainsKey(this.RequestMessage.ToUserName) == true)
                         {
-                            this.HandlerDelegate = Cache.Cache.VoiceHandlerConstructorDelegates[this.RequestMessage.ToUserName];
+                            this.HandlerConstructorDelegate = Cache.Cache.VoiceHandlerConstructorDelegates[this.RequestMessage.ToUserName];
                         }
                         break;
                     }

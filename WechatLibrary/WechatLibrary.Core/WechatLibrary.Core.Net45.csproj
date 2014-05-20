@@ -53,14 +53,11 @@
   <ItemGroup>
     <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
     <Compile Include="Cache\Cache.HasInit.cs" />
-    <Compile Include="Cache\Cache.HandlerDelegates.cs" />
+    <Compile Include="Cache\Cache.HandlerConstructorDelegates.cs" />
     <Compile Include="Init\Init.InitHandlers.cs" />
-    <Compile Include="Init\Init.InitImageHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitLinkHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitLocationHandlerDelegate.cs" />
+    <Compile Include="Init\Init.InitImageHandler.cs" />
     <Compile Include="Init\Init.InitTextHandler.cs" />
-    <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerProcessRequestMethodFromCacheByMessageType.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SetDefaultValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,7 +89,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
-    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerDelegateFromCacheByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerConstructorDelegateFromCacheByMessageType.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

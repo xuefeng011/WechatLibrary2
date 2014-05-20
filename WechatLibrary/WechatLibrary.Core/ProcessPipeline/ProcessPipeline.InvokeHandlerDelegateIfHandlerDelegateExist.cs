@@ -15,19 +15,27 @@ namespace WechatLibrary.Core.ProcessPipeline
         /// </summary>
         public void InvokeHandlerDelegateIfHandlerDelegateExist()
         {
-            if (this.HandlerDelegate != null)
+            if (this.HandlerConstructorDelegate != null && this.HandlerProcessRequestMethod != null)
             {
-                // 执行缓存的构造函数。
-                dynamic handlerInstance = this.HandlerDelegate.DynamicInvoke();
+                // 执行缓存的构造函数委托。
+                object handlerInstance = this.HandlerConstructorDelegate.DynamicInvoke();
 
                 // 是否使用数据库执行。
                 bool dbProcess = false;
-                
-                // 执行 Handler 的 ProcessRequest 方法。
-                this.ResponseResult = handlerInstance.ProcessRequest(this.RequestMessage as TextMessage, ref dbProcess);
 
-                // 设置回是否由数据库执行。
-                this.DbProcess = dbProcess;
+                // 创建参数数组。
+                object[] parameters = new object[] { this.RequestMessage, dbProcess };
+
+                // 执行 ProcessRequest 方法。
+                this.HandlerProcessRequestMethod.Invoke(handlerInstance, parameters);
+
+                // 写回 ref 参数。
+                this.DbProcess = (bool)parameters[1];
+            }
+            else
+            {
+                // 没有 Handler 则默认使用数据库执行。
+                this.DbProcess = true;
             }
         }
     }
