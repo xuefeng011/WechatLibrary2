@@ -80,6 +80,8 @@
     <Compile Include="Message\Response\VideoResult.cs" />
     <Compile Include="Message\Response\VoiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Return\AccessTokenReturn.cs" />
+    <Compile Include="Return\ReturnBase.cs" />
     <Compile Include="WechatAccount.cs" />
     <Compile Include="WechatEntities.cs" />
   </ItemGroup>

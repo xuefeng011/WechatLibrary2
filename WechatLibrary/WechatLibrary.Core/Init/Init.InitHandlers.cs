@@ -21,7 +21,7 @@ namespace WechatLibrary.Core.Init
                 }
                 else if (typeof(IImageHandler).IsAssignableFrom(type) == true)
                 {
-                    //InitImageHandlerDelegate(type);
+                    InitImageHandler(type);
                 }
                 else if (typeof(IVoiceHandler).IsAssignableFrom(type) == true)
                 {
