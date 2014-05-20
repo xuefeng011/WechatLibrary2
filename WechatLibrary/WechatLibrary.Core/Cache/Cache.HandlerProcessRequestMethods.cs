@@ -14,5 +14,11 @@ namespace WechatLibrary.Core.Cache
         /// Key：开发者微信 Id。
         /// </summary>
         public static volatile Dictionary<string, MethodInfo> TextHandlerProcessRequestMethods = new Dictionary<string, MethodInfo>();
+
+        /// <summary>
+        /// 缓存图片消息处理的处理函数。
+        /// Key：开发者微信 Id。
+        /// </summary>
+        public static volatile Dictionary<string, MethodInfo> ImageHandlerProcessRequestMethods = new Dictionary<string, MethodInfo>();
     }
 }
