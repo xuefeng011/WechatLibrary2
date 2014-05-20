@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AccessTokenService.cs" />
     <Compile Include="Converter\XDocumentRequestMessageConverter.cs" />
+    <Compile Include="Menu\MenuManagement.DeleteWechatServerMenu.cs" />
     <Compile Include="Menu\MenuManagement.PostToWechatServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

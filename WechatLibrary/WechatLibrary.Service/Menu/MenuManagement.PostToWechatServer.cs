@@ -10,7 +10,7 @@ using WechatLibrary.Model.Return;
 
 namespace WechatLibrary.Service.Menu
 {
-    public class MenuManagement
+    public partial class MenuManagement
     {
         public static bool PostToWechatServer(Model.Menu.Menu menu)
         {
