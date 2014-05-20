@@ -134,17 +134,29 @@ namespace WechatLibrary.Core.ProcessPipeline
         {
             try
             {
+                Wechat.FireGetHttpRequestAndHttpResponseStart(this);
                 this.GetHttpRequestAndHttpResponse();
+                Wechat.FireGetHttpRequestAndHttpResponseEnd(this);
 
+                Wechat.FireReadRequestXmlStart(this);
                 this.ReadRequestXml();
+                Wechat.FireReadRequestXmlEnd(this);
 
+                Wechat.FireParseXmlToDocumentStart(this);
                 this.ParseXmlToXDocument();
+                Wechat.FireParseXmlToDocumentEnd(this);
 
+                Wechat.FireGetMessageTypeFromXDocumentStart(this);
                 this.GetMessageTypeFromXDocument();
+                Wechat.FireGetMessageTypeFromXDocumentEnd(this);
 
+                Wechat.FireDeserializeXDocumentByMessageTypeStart(this);
                 this.DeserializeXDocumentByMessageType();
+                Wechat.FireDeserializeXDocumentByMessageTypeEnd(this);
 
+                Wechat.FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(this);
                 this.GetHandlerConstructorDelegateFromCacheByMessageType();
+                Wechat.FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(this);
 
                 this.GetHandlerProcessRequestMethodFromCacheByMessageType();
 

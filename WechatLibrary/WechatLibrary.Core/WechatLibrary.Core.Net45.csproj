@@ -68,7 +68,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="Signature\Signature.cs" />
-    <Compile Include="Wechat.cs" />
+    <Compile Include="Wechat.ProcessRequest.cs" />
     <Compile Include="Wechat.Event.cs" />
   </ItemGroup>
   <ItemGroup>

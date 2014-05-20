@@ -14,11 +14,18 @@ namespace Mvc4Test
     {
         protected void Application_Start()
         {
+            WechatLibrary.Core.Wechat.GetHttpRequestAndHttpResponseing += Wechat_GetHttpRequestAndHttpResponseing;
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        void Wechat_GetHttpRequestAndHttpResponseing(object sender, EventArgs e)
+        {
+            int a = 10;
         }
     }
 }
