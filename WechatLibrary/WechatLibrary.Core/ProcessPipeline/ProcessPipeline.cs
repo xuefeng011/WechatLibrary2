@@ -103,7 +103,8 @@ namespace WechatLibrary.Core.ProcessPipeline
         /// </summary>
         public MethodInfo HandlerProcessRequestMethod
         {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
@@ -143,7 +144,9 @@ namespace WechatLibrary.Core.ProcessPipeline
 
                 this.DeserializeXDocumentByMessageType();
 
-                this.GetHandlerDelegateFromCacheByMessageType();
+                this.GetHandlerConstructorDelegateFromCacheByMessageType();
+
+                this.GetHandlerProcessRequestMethodFromCacheByMessageType();
 
                 this.InvokeHandlerDelegateIfHandlerDelegateExist();
 
