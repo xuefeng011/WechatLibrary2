@@ -16,10 +16,23 @@ namespace WechatLibrary.Core.Cache
         public static volatile Dictionary<string, Delegate> TextHandlerConstructorDelegates = new Dictionary<string, Delegate>();
         
         /// <summary>
-        /// 缓存图片消息处理的构造函数。
+        /// 缓存图片消息处理的构造函数委托。
         /// Key：开发者微信 Id。
         /// </summary>
         public static volatile Dictionary<string, Delegate> ImageHandlerConstructorDelegates = new Dictionary<string, Delegate>();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public static volatile Dictionary<string, Delegate> VoiceHandlerConstructorDelegates = new Dictionary<string, Delegate>();
 

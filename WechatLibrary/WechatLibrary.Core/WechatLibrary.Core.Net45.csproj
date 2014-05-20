@@ -54,11 +54,11 @@
     <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
     <Compile Include="Cache\Cache.HasInit.cs" />
     <Compile Include="Cache\Cache.HandlerDelegates.cs" />
-    <Compile Include="Init\Init.InitHandlerDelegate.cs" />
+    <Compile Include="Init\Init.InitHandlers.cs" />
     <Compile Include="Init\Init.InitImageHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitLinkHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitLocationHandlerDelegate.cs" />
-    <Compile Include="Init\Init.InitTextHandlerDelegate.cs" />
+    <Compile Include="Init\Init.InitTextHandler.cs" />
     <Compile Include="Init\Init.InitVideoHandlerDelegate.cs" />
     <Compile Include="Init\Init.InitVoiceHandlerDelegate.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />

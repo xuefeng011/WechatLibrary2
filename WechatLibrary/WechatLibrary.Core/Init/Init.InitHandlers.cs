@@ -10,34 +10,34 @@ namespace WechatLibrary.Core.Init
 {
     public partial class Init
     {
-        public static void InitHandlerDelegate(Assembly assembly)
+        public static void InitHandlers(Assembly assembly)
         {
             Type[] types = assembly.GetTypes();
             foreach (var type in types)
             {
                 if (typeof(ITextHandler).IsAssignableFrom(type) == true)
                 {
-                    InitTextHandlerDelegate(type);
+                    InitTextHandler(type);
                 }
                 else if (typeof(IImageHandler).IsAssignableFrom(type) == true)
                 {
-                    InitImageHandlerDelegate(type);
+                    //InitImageHandlerDelegate(type);
                 }
                 else if (typeof(IVoiceHandler).IsAssignableFrom(type) == true)
                 {
-                    InitVoiceHandlerDelegate(type);
+                    //InitVoiceHandlerDelegate(type);
                 }
                 else if (typeof(IVideoHandler).IsAssignableFrom(type) == true)
                 {
-                    InitVideoHandlerDelegate(type);
+                    //InitVideoHandlerDelegate(type);
                 }
                 else if (typeof(ILocationHandler).IsAssignableFrom(type) == true)
                 {
-                    InitLocationHandlerDelegate(type);
+                    //InitLocationHandlerDelegate(type);
                 }
                 else if (typeof(ILinkHandler).IsAssignableFrom(type) == true)
                 {
-                    InitLinkHandlerDelegate(type);
+                    //InitLinkHandlerDelegate(type);
                 }
                 else if (typeof (ISubscribeHandler).IsAssignableFrom(type) == true)
                 {

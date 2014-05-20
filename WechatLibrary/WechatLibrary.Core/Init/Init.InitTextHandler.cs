@@ -13,7 +13,11 @@ namespace WechatLibrary.Core.Init
 {
     public partial class Init
     {
-        public static void InitTextHandlerDelegate(Type textHandlerType)
+        /// <summary>
+        /// 初始化文本消息处理类。
+        /// </summary>
+        /// <param name="textHandlerType">文本消息处理类。</param>
+        public static void InitTextHandler(Type textHandlerType)
         {
             using (WechatEntities entities = new WechatEntities())
             {
@@ -47,11 +51,19 @@ namespace WechatLibrary.Core.Init
                                 }
                             }
 
-                            if (Cache.Cache.TextHandlerProcessRequestMethod.ContainsKey(wechatAccount.WechatId) == false)
+                            if (Cache.Cache.TextHandlerProcessRequestMethods.ContainsKey(wechatAccount.WechatId) == false)
                             {
-                            }
-                            {
-                                
+                                lock (Cache.Cache.TextHandlerProcessRequestMethods)
+                                {
+                                    if (Cache.Cache.TextHandlerProcessRequestMethods.ContainsKey(wechatAccount.WechatId) == false)
+                                    {
+                                        Cache.Cache.TextHandlerProcessRequestMethods.Add(wechatAccount.WechatId, processRequest);
+                                    }
+                                    else
+                                    {
+                                        throw new TypeInitializationException(typeof(ITextHandler).Name, new Exception("已存在一个实现该接口的类。"));
+                                    }
+                                }
                             }
                         }
                     }
