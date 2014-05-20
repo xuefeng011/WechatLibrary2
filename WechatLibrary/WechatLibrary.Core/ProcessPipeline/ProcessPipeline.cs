@@ -142,9 +142,9 @@ namespace WechatLibrary.Core.ProcessPipeline
                 this.ReadRequestXml();
                 Wechat.FireReadRequestXmlEnd(this);
 
-                Wechat.FireParseXmlToDocumentStart(this);
+                Wechat.FireParseXmlToXDocumentStart(this);
                 this.ParseXmlToXDocument();
-                Wechat.FireParseXmlToDocumentEnd(this);
+                Wechat.FireParseXmlToXDocumentEnd(this);
 
                 Wechat.FireGetMessageTypeFromXDocumentStart(this);
                 this.GetMessageTypeFromXDocument();

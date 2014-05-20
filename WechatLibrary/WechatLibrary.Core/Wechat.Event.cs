@@ -9,11 +9,11 @@ namespace WechatLibrary.Core
     public partial class Wechat
     {
         public static event EventHandler GetHttpRequestAndHttpResponseStart;
-
         public static event EventHandler GetHttpRequestAndHttpResponseEnd;
-
         public static event EventHandler ReadRequestXmlStart;
         public static event EventHandler ReadRequestXmlEnd;
+        public static event EventHandler ParseXmlToXDocumentStart;
+        public static event EventHandler ParseXmlToXDocumentEnd;
 
         public static void FireGetHttpRequestAndHttpResponseStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
@@ -47,12 +47,20 @@ namespace WechatLibrary.Core
             }
         }
 
-        public static void FireParseXmlToDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
+        public static void FireParseXmlToXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (ParseXmlToXDocumentStart != null)
+            {
+                ParseXmlToXDocumentStart(processPipeline, EventArgs.Empty);
+            }
         }
 
-        public static void FireParseXmlToDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        public static void FireParseXmlToXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
+            if (ParseXmlToXDocumentEnd != null)
+            {
+                ParseXmlToXDocumentEnd(processPipeline, EventArgs.Empty);
+            }
         }
 
         public static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
