@@ -9,15 +9,23 @@ namespace WechatLibrary.Model.Message.Response
     /// <summary>
     /// 回复文本消息。
     /// </summary>
-    public class TextResult : ResponseResultBase
+    public partial class TextResult : ResponseResultBase
     {
+        private string _content;
+
         /// <summary>
         /// 回复的消息内容（换行：在 content 中能够换行，微信客户端就支持换行显示）。
         /// </summary>
         public string Content
         {
-            get;
-            set;
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                _content = value;
+            }
         }
 
         public TextResult()

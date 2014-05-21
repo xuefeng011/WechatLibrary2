@@ -1,41 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Model.Message.Response
 {
     /// <summary>
     /// 回复视频消息。
     /// </summary>
-    public class VideoResult : ResponseResultBase
+    public partial class VideoResult : ResponseResultBase
     {
+        private string _mediaId;
+
         /// <summary>
         /// 通过上传多媒体文件，得到的 id。
         /// </summary>
         public string MediaId
         {
-            get;
-            set;
+            get
+            {
+                return _mediaId;
+            }
+            set
+            {
+                _mediaId = value;
+            }
         }
+
+        private string _title;
 
         /// <summary>
         /// 视频消息的标题。
         /// </summary>
         public string Title
         {
-            get;
-            set;
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+            }
         }
+
+        private string _description;
 
         /// <summary>
         /// 视频消息的描述。
         /// </summary>
         public string Description
         {
-            get;
-            set;
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
         }
 
         public VideoResult()

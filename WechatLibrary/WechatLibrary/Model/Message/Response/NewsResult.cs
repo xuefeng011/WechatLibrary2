@@ -9,7 +9,7 @@ namespace WechatLibrary.Model.Message.Response
     /// <summary>
     /// 回复图文消息。
     /// </summary>
-    public class NewsResult : ResponseResultBase
+    public partial class NewsResult : ResponseResultBase
     {
         private List<NewsArticle> _articles;
 
