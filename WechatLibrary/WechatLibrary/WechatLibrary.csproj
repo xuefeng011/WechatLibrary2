@@ -74,7 +74,13 @@
     <Compile Include="Model\Message\Request\RequestMessageBase.cs" />
     <Compile Include="Model\Message\Response\EmptyResult.cs" />
     <Compile Include="Model\Message\Response\ImageResult.cs" />
+    <Compile Include="Model\Message\Response\MusicResult.cs" />
+    <Compile Include="Model\Message\Response\NewsArticle.cs" />
+    <Compile Include="Model\Message\Response\NewsResult.cs" />
     <Compile Include="Model\Message\Response\ResponseResultBase.cs" />
+    <Compile Include="Model\Message\Response\TextResult.cs" />
+    <Compile Include="Model\Message\Response\VideoResult.cs" />
+    <Compile Include="Model\Message\Response\VoiceResult.cs" />
     <Compile Include="Model\Return\AccessTokenReturn.cs" />
     <Compile Include="Model\Return\ReturnBase.cs" />
     <Compile Include="Model\WechatAccount.cs" />
