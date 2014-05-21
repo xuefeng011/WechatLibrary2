@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\Cache.cs" />
+    <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
     <Compile Include="Converter\MenuButtonTypeConverter.cs" />
     <Compile Include="Interface\Handler\IImageHandler.cs" />
     <Compile Include="Interface\Handler\ILinkHandler.cs" />
