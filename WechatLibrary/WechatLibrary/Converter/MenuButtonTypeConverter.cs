@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Serialization.Json;
+﻿using Common.Serialization.Json;
+using System;
 using WechatLibrary.Model.Menu;
 
 namespace WechatLibrary.Converter

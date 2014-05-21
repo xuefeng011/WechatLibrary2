@@ -50,6 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\MenuButtonTypeConverter.cs" />
+    <Compile Include="Interface\Handler\IImageHandler.cs" />
+    <Compile Include="Interface\Handler\ILinkHandler.cs" />
+    <Compile Include="Interface\Handler\ILocationHandler.cs" />
+    <Compile Include="Interface\Handler\IMenuButtonClickHandler.cs" />
+    <Compile Include="Interface\Handler\IMenuButtonViewHandler.cs" />
+    <Compile Include="Interface\Handler\IQRScanHandler.cs" />
+    <Compile Include="Interface\Handler\IQRSubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\ISubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\ITextHandler.cs" />
+    <Compile Include="Interface\Handler\IUnsubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\IUploadLocationHandler.cs" />
+    <Compile Include="Interface\Handler\IVideoHandler.cs" />
+    <Compile Include="Interface\Handler\IVoiceHandler.cs" />
     <Compile Include="Model\AccessToken.cs" />
     <Compile Include="Model\Menu\Menu.cs" />
     <Compile Include="Model\Menu\MenuButton.cs" />
@@ -93,9 +106,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
