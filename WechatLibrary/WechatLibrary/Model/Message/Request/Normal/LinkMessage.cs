@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Model.Message.Request.Normal
 {
     /// <summary>
     /// 链接消息。
     /// </summary>
-    public class LinkMessage : NormalMessageBase
+    public partial class LinkMessage : NormalMessageBase
     {
         private string _title;
 

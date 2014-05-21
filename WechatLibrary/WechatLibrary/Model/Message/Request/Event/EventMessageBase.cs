@@ -4,7 +4,7 @@ namespace WechatLibrary.Model.Message.Request.Event
     /// <summary>
     /// 事件消息基类。
     /// </summary>
-    public abstract class EventMessageBase : RequestMessageBase
+    public abstract partial class EventMessageBase : RequestMessageBase
     {
         private string _event;
 

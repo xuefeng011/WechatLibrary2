@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Model.Message.Request.Normal
 {
     /// <summary>
     /// 普通消息基类。
     /// </summary>
-    public abstract class NormalMessageBase : RequestMessageBase
+    public abstract partial class NormalMessageBase : RequestMessageBase
     {
         private long _msgId;
 

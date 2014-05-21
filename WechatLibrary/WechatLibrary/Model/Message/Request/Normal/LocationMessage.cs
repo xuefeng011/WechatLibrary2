@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Model.Message.Request.Normal
 {
     /// <summary>
     /// 地理位置消息。
     /// </summary>
-    public class LocationMessage : NormalMessageBase
+    public partial class LocationMessage : NormalMessageBase
     {
         private double _location_X;
 

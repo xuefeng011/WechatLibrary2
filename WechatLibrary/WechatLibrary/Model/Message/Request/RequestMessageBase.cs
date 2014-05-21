@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Model.Message.Request
 {
     /// <summary>
     /// 接收消息基类。
     /// </summary>
-    public abstract class RequestMessageBase
+    public abstract partial class RequestMessageBase
     {
         private string _toUserName;
 

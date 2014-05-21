@@ -62,6 +62,8 @@
     <Compile Include="Model\Message\Request\Event\QRScanMessage.cs" />
     <Compile Include="Model\Message\Request\Event\QRSubscribeMessage.cs" />
     <Compile Include="Model\Message\Request\Event\SubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\UnsubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\UploadLocationMessage.cs" />
     <Compile Include="Model\Message\Request\Normal\ImageMessage.cs" />
     <Compile Include="Model\Message\Request\Normal\LinkMessage.cs" />
     <Compile Include="Model\Message\Request\Normal\LocationMessage.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Model\Message\Request\Normal\VoiceMessage.cs" />
     <Compile Include="Model\Message\Request\RequestMessageBase.cs" />
     <Compile Include="Model\Message\Response\EmptyResult.cs" />
+    <Compile Include="Model\Message\Response\ImageResult.cs" />
     <Compile Include="Model\Message\Response\ResponseResultBase.cs" />
     <Compile Include="Model\Return\AccessTokenReturn.cs" />
     <Compile Include="Model\Return\ReturnBase.cs" />
