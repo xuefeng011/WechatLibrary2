@@ -144,17 +144,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WechatLibrary.Core\WechatLibrary.Core.Net45.csproj">
-      <Project>{d0e7d99b-a119-464d-b64a-6583df939736}</Project>
-      <Name>WechatLibrary.Core.Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WechatLibrary.Interface\WechatLibrary.Interface.Net45.csproj">
-      <Project>{e5a8a7e1-b4b1-4116-b945-575c5e0c614c}</Project>
-      <Name>WechatLibrary.Interface.Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WechatLibrary.Model\WechatLibrary.Model.Net45.csproj">
-      <Project>{e4b16d0f-dcb1-4575-a45b-0ef63ec1d332}</Project>
-      <Name>WechatLibrary.Model.Net45</Name>
+    <ProjectReference Include="..\WechatLibrary\WechatLibrary.csproj">
+      <Project>{714fc665-0542-4e2e-aef9-44f4b60a0384}</Project>
+      <Name>WechatLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

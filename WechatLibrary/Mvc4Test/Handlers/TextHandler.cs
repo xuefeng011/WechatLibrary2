@@ -9,7 +9,7 @@ namespace Mvc4Test.Handlers
 {
     public class TextHandler : ITextHandler
     {
-        public WechatLibrary.Model.Message.Response.ResponseResultBase ProcessRequest(WechatLibrary.Model.Message.Request.TextMessage message, ref bool dbProcess)
+        public WechatLibrary.Model.Message.Response.ResponseResultBase ProcessRequest(WechatLibrary.Model.Message.Request.Normal.TextMessage message, ref bool dbProcess)
         {
             return new TextResult()
             {

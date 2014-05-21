@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using WechatLibrary.Core.ProcessPipeline;
+using WechatLibrary.ProcessPipeline;
 using WechatLibrary.Model.Message.Response;
 
 namespace Mvc4Test
@@ -16,7 +17,9 @@ namespace Mvc4Test
     {
         protected void Application_Start()
         {
-            WechatLibrary.Core.Wechat.SetDefaultValueEnd += Wechat_GetHttpRequestAndHttpResponseing;
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WechatLibrary.Model.WechatEntities>());
+
+            WechatLibrary.Wechat.SetDefaultValueEnd += Wechat_GetHttpRequestAndHttpResponseing;
 
             AreaRegistration.RegisterAllAreas();
 

@@ -32,7 +32,7 @@ namespace Mvc4Test.Controllers
                 }
             }
 
-            WechatLibrary.Core.Wechat.ProcessRequest();
+            WechatLibrary.Wechat.ProcessRequest();
             return new EmptyResult();
         }
     }
