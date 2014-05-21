@@ -70,9 +70,7 @@ namespace WechatLibrary
                     if (Cache.Cache.HasInit == false)
                     {
                         // 缓存 Handler。
-
-
-
+                        Init.Init.InitHandlers(handlerAssembly);
 
                         // 标识已经缓存。
                         Cache.Cache.HasInit = true;
@@ -104,6 +102,12 @@ namespace WechatLibrary
             }
             else if (string.Equals(method, "GET", StringComparison.OrdinalIgnoreCase) == true)
             {
+#if DEBUG
+                ProcessPipeline.ProcessPipeline pipeline = new ProcessPipeline.ProcessPipeline(context);
+                pipeline.Start();
+                return;
+#endif
+
                 // Get 请求，执行 URL 验证。
                 Signature.Signature.DoSignature(context);
             }
