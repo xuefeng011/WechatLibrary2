@@ -107,11 +107,15 @@
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccessTokenService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Signature\Signature.cs" />
     <Compile Include="Wechat.cs" />
+    <Compile Include="Wechat.Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
