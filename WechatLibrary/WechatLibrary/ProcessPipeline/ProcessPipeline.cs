@@ -19,5 +19,12 @@ namespace WechatLibrary.ProcessPipeline
         public ProcessPipeline(HttpContext context)
         {
         }
+
+        /// <summary>
+        /// 开始处理管道事件。
+        /// </summary>
+        public void Start()
+        {
+        }
     }
 }

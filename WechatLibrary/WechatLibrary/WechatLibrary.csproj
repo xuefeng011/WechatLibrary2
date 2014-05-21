@@ -54,6 +54,8 @@
     <Compile Include="Cache\Cache.cs" />
     <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
     <Compile Include="Converter\MenuButtonTypeConverter.cs" />
+    <Compile Include="Init\Init.InitHandler.cs" />
+    <Compile Include="Init\Init.InitHandlers.cs" />
     <Compile Include="Interface\Handler\IImageHandler.cs" />
     <Compile Include="Interface\Handler\ILinkHandler.cs" />
     <Compile Include="Interface\Handler\ILocationHandler.cs" />
