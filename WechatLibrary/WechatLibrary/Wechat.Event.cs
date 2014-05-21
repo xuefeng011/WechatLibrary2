@@ -88,6 +88,112 @@ namespace WechatLibrary
             }
         }
 
+        public static event EventHandler DeserializeXDocumentByMessageTypeStart;
+
+        public static void FireDeserializeXDocumentByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (DeserializeXDocumentByMessageTypeStart != null)
+            {
+                DeserializeXDocumentByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler DeserializeXDocumentByMessageTypeEnd;
+
+        public static void FireDeserializeXDocumentByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (DeserializeXDocumentByMessageTypeEnd != null)
+            {
+                DeserializeXDocumentByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeStart;
+
+        public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerConstructorDelegateFromCacheByMessageTypeStart != null)
+            {
+                GetHandlerConstructorDelegateFromCacheByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeEnd;
+
+        public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerConstructorDelegateFromCacheByMessageTypeEnd != null)
+            {
+                GetHandlerConstructorDelegateFromCacheByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler GetHandlerProcessRequestMethodFromCacheByMessageTypeStart;
+
+        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerProcessRequestMethodFromCacheByMessageTypeStart != null)
+            {
+                GetHandlerProcessRequestMethodFromCacheByMessageTypeStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd;
+
+        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd != null)
+            {
+                GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart;
+
+        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart != null)
+            {
+                InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(processPipeline,
+                    EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd;
+
+        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd != null)
+            {
+                InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(processPipeline,
+                    EventArgs.Empty);
+            }
+        }
+
+
+        // TODO
+        // go to db here
+
+
+        public static event EventHandler SetDefaultValueStart;
+
+        public static void FireSetDefaultValueStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (SetDefaultValueStart != null)
+            {
+                SetDefaultValueStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler SetDefaultValueEnd;
+
+        public static void FireSetDefaultValueEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (SetDefaultValueEnd != null)
+            {
+                SetDefaultValueEnd(processPipeline, EventArgs.Empty);
+            }
+        }
 
 
 

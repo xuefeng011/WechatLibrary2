@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -80,6 +81,33 @@ namespace WechatLibrary.ProcessPipeline
         }
 
         /// <summary>
+        /// 存放处理类的构造函数委托。
+        /// </summary>
+        public Delegate HandlerConstructorDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 指示本次请求是否使用数据库处理。
+        /// </summary>
+        public bool DbProcess
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 存放处理类的 ProcessRequest 方法。
+        /// </summary>
+        public MethodInfo HandlerProcessRequestMethod
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 存放回复消息。
         /// </summary>
         public ResponseResultBase ResponseResult
@@ -113,6 +141,29 @@ namespace WechatLibrary.ProcessPipeline
                     break;
                 }
                 if (this.GetMessageTypeFromXDocument() == false)
+                {
+                    break;
+                }
+                if (this.DeserializeXDocumentByMessageType() == false)
+                {
+                    break;
+                }
+                if (this.GetHandlerConstructorDelegateFromCacheByMessageType() == false)
+                {
+                    break;
+                }
+                if (this.GetHandlerProcessRequestMethodFromCacheByMessageType() == false)
+                {
+                    break;
+                }
+                if (this.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist() == false)
+                {
+                    break;
+                }
+                // TODO
+                // go to db here
+
+                if (this.SetDefaultValue() == false)
                 {
                     break;
                 }
