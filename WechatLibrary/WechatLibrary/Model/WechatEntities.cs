@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model.Menu;
+using WechatLibrary.Model.Return;
 
 namespace WechatLibrary.Model
 {
@@ -26,6 +27,15 @@ namespace WechatLibrary.Model
         /// AccessToken。
         /// </summary>
         public DbSet<AccessToken> AccessTokens
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// OAuth2AccessToken。
+        /// </summary>
+        public DbSet<OAuth2AccessToken> OAuth2AccessTokens
         {
             get;
             set;

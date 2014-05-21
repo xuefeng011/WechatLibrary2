@@ -94,7 +94,9 @@
     <Compile Include="Model\Message\Response\TextResult.cs" />
     <Compile Include="Model\Message\Response\VideoResult.cs" />
     <Compile Include="Model\Message\Response\VoiceResult.cs" />
+    <Compile Include="Model\OAuth2AccessToken.cs" />
     <Compile Include="Model\Return\AccessTokenReturn.cs" />
+    <Compile Include="Model\Return\OAuth2AccessTokenReturn.cs" />
     <Compile Include="Model\Return\ReturnBase.cs" />
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
