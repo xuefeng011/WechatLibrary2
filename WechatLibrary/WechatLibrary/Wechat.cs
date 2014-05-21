@@ -79,6 +79,34 @@ namespace WechatLibrary
                     }
                 }
             }
+
+            HttpRequest request;
+
+            try
+            {
+                // 获取该次 Http 请求。
+                request = context.Request;
+            }
+            catch (HttpException)
+            {
+                // 获取失败，放弃处理。
+                return;
+            }
+
+            // 获取该次 Http 请求的方法。
+            string method = request.HttpMethod;
+
+            if (string.Equals(method, "POST", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                // Post 请求，创建处理管道，处理用户消息。
+                ProcessPipeline.ProcessPipeline pipeline = new ProcessPipeline.ProcessPipeline(context);
+                pipeline.Start();
+            }
+            else if (string.Equals(method, "GET", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                // Get 请求，执行 URL 验证。
+                Signature.Signature.DoSignature(context);
+            }
         }
     }
 }
