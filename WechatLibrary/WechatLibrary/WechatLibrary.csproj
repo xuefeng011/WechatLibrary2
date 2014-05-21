@@ -49,14 +49,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\MenuButtonTypeConverter.cs" />
+    <Compile Include="Model\AccessToken.cs" />
+    <Compile Include="Model\Menu\Menu.cs" />
+    <Compile Include="Model\Menu\MenuButton.cs" />
+    <Compile Include="Model\Menu\MenuButtonBase.cs" />
+    <Compile Include="Model\Menu\MenuButtonType.cs" />
+    <Compile Include="Model\Menu\MenuSubButton.cs" />
+    <Compile Include="Model\Message\Request\Event\EventMessageBase.cs" />
+    <Compile Include="Model\Message\Request\Event\MenuButtonClickMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\MenuButtonViewMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\QRScanMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\QRSubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\SubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\ImageMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\LinkMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\LocationMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\NormalMessageBase.cs" />
+    <Compile Include="Model\Message\Request\Normal\TextMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\VideoMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\VoiceMessage.cs" />
+    <Compile Include="Model\Message\Request\RequestMessageBase.cs" />
+    <Compile Include="Model\Message\Response\EmptyResult.cs" />
+    <Compile Include="Model\Message\Response\ResponseResultBase.cs" />
+    <Compile Include="Model\Return\AccessTokenReturn.cs" />
+    <Compile Include="Model\Return\ReturnBase.cs" />
+    <Compile Include="Model\WechatAccount.cs" />
+    <Compile Include="Model\WechatEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccessTokenService.cs" />
+    <Compile Include="Service\MenuService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Menu\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
