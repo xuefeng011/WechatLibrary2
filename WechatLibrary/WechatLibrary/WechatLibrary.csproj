@@ -91,6 +91,7 @@
     <Compile Include="Model\Message\Request\Normal\VideoMessage.cs" />
     <Compile Include="Model\Message\Request\Normal\VoiceMessage.cs" />
     <Compile Include="Model\Message\Request\RequestMessageBase.cs" />
+    <Compile Include="Model\Message\Request\RequestMessageType.cs" />
     <Compile Include="Model\Message\Response\EmptyResult.cs" />
     <Compile Include="Model\Message\Response\ImageResult.cs" />
     <Compile Include="Model\Message\Response\MusicResult.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="Model\WechatEntities.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetMessageTypeFromXDocument.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

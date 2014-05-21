@@ -48,10 +48,45 @@ namespace WechatLibrary
             }
         }
 
+        public static event EventHandler ParseXmlToXDocumentStart;
 
+        public static void FireParseXmlToXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ParseXmlToXDocumentStart != null)
+            {
+                ParseXmlToXDocumentStart(processPipeline, EventArgs.Empty);
+            }
+        }
 
+        public static event EventHandler ParseXmlToXDocumentEnd;
 
+        public static void FireParseXmlToXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ParseXmlToXDocumentEnd != null)
+            {
+                ParseXmlToXDocumentEnd(processPipeline, EventArgs.Empty);
+            }
+        }
 
+        public static event EventHandler GetMessageTypeFromXDocumentStart;
+
+        public static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetMessageTypeFromXDocumentStart != null)
+            {
+                GetMessageTypeFromXDocumentStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler GetMessageTypeFromXDocumentEnd;
+
+        public static void FireGetMessageTypeFromXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (GetMessageTypeFromXDocumentEnd != null)
+            {
+                GetMessageTypeFromXDocumentEnd(processPipeline, EventArgs.Empty);
+            }
+        }
 
 
 

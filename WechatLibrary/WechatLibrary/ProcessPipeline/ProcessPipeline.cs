@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml.Linq;
 using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Response;
 
@@ -54,6 +55,24 @@ namespace WechatLibrary.ProcessPipeline
         /// <summary>
         /// 存放请求消息。
         /// </summary>
+        public XDocument RequestXDocument
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 存放请求消息类型。
+        /// </summary>
+        public RequestMessageType RequestMessageType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 存放请求消息。
+        /// </summary>
         public RequestMessageBase RequestMessage
         {
             get;
@@ -79,7 +98,7 @@ namespace WechatLibrary.ProcessPipeline
         /// </summary>
         public void Start()
         {
-            while (true)
+            for (var temp = 0; temp < 1; temp++)
             {
                 if (this.GetHttpRequestAndHttpResponse() == false)
                 {
@@ -89,6 +108,15 @@ namespace WechatLibrary.ProcessPipeline
                 {
                     break;
                 }
+                if (this.ParseXmlToXDocument() == false)
+                {
+                    break;
+                }
+                if (this.GetMessageTypeFromXDocument() == false)
+                {
+                    break;
+                }
+                break;
             }
 
             this.SerializeResponseResultAndWriteToResponseStream();
