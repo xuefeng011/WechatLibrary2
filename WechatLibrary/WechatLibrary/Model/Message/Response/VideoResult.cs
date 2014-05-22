@@ -57,6 +57,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条视频回复。
+        /// </summary>
         public VideoResult()
         {
             this.MsgType = "video";

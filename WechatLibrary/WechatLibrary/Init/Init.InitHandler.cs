@@ -59,8 +59,9 @@ namespace WechatLibrary.Init
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
+                        // 这里可能是 Handler 没有无参构造函数或构造函数无法访问等原因，对于这种 Handler 选择忽略。
                         continue;
                     }
                 }
@@ -122,8 +123,9 @@ namespace WechatLibrary.Init
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
+                        // 这里可能是 Handler 没有无参构造函数或构造函数无法访问等原因，对于这种 Handler 选择忽略。
                         continue;
                     }
                 }

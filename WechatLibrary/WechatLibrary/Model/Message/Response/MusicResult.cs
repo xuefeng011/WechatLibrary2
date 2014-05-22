@@ -91,6 +91,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条音乐回复。
+        /// </summary>
         public MusicResult()
         {
             this.MsgType = "music";

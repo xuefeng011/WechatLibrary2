@@ -33,7 +33,7 @@ namespace WechatLibrary.Model
             }
         }
 
-        public string _value;
+        private string _value;
 
         /// <summary>
         /// AccessToken 的值。

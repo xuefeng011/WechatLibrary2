@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 转换消息 xml 到消息 XDocument。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool ParseXmlToXDocument()
         {
             Wechat.FireParseXmlToXDocumentStart(this);
@@ -17,10 +21,9 @@ namespace WechatLibrary.ProcessPipeline
             {
                 this.RequestXDocument = XDocument.Parse(this.RequestXml);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
-                throw;
             }
 
             Wechat.FireParseXmlToXDocumentEnd(this);

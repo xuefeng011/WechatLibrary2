@@ -28,6 +28,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条文本回复。
+        /// </summary>
         public TextResult()
         {
             this.MsgType = "text";

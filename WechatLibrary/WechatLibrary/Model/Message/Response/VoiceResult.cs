@@ -23,6 +23,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条语音回复。
+        /// </summary>
         public VoiceResult()
         {
             this.MsgType = "voice";

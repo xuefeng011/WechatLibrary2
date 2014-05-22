@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 进行排重。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool CheckHadResponseCurrentNormalMessage()
         {
             Wechat.FireCheckHadResponseCurrentNormalMessageStart(this);

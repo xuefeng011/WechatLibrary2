@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 执行数据库自动回复。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool ExecuteDataBaseProcess()
         {
             if (DbProcess == true)

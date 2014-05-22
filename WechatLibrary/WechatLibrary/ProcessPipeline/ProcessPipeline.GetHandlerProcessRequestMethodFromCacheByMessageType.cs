@@ -10,6 +10,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 根据消息类型从缓存中获取处理类的 ProcessRequest 方法。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool GetHandlerProcessRequestMethodFromCacheByMessageType()
         {
             Wechat.FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(this);

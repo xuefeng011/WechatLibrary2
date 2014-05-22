@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 从请求流中读取消息 xml。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool ReadRequestXml()
         {
             Wechat.FireGetHttpRequestAndHttpResponseStart(this);
@@ -24,7 +28,7 @@ namespace WechatLibrary.ProcessPipeline
 #endif
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

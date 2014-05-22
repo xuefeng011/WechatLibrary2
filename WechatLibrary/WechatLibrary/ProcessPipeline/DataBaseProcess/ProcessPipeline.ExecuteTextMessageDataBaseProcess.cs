@@ -14,6 +14,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 执行数据库文本消息的自动回复。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool ExecuteTextMessageDataBaseProcess()
         {
             var textMessage = this.RequestMessage as TextMessage;

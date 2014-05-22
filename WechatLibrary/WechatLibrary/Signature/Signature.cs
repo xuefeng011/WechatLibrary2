@@ -85,8 +85,9 @@ namespace WechatLibrary.Signature
                 {
                     request = context.Request;
                 }
-                catch (HttpException ex)
+                catch (HttpException)
                 {
+                    // 获取 Http 请求失败，忽略处理该次 Http 请求。
                     return false;
                 }
 

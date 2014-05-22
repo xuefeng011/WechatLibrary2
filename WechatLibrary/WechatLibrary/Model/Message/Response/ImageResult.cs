@@ -23,6 +23,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条图片回复。
+        /// </summary>
         public ImageResult()
         {
             this.MsgType = "image";

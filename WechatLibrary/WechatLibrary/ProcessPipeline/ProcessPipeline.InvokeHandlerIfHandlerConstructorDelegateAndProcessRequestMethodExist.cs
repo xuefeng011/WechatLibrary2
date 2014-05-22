@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 执行 Handler。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist()
         {
             Wechat.FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(this);

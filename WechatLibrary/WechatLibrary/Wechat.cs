@@ -105,11 +105,10 @@ namespace WechatLibrary
 #if DEBUG
                 ProcessPipeline.ProcessPipeline pipeline = new ProcessPipeline.ProcessPipeline(context);
                 pipeline.Start();
-                return;
-#endif
-
+#else
                 // Get 请求，执行 URL 验证。
                 Signature.Signature.DoSignature(context);
+#endif
             }
         }
     }

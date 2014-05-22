@@ -29,6 +29,9 @@ namespace WechatLibrary.Model.Message.Response
             }
         }
 
+        /// <summary>
+        /// 创建一条图文回复。
+        /// </summary>
         public NewsResult()
         {
             this.MsgType = "news";

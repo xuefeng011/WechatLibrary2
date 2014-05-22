@@ -116,6 +116,10 @@ namespace WechatLibrary.ProcessPipeline
             set;
         }
 
+        /// <summary>
+        /// 创建微信消息处理管道。
+        /// </summary>
+        /// <param name="context">处理的 Http 上下文。</param>
         public ProcessPipeline(HttpContext context)
         {
             this.HttpContext = context;
@@ -168,16 +172,10 @@ namespace WechatLibrary.ProcessPipeline
                 {
                     break;
                 }
-                // TODO
-                // go to db here
-
                 if (this.ExecuteDataBaseProcess() == false)
                 {
                     break;
                 }
-
-                // TODO
-                // go to db here
                 if (this.SetDefaultValue() == false)
                 {
                     break;

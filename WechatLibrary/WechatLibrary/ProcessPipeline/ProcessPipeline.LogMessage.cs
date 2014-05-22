@@ -11,6 +11,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 记录当前消息。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool LogMessage()
         {
             Wechat.FireLogMessageStart(this);

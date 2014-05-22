@@ -11,6 +11,9 @@ using WechatLibrary.Model.Message.Request.Normal;
 
 namespace WechatLibrary.Service
 {
+    /// <summary>
+    /// 消息记录服务。
+    /// </summary>
     public partial class MessageLogService
     {
         /// <summary>

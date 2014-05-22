@@ -9,6 +9,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 从 Http 上下文中获取 HttpRequest 和 HttpResponse。
+        /// </summary>
+        /// <returns>是否执行成功。</returns>
         public bool GetHttpRequestAndHttpResponse()
         {
             Wechat.FireGetHttpRequestAndHttpResponseStart(this);
