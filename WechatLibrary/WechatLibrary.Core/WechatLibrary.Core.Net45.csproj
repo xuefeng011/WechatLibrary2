@@ -72,20 +72,6 @@
     <Compile Include="Wechat.Event.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WechatLibrary.Interface\WechatLibrary.Interface.Net45.csproj">
-      <Project>{e5a8a7e1-b4b1-4116-b945-575c5e0c614c}</Project>
-      <Name>WechatLibrary.Interface.Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WechatLibrary.Model\WechatLibrary.Model.Net45.csproj">
-      <Project>{e4b16d0f-dcb1-4575-a45b-0ef63ec1d332}</Project>
-      <Name>WechatLibrary.Model.Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WechatLibrary.Service\WechatLibrary.Service.Net45.csproj">
-      <Project>{3557c6bb-ed7e-49bb-9c9d-d9f3182b507d}</Project>
-      <Name>WechatLibrary.Service.Net45</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />

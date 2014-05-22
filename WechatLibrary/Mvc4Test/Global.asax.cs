@@ -19,7 +19,7 @@ namespace Mvc4Test
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WechatLibrary.Model.WechatEntities>());
 
-            WechatLibrary.Wechat.SetDefaultValueEnd += Wechat_GetHttpRequestAndHttpResponseing;
+            WechatLibrary.Wechat.SetDefaultValueEnd += Wechat_SetDefaultValueEnd;
 
             AreaRegistration.RegisterAllAreas();
 
@@ -28,11 +28,9 @@ namespace Mvc4Test
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
-        void Wechat_GetHttpRequestAndHttpResponseing(object sender, EventArgs e)
+        void Wechat_SetDefaultValueEnd(object sender, EventArgs e)
         {
-            var x = sender as ProcessPipeline;
-            (x.ResponseResult as TextResult).Content = "50000000000000";
-            int a = 10;
+            
         }
     }
 }

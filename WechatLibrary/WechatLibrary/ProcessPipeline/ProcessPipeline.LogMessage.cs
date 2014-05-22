@@ -27,6 +27,7 @@ namespace WechatLibrary.ProcessPipeline
                     return false;
                 }
                 ReceiveLog log = new ReceiveLog();
+                log.Id = Guid.NewGuid();
                 if (this.RequestMessage is TextMessage)
                 {
                     log.Content = (this.RequestMessage as TextMessage).Content;

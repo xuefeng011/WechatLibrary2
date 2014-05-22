@@ -27,7 +27,7 @@ namespace WechatLibrary.ProcessPipeline
             }
             using (WechatEntities entities = new WechatEntities())
             {
-                var wechatAccount = entities.WechatAccounts.FirstOrDefault(temp => temp.AppId == this.RequestMessage.ToUserName);
+                var wechatAccount = entities.WechatAccounts.FirstOrDefault(temp => temp.WechatId == this.RequestMessage.ToUserName);
                 if (wechatAccount == null)
                 {
                     return false;
@@ -42,7 +42,7 @@ namespace WechatLibrary.ProcessPipeline
                         return true;
                     }
                 }
-                var textMessageEqualsIgnoreMatches = textMessageEqualsMatches.Where(temp => temp.MatchOption == "equalsignore");
+                var textMessageEqualsIgnoreMatches = textMessageMatches.Where(temp => temp.MatchOption == "equalsignore");
                 foreach (var textMessageEqualsIgnoreMatch in textMessageEqualsIgnoreMatches)
                 {
                     if (textMessageEqualsIgnoreMatch.IsMatch(textMessage) == true)
@@ -52,7 +52,7 @@ namespace WechatLibrary.ProcessPipeline
                     }
                 }
                 var textMessageContainsMatches =
-                    textMessageEqualsMatches.Where(temp => temp.MatchOption == "contains")
+                    textMessageMatches.Where(temp => temp.MatchOption == "contains")
                         .OrderBy(temp => temp.MatchLevel);
                 foreach (var textMessageContainsMatch in textMessageContainsMatches)
                 {
@@ -63,7 +63,7 @@ namespace WechatLibrary.ProcessPipeline
                     }
                 }
                 var textMessageContainsIgnoreMatches =
-                    textMessageContainsMatches.Where(temp => temp.MatchOption == "containsignore")
+                    textMessageMatches.Where(temp => temp.MatchOption == "containsignore")
                         .OrderBy(temp => temp.MatchLevel);
                 foreach (var textMessageContainsIgnoreMatch in textMessageContainsIgnoreMatches)
                 {

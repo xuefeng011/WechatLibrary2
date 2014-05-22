@@ -75,6 +75,7 @@
     <Compile Include="Interface\Handler\IVoiceHandler.cs" />
     <Compile Include="Model\AccessToken.cs" />
     <Compile Include="Model\AutoResponse\MatchResultMapping.cs" />
+    <Compile Include="Model\AutoResponse\Match\ImageMessageMatch.cs" />
     <Compile Include="Model\AutoResponse\Match\TextMessageMatch.cs" />
     <Compile Include="Model\AutoResponse\Result\ImageAutoResponseResult.cs" />
     <Compile Include="Model\AutoResponse\Result\MusicAutoResponseResult.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
     <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteImageMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteMenuButtonClickMessageDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteTextMessageDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteVoiceMessageDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.CheckHadResponseCurrentNormalMessage.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.SetDefaultValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccessTokenService.cs" />
+    <Compile Include="Service\MediaFileService.cs" />
     <Compile Include="Service\MessageLogService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\MessageTypeService.cs" />

@@ -147,6 +147,7 @@ namespace WechatLibrary.Model
         {
             get
             {
+                _receiveLogs = _receiveLogs ?? new List<ReceiveLog.ReceiveLog>();
                 return _receiveLogs;
             }
             set
@@ -164,12 +165,22 @@ namespace WechatLibrary.Model
         {
             get
             {
+                _textMessageMatches = _textMessageMatches ?? new List<TextMessageMatch>();
                 return _textMessageMatches;
             }
             set
             {
                 _textMessageMatches = value;
             }
+        }
+
+        /// <summary>
+        /// 图片消息自动回复匹配。
+        /// </summary>
+        public virtual ImageMessageMatch ImageMessageMatch
+        {
+            get;
+            set;
         }
 
         private Menu.Menu _menu;

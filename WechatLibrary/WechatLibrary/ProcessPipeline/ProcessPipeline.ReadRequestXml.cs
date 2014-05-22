@@ -22,7 +22,8 @@ namespace WechatLibrary.ProcessPipeline
                 using (StreamReader sr = new StreamReader(this.HttpRequest.InputStream))
                 {
 #if DEBUG
-                    this.RequestXml = @"<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[this is a test]]></Content><MsgId>1234567890123456</MsgId></xml>";
+                    Random rand = new Random();
+                    this.RequestXml = @"<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + "random content" + rand.Next(100000) + "]]></Content><MsgId>" + rand.Next(100000) + "</MsgId></xml>";
 #else
                     this.RequestXml = sr.ReadToEnd();
 #endif

@@ -11,7 +11,7 @@ namespace WechatLibrary.Converter
     /// <summary>
     /// 自动回复消息实体转换到回复消息。
     /// </summary>
-    public partial class AutoResponseResultConverter
+    internal partial class AutoResponseResultConverter
     {
         /// <summary>
         /// 转换回复消息实体到回复消息基类。

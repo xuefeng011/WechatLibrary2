@@ -115,5 +115,16 @@ namespace WechatLibrary.Model.AutoResponse
             var mapping = match.MatchResultMapping;
             return GetMapping(mapping.ResultType, mapping.ResultId);
         }
+
+        /// <summary>
+        /// 根据匹配获取自动回复结果。
+        /// </summary>
+        /// <param name="match">匹配。</param>
+        /// <returns>自动回复结果。</returns>
+        public static object GetMapping(ImageMessageMatch match)
+        {
+            var mapping = match.MatchResultMapping;
+            return GetMapping(mapping.ResultType, mapping.ResultId);
+        }
     }
 }

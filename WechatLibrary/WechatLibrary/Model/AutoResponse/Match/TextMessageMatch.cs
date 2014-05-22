@@ -21,7 +21,6 @@ namespace WechatLibrary.Model.AutoResponse.Match
         /// 数据库主键。
         /// </summary>
         [Key]
-        [ForeignKey("WechatAccount")]
         public Guid Id
         {
             get
@@ -92,6 +91,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
         /// <summary>
         /// 是否需要先匹配上一条记录再执行本条自动回复。
         /// </summary>
+        [ForeignKey("Id")]
         public virtual TextMessageMatch RequirePrevMessageMatch
         {
             get;
@@ -151,7 +151,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     }
                 case "contains":
                     {
-                        if (this.MatchContent != null && this.MatchContent.Contains(textMessageContent) == true)
+                        if (this.MatchContent != null && textMessageContent.Contains(this.MatchContent) == true)
                         {
                             break;
                         }
@@ -162,7 +162,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     }
                 case "containsignore":
                     {
-                        if (this.MatchContent != null && this.MatchContent.IndexOf(textMessageContent, StringComparison.OrdinalIgnoreCase) > -1)
+                        if (this.MatchContent != null && textMessageContent.IndexOf(this.MatchContent, StringComparison.OrdinalIgnoreCase) > -1)
                         {
                             break;
                         }
@@ -176,7 +176,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                         return false;
                     }
             }
-            if (this.RequirePrevMessageMatch == null)
+            if (this.RequirePrevMessageMatch == null || this.RequirePrevMessageMatch.Id == this.Id)
             {
                 return true;
             }

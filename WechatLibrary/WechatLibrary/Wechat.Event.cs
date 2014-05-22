@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -211,7 +212,7 @@ namespace WechatLibrary
                 CheckHadResponseCurrentNormalMessageEnd(processPipeline, EventArgs.Empty);
             }
         }
-        
+
         /// <summary>
         /// 开始记录用户消息。
         /// </summary>
@@ -368,6 +369,40 @@ namespace WechatLibrary
         }
 
         /// <summary>
+        /// 开始执行数据库处理文本消息。
+        /// </summary>
+        public static event EventHandler ExecuteTextMessageDataBaseProcessStart;
+
+        /// <summary>
+        /// 触发开始执行数据库处理文本消息事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        public static void FireExecuteTextMessageDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteTextMessageDataBaseProcessStart != null)
+            {
+                ExecuteTextMessageDataBaseProcessStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 结束执行数据库处理文本消息。
+        /// </summary>
+        public static event EventHandler ExecuteTextMessageDataBaseProcessEnd;
+
+        /// <summary>
+        /// 触发结束执行数据库处理文本消息事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        public static void FireExecuteTextMessageDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteTextMessageDataBaseProcessEnd != null)
+            {
+                ExecuteTextMessageDataBaseProcessEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
         /// 结束执行数据库处理。
         /// </summary>
         public static event EventHandler ExecuteDataBaseProcessEnd;
@@ -383,7 +418,7 @@ namespace WechatLibrary
                 ExecuteDataBaseProcessEnd(processPipeline, EventArgs.Empty);
             }
         }
-        
+
         /// <summary>
         /// 开始设置默认缺失参数。
         /// </summary>
@@ -417,7 +452,7 @@ namespace WechatLibrary
                 SetDefaultValueEnd(processPipeline, EventArgs.Empty);
             }
         }
-        
+
         /// <summary>
         /// 开始序列化消息到 xml 并写入到响应流。
         /// </summary>

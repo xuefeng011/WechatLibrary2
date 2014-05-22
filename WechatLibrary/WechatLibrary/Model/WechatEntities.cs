@@ -45,6 +45,15 @@ namespace WechatLibrary.Model
         }
 
         /// <summary>
+        /// 自动回复图片消息匹配集合。
+        /// </summary>
+        public DbSet<ImageMessageMatch> ImageMessageMatches
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 自动回复文本消息结果集合。
         /// </summary>
         public DbSet<TextAutoResponseResult> TextAutoResponseResults
@@ -121,6 +130,24 @@ namespace WechatLibrary.Model
         /// 微信菜单。
         /// </summary>
         public DbSet<Menu.Menu> Menus
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 微信一级菜单按钮。
+        /// </summary>
+        public DbSet<Menu.MenuButton> MenuButtons
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 微信二级菜单按钮。
+        /// </summary>
+        public DbSet<Menu.MenuSubButton> MenuSubButtons
         {
             get;
             set;

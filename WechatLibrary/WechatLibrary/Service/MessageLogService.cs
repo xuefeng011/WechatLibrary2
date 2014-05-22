@@ -101,6 +101,16 @@ namespace WechatLibrary.Service
         /// <summary>
         /// 获取用户的上一条文本消息内容。
         /// </summary>
+        /// <param name="message">当前消息。</param>
+        /// <returns>如存在上一条文本消息，则返回上一条文本消息的内容，不存在则返回 null。</returns>
+        public static string GetPrevTextMessageContent(RequestMessageBase message)
+        {
+            return GetPrevTextMessageContent(message.FromUserName, message.ToUserName);
+        }
+
+        /// <summary>
+        /// 获取用户的上一条文本消息内容。
+        /// </summary>
         /// <param name="fromUserName">当前消息的微信用户 Id。</param>
         /// <param name="toUserName">当前消息的微信开发者 Id。</param>
         /// <returns>如存在上一条文本消息，则返回上一条文本消息的内容，不存在则返回 null。</returns>
