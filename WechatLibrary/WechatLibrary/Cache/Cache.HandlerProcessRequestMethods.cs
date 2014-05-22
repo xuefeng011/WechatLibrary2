@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Cache
 {
-    public partial class Cache
+    internal partial class Cache
     {
         /// <summary>
         /// 缓存文本消息处理类的 ProcessRequest 方法。

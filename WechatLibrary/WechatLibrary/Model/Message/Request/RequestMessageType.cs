@@ -8,6 +8,7 @@ namespace WechatLibrary.Model.Message.Request
 {
     public enum RequestMessageType
     {
+        Unknown,
         Text,
         Image,
         Voice,

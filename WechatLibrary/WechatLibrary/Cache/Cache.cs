@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WechatLibrary.Cache
 {
-    public partial class Cache
+    /// <summary>
+    /// 微信类库缓存，主要缓存处理类的构造函数和 ProcessRequest 方法。
+    /// </summary>
+    internal partial class Cache
     {
         /// <summary>
         /// 指示是否已经初始化。

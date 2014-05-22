@@ -4,6 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WechatLibrary.Model.AutoResponse;
+using WechatLibrary.Model.AutoResponse.Match;
+using WechatLibrary.Model.AutoResponse.Result;
 using WechatLibrary.Model.Menu;
 using WechatLibrary.Model.Return;
 
@@ -18,6 +21,79 @@ namespace WechatLibrary.Model
         /// 微信帐号。
         /// </summary>
         public DbSet<WechatAccount> WechatAccounts
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复匹配结果集合。
+        /// </summary>
+        public DbSet<MatchResultMapping> MatchResultMappings
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复文本消息匹配集合。
+        /// </summary>
+        public DbSet<TextMessageMatch> TextMessageMatches
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复文本消息结果集合。
+        /// </summary>
+        public DbSet<TextAutoResponseResult> TextAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复图片消息结果集合。
+        /// </summary>
+        public DbSet<ImageAutoResponseResult> ImageAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+
+        /// <summary>
+        /// 自动回复语音消息结果集合。
+        /// </summary>
+        public DbSet<VoiceAutoResponseResult> VoiceAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复视频消息结果集合。
+        /// </summary>
+        public DbSet<VideoAutoResponseResult> VideoAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复音乐消息结果集合。
+        /// </summary>
+        public DbSet<MusicAutoResponseResult> MusicAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 自动回复图文消息结果集合。
+        /// </summary>
+        public DbSet<NewsAutoResponseResult> NewsAutoResponseResults
         {
             get;
             set;

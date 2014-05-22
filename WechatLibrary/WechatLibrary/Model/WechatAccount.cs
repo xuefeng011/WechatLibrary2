@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using WechatLibrary.Model.AutoResponse.Match;
+using WechatLibrary.Model.ReveiceLog;
 
 namespace WechatLibrary.Model
 {
@@ -135,6 +137,24 @@ namespace WechatLibrary.Model
             {
                 _accessToken = value;
             }
+        }
+
+        /// <summary>
+        /// 该帐号所有记录的消息。
+        /// </summary>
+        public virtual List<ReceiveLog> ReceiveLogs
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 文本消息自动回复匹配集。
+        /// </summary>
+        public virtual List<TextMessageMatch> TextMessageMatches
+        {
+            get;
+            set;
         }
 
         private Menu.Menu _menu;

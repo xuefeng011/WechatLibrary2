@@ -128,6 +128,26 @@ namespace WechatLibrary
             }
         }
 
+        public static event EventHandler LogMessageStart;
+
+        public static void FireLogMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogMessageStart != null)
+            {
+                LogMessageStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler LogMessageEnd;
+
+        public static void FireLogMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogMessageEnd != null)
+            {
+                LogMessageEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
         public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeStart;
 
         public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
@@ -190,6 +210,28 @@ namespace WechatLibrary
             }
         }
 
+        // TODO
+        // go to db here
+
+        public static event EventHandler ExecuteDataBaseProcessStart;
+
+        public static void FireExecuteDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteDataBaseProcessStart != null)
+            {
+                ExecuteDataBaseProcessStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler ExecuteDataBaseProcessEnd;
+
+        public static void FireExecuteDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteDataBaseProcessEnd != null)
+            {
+                ExecuteDataBaseProcessEnd(processPipeline, EventArgs.Empty);
+            }
+        }
 
         // TODO
         // go to db here

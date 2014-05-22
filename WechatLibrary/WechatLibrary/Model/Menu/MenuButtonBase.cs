@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Serialization.Json;
 using WechatLibrary.Converter;
+using WechatLibrary.Model.AutoResponse;
 
 namespace WechatLibrary.Model.Menu
 {
@@ -83,6 +84,15 @@ namespace WechatLibrary.Model.Menu
             {
                 _url = value;
             }
+        }
+
+        /// <summary>
+        /// 映射该按钮点击自动回复的内容。
+        /// </summary>
+        public virtual MatchResultMapping MatchResultMapping
+        {
+            get;
+            set;
         }
     }
 }

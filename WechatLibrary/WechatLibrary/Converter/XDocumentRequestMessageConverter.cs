@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using WechatLibrary.Model.Message.Request;
+using WechatLibrary.Model.Message.Request.Event;
+using WechatLibrary.Model.Message.Request.Normal;
 
 namespace WechatLibrary.Converter
 {
@@ -64,6 +67,70 @@ namespace WechatLibrary.Converter
         public static T Deserialize<T>(XDocument document)
         {
             return (T)Deserialize(document, typeof(T));
+        }
+
+        public static RequestMessageBase Deserialize(XDocument document, RequestMessageType messageType)
+        {
+
+            switch (messageType)
+            {
+                case RequestMessageType.Text:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<TextMessage>(document);
+                    }
+                case RequestMessageType.Image:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<ImageMessage>(document);
+                    }
+                case RequestMessageType.Voice:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<VoiceMessage>(document);
+                    }
+                case RequestMessageType.Video:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<VideoMessage>(document);
+                    }
+                case RequestMessageType.Location:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<LocationMessage>(document);
+                    }
+                case RequestMessageType.Link:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<LinkMessage>(document);
+                    }
+                case RequestMessageType.Subscribe:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<SubscribeMessage>(document);
+                    }
+                case RequestMessageType.QRSubscribe:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<QRSubscribeMessage>(document);
+                    }
+                case RequestMessageType.Unsubscribe:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<UnsubscribeMessage>(document);
+                    }
+                case RequestMessageType.QRScan:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<QRScanMessage>(document);
+                    }
+                case RequestMessageType.UploadLocation:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<UploadLocationMessage>(document);
+                    }
+                case RequestMessageType.MenuButtonClick:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<MenuButtonClickMessage>(document);
+                    }
+                case RequestMessageType.MenuButtonView:
+                    {
+                        return XDocumentRequestMessageConverter.Deserialize<MenuButtonViewMessage>(document);
+                    }
+                default:
+                    {
+                        return null;
+                    }
+            }
         }
     }
 }

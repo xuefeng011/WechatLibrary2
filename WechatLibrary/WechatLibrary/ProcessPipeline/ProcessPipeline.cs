@@ -152,6 +152,10 @@ namespace WechatLibrary.ProcessPipeline
                 {
                     break;
                 }
+                if (this.LogMessage() == false)
+                {
+                    break;
+                }
                 if (this.GetHandlerConstructorDelegateFromCacheByMessageType() == false)
                 {
                     break;
@@ -167,6 +171,13 @@ namespace WechatLibrary.ProcessPipeline
                 // TODO
                 // go to db here
 
+                if (this.ExecuteDataBaseProcess() == false)
+                {
+                    break;
+                }
+
+                // TODO
+                // go to db here
                 if (this.SetDefaultValue() == false)
                 {
                     break;
