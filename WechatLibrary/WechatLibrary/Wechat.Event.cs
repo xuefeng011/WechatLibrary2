@@ -108,6 +108,26 @@ namespace WechatLibrary
             }
         }
 
+        public static event EventHandler CheckHadResponseCurrentNormalMessageStart;
+
+        public static void FireCheckHadResponseCurrentNormalMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (CheckHadResponseCurrentNormalMessageStart != null)
+            {
+                CheckHadResponseCurrentNormalMessageStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler CheckHadResponseCurrentNormalMessageEnd;
+
+        public static void FireCheckHadResponseCurrentNormalMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (CheckHadResponseCurrentNormalMessageEnd != null)
+            {
+                CheckHadResponseCurrentNormalMessageEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
         public static event EventHandler GetHandlerConstructorDelegateFromCacheByMessageTypeStart;
 
         public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)

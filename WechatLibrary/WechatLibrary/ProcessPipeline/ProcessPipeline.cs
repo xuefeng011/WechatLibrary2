@@ -148,6 +148,10 @@ namespace WechatLibrary.ProcessPipeline
                 {
                     break;
                 }
+                if (this.CheckHadResponseCurrentNormalMessage() == false)
+                {
+                    break;
+                }
                 if (this.GetHandlerConstructorDelegateFromCacheByMessageType() == false)
                 {
                     break;

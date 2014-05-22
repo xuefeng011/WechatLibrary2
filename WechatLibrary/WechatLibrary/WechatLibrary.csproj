@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Cache\Cache.cs" />
     <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
+    <Compile Include="Cache\Cache.HadResponseNormalMessageMsgIds.cs" />
     <Compile Include="Converter\MenuButtonTypeConverter.cs" />
     <Compile Include="Converter\XDocumentRequestMessageConverter.cs" />
     <Compile Include="Init\Init.InitHandler.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Model\Return\ReturnBase.cs" />
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.CheckHadResponseCurrentNormalMessage.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerConstructorDelegateFromCacheByMessageType.cs" />
