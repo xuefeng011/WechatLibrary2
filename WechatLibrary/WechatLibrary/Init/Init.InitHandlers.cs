@@ -10,6 +10,10 @@ namespace WechatLibrary.Init
 {
     public partial class Init
     {
+        /// <summary>
+        /// 初始化程序集中的 Handler。
+        /// </summary>
+        /// <param name="handlerAssembly">需要初始化的 Handler。</param>
         public static void InitHandlers(Assembly handlerAssembly)
         {
             Type[] types = handlerAssembly.GetTypes();

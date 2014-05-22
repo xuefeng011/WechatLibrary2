@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.ReveiceLog
 {
+    /// <summary>
+    /// 接收到的消息记录。
+    /// </summary>
     public partial class ReceiveLog
     {
         /// <summary>

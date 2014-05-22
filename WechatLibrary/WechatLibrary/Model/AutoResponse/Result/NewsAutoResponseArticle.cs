@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.AutoResponse.Result
 {
+    /// <summary>
+    /// 图文消息自动回复项。
+    /// </summary>
     public partial class NewsAutoResponseArticle
     {
+        /// <summary>
+        /// 数据库主键。
+        /// </summary>
         [Key]
         public Guid Id
         {

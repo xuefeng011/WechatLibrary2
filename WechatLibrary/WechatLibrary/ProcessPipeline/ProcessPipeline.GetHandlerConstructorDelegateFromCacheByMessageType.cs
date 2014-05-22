@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
-using WechatLibrary.Model.Message.Request;
+﻿using WechatLibrary.Model.Message.Request;
 using WechatLibrary.Model.Message.Request.Event;
 
 namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 根据消息类型从缓存中获取处理类的构造函数。
+        /// </summary>
+        /// <returns>是否成功执行。</returns>
         public bool GetHandlerConstructorDelegateFromCacheByMessageType()
         {
             Wechat.FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(this);

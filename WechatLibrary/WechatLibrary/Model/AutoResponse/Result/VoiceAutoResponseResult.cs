@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.AutoResponse.Result
 {
+    /// <summary>
+    /// 语音消息自动回复。
+    /// </summary>
     public partial class VoiceAutoResponseResult
     {
+        /// <summary>
+        /// 数据库主键。
+        /// </summary>
         [Key]
         public Guid Id
         {

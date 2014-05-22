@@ -8,8 +8,16 @@ using WechatLibrary.Model.Message.Request;
 
 namespace WechatLibrary.Service
 {
+    /// <summary>
+    /// 消息类型服务。
+    /// </summary>
     public partial class MessageTypeService
     {
+        /// <summary>
+        /// 根据消息 xml 获取消息类型。
+        /// </summary>
+        /// <param name="document">XDocument。</param>
+        /// <returns>消息类型。</returns>
         public static RequestMessageType GetMessageTypeFromXDocument(XDocument document)
         {
             var root = document.Root;

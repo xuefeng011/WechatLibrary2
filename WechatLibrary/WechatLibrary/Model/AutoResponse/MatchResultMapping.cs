@@ -10,8 +10,14 @@ using WechatLibrary.Model.Message.Request.Normal;
 
 namespace WechatLibrary.Model.AutoResponse
 {
+    /// <summary>
+    /// 自动回复匹配与结果映射。
+    /// </summary>
     public partial class MatchResultMapping
     {
+        /// <summary>
+        /// 数据库主键。
+        /// </summary>
         [Key]
         public Guid Id
         {
@@ -19,30 +25,48 @@ namespace WechatLibrary.Model.AutoResponse
             set;
         }
 
+        /// <summary>
+        /// 匹配的主键。
+        /// </summary>
         public Guid MatchId
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 匹配的类型。
+        /// </summary>
         public string MatchType
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 结果的主键。
+        /// </summary>
         public Guid ResultId
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 结果的类型。
+        /// </summary>
         public string ResultType
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// 根据结果类型和结果主键获取自动回复结果。
+        /// </summary>
+        /// <param name="resultType">结果类型。</param>
+        /// <param name="resultId">结果主键。</param>
+        /// <returns>自动回复结果。</returns>
         public static object GetMapping(string resultType, Guid resultId)
         {
             using (WechatEntities entities = new WechatEntities())
@@ -81,6 +105,11 @@ namespace WechatLibrary.Model.AutoResponse
             }
         }
 
+        /// <summary>
+        /// 根据匹配获取自动回复结果。
+        /// </summary>
+        /// <param name="match">匹配。</param>
+        /// <returns>自动回复结果。</returns>
         public static object GetMapping(TextMessageMatch match)
         {
             var mapping = match.MatchResultMapping;

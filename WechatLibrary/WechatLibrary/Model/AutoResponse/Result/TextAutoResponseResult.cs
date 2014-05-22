@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WechatLibrary.Model.AutoResponse.Result
 {
+    /// <summary>
+    /// 文本消息自动回复。
+    /// </summary>
     public partial class TextAutoResponseResult
     {
         private Guid _id;

@@ -8,6 +8,10 @@ namespace WechatLibrary.ProcessPipeline
 {
     public partial class ProcessPipeline
     {
+        /// <summary>
+        /// 序列化响应消息到 xml 并写入到响应流。
+        /// </summary>
+        /// <returns>是否成功执行。</returns>
         public bool SerializeResponseResultAndWriteToResponseStream()
         {
             Wechat.FireSerializeResponseResultAndWriteToResponseStreamStart(this);

@@ -10,6 +10,9 @@ using WechatLibrary.Model.Message.Request.Normal;
 
 namespace WechatLibrary.Converter
 {
+    /// <summary>
+    /// XDocument 转换到消息类实例。
+    /// </summary>
     public partial class XDocumentRequestMessageConverter
     {
         /// <summary>
@@ -69,9 +72,14 @@ namespace WechatLibrary.Converter
             return (T)Deserialize(document, typeof(T));
         }
 
+        /// <summary>
+        /// 根据消息类型，反序列化 XDocument 到相应的消息。
+        /// </summary>
+        /// <param name="document">XDocument。</param>
+        /// <param name="messageType">消息类型枚举。</param>
+        /// <returns>转换成功则返回消息类的实例，否则返回 null。</returns>
         public static RequestMessageBase Deserialize(XDocument document, RequestMessageType messageType)
         {
-
             switch (messageType)
             {
                 case RequestMessageType.Text:

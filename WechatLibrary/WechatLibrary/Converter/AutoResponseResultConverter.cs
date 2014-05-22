@@ -8,8 +8,16 @@ using WechatLibrary.Model.Message.Response;
 
 namespace WechatLibrary.Converter
 {
+    /// <summary>
+    /// 自动回复消息实体转换到回复消息。
+    /// </summary>
     public partial class AutoResponseResultConverter
     {
+        /// <summary>
+        /// 转换回复消息实体到回复消息基类。
+        /// </summary>
+        /// <param name="responseResult">回复消息实体。</param>
+        /// <returns>消息基类。</returns>
         public static ResponseResultBase ConvertTo(object responseResult)
         {
             if (responseResult is TextAutoResponseResult)
@@ -42,6 +50,11 @@ namespace WechatLibrary.Converter
             }
         }
 
+        /// <summary>
+        /// 转换回复文本消息实体到回复文本消息。
+        /// </summary>
+        /// <param name="responseResult">回复文本消息实体。</param>
+        /// <returns>回复文本消息。</returns>
         public static ResponseResultBase ConvertTo(TextAutoResponseResult responseResult)
         {
             return new TextResult()
@@ -50,6 +63,11 @@ namespace WechatLibrary.Converter
             };
         }
 
+        /// <summary>
+        /// 转换回复图片消息实体到回复图片消息。
+        /// </summary>
+        /// <param name="responseResult">回复图片消息实体。</param>
+        /// <returns>回复图片消息。</returns>
         public static ResponseResultBase ConvertTo(ImageAutoResponseResult responseResult)
         {
             return new ImageResult()
@@ -58,6 +76,11 @@ namespace WechatLibrary.Converter
             };
         }
 
+        /// <summary>
+        /// 转换回复语音消息实体到回复语音消息。
+        /// </summary>
+        /// <param name="responseResult">回复语音消息实体。</param>
+        /// <returns>回复语音消息。</returns>
         public static ResponseResultBase ConvertTo(VoiceAutoResponseResult responseResult)
         {
             return new VoiceResult()
@@ -66,6 +89,11 @@ namespace WechatLibrary.Converter
             };
         }
 
+        /// <summary>
+        /// 转换回复视频消息实体到回复视频消息。
+        /// </summary>
+        /// <param name="responseResult">回复视频消息实体。</param>
+        /// <returns>回复视频消息。</returns>
         public static ResponseResultBase ConvertTo(VideoAutoResponseResult responseResult)
         {
             return new VideoResult()
@@ -76,6 +104,11 @@ namespace WechatLibrary.Converter
             };
         }
 
+        /// <summary>
+        /// 转换回复音乐消息实体到回复音乐消息。
+        /// </summary>
+        /// <param name="responseResult">回复音乐消息实体。</param>
+        /// <returns>回复音乐消息。</returns>
         public static ResponseResultBase ConvertTo(MusicAutoResponseResult responseResult)
         {
             return new MusicResult()
@@ -88,6 +121,11 @@ namespace WechatLibrary.Converter
             };
         }
 
+        /// <summary>
+        /// 转换回复图文消息实体到回复图文消息。
+        /// </summary>
+        /// <param name="responseResult">回复图文消息实体。</param>
+        /// <returns>回复图文消息。</returns>
         public static ResponseResultBase ConvertTo(NewsAutoResponseResult responseResult)
         {
             List<NewsArticle> newsArticles = new List<NewsArticle>();

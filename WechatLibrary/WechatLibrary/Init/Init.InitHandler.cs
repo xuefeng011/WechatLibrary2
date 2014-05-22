@@ -11,8 +11,17 @@ using WechatLibrary.Model.Message.Request.Normal;
 
 namespace WechatLibrary.Init
 {
+    /// <summary>
+    /// 微信类库初始化。
+    /// </summary>
     public partial class Init
     {
+        /// <summary>
+        /// 初始化 Handler。
+        /// </summary>
+        /// <param name="type">实现了接口的 Handler。</param>
+        /// <param name="constructorDelegates">构造函数委托集合。</param>
+        /// <param name="processRequestMethods">ProcessRequest 方法集合。</param>
         public static void InitHandler(Type type, ConcurrentDictionary<string, Delegate> constructorDelegates, ConcurrentDictionary<string, MethodInfo> processRequestMethods)
         {
             using (WechatEntities entities = new WechatEntities())
@@ -58,6 +67,12 @@ namespace WechatLibrary.Init
             }
         }
 
+        /// <summary>
+        /// 初始化 Handler。
+        /// </summary>
+        /// <param name="type">实现了接口的 Handler。</param>
+        /// <param name="constructorDelegates">构造函数委托集合。</param>
+        /// <param name="processRequestMethods">ProcessRequest 方法集合。</param>
         public static void InitHandler(Type type, ConcurrentDictionary<string, ConcurrentDictionary<string, Delegate>> constructorDelegates, ConcurrentDictionary<string, ConcurrentDictionary<string, MethodInfo>> processRequestMethods)
         {
             using (WechatEntities entities = new WechatEntities())
