@@ -118,10 +118,12 @@
     <Compile Include="Model\Return\AccessTokenReturn.cs" />
     <Compile Include="Model\Return\OAuth2AccessTokenReturn.cs" />
     <Compile Include="Model\Return\ReturnBase.cs" />
-    <Compile Include="Model\ReveiceLog\ReceiveLog.cs" />
+    <Compile Include="Model\ReceiveLog\ReceiveLog.cs" />
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteImageMessageDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteTextMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteVoiceMessageDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.CheckHadResponseCurrentNormalMessage.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />

@@ -30,7 +30,21 @@ namespace WechatLibrary.ProcessPipeline
                             break;
                         }
                     case RequestMessageType.Image:
+                        {
+                            if (this.ExecuteImageMessageDataBaseProcess() == false)
+                            {
+                                return false;
+                            }
+                            break;
+                        }
                     case RequestMessageType.Voice:
+                        {
+                            if (this.ExecuteVoiceMessageDataBaseProcess() == false)
+                            {
+                                return false;
+                            }
+                            break;
+                        }
                     case RequestMessageType.Video:
                     case RequestMessageType.Location:
                     case RequestMessageType.Link:

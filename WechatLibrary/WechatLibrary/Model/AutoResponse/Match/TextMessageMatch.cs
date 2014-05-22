@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model.Message.Request.Normal;
+using WechatLibrary.Service;
 
 namespace WechatLibrary.Model.AutoResponse.Match
 {
@@ -118,15 +119,17 @@ namespace WechatLibrary.Model.AutoResponse.Match
         /// <summary>
         /// 指示该匹配是否成功匹配指定的文本消息。
         /// </summary>
-        /// <param name="message">文本消息。</param>
+        /// <param name="textMessageContent">文本消息内容。</param>
+        /// <param name="fromUserName">文本消息的用户 Id。</param>
+        /// <param name="toUserName">文本消息的开发者 Id。</param>
         /// <returns>是否匹配成功。</returns>
-        public bool IsMatch(TextMessage message)
+        public bool IsMatch(string textMessageContent, string fromUserName, string toUserName)
         {
             switch (this.MatchOption)
             {
                 case "equals":
                     {
-                        if (this.MatchContent == message.Content)
+                        if (this.MatchContent == textMessageContent)
                         {
                             break;
                         }
@@ -137,7 +140,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     }
                 case "equalsignore":
                     {
-                        if (string.Equals(this.MatchContent, message.Content, StringComparison.OrdinalIgnoreCase) == true)
+                        if (string.Equals(this.MatchContent, textMessageContent, StringComparison.OrdinalIgnoreCase) == true)
                         {
                             break;
                         }
@@ -148,7 +151,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     }
                 case "contains":
                     {
-                        if (this.MatchContent != null && this.MatchContent.Contains(message.Content) == true)
+                        if (this.MatchContent != null && this.MatchContent.Contains(textMessageContent) == true)
                         {
                             break;
                         }
@@ -159,7 +162,7 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     }
                 case "containsignore":
                     {
-                        if (this.MatchContent != null && this.MatchContent.IndexOf(message.Content) > -1)
+                        if (this.MatchContent != null && this.MatchContent.IndexOf(textMessageContent, StringComparison.OrdinalIgnoreCase) > -1)
                         {
                             break;
                         }
@@ -179,7 +182,8 @@ namespace WechatLibrary.Model.AutoResponse.Match
             }
             else
             {
-                if (this.RequirePrevMessageMatch.IsMatch(message) == true)
+                // 获取上一条消息，并判断上一条消息是否验证成功。
+                if (this.RequirePrevMessageMatch.IsMatch(MessageLogService.GetPrevTextMessageContent(fromUserName, toUserName), fromUserName, toUserName) == true)
                 {
                     return true;
                 }
@@ -188,6 +192,16 @@ namespace WechatLibrary.Model.AutoResponse.Match
                     return false;
                 }
             }
+        }
+
+        /// <summary>
+        /// 指示该匹配是否成功匹配指定的文本消息。
+        /// </summary>
+        /// <param name="message">文本消息。</param>
+        /// <returns>是否匹配成功。</returns>
+        public bool IsMatch(TextMessage message)
+        {
+            return IsMatch(message.Content, message.FromUserName, message.ToUserName);
         }
     }
 }

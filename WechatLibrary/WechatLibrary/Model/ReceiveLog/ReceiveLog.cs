@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WechatLibrary.Model.ReveiceLog
+namespace WechatLibrary.Model.ReceiveLog
 {
     /// <summary>
     /// 接收到的消息记录。

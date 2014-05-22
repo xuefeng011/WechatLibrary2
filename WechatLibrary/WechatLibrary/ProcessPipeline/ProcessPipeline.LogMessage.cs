@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model;
 using WechatLibrary.Model.Message.Request.Normal;
-using WechatLibrary.Model.ReveiceLog;
+using WechatLibrary.Model.ReceiveLog;
 
 namespace WechatLibrary.ProcessPipeline
 {
