@@ -8,8 +8,15 @@ namespace WechatLibrary
 {
     public partial class Wechat
     {
+        /// <summary>
+        /// 开始获取 HttpRequest 和 HttpResponse。
+        /// </summary>
         public static event EventHandler GetHttpRequestAndHttpResponseStart;
 
+        /// <summary>
+        /// 触发开始获取 HttpRequest 和 HttpResponse 事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireGetHttpRequestAndHttpResponseStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHttpRequestAndHttpResponseStart != null)
@@ -18,8 +25,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 结束获取 HttpRequest 和 HttpResponse。
+        /// </summary>
         public static event EventHandler GetHttpRequestAndHttpResponseEnd;
 
+        /// <summary>
+        /// 触发结束获取 HttpRequest 和 HttpResponse 事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireGetHttpRequestAndHttpResponseEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHttpRequestAndHttpResponseEnd != null)
@@ -28,8 +42,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 开始读取请求的消息 xml。
+        /// </summary>
         public static event EventHandler ReadRequestXmlStart;
 
+        /// <summary>
+        /// 触发开发读取请求的消息 xml 事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireReadRequestXmlStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ReadRequestXmlStart != null)
@@ -38,8 +59,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 结束读取请求的消息 xml。
+        /// </summary>
         public static event EventHandler ReadRequestXmlEnd;
 
+        /// <summary>
+        /// 触发结束读取请求的消息 xml 事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireReadRequestXmlEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ReadRequestXmlEnd != null)
@@ -48,8 +76,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 开始转换请求的消息 xml 到 XDocument。
+        /// </summary>
         public static event EventHandler ParseXmlToXDocumentStart;
 
+        /// <summary>
+        /// 触发开始转换请求的消息 xml 到 XDocument 事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireParseXmlToXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ParseXmlToXDocumentStart != null)
@@ -58,8 +93,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 结束转换请求的消息 xml 到 XDocument。
+        /// </summary>
         public static event EventHandler ParseXmlToXDocumentEnd;
 
+        /// <summary>
+        /// 触发结束转换请求的消息 xml 到 XDocument。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireParseXmlToXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ParseXmlToXDocumentEnd != null)
@@ -68,8 +110,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 开始从消息 XDocument 中获取消息类型。
+        /// </summary>
         public static event EventHandler GetMessageTypeFromXDocumentStart;
 
+        /// <summary>
+        /// 触发开始从消息 XDocument 中获取消息类型事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetMessageTypeFromXDocumentStart != null)
@@ -78,8 +127,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 结束从消息 XDocument 中获取消息类型。
+        /// </summary>
         public static event EventHandler GetMessageTypeFromXDocumentEnd;
 
+        /// <summary>
+        /// 触发结束从消息 XDocument 中获取消息类型事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireGetMessageTypeFromXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetMessageTypeFromXDocumentEnd != null)
@@ -88,8 +144,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 开始反序列化 XDocument 到消息实例。
+        /// </summary>
         public static event EventHandler DeserializeXDocumentByMessageTypeStart;
 
+        /// <summary>
+        /// 触发开发反序列化 XDocument 到消息实例事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireDeserializeXDocumentByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (DeserializeXDocumentByMessageTypeStart != null)
@@ -98,8 +161,15 @@ namespace WechatLibrary
             }
         }
 
+        /// <summary>
+        /// 结束反序列化 XDocument 到消息实例。
+        /// </summary>
         public static event EventHandler DeserializeXDocumentByMessageTypeEnd;
 
+        /// <summary>
+        /// 触发结束反序列化 XDocument 到消息实例事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
         public static void FireDeserializeXDocumentByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (DeserializeXDocumentByMessageTypeEnd != null)
