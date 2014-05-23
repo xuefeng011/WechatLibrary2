@@ -183,7 +183,8 @@ namespace WechatLibrary
         /// 触发开始根据普通消息的 MsgId 排重事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireCheckHadResponseCurrentNormalMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireCheckHadResponseCurrentNormalMessageStart(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (CheckHadResponseCurrentNormalMessageStart != null)
             {
@@ -251,7 +252,8 @@ namespace WechatLibrary
         /// 触发开始根据消息类型从缓存中获取处理类的构造函数委托事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerConstructorDelegateFromCacheByMessageTypeStart != null)
             {
@@ -268,7 +270,8 @@ namespace WechatLibrary
         /// 触发结束根据消息类型从缓存中获取处理类的构造函数委托事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerConstructorDelegateFromCacheByMessageTypeEnd != null)
             {
@@ -285,7 +288,8 @@ namespace WechatLibrary
         /// 触发开始根据消息类型从缓存中获去处理类的 ProcessRequest 方法事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerProcessRequestMethodFromCacheByMessageTypeStart != null)
             {
@@ -302,7 +306,8 @@ namespace WechatLibrary
         /// 触发结束根据消息类型从缓存中获取处理类的 ProcessRequest 方法。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd != null)
             {
@@ -319,7 +324,8 @@ namespace WechatLibrary
         /// 触发开始执行处理类事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart != null)
             {
@@ -337,7 +343,8 @@ namespace WechatLibrary
         /// 触发结束执行处理类事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(
+            ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd != null)
             {
@@ -394,6 +401,74 @@ namespace WechatLibrary
             if (ExecuteTextMessageDataBaseProcessEnd != null)
             {
                 ExecuteTextMessageDataBaseProcessEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 开始执行数据库处理图片消息。
+        /// </summary>
+        public static event EventHandler ExecuteImageMessageDataBaseProcessStart;
+
+        /// <summary>
+        /// 触发开始执行数据库处理图片消息事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireExecuteImageMessageDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteImageMessageDataBaseProcessStart != null)
+            {
+                ExecuteImageMessageDataBaseProcessStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 结束执行数据库处理图片消息。
+        /// </summary>
+        public static event EventHandler ExecuteImageMessageDataBaseProcessEnd;
+
+        /// <summary>
+        /// 触发结束执行数据库处理图片消息事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireExecuteImageMessageDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteImageMessageDataBaseProcessEnd != null)
+            {
+                ExecuteImageMessageDataBaseProcessEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 开始执行数据库处理自定义菜单按钮点击。
+        /// </summary>
+        public static event EventHandler ExecuteMenuButtonClickMessageDataBaseProcessStart;
+
+        /// <summary>
+        /// 触发开始执行数据库处理自定义菜单按钮点击事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireExecuteMenuButtonClickMessageDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteMenuButtonClickMessageDataBaseProcessStart != null)
+            {
+                ExecuteMenuButtonClickMessageDataBaseProcessStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 结束执行数据库处理自定义菜单按钮点击。
+        /// </summary>
+        public static event EventHandler ExecuteMenuButtonClickMessageDataBaseProcessEnd;
+
+        /// <summary>
+        /// 触发结束执行数据库处理自定义菜单按钮点击事件。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireExecuteMenuButtonClickMessageDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (ExecuteMenuButtonClickMessageDataBaseProcessEnd != null)
+            {
+                ExecuteMenuButtonClickMessageDataBaseProcessEnd(processPipeline, EventArgs.Empty);
             }
         }
 

@@ -20,6 +20,8 @@ namespace WechatLibrary.ProcessPipeline
         /// <returns>是否执行成功。</returns>
         public bool ExecuteTextMessageDataBaseProcess()
         {
+            Wechat.FireExecuteTextMessageDataBaseProcessStart(this);
+
             var textMessage = this.RequestMessage as TextMessage;
             if (textMessage == null)
             {
@@ -74,6 +76,8 @@ namespace WechatLibrary.ProcessPipeline
                     }
                 }
             }
+
+            Wechat.FireExecuteTextMessageDataBaseProcessEnd(this);
             return false;
         }
     }

@@ -19,6 +19,8 @@ namespace WechatLibrary.ProcessPipeline
         /// <returns>是否执行成功。</returns>
         public bool ExecuteImageMessageDataBaseProcess()
         {
+            Wechat.FireExecuteImageMessageDataBaseProcessStart(this);
+
             var imageMessage = this.RequestMessage as ImageMessage;
             if (imageMessage == null)
             {
@@ -39,6 +41,8 @@ namespace WechatLibrary.ProcessPipeline
                 this.ResponseResult =
                     AutoResponseResultConverter.ConvertTo(MatchResultMapping.GetMapping(imageMessageMatch));
             }
+
+            Wechat.FireExecuteImageMessageDataBaseProcessEnd(this);
             return false;
         }
     }

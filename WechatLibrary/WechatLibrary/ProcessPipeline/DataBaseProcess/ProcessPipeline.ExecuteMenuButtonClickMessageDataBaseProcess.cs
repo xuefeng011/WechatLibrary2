@@ -18,6 +18,8 @@ namespace WechatLibrary.ProcessPipeline
         /// <returns>是否执行成功。</returns>
         public bool ExecuteMenuButtonClickMessageDataBaseProcess()
         {
+            Wechat.FireExecuteMenuButtonClickMessageDataBaseProcessStart(this);
+
             var menuButtonClickMessage = this.RequestMessage as MenuButtonClickMessage;
             if (menuButtonClickMessage == null)
             {
@@ -63,9 +65,9 @@ namespace WechatLibrary.ProcessPipeline
                         }
                     }
                 }
-
             }
 
+            Wechat.FireExecuteMenuButtonClickMessageDataBaseProcessEnd(this);
             return false;
         }
     }
