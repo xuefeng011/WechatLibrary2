@@ -146,6 +146,7 @@
     <Compile Include="Service\MessageLogService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\MessageTypeService.cs" />
+    <Compile Include="Service\WechatAccountService.cs" />
     <Compile Include="Signature\Signature.cs" />
     <Compile Include="Wechat.cs" />
     <Compile Include="Wechat.Event.cs" />
