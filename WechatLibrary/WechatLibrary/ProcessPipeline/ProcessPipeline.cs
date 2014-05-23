@@ -120,7 +120,7 @@ namespace WechatLibrary.ProcessPipeline
         /// 创建微信消息处理管道。
         /// </summary>
         /// <param name="context">处理的 Http 上下文。</param>
-        public ProcessPipeline(HttpContext context)
+        internal ProcessPipeline(HttpContext context)
         {
             this.HttpContext = context;
         }
@@ -128,7 +128,7 @@ namespace WechatLibrary.ProcessPipeline
         /// <summary>
         /// 开始处理管道事件。
         /// </summary>
-        public void Start()
+        internal void Start()
         {
             for (var temp = 0; temp < 1; temp++)
             {

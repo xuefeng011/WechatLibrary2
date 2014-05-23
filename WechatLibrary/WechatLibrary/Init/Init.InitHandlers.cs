@@ -8,7 +8,7 @@ using WechatLibrary.Interface.Handler;
 
 namespace WechatLibrary.Init
 {
-    public partial class Init
+    internal partial class Init
     {
         /// <summary>
         /// 初始化程序集中的 Handler。

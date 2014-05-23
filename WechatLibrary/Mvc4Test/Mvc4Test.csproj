@@ -144,7 +144,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WechatLibrary\WechatLibrary.csproj">
+    <ProjectReference Include="..\WechatLibrary\WechatLibrary.Net45.csproj">
       <Project>{714fc665-0542-4e2e-aef9-44f4b60a0384}</Project>
       <Name>WechatLibrary</Name>
     </ProjectReference>

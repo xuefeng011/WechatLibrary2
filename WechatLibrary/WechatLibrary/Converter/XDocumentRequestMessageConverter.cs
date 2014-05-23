@@ -13,7 +13,7 @@ namespace WechatLibrary.Converter
     /// <summary>
     /// XDocument 转换到消息类实例。
     /// </summary>
-    public partial class XDocumentRequestMessageConverter
+    internal partial class XDocumentRequestMessageConverter
     {
         /// <summary>
         /// 反序列化 XDocument 到指定的消息类。

@@ -5,7 +5,9 @@ VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc4Test", "Mvc4Test\Mvc4Test.csproj", "{E8C1FB43-080A-4F76-BB44-3317490D6225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary", "WechatLibrary\WechatLibrary.csproj", "{714FC665-0542-4E2E-AEF9-44F4B60A0384}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary", "WechatLibrary\WechatLibrary.Net45.csproj", "{714FC665-0542-4E2E-AEF9-44F4B60A0384}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "WechatLibrary.Documentation", "WechatLibrary.Documentation\WechatLibrary.Documentation.Net45.shfbproj", "{9CC94521-A477-4606-82F9-FFF073459FD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{714FC665-0542-4E2E-AEF9-44F4B60A0384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC94521-A477-4606-82F9-FFF073459FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC94521-A477-4606-82F9-FFF073459FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC94521-A477-4606-82F9-FFF073459FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC94521-A477-4606-82F9-FFF073459FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

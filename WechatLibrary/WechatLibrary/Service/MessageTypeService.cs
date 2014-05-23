@@ -11,7 +11,7 @@ namespace WechatLibrary.Service
     /// <summary>
     /// 消息类型服务。
     /// </summary>
-    public partial class MessageTypeService
+    internal partial class MessageTypeService
     {
         /// <summary>
         /// 根据消息 xml 获取消息类型。

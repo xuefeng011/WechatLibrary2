@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WechatLibrary
 {
@@ -18,7 +13,7 @@ namespace WechatLibrary
         /// 触发开始获取 HttpRequest 和 HttpResponse 事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHttpRequestAndHttpResponseStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHttpRequestAndHttpResponseStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHttpRequestAndHttpResponseStart != null)
             {
@@ -35,7 +30,7 @@ namespace WechatLibrary
         /// 触发结束获取 HttpRequest 和 HttpResponse 事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHttpRequestAndHttpResponseEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHttpRequestAndHttpResponseEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHttpRequestAndHttpResponseEnd != null)
             {
@@ -52,7 +47,7 @@ namespace WechatLibrary
         /// 触发开发读取请求的消息 xml 事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireReadRequestXmlStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireReadRequestXmlStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ReadRequestXmlStart != null)
             {
@@ -69,7 +64,7 @@ namespace WechatLibrary
         /// 触发结束读取请求的消息 xml 事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireReadRequestXmlEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireReadRequestXmlEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ReadRequestXmlEnd != null)
             {
@@ -86,7 +81,7 @@ namespace WechatLibrary
         /// 触发开始转换请求的消息 xml 到 XDocument 事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireParseXmlToXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireParseXmlToXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ParseXmlToXDocumentStart != null)
             {
@@ -103,7 +98,7 @@ namespace WechatLibrary
         /// 触发结束转换请求的消息 xml 到 XDocument。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireParseXmlToXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireParseXmlToXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ParseXmlToXDocumentEnd != null)
             {
@@ -120,7 +115,7 @@ namespace WechatLibrary
         /// 触发开始从消息 XDocument 中获取消息类型事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetMessageTypeFromXDocumentStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetMessageTypeFromXDocumentStart != null)
             {
@@ -137,7 +132,7 @@ namespace WechatLibrary
         /// 触发结束从消息 XDocument 中获取消息类型事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetMessageTypeFromXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetMessageTypeFromXDocumentEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetMessageTypeFromXDocumentEnd != null)
             {
@@ -154,7 +149,7 @@ namespace WechatLibrary
         /// 触发开发反序列化 XDocument 到消息实例事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireDeserializeXDocumentByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireDeserializeXDocumentByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (DeserializeXDocumentByMessageTypeStart != null)
             {
@@ -171,7 +166,7 @@ namespace WechatLibrary
         /// 触发结束反序列化 XDocument 到消息实例事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireDeserializeXDocumentByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireDeserializeXDocumentByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (DeserializeXDocumentByMessageTypeEnd != null)
             {
@@ -188,7 +183,7 @@ namespace WechatLibrary
         /// 触发开始根据普通消息的 MsgId 排重事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireCheckHadResponseCurrentNormalMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireCheckHadResponseCurrentNormalMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (CheckHadResponseCurrentNormalMessageStart != null)
             {
@@ -205,7 +200,7 @@ namespace WechatLibrary
         /// 触发结束根据普通消息的 MsgId 排重。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireCheckHadResponseCurrentNormalMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireCheckHadResponseCurrentNormalMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (CheckHadResponseCurrentNormalMessageEnd != null)
             {
@@ -222,7 +217,7 @@ namespace WechatLibrary
         /// 触发开始记录用户消息事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireLogMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireLogMessageStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (LogMessageStart != null)
             {
@@ -239,7 +234,7 @@ namespace WechatLibrary
         /// 结束记录用户消息事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireLogMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireLogMessageEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (LogMessageEnd != null)
             {
@@ -256,7 +251,7 @@ namespace WechatLibrary
         /// 触发开始根据消息类型从缓存中获取处理类的构造函数委托事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerConstructorDelegateFromCacheByMessageTypeStart != null)
             {
@@ -273,7 +268,7 @@ namespace WechatLibrary
         /// 触发结束根据消息类型从缓存中获取处理类的构造函数委托事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerConstructorDelegateFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerConstructorDelegateFromCacheByMessageTypeEnd != null)
             {
@@ -290,7 +285,7 @@ namespace WechatLibrary
         /// 触发开始根据消息类型从缓存中获去处理类的 ProcessRequest 方法事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerProcessRequestMethodFromCacheByMessageTypeStart != null)
             {
@@ -307,7 +302,7 @@ namespace WechatLibrary
         /// 触发结束根据消息类型从缓存中获取处理类的 ProcessRequest 方法。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireGetHandlerProcessRequestMethodFromCacheByMessageTypeEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (GetHandlerProcessRequestMethodFromCacheByMessageTypeEnd != null)
             {
@@ -324,7 +319,7 @@ namespace WechatLibrary
         /// 触发开始执行处理类事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistStart != null)
             {
@@ -342,7 +337,7 @@ namespace WechatLibrary
         /// 触发结束执行处理类事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireInvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExistEnd != null)
             {
@@ -360,7 +355,7 @@ namespace WechatLibrary
         /// 触发开始执行数据库处理事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireExecuteDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireExecuteDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ExecuteDataBaseProcessStart != null)
             {
@@ -377,7 +372,7 @@ namespace WechatLibrary
         /// 触发开始执行数据库处理文本消息事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireExecuteTextMessageDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireExecuteTextMessageDataBaseProcessStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ExecuteTextMessageDataBaseProcessStart != null)
             {
@@ -394,7 +389,7 @@ namespace WechatLibrary
         /// 触发结束执行数据库处理文本消息事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireExecuteTextMessageDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireExecuteTextMessageDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ExecuteTextMessageDataBaseProcessEnd != null)
             {
@@ -411,7 +406,7 @@ namespace WechatLibrary
         /// 触发结束执行数据库处理事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireExecuteDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireExecuteDataBaseProcessEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (ExecuteDataBaseProcessEnd != null)
             {
@@ -428,7 +423,7 @@ namespace WechatLibrary
         /// 触发开始设置默认缺失参数事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireSetDefaultValueStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireSetDefaultValueStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (SetDefaultValueStart != null)
             {
@@ -445,7 +440,7 @@ namespace WechatLibrary
         /// 触发结束设置默认缺失参数事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireSetDefaultValueEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireSetDefaultValueEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (SetDefaultValueEnd != null)
             {
@@ -462,7 +457,7 @@ namespace WechatLibrary
         /// 触发开始序列化消息到 xml 并写入到响应流事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireSerializeResponseResultAndWriteToResponseStreamStart(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireSerializeResponseResultAndWriteToResponseStreamStart(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (SerializeResponseResultAndWriteToResponseStreamStart != null)
             {
@@ -479,7 +474,7 @@ namespace WechatLibrary
         /// 触发结束序列化消息到 xml 并写入到响应流事件。
         /// </summary>
         /// <param name="processPipeline">触发事件所在处理管道。</param>
-        public static void FireSerializeResponseResultAndWriteToResponseStreamEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        internal static void FireSerializeResponseResultAndWriteToResponseStreamEnd(ProcessPipeline.ProcessPipeline processPipeline)
         {
             if (SerializeResponseResultAndWriteToResponseStreamEnd != null)
             {

@@ -11,7 +11,7 @@ namespace WechatLibrary.ProcessPipeline
         /// <summary>
         /// 填充默认缺失信息。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>是否执行成功。</returns>
         public bool SetDefaultValue()
         {
             Wechat.FireSetDefaultValueStart(this);

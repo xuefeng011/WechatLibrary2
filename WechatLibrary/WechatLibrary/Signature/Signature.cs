@@ -14,7 +14,7 @@ namespace WechatLibrary.Signature
     /// <summary>
     /// 验证 URL。
     /// </summary>
-    public partial class Signature
+    internal partial class Signature
     {
         /// <summary>
         /// 指示 URL 验证是否成功。
@@ -24,7 +24,7 @@ namespace WechatLibrary.Signature
         /// <param name="nonce">随机数。</param>
         /// <param name="token">Token。</param>
         /// <returns>是否验证成功。</returns>
-        public static bool IsSignature(string signature, string timestamp, string nonce, string token)
+        internal static bool IsSignature(string signature, string timestamp, string nonce, string token)
         {
             signature = signature ?? string.Empty;
             timestamp = timestamp ?? string.Empty;
@@ -47,7 +47,7 @@ namespace WechatLibrary.Signature
         /// <param name="context">验证的 Http 上下文。</param>
         /// <returns>验证是否成功。</returns>
         /// <exception cref="System.ArgumentNullException"><c>context</c> 为 null。</exception>
-        public static bool IsSignature(HttpContext context)
+        internal static bool IsSignature(HttpContext context)
         {
             if (context == null)
             {
@@ -115,7 +115,7 @@ namespace WechatLibrary.Signature
         /// </summary>
         /// <param name="context">验证的 Http 上下文。</param>
         /// <exception cref="System.ArgumentNullException"><c>context</c> 为 null。</exception>
-        public static void DoSignature(HttpContext context)
+        internal static void DoSignature(HttpContext context)
         {
             DoSignature(context, "error");
         }
@@ -126,7 +126,7 @@ namespace WechatLibrary.Signature
         /// <param name="context">验证的 Http 上下文。</param>
         /// <param name="validateFailureReturn">验证失败时返回的字符串。</param>
         /// <exception cref="System.ArgumentNullException"><c>context</c> 为 null。</exception>
-        public static void DoSignature(HttpContext context, string validateFailureReturn)
+        internal static void DoSignature(HttpContext context, string validateFailureReturn)
         {
             if (context == null)
             {

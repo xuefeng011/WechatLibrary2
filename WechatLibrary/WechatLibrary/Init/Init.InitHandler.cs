@@ -14,7 +14,7 @@ namespace WechatLibrary.Init
     /// <summary>
     /// 微信类库初始化。
     /// </summary>
-    public partial class Init
+    internal partial class Init
     {
         /// <summary>
         /// 初始化 Handler。

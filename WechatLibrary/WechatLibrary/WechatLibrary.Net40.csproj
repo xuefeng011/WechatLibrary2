@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="11.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{714FC665-0542-4E2E-AEF9-44F4B60A0384}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WechatLibrary</RootNamespace>
+    <AssemblyName>WechatLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\net40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;Net40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net40\WechatLibrary.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\net40\</OutputPath>
+    <DefineConstants>TRACE;Net40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonDotNet">
+      <HintPath>..\packages\CommonDotNet.1.1.5\lib\net40\CommonDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\Cache.cs" />
+    <Compile Include="Cache\Cache.HandlerProcessRequestMethods.cs" />
+    <Compile Include="Cache\Cache.HadResponseNormalMessageMsgIds.cs" />
+    <Compile Include="Converter\AutoResponseResultConverter.cs" />
+    <Compile Include="Converter\MenuButtonTypeConverter.cs" />
+    <Compile Include="Converter\XDocumentRequestMessageConverter.cs" />
+    <Compile Include="Init\Init.InitHandler.cs" />
+    <Compile Include="Init\Init.InitHandlers.cs" />
+    <Compile Include="Interface\Handler\IImageHandler.cs" />
+    <Compile Include="Interface\Handler\ILinkHandler.cs" />
+    <Compile Include="Interface\Handler\ILocationHandler.cs" />
+    <Compile Include="Interface\Handler\IMenuButtonClickHandler.cs" />
+    <Compile Include="Interface\Handler\IMenuButtonViewHandler.cs" />
+    <Compile Include="Interface\Handler\IQRScanHandler.cs" />
+    <Compile Include="Interface\Handler\IQRSubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\ISubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\ITextHandler.cs" />
+    <Compile Include="Interface\Handler\IUnsubscribeHandler.cs" />
+    <Compile Include="Interface\Handler\IUploadLocationHandler.cs" />
+    <Compile Include="Interface\Handler\IVideoHandler.cs" />
+    <Compile Include="Interface\Handler\IVoiceHandler.cs" />
+    <Compile Include="Model\AccessToken.cs" />
+    <Compile Include="Model\AutoResponse\MatchResultMapping.cs" />
+    <Compile Include="Model\AutoResponse\Match\ImageMessageMatch.cs" />
+    <Compile Include="Model\AutoResponse\Match\TextMessageMatch.cs" />
+    <Compile Include="Model\AutoResponse\Result\ImageAutoResponseResult.cs" />
+    <Compile Include="Model\AutoResponse\Result\MusicAutoResponseResult.cs" />
+    <Compile Include="Model\AutoResponse\Result\NewsAutoResponseArticle.cs" />
+    <Compile Include="Model\AutoResponse\Result\NewsAutoResponseResult.cs" />
+    <Compile Include="Model\AutoResponse\Result\TextAutoResponseResult.cs" />
+    <Compile Include="Model\AutoResponse\Result\VideoAutoResponseResult.cs" />
+    <Compile Include="Model\AutoResponse\Result\VoiceAutoResponseResult.cs" />
+    <Compile Include="Model\Menu\Menu.cs" />
+    <Compile Include="Model\Menu\MenuButton.cs" />
+    <Compile Include="Model\Menu\MenuButtonBase.cs" />
+    <Compile Include="Model\Menu\MenuButtonType.cs" />
+    <Compile Include="Model\Menu\MenuSubButton.cs" />
+    <Compile Include="Model\Message\Request\Event\EventMessageBase.cs" />
+    <Compile Include="Model\Message\Request\Event\MenuButtonClickMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\MenuButtonViewMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\QRScanMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\QRSubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\SubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\UnsubscribeMessage.cs" />
+    <Compile Include="Model\Message\Request\Event\UploadLocationMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\ImageMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\LinkMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\LocationMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\NormalMessageBase.cs" />
+    <Compile Include="Model\Message\Request\Normal\TextMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\VideoMessage.cs" />
+    <Compile Include="Model\Message\Request\Normal\VoiceMessage.cs" />
+    <Compile Include="Model\Message\Request\RequestMessageBase.cs" />
+    <Compile Include="Model\Message\Request\RequestMessageType.cs" />
+    <Compile Include="Model\Message\Response\EmptyResult.cs" />
+    <Compile Include="Model\Message\Response\ImageResult.cs" />
+    <Compile Include="Model\Message\Response\MusicResult.cs" />
+    <Compile Include="Model\Message\Response\NewsArticle.cs" />
+    <Compile Include="Model\Message\Response\NewsResult.cs" />
+    <Compile Include="Model\Message\Response\ResponseResultBase.cs" />
+    <Compile Include="Model\Message\Response\TextResult.cs" />
+    <Compile Include="Model\Message\Response\VideoResult.cs" />
+    <Compile Include="Model\Message\Response\VoiceResult.cs" />
+    <Compile Include="Model\OAuth2AccessToken.cs" />
+    <Compile Include="Model\Return\AccessTokenReturn.cs" />
+    <Compile Include="Model\Return\OAuth2AccessTokenReturn.cs" />
+    <Compile Include="Model\Return\ReturnBase.cs" />
+    <Compile Include="Model\ReceiveLog\ReceiveLog.cs" />
+    <Compile Include="Model\WechatAccount.cs" />
+    <Compile Include="Model\WechatEntities.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteImageMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteMenuButtonClickMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteTextMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\DataBaseProcess\ProcessPipeline.ExecuteVoiceMessageDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.CheckHadResponseCurrentNormalMessage.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ExecuteDataBaseProcess.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerConstructorDelegateFromCacheByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerProcessRequestMethodFromCacheByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetHttpRequestAndHttpResponse.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.GetMessageTypeFromXDocument.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.LogMessage.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.SetDefaultValue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccessTokenService.cs" />
+    <Compile Include="Service\MediaFileService.cs" />
+    <Compile Include="Service\MessageLogService.cs" />
+    <Compile Include="Service\MenuService.cs" />
+    <Compile Include="Service\MessageTypeService.cs" />
+    <Compile Include="Signature\Signature.cs" />
+    <Compile Include="Wechat.cs" />
+    <Compile Include="Wechat.Event.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Compile Include="Cache\Cache.HandlerConstructorDelegates.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -14,7 +14,7 @@ namespace WechatLibrary.ProcessPipeline
         /// <summary>
         /// 从消息 XDocument 中获取消息类型。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>是否执行成功。</returns>
         public bool GetMessageTypeFromXDocument()
         {
             Wechat.FireGetMessageTypeFromXDocumentStart(this);
