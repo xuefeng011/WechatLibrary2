@@ -19,6 +19,8 @@ namespace WechatLibrary.Service
     {
         private const string CreateUrlTemplate = @"https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}";
 
+        private const string GetUrlTemplate = @"https://api.weixin.qq.com/cgi-bin/menu/get?access_token={0}";
+       
         private const string DeleteUrlTemplate = @"https://api.weixin.qq.com/cgi-bin/menu/delete?access_token={0}";
 
         /// <summary>
@@ -115,6 +117,43 @@ namespace WechatLibrary.Service
         {
             ReturnBase returnBase;
             return DeleteWechatServerMenu(wechatAccount, out returnBase);
+        }
+
+        /// <summary>
+        /// 复制微信服务器的菜单结构到本地。
+        /// </summary>
+        /// <param name="wechatAccount">微信帐号。</param>
+        /// <param name="returnBase">返回结果。</param>
+        /// <returns>是否成功执行。</returns>
+        public static bool CopyWechatServerMenuToLocal(WechatAccount wechatAccount,out ReturnBase returnBase)
+        {
+            if (wechatAccount==null)
+            {
+                throw new ArgumentNullException("wechatAccount");
+            }
+            var accessToken = wechatAccount.AccessToken;
+            if (accessToken == null)
+            {
+                wechatAccount.AccessToken = new AccessToken()
+                {
+                    Id = Guid.NewGuid(),
+                    WechatAccount = wechatAccount
+                };
+            }
+            string url = string.Format(GetUrlTemplate, wechatAccount.AccessToken.Value);
+            var json = HttpHelper.Get(url);
+            Menu serverMenu = JsonHelper.Deserialize<Menu>(json);
+            serverMenu.Id = Guid.NewGuid();
+            for (int i = 0; i < serverMenu.Buttons.Count; i++)
+            {
+                serverMenu.Buttons[i].Id = Guid.NewGuid();
+                for (int j = 0; j < serverMenu.Buttons[i].SubButtons.Count; j++)
+                {
+                    serverMenu.Buttons[i].SubButtons[j].Id = Guid.NewGuid();
+                }
+            }
+            returnBase = null;
+            return true;
         }
     }
 }
