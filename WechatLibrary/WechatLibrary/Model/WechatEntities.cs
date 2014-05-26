@@ -118,15 +118,6 @@ namespace WechatLibrary.Model
         }
 
         /// <summary>
-        /// OAuth2AccessToken。
-        /// </summary>
-        public DbSet<OAuth2AccessToken> OAuth2AccessTokens
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// 微信菜单。
         /// </summary>
         public DbSet<Menu.Menu> Menus
