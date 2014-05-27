@@ -32,7 +32,7 @@ namespace WechatLibrary.Service
             {
                 throw new ArgumentNullException("wechatResource");
             }
-            if (wechatResource.WechatAccount == null)
+            if (wechatResource.Owner == null)
             {
                 throw new ArgumentException("该微信资源没有绑定微信帐号","wechatResource");
             }
@@ -44,7 +44,7 @@ namespace WechatLibrary.Service
                 case "video":
                 case "thumb":
                     {
-                        string url = string.Format(UploadUrlTemplate, wechatResource.WechatAccount.AccessToken.Value, type);
+                        string url = string.Format(UploadUrlTemplate, wechatResource.Owner.AccessToken.Value, type);
                         byte[] responseBytes;
                         using (var wc = new WebClient())
                         {

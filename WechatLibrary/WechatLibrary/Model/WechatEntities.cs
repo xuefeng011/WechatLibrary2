@@ -143,5 +143,14 @@ namespace WechatLibrary.Model
             get;
             set;
         }
+
+        /// <summary>
+        /// 微信多媒体资源。
+        /// </summary>
+        public DbSet<WechatResource> WechatResources
+        {
+            get;
+            set;
+        }
     }
 }

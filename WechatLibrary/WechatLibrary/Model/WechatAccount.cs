@@ -200,22 +200,13 @@ namespace WechatLibrary.Model
             }
         }
 
-        private List<WechatResource> _wechatResources;
-
         /// <summary>
         /// 该微信帐号拥有的微信资源。
         /// </summary>
-        public virtual List<WechatResource> WechatResources
+        public List<WechatResource> WechatResources
         {
-            get
-            {
-                _wechatResources = _wechatResources ?? new List<WechatResource>();
-                return _wechatResources;
-            }
-            set
-            {
-                _wechatResources = value;
-            }
+            get;
+            set;
         }
     }
 }

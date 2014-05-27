@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary", "WechatLibrary\WechatLibrary.Net40.csproj", "{714FC665-0542-4E2E-AEF9-44F4B60A0384}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatLibrary.Net40", "WechatLibrary\WechatLibrary.Net40.csproj", "{714FC665-0542-4E2E-AEF9-44F4B60A0384}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "WechatLibrary.Documentation", "WechatLibrary.Documentation\WechatLibrary.Documentation.Net40.shfbproj", "{9CC94521-A477-4606-82F9-FFF073459FD5}"
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "WechatLibrary.Documentation.Net40", "WechatLibrary.Documentation\WechatLibrary.Documentation.Net40.shfbproj", "{9CC94521-A477-4606-82F9-FFF073459FD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatManager", "WechatManager\WechatManager.csproj", "{DFC60E77-2179-4B76-9491-DB7B4EF73068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{9CC94521-A477-4606-82F9-FFF073459FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC94521-A477-4606-82F9-FFF073459FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CC94521-A477-4606-82F9-FFF073459FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC60E77-2179-4B76-9491-DB7B4EF73068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC60E77-2179-4B76-9491-DB7B4EF73068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC60E77-2179-4B76-9491-DB7B4EF73068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC60E77-2179-4B76-9491-DB7B4EF73068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

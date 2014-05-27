@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,7 +21,6 @@ namespace WechatLibrary.Model
         /// 数据库主键。
         /// </summary>
         [Key]
-        [ForeignKey("WechatAccount")]
         public Guid Id
         {
             get
@@ -133,21 +133,24 @@ namespace WechatLibrary.Model
             }
         }
 
-        private WechatAccount _wechatAccount;
+        /// <summary>
+        /// 拥有该微信资源的微信帐号的数据库主键。
+        /// </summary>
+        [ForeignKey("Owner")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Guid OwnerWechatAccountId
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 拥有该微信资源的微信帐号。
         /// </summary>
-        public virtual WechatAccount WechatAccount
+        public WechatAccount Owner
         {
-            get
-            {
-                return _wechatAccount;
-            }
-            set
-            {
-                _wechatAccount = value;
-            }
+            get;
+            set;
         }
     }
 }
