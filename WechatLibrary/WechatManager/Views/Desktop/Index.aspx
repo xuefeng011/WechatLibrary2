@@ -75,7 +75,7 @@
         <Buttons>
             <ext:Button runat="server" Text="保存" Icon="DatabaseSave" Width="100">
                 <Listeners>
-                    <Click Handler="window.viewModel.wechatSettingSaveCommand()"></Click>
+                    <Click Handler="window.viewModel.wechatSettingSaveCommand(arguments)"></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>

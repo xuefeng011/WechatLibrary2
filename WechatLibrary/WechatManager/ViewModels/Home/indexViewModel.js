@@ -19,6 +19,9 @@
                                 while (window.viewModel.cmbWechatId.store.getCount() > 0) {
                                     window.viewModel.cmbWechatId.removeByIndex(0);
                                 }
+                                // set emptyText.
+                                window.viewModel.cmbWechatId.emptyText = "select one wechat account to login.";
+                                window.viewModel.cmbWechatId.reset();
                                 var list = responseObj.data;
                                 // add the list to combobox.
                                 for (var i = 0; i < list.length; i++) {

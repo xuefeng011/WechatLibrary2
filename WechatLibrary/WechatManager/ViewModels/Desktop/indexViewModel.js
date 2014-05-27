@@ -47,9 +47,9 @@
             localWechatMenuSettingCommand: function (parameters) {
                 var pnl = window.viewModel.pnlMain;
                 var loader = pnl.loader;
-                loader.suspendScripting();
+                loader.suspendEvents();
                 loader.url = "/LocalMenu/Index";
-                pnl.loadContent();
+                pnl.load();
             },
             // when the setting window is showed, load current wechat account information from data base.
             loadCurrentWechatAccountCommand: function (parameters) {
@@ -85,7 +85,31 @@
                 var token = window.viewModel.txtToken.getRawValue();
                 var wechatId = window.viewModel.txtWechatId.getRawValue();
                 var namespace = window.viewModel.txtNamespace.getRawValue();
-                alert(appid + secret + token + wechatId + namespace);
+                Ext.Ajax.request({
+                    url: '/Service/WechatAccountService/SaveWechatAccountSetting.ashx',
+                    method: 'POST',
+                    params: {
+                        AppId: appid,
+                        Secret: secret,
+                        Token: token,
+                        WechatId: wechatId,
+                        Namespace:namespace
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.location.href = "/Desktop/Logout";
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'save the change fail!');
+                    }
+                });
             }
         };
         // load login wechatId after dom ready.
