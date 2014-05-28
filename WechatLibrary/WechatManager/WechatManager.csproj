@@ -124,6 +124,9 @@
     <Compile Include="Service\WechatServerMenuService\CopyWechatServerMenuToLocal.ashx.cs">
       <DependentUpon>CopyWechatServerMenuToLocal.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\WechatServerMenuService\DeleteWechatServerMenu.ashx.cs">
+      <DependentUpon>DeleteWechatServerMenu.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\WechatServerMenuService\PostLocalWechatMenu.ashx.cs">
       <DependentUpon>PostLocalWechatMenu.ashx</DependentUpon>
     </Compile>
@@ -243,6 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\WechatServerMenuService\CopyWechatServerMenuToLocal.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\WechatServerMenuService\DeleteWechatServerMenu.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

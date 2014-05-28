@@ -40,9 +40,16 @@
             },
             deleteWechatServerMenuCommand: function (parameters) {
                 Ext.Ajax.request({
-                    url: '',
+                    url: '/Service/WechatServerMenuService/DeleteWechatServerMenu.ashx',
                     method: 'POST',
                     success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success',responseObj.info);
+                        } else {
+                            Ext.Msg.alert('Error',responseObj.info);
+                        }
                     },
                     failure: function (response, options) {
                         Ext.Msg.alert('Error', 'delete wechat server menu fail!');
