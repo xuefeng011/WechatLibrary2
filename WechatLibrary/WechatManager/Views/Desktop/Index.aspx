@@ -52,6 +52,16 @@
                                         <Click Handler="window.viewModel.wechatServerMenuManageCommand(arguments)"></Click>
                                     </Listeners>
                                 </ext:MenuItem>
+                                <ext:MenuItem runat="server" Text="自动回复资源管理" Icon="PageBack">
+                                    <Listeners>
+                                        <Click Handler="window.viewModel.autoResponseResultManageCommand(arguments)"></Click>
+                                    </Listeners>
+                                </ext:MenuItem>
+                                <ext:MenuItem runat="server" Text="文本消息自动回复" Icon="ShapeMoveBack">
+                                    <Listeners>
+                                        <Click Handler="window.viewModel.textMessageAutoResponseCommand(arguments)"></Click>
+                                    </Listeners>
+                                </ext:MenuItem>
                             </Items>
                         </Menu>
                     </ext:MenuPanel>

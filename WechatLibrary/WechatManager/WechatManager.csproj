@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AutoResponseController.cs" />
     <Compile Include="Controllers\WechatServerMenuController.cs" />
     <Compile Include="Controllers\LocalMenuController.cs" />
     <Compile Include="Controllers\DesktopController.cs" />
@@ -181,11 +182,15 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="ViewModels\AutoResponse\responseResultManageViewModel.js" />
+    <Content Include="ViewModels\AutoResponse\textRequestMatchViewModel.js" />
     <Content Include="ViewModels\Desktop\indexViewModel.js" />
     <Content Include="ViewModels\Home\addWechatAccountViewModel.js" />
     <Content Include="ViewModels\Home\indexViewModel.js" />
     <Content Include="ViewModels\LocalMenu\indexViewModel.js" />
     <Content Include="ViewModels\WechatServerMenu\indexViewModel.js" />
+    <Content Include="Views\AutoResponse\TextRequestMatch.aspx" />
+    <Content Include="Views\AutoResponse\ResponseResultManage.aspx" />
     <Content Include="Views\Home\AddWechatAccount.aspx" />
     <Content Include="Views\Desktop\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />

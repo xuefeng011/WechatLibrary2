@@ -58,6 +58,20 @@
                 loader.url = "/WechatServerMenu/Index";
                 pnl.load();
             },
+            autoResponseResultManageCommand: function (parameters) {
+                var pnl = window.viewModel.pnlMain;
+                var loader = pnl.loader;
+                loader.suspendEvents();
+                loader.url = "/AutoResponse/ResponseResultManage";
+                pnl.load();
+            },
+            textMessageAutoResponseCommand: function (parameters) {
+                var pnl = window.viewModel.pnlMain;
+                var loader = pnl.loader;
+                loader.suspendEvents();
+                loader.url = "/AutoResponse/TextRequestMatch";
+                pnl.load();
+            },
             // when the setting window is showed, load current wechat account information from data base.
             loadCurrentWechatAccountCommand: function (parameters) {
                 Ext.Ajax.request({
@@ -100,7 +114,7 @@
                         Secret: secret,
                         Token: token,
                         WechatId: wechatId,
-                        Namespace:namespace
+                        Namespace: namespace
                     },
                     success: function (response, options) {
                         var responseText = response.responseText;

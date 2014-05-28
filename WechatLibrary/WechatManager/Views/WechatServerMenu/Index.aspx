@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>本地菜单管理</title>
+    <title>微信服务器菜单管理</title>
     <link rel="shortcut icon" type="image/x-icon" href="http://mp.weixin.qq.com/favicon.ico"
         media="screen" />
 </head>
