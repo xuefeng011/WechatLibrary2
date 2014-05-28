@@ -51,6 +51,13 @@
                 loader.url = "/LocalMenu/Index";
                 pnl.load();
             },
+            wechatServerMenuManageCommand: function (parameters) {
+                var pnl = window.viewModel.pnlMain;
+                var loader = pnl.loader;
+                loader.suspendEvents();
+                loader.url = "/WechatServerMenu/Index";
+                pnl.load();
+            },
             // when the setting window is showed, load current wechat account information from data base.
             loadCurrentWechatAccountCommand: function (parameters) {
                 Ext.Ajax.request({

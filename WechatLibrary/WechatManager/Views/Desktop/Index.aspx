@@ -47,6 +47,11 @@
                                         <Click Handler="window.viewModel.localWechatMenuSettingCommand(arguments)"></Click>
                                     </Listeners>
                                 </ext:MenuItem>
+                                <ext:MenuItem runat="server" Text="微信服务器菜单管理" Icon="Computer">
+                                    <Listeners>
+                                        <Click Handler="window.viewModel.wechatServerMenuManageCommand(arguments)"></Click>
+                                    </Listeners>
+                                </ext:MenuItem>
                             </Items>
                         </Menu>
                     </ext:MenuPanel>
@@ -56,7 +61,6 @@
                     </ext:Panel>
                 </Items>
             </ext:Panel>
-
         </Items>
     </ext:Viewport>
 

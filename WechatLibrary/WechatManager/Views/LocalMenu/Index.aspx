@@ -14,15 +14,58 @@
     <script src="../../ViewModels/LocalMenu/indexViewModel.js"></script>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
-            <ext:Panel runat="server" Layout="ColumnLayout" Region="Center" ID="pp" ManageHeight="True">
+            <ext:Panel runat="server" Region="Center" Layout="HBoxLayout">
+                <LayoutConfig>
+                    <ext:HBoxLayoutConfig Align="Stretch" />
+                </LayoutConfig>
                 <Items>
-                    <ext:Panel runat="server" ColumnWidth="0.2" Title="a" ID="ppp" ManageHeight="True">
+                    <ext:Panel runat="server" Title="一级菜单按钮" Flex="1" TitleAlign="Center">
+                        <Items>
+                            <ext:GridPanel runat="server">
+                            </ext:GridPanel>
+                        </Items>
                         <Buttons>
-                            <ext:Button runat="server" Text="fagfaga"></ext:Button>
+                            <ext:Button runat="server" Text="添加" Icon="Add">
+                                <Listeners>
+                                    <Click Handler=""></Click>
+                                </Listeners>
+                            </ext:Button>
                         </Buttons>
                     </ext:Panel>
-                    <ext:Panel runat="server" ColumnWidth="0.2" Title="b"></ext:Panel>
-                    <ext:Panel runat="server" ColumnWidth="0.6" Title="c"></ext:Panel>
+                    <ext:Panel runat="server" Title="二级菜单按钮" Flex="1" TitleAlign="Center">
+                        <Items></Items>
+                        <Buttons>
+                            <ext:Button runat="server" Text="添加" Icon="Add">
+                                <Listeners>
+                                    <Click Handler=""></Click>
+                                </Listeners>
+                            </ext:Button>
+                        </Buttons>
+                    </ext:Panel>
+                    <ext:Panel runat="server" Title="菜单按钮设置" Flex="1" TitleAlign="Center" BodyPadding="10" Layout="FormLayout">
+                        <Items>
+                            <ext:RadioGroup runat="server" Layout="HBoxLayout" FieldLabel="按钮类型">
+                                <LayoutConfig>
+                                    <ext:HBoxLayoutConfig runat="server" Align="Top" />
+                                </LayoutConfig>
+                                <Items>
+                                    <ext:Radio runat="server" BoxLabel="None" Margins="0 5 0 5"></ext:Radio>
+                                    <ext:Radio runat="server" BoxLabel="Click" Margins="0 5 0 5"></ext:Radio>
+                                    <ext:Radio runat="server" BoxLabel="View" Margins="0 5 0 5"></ext:Radio>
+                                </Items>
+                            </ext:RadioGroup>
+                            <ext:TextField runat="server" FieldLabel="Name" EmptyText="按钮名字"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Key" EmptyText="Key"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Url" EmptyText="Url"></ext:TextField>
+                        </Items>
+                        <Buttons>
+                            <ext:Button runat="server" Text="保存修改" Icon="Disk">
+                                <Listeners>
+                                    <Click Handler=""></Click>
+                                </Listeners>
+                            </ext:Button>
+                        </Buttons>
+                    </ext:Panel>
                 </Items>
             </ext:Panel>
         </Items>

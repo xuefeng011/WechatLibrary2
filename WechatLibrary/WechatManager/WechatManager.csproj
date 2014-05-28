@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\WechatServerMenuController.cs" />
     <Compile Include="Controllers\LocalMenuController.cs" />
     <Compile Include="Controllers\DesktopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -119,6 +120,12 @@
     </Compile>
     <Compile Include="Service\WechatAccountService\SaveWechatAccountSetting.ashx.cs">
       <DependentUpon>SaveWechatAccountSetting.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\WechatServerMenuService\CopyWechatServerMenuToLocal.ashx.cs">
+      <DependentUpon>CopyWechatServerMenuToLocal.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\WechatServerMenuService\PostLocalWechatMenu.ashx.cs">
+      <DependentUpon>PostLocalWechatMenu.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +182,12 @@
     <Content Include="ViewModels\Home\addWechatAccountViewModel.js" />
     <Content Include="ViewModels\Home\indexViewModel.js" />
     <Content Include="ViewModels\LocalMenu\indexViewModel.js" />
+    <Content Include="ViewModels\WechatServerMenu\indexViewModel.js" />
     <Content Include="Views\Home\AddWechatAccount.aspx" />
     <Content Include="Views\Desktop\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LocalMenu\Index.aspx" />
+    <Content Include="Views\WechatServerMenu\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -228,6 +237,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\WechatAccountService\SaveWechatAccountSetting.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\WechatServerMenuService\PostLocalWechatMenu.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\WechatServerMenuService\CopyWechatServerMenuToLocal.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
