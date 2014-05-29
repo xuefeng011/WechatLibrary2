@@ -20,13 +20,27 @@
                         <Items>
                             <ext:Button runat="server" Text="添加" Icon="Add">
                                 <Listeners>
-                                    <Click Handler=""></Click>
+                                    <Click Handler="windwo.viewModel.AddNewWehcatTextRequestMatch(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Items>
                     </ext:Toolbar>
                 </TopBar>
-                <Items></Items>
+                <Items>
+                    <ext:GridPanel runat="server">
+                        <ColumnModel runat="server">
+                            <Columns>
+                                <ext:Column runat="server"></ext:Column>
+                                <ext:CommandColumn runat="server">
+                                    <Commands>
+                                        <ext:GridCommand Text="修改"></ext:GridCommand>
+                                        <ext:GridCommand Text="删除"></ext:GridCommand>
+                                    </Commands>
+                                </ext:CommandColumn>
+                            </Columns>
+                        </ColumnModel>
+                    </ext:GridPanel>
+                </Items>
             </ext:Panel>
         </Items>
     </ext:Viewport>
