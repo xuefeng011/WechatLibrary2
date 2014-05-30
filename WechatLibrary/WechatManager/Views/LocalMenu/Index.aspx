@@ -12,6 +12,18 @@
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
     <script src="../../ViewModels/LocalMenu/indexViewModel.js"></script>
+    <ext:Store runat="server">
+        <Proxy>
+            <ext:AjaxProxy Url="/" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
             <ext:Panel runat="server" Region="Center" Layout="HBoxLayout">
