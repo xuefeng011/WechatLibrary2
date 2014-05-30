@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
+using WechatLibrary.Model.Menu;
 
 namespace WechatManager.Service.LocalMenuService
 {
@@ -59,6 +60,14 @@ namespace WechatManager.Service.LocalMenuService
                 }
 
                 var wechatAccount = query.First();
+                var menu = wechatAccount.Menu;
+                if (menu == null)
+                {
+                    wechatAccount.Menu = new Menu();
+                    entities.SaveChanges();
+                    menu = wechatAccount.Menu;
+                }
+                
             }
         }
 

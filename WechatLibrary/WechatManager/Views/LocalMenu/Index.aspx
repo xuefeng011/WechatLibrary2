@@ -14,12 +14,15 @@
     <script src="../../ViewModels/LocalMenu/indexViewModel.js"></script>
     <ext:Store runat="server">
         <Proxy>
-            <ext:AjaxProxy Url="/" Json="True"></ext:AjaxProxy>
+            <ext:AjaxProxy Url="/Service/LocalMenuService/GetLocalFirstMenu.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
                 <Fields>
-                    <ext:ModelField runat="server"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="name"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="type"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="key"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="url"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -34,6 +37,22 @@
                     <ext:Panel runat="server" Title="一级菜单按钮" Flex="1" TitleAlign="Center">
                         <Items>
                             <ext:GridPanel runat="server">
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server" Icon="TableEdit" Text="修改"></ext:GridCommand>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除">
+                                                    <ToolTip Text="删除"></ToolTip>
+                                                </ext:GridCommand>
+                                            </Commands>
+                                            <Listeners>
+                                                <Command Handler=""></Command>
+                                            </Listeners>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
                             </ext:GridPanel>
                         </Items>
                         <Buttons>
