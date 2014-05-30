@@ -42,7 +42,40 @@
                                         <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server" Icon="TableEdit" Text="修改"></ext:GridCommand>
+                                                <ext:GridCommand runat="server" Icon="TableEdit" Text="修改">
+                                                    <ToolTip Text="修改"></ToolTip>
+                                                </ext:GridCommand>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除">
+                                                    <ToolTip Text="删除"></ToolTip>
+                                                </ext:GridCommand>
+                                            </Commands>
+                                            <Listeners>
+                                                <Command Handler="firstMenuCommandClickCommand(arguments)"></Command>
+                                            </Listeners>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
+                            </ext:GridPanel>
+                        </Items>
+                        <Buttons>
+                            <ext:Button runat="server" Text="添加" Icon="Add">
+                                <Listeners>
+                                    <Click Handler="addNewFirstMenuCommand(arguments)"></Click>
+                                </Listeners>
+                            </ext:Button>
+                        </Buttons>
+                    </ext:Panel>
+                    <ext:Panel runat="server" Title="二级菜单按钮" Flex="1" TitleAlign="Center">
+                        <Items>
+                            <ext:GridPanel runat="server">
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server" Icon="TableEdit" Text="修改">
+                                                    <ToolTip Text="修改"></ToolTip>
+                                                </ext:GridCommand>
                                                 <ext:GridCommand runat="server" Icon="Delete" Text="删除">
                                                     <ToolTip Text="删除"></ToolTip>
                                                 </ext:GridCommand>
@@ -58,17 +91,7 @@
                         <Buttons>
                             <ext:Button runat="server" Text="添加" Icon="Add">
                                 <Listeners>
-                                    <Click Handler=""></Click>
-                                </Listeners>
-                            </ext:Button>
-                        </Buttons>
-                    </ext:Panel>
-                    <ext:Panel runat="server" Title="二级菜单按钮" Flex="1" TitleAlign="Center">
-                        <Items></Items>
-                        <Buttons>
-                            <ext:Button runat="server" Text="添加" Icon="Add">
-                                <Listeners>
-                                    <Click Handler=""></Click>
+                                    <Click Handler="addNewSecondMenuCommand(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Buttons>
