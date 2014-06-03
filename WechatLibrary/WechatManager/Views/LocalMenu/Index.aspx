@@ -12,9 +12,24 @@
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
     <script src="../../ViewModels/LocalMenu/indexViewModel.js"></script>
-    <ext:Store runat="server">
+    <ext:Store runat="server" ID="storeFirstMenu" IDMode="Explicit">
         <Proxy>
             <ext:AjaxProxy Url="/Service/LocalMenuService/GetLocalFirstMenu.ashx" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="name"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="type"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="key"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="url"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
+    <ext:Store runat="server" ID="storeSecondMenu" IDMode="Explicit" AutoLoad="False">
+        <Proxy>
+            <ext:AjaxProxy Url="/Service/LocalMenuService/GetLocalSecondMenu.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
@@ -36,7 +51,7 @@
                 <Items>
                     <ext:Panel runat="server" Title="一级菜单按钮" Flex="1" TitleAlign="Center">
                         <Items>
-                            <ext:GridPanel runat="server">
+                            <ext:GridPanel runat="server" StoreID="storeFirstMenu">
                                 <ColumnModel>
                                     <Columns>
                                         <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
@@ -50,7 +65,7 @@
                                                 </ext:GridCommand>
                                             </Commands>
                                             <Listeners>
-                                                <Command Handler="firstMenuCommandClickCommand(arguments)"></Command>
+                                                <Command Handler="window.viewModel.firstMenuCommandClickCommand(arguments)"></Command>
                                             </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
@@ -60,14 +75,14 @@
                         <Buttons>
                             <ext:Button runat="server" Text="添加" Icon="Add">
                                 <Listeners>
-                                    <Click Handler="addNewFirstMenuCommand(arguments)"></Click>
+                                    <Click Handler="window.viewModel.addNewFirstMenuCommand(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Buttons>
                     </ext:Panel>
                     <ext:Panel runat="server" Title="二级菜单按钮" Flex="1" TitleAlign="Center">
                         <Items>
-                            <ext:GridPanel runat="server">
+                            <ext:GridPanel runat="server" StoreID="storeSecondMenu">
                                 <ColumnModel>
                                     <Columns>
                                         <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
@@ -81,7 +96,7 @@
                                                 </ext:GridCommand>
                                             </Commands>
                                             <Listeners>
-                                                <Command Handler=""></Command>
+                                                <Command Handler="window.viewModel.secondMenuCommandClickCommand(arguments)"></Command>
                                             </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
@@ -91,7 +106,7 @@
                         <Buttons>
                             <ext:Button runat="server" Text="添加" Icon="Add">
                                 <Listeners>
-                                    <Click Handler="addNewSecondMenuCommand(arguments)"></Click>
+                                    <Click Handler="window.viewModel.addNewSecondMenuCommand(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Buttons>
@@ -115,7 +130,7 @@
                         <Buttons>
                             <ext:Button runat="server" Text="保存修改" Icon="Disk">
                                 <Listeners>
-                                    <Click Handler=""></Click>
+                                    <Click Handler="window.viewModel.saveSettingCommand(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Buttons>
