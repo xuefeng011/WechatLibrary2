@@ -119,14 +119,14 @@
                                     <ext:HBoxLayoutConfig runat="server" Align="Top" />
                                 </LayoutConfig>
                                 <Items>
-                                    <ext:Radio runat="server" BoxLabel="None" Margins="0 5 0 5"></ext:Radio>
-                                    <ext:Radio runat="server" BoxLabel="Click" Margins="0 5 0 5"></ext:Radio>
-                                    <ext:Radio runat="server" BoxLabel="View" Margins="0 5 0 5"></ext:Radio>
+                                    <ext:Radio runat="server" BoxLabel="None" Margins="0 5 0 5" ID="rdoNone"></ext:Radio>
+                                    <ext:Radio runat="server" BoxLabel="Click" Margins="0 5 0 5" ID="rdoClick"></ext:Radio>
+                                    <ext:Radio runat="server" BoxLabel="View" Margins="0 5 0 5" ID="rdoView"></ext:Radio>
                                 </Items>
                             </ext:RadioGroup>
-                            <ext:TextField runat="server" FieldLabel="Name" EmptyText="按钮名字"></ext:TextField>
-                            <ext:TextField runat="server" FieldLabel="Key" EmptyText="Key"></ext:TextField>
-                            <ext:TextField runat="server" FieldLabel="Url" EmptyText="Url"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Name" EmptyText="按钮名字" ID="txtName"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Key" EmptyText="Key" ID="txtKey"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Url" EmptyText="Url" ID="txtUrl"></ext:TextField>
                         </Items>
                         <Buttons>
                             <ext:Button runat="server" Text="保存修改" Icon="Disk">

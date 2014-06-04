@@ -126,6 +126,9 @@
     <Compile Include="Service\LocalMenuService\GetMenuButtonSetting.ashx.cs">
       <DependentUpon>GetMenuButtonSetting.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\LocalMenuService\SubmitMenuButtonSetting.ashx.cs">
+      <DependentUpon>SubmitMenuButtonSetting.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\WechatAccountService\AddNewWechatAccount.ashx.cs">
       <DependentUpon>AddNewWechatAccount.ashx</DependentUpon>
     </Compile>
@@ -291,6 +294,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\LocalMenuService\DeleteFirstMenu.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\LocalMenuService\SubmitMenuButtonSetting.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

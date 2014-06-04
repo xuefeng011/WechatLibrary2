@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,20 @@ namespace WechatManager.Service.LocalMenuService
                 {
                     success = false,
                     info = "please login again!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
+                context.Response.ContentType = "text/json";
+                context.Response.Write(json);
+                return;
+            }
+
+            var parentId = context.Request["Id"];
+            if (string.IsNullOrEmpty(parentId) == true)
+            {
+                var responseObj = new
+                {
+                    success = false,
+                    info = "id is none or empty!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -63,11 +78,28 @@ namespace WechatManager.Service.LocalMenuService
                 var menu = wechatAccount.Menu;
                 if (menu == null)
                 {
-                    wechatAccount.Menu = new Menu();
-                    entities.SaveChanges();
-                    menu = wechatAccount.Menu;
+                    var responseObj = new ArrayList();
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
                 }
-                
+                var parentBtnQuery = menu.Buttons.Where(temp => temp.Id.ToString() == parentId);
+                if (parentBtnQuery.Count() == 1)
+                {
+                    var btn = parentBtnQuery.First();
+                    var json = JsonHelper.SerializeToJson(btn.SubButtons);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
+                else
+                {
+                    var json = JsonHelper.SerializeToJson(new ArrayList());
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 

@@ -39,7 +39,7 @@ namespace WechatLibrary.Model.Menu
         /// 二级菜单数组，个数应为 1～5 个。
         /// </summary>
         [Json(Name = "sub_button", IgnoreNull = true)]
-        public List<MenuSubButton> SubButtons
+        public virtual List<MenuSubButton> SubButtons
         {
             get
             {
