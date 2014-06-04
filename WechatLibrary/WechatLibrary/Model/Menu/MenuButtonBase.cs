@@ -89,7 +89,8 @@ namespace WechatLibrary.Model.Menu
         /// <summary>
         /// 映射该按钮点击自动回复的内容。
         /// </summary>
-        public virtual MatchResultMapping MatchResultMapping
+        [Json(Ignore = true)]
+        public MatchResultMapping MatchResultMapping
         {
             get;
             set;

@@ -74,7 +74,16 @@ namespace WechatManager.Service.LocalMenuService
                     menuButton = menu.Buttons;
                 }
                 {
-                    var json = JsonHelper.SerializeToJson(menuButton);
+                    var responseObj = from temp in menuButton
+                                      select new
+                                      {
+                                          Id = temp.Id,
+                                          name = temp.Name,
+                                          type = temp.Type.ToString().ToLower(),
+                                          key = temp.Key,
+                                          url = temp.Url
+                                      };
+                    var json = JsonHelper.SerializeToJson(responseObj.ToList());
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                 }

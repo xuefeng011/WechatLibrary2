@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Serialization.Json;
+using WechatLibrary.Model.AutoResponse;
 
 namespace WechatLibrary.Model.Menu
 {
