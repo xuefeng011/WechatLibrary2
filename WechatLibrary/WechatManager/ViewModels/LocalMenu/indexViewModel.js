@@ -122,10 +122,16 @@
                                 window.viewModel.txtUrl.setRawValue(data.url);
                                 if (data.type == "click") {
                                     window.viewModel.rdoClick.setRawValue(true);
+                                    window.viewModel.rdoView.setRawValue(false);
+                                    window.viewModel.rdoNone.setRawValue(false);
                                 } else if (data.type == "view") {
                                     window.viewModel.rdoView.setRawValue(true);
+                                    window.viewModel.rdoClick.setRawValue(false);
+                                    window.viewModel.rdoNone.setRawValue(false);
                                 } else {
                                     window.viewModel.rdoNone.setRawValue(true);
+                                    window.viewModel.rdoClick.setRawValue(false);
+                                    window.viewModel.rdoView.setRawValue(false);
                                 }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
@@ -148,6 +154,16 @@
                                     if (responseObj.success) {
                                         Ext.Msg.alert('Success', responseObj.info, function () {
                                             window.viewModel.storeFirstMenu.load();
+                                            // Clear up button selected.
+                                            window.viewModel.currentId = "";
+                                            // Clear textbox.
+                                            window.viewModel.txtName.setRawValue('');
+                                            window.viewModel.txtKey.setRawValue('');
+                                            window.viewModel.txtUrl.setRawValue('');
+                                            // Clear radio button.
+                                            window.viewModel.rdoClick.setRawValue(false);
+                                            window.viewModel.rdoView.setRawValue(false);
+                                            window.viewModel.rdoNone.setRawValue(false);
                                         });
                                     } else {
                                         Ext.Msg.alert('Error', responseObj.info);
@@ -162,13 +178,51 @@
                         }
                     });
                 }
-
-
-                window.temp = parameters;
             },
             secondMenuCommandClickCommand: function (parameters) {
             },
             saveSettingCommand: function (parameters) {
+                var currentId = window.viewModel.currentId;
+                if (currentId == "" || currentId == null) {
+                    Ext.Msg.alert('Error', 'please click select a button first!');
+                    return;
+                }
+                var name = window.viewModel.txtName.getRawValue();
+                var type;
+                if (window.viewModel.rdoClick.checked) {
+                    type = "click";
+                } else if (window.viewModel.rdoView.checked) {
+                    type = "view";
+                } else {
+                    type = "none";
+                }
+                var key = window.viewModel.txtKey.getRawValue();
+                var url = window.viewModel.txtUrl.getRawValue();
+                Ext.Ajax.request({
+                    url: '/Service/LocalMenuService/SubmitMenuButtonSetting.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: currentId,
+                        name: name,
+                        type: type,
+                        key: key,
+                        url: url
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info);
+                            window.viewModel.storeFirstMenu.load();
+                            window.viewModel.storeSecondMenu.load();
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'save setting fail!');
+                    }
+                });
             }
         };
     });
