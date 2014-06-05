@@ -203,7 +203,7 @@ namespace WechatLibrary.Model
         /// <summary>
         /// 该微信帐号拥有的微信资源。
         /// </summary>
-        public List<WechatResource> WechatResources
+        public virtual List<WechatResource> WechatResources
         {
             get;
             set;

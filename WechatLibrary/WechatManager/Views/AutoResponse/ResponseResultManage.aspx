@@ -14,10 +14,14 @@
     <script src="../../ViewModels/AutoResponse/responseResultManageViewModel.js"></script>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
-            <ext:TabPanel runat="server">
+            <ext:TabPanel runat="server" Region="Center">
                 <Items>
                     <ext:Panel runat="server" Title="回复文本消息" Closable="False">
-                        <Items></Items>
+                        <Items>
+                            <ext:GridPanel runat="server">
+                                
+                            </ext:GridPanel>
+                        </Items>
                     </ext:Panel>
                     <ext:Panel runat="server" Title="回复图片消息" Closable="False">
                         <Items></Items>

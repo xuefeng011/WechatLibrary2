@@ -18,5 +18,10 @@ namespace WechatManager.Controllers
         {
             return View();
         }
+
+        public ActionResult TextRequestMatch()
+        {
+            return View();
+        }
     }
 }
