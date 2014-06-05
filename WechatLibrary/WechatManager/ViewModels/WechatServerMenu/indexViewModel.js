@@ -4,7 +4,7 @@
         window.viewModel = window.viewModel || {
             postLocalMenuToWechatServerCommand: function (parameters) {
                 Ext.Ajax.request({
-                    url: '/Sevice/WechatServerMenuService/PostLocalWechatMenu.ashx',
+                    url: '/Service/WechatServerMenuService/PostLocalWechatMenu.ashx',
                     method: 'POST',
                     success: function (response, options) {
                         var responseText = response.responseText;

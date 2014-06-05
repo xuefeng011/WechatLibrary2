@@ -56,8 +56,8 @@
                             <ext:GridPanel runat="server" StoreID="storeFirstMenu">
                                 <ColumnModel>
                                     <Columns>
-                                        <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" ColumnWidth="0.5"></ext:Column>
-                                        <ext:CommandColumn runat="server" ColumnWidth="0.5">
+                                        <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" Resizable="False"></ext:Column>
+                                        <ext:CommandColumn runat="server" Width="150" Resizable="False">
                                             <Commands>
                                                 <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
                                                     <ToolTip Text="修改"></ToolTip>
@@ -87,8 +87,8 @@
                             <ext:GridPanel runat="server" StoreID="storeSecondMenu">
                                 <ColumnModel>
                                     <Columns>
-                                        <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
-                                        <ext:CommandColumn runat="server">
+                                        <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" Resizable="False"></ext:Column>
+                                        <ext:CommandColumn runat="server" Width="150" Resizable="False">
                                             <Commands>
                                                 <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
                                                     <ToolTip Text="修改"></ToolTip>
