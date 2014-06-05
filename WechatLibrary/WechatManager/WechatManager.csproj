@@ -117,6 +117,9 @@
     <Compile Include="Service\LocalMenuService\DeleteFirstMenu.ashx.cs">
       <DependentUpon>DeleteFirstMenu.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\LocalMenuService\DeleteSecondMenu.ashx.cs">
+      <DependentUpon>DeleteSecondMenu.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\LocalMenuService\GetLocalFirstMenu.ashx.cs">
       <DependentUpon>GetLocalFirstMenu.ashx</DependentUpon>
     </Compile>
@@ -297,6 +300,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\LocalMenuService\SubmitMenuButtonSetting.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\LocalMenuService\DeleteSecondMenu.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

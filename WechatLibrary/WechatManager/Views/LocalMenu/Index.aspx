@@ -35,6 +35,7 @@
         <Model>
             <ext:Model runat="server">
                 <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
                     <ext:ModelField runat="server" Name="name"></ext:ModelField>
                     <ext:ModelField runat="server" Name="type"></ext:ModelField>
                     <ext:ModelField runat="server" Name="key"></ext:ModelField>
@@ -89,10 +90,10 @@
                                         <ext:Column runat="server" Text="Name" DataIndex="name"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server" Icon="TableEdit" Text="修改">
+                                                <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
                                                     <ToolTip Text="修改"></ToolTip>
                                                 </ext:GridCommand>
-                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除">
+                                                <ext:GridCommand Icon="Delete" Text="删除" CommandName="delete">
                                                     <ToolTip Text="删除"></ToolTip>
                                                 </ext:GridCommand>
                                             </Commands>

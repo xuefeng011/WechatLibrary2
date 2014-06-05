@@ -154,6 +154,8 @@
                                     if (responseObj.success) {
                                         Ext.Msg.alert('Success', responseObj.info, function () {
                                             window.viewModel.storeFirstMenu.load();
+                                            window.viewModel.storeSecondMenu.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx";
+                                            window.viewModel.storeSecondMenu.load();
                                             // Clear up button selected.
                                             window.viewModel.currentId = "";
                                             // Clear textbox.
@@ -180,6 +182,38 @@
                 }
             },
             secondMenuCommandClickCommand: function (parameters) {
+                var commandName = parameters[1];
+                var data = parameters[2].data;
+
+                if (commandName == "modify") {
+                } else if (commandName == "delete") {
+                    Ext.Msg.confirm('Warning', 'make sure to delete the button?', function (btn) {
+                        if (btn == 'yes') {
+                            Ext.Ajax.request({
+                                url: '/Service/LocalMenuService/DeleteSecondMenu.ashx',
+                                method: 'POST',
+                                params: { Id: data.Id },
+                                success: function (response, options) {
+                                    var responseText = response.responseText;
+                                    var responseObj = Ext.decode(responseText);
+                                    if (responseObj.success) {
+                                        Ext.Msg.alert('Success', responseObj.info, function () {
+                                            window.viewModel.storeFirstMenu.load();
+                                            window.viewModel.storeSecondMenu.load();
+                                        });
+                                    } else {
+                                        Ext.Msg.alert('Error', responseObj.info);
+                                    }
+                                },
+                                failure: function (response, options) {
+                                    Ext.Msg.alert('Error', 'delete failed!');
+                                }
+                            });
+                        } else {
+                            return;
+                        }
+                    });
+                }
             },
             saveSettingCommand: function (parameters) {
                 var currentId = window.viewModel.currentId;

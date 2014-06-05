@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
+using WechatLibrary;
 using WechatLibrary.Model;
-using WechatLibrary.Model.Menu;
 
 namespace WechatManager.Service.LocalMenuService
 {
     /// <summary>
-    /// GetLocalSecondMenu 的摘要说明
+    /// DeleteSecondMenu 的摘要说明
     /// </summary>
-    public class GetLocalSecondMenu : IHttpHandler, IRequiresSessionState
+    public class DeleteSecondMenu : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
-            string wechatId = context.Session["WechatId"] as string;
+            var wechatId = context.Session["WechatId"] as string;
             if (string.IsNullOrEmpty(wechatId) == true)
             {
                 var responseObj = new
@@ -32,10 +31,16 @@ namespace WechatManager.Service.LocalMenuService
                 return;
             }
 
-            var parentId = context.Request["Id"];
-            if (string.IsNullOrEmpty(parentId) == true)
+            // The button which need to delete.
+            var buttonId = context.Request["Id"];
+            if (string.IsNullOrEmpty(buttonId) == true)
             {
-                var json = JsonHelper.SerializeToJson(new ArrayList());
+                var responseObj = new
+                {
+                    success = false,
+                    info = "the button id could not be null or empty!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
                 context.Response.Write(json);
                 return;
@@ -61,45 +66,38 @@ namespace WechatManager.Service.LocalMenuService
                     var responseObj = new
                     {
                         success = false,
-                        info = "there is an error occurred, please contact the manager!"
+                        info = "please contact the manager there is something wrong with the data base!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
-
-                var wechatAccount = query.First();
-                var menu = wechatAccount.Menu;
-                if (menu == null)
+                var subQuery = entities.MenuSubButtons.Where(temp => temp.Id.ToString() == buttonId);
+                if (subQuery.Count() == 1)
                 {
-                    var responseObj = new ArrayList();
+                    // Found the button, and delete it from data base.
+                    entities.MenuSubButtons.Remove(subQuery.First());
+                    // Save the change.
+                    entities.SaveChanges();
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "delete success!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                var parentBtnQuery = menu.Buttons.Where(temp => temp.Id.ToString() == parentId);
-                if (parentBtnQuery.Count() == 1)
-                {
-                    var btn = parentBtnQuery.First();
-                    var responseObj = from temp in btn.SubButtons.ToList()
-                                      select new
-                                      {
-                                          Id = temp.Id,
-                                          name = temp.Name,
-                                          type = temp.Type.ToString().ToLower(),
-                                          key = temp.Key,
-                                          url = temp.Url
-                                      };
-                    var json = JsonHelper.SerializeToJson(responseObj.ToList());
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
                 else
                 {
-                    var json = JsonHelper.SerializeToJson(new ArrayList());
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "could not found any buttons by id in the data base!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
