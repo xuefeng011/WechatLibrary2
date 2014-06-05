@@ -33,6 +33,10 @@ namespace WechatManager.Service.TextRequestMatchService
                 return;
             }
 
+#warning not finish
+            var matchContent = context.Request[""];
+            var matchOption = context.Request[""];
+
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
@@ -80,7 +84,7 @@ namespace WechatManager.Service.TextRequestMatchService
                     var responseObj = new
                     {
                         success = true,
-                        info = ""
+                        info = "add new wechat text request match success!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
