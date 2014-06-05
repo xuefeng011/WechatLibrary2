@@ -27,7 +27,9 @@
                         Ext.Ajax.request({
                             url: '/Service/LocalMenuService/AddNewFirstMenu.ashx',
                             method: 'POST',
-                            params: { name: text },
+                            params: {
+                                name: text
+                            },
                             success: function (response, options) {
                                 var responseText = response.responseText;
                                 var responseObj = Ext.decode(responseText);
@@ -111,7 +113,9 @@
                     Ext.Ajax.request({
                         url: '/Service/LocalMenuService/GetMenuButtonSetting.ashx',
                         method: 'POST',
-                        params: { Id: data.Id },
+                        params: {
+                            Id: data.Id
+                        },
                         success: function (response, options) {
                             var responseText = response.responseText;
                             var responseObj = Ext.decode(responseText);
@@ -147,13 +151,17 @@
                             Ext.Ajax.request({
                                 url: '/Service/LocalMenuService/DeleteFirstMenu.ashx',
                                 method: 'POST',
-                                params: { Id: data.Id },
+                                params: {
+                                    Id: data.Id
+                                },
                                 success: function (response, options) {
                                     var responseText = response.responseText;
                                     var responseObj = Ext.decode(responseText);
                                     if (responseObj.success) {
                                         Ext.Msg.alert('Success', responseObj.info, function () {
+                                            // Reload store.
                                             window.viewModel.storeFirstMenu.load();
+                                            // Clear store.
                                             window.viewModel.storeSecondMenu.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx";
                                             window.viewModel.storeSecondMenu.load();
                                             // Clear up button selected.
@@ -186,6 +194,45 @@
                 var data = parameters[2].data;
 
                 if (commandName == "modify") {
+                    // cache current first btn id
+                    window.viewModel.currentId = data.Id;
+
+                    // load setting panel
+                    Ext.Ajax.request({
+                        url: '/Service/LocalMenuService/GetMenuButtonSetting.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: data.Id
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                var data = responseObj.data;
+                                window.viewModel.txtName.setRawValue(data.name);
+                                window.viewModel.txtKey.setRawValue(data.key);
+                                window.viewModel.txtUrl.setRawValue(data.url);
+                                if (data.type == "click") {
+                                    window.viewModel.rdoClick.setRawValue(true);
+                                    window.viewModel.rdoView.setRawValue(false);
+                                    window.viewModel.rdoNone.setRawValue(false);
+                                } else if (data.type == "view") {
+                                    window.viewModel.rdoView.setRawValue(true);
+                                    window.viewModel.rdoClick.setRawValue(false);
+                                    window.viewModel.rdoNone.setRawValue(false);
+                                } else {
+                                    window.viewModel.rdoNone.setRawValue(true);
+                                    window.viewModel.rdoClick.setRawValue(false);
+                                    window.viewModel.rdoView.setRawValue(false);
+                                }
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'load setting fail!');
+                        }
+                    });
                 } else if (commandName == "delete") {
                     Ext.Msg.confirm('Warning', 'make sure to delete the button?', function (btn) {
                         if (btn == 'yes') {
@@ -198,8 +245,21 @@
                                     var responseObj = Ext.decode(responseText);
                                     if (responseObj.success) {
                                         Ext.Msg.alert('Success', responseObj.info, function () {
+                                            // Reload store.
                                             window.viewModel.storeFirstMenu.load();
+                                            // Clear store.
+                                            window.viewModel.secondStore.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx";
                                             window.viewModel.storeSecondMenu.load();
+                                            // Clear up button selected.
+                                            window.viewModel.currentId = "";
+                                            // Clear textbox.
+                                            window.viewModel.txtName.setRawValue('');
+                                            window.viewModel.txtKey.setRawValue('');
+                                            window.viewModel.txtUrl.setRawValue('');
+                                            // Clear radio button.
+                                            window.viewModel.rdoClick.setRawValue(false);
+                                            window.viewModel.rdoView.setRawValue(false);
+                                            window.viewModel.rdoNone.setRawValue(false);
                                         });
                                     } else {
                                         Ext.Msg.alert('Error', responseObj.info);
