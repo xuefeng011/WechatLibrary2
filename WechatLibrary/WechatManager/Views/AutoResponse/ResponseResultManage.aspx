@@ -12,6 +12,42 @@
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
     <script src="../../ViewModels/AutoResponse/responseResultManageViewModel.js"></script>
+    <ext:Store runat="server" ID="storeTextMessage" IDMode="Explicit">
+        <Proxy>
+            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
+    <ext:Store runat="server" ID="storeImageMessage" IDMode="Explicit">
+        <Proxy>
+            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
+    <ext:Store runat="server" ID="storeNewsMessage" IDMode="Explicit">
+        <Proxy>
+            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
             <ext:TabPanel runat="server" Region="Center">
@@ -19,7 +55,6 @@
                     <ext:Panel runat="server" Title="回复文本消息" Closable="False">
                         <Items>
                             <ext:GridPanel runat="server">
-                                
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>
