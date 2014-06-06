@@ -55,14 +55,47 @@
                     <ext:Panel runat="server" Title="回复文本消息" Closable="False">
                         <Items>
                             <ext:GridPanel runat="server">
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server"></ext:GridCommand>
+                                            </Commands>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>
                     <ext:Panel runat="server" Title="回复图片消息" Closable="False">
-                        <Items></Items>
+                        <Items>
+                            <ext:GridPanel runat="server">
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                            </Commands>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
+                            </ext:GridPanel>
+                        </Items>
                     </ext:Panel>
                     <ext:Panel runat="server" Title="回复图文消息" Closable="False">
-                        <Items></Items>
+                        <Items>
+                            <ext:GridPanel runat="server">
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                            </Commands>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
+                            </ext:GridPanel>
+                        </Items>
                     </ext:Panel>
                 </Items>
             </ext:TabPanel>

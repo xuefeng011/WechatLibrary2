@@ -72,6 +72,12 @@
                 loader.url = "/AutoResponse/TextRequestMatch";
                 pnl.load();
             },
+            messageLogCommand:function(parameters) {
+                var pnl = window.viewModel.pnlMain;
+                var loader = pnl.loader;
+                loader.suspendEvents();
+                loader.url = "/";
+            },
             // when the setting window is showed, load current wechat account information from data base.
             loadCurrentWechatAccountCommand: function (parameters) {
                 Ext.Ajax.request({

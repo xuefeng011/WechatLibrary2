@@ -62,6 +62,16 @@
                                         <Click Handler="window.viewModel.textMessageAutoResponseCommand(arguments)"></Click>
                                     </Listeners>
                                 </ext:MenuItem>
+                                <ext:MenuItem runat="server" Text="消息记录浏览" Icon="Note">
+                                    <Listeners>
+                                        <Click Handler="window.viewModel.messageLogCommand(arguments)"></Click>
+                                    </Listeners>
+                                </ext:MenuItem>
+                                <ext:MenuItem runat="server" Text="消息群发" Icon="Group">
+                                    <Listeners>
+                                        <Click Handler="window.viewModel.groupSendCommand(arguments)"></Click>
+                                    </Listeners>
+                                </ext:MenuItem>
                             </Items>
                         </Menu>
                     </ext:MenuPanel>
