@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
+using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatManager.Service.AutoResponseService
 {
@@ -71,7 +72,24 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
-
+                var wechatAccount = query.First();
+                wechatAccount.ImageAutoResponseResults.Add(new ImageAutoResponseResult()
+                {
+                    Id = Guid.NewGuid(),
+                    MediaId = mediaId
+                });
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "add success"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 
