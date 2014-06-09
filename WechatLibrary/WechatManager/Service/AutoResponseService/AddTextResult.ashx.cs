@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
+using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// GetAllTextResult 的摘要说明
+    /// AddTextResult 的摘要说明
     /// </summary>
-    public class GetAllTextResult : IHttpHandler, IRequiresSessionState
+    public class AddTextResult : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -24,6 +24,20 @@ namespace WechatManager.Service.AutoResponseService
                 {
                     success = false,
                     info = "please login again!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
+                context.Response.ContentType = "text/json";
+                context.Response.Write(json);
+                return;
+            }
+
+            var content = context.Request["Content"];
+            if (string.IsNullOrEmpty(content) == true)
+            {
+                var responseObj = new
+                {
+                    success = false,
+                    info = "response must be not null or empty!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -51,22 +65,27 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "there is an error occurred in the data base!"
+                        info = "data base error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
+
                 var wechatAccount = query.First();
-                var list = wechatAccount.TextAutoResponseResults.ToList();
+                wechatAccount.TextAutoResponseResults.Add(new TextAutoResponseResult()
                 {
-                    var responseObj = from temp in list
-                                      select new
-                                      {
-                                          Id = temp.Id,
-                                          content = temp.Content
-                                      };
+                    Id = Guid.NewGuid(),
+                    Content = content
+                });
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "add success!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);

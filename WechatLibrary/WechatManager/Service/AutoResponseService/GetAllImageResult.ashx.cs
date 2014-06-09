@@ -36,7 +36,11 @@ namespace WechatManager.Service.AutoResponseService
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
                 if (query.Count() <= 0)
                 {
-                    var responseObj = new {success=false,info="please login again!"};
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "please login again!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
@@ -44,13 +48,30 @@ namespace WechatManager.Service.AutoResponseService
                 }
                 if (query.Count() > 1)
                 {
-                    var responseObj = new {success=false,info="there is an error occurred, please contact the manager!"};
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "there is an error occurred, please contact the manager!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
                 var wechatAccount = query.First();
+                var list = wechatAccount.ImageAutoResponseResults.ToList();
+                {
+                    var responseObj = from temp in list
+                                      select new
+                                      {
+                                          Id = temp.Id,
+                                          mediaId = temp.MediaId
+                                      };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 

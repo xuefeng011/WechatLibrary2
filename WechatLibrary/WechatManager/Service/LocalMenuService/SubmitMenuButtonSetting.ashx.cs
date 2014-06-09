@@ -194,24 +194,12 @@ namespace WechatManager.Service.LocalMenuService
                     btn.Name = buttonName;
                     btn.Key = buttonKey;
                     btn.Url = buttonUrl;
-                    if (entities.SaveChanges() > 0)
+                    var count = entities.SaveChanges();
                     {
                         var responseObj = new
                         {
                             success = false,
                             info = "save button setting success!"
-                        };
-                        var json = JsonHelper.SerializeToJson(responseObj);
-                        context.Response.ContentType = "text/json";
-                        context.Response.Write(json);
-                        return;
-                    }
-                    else
-                    {
-                        var responseObj = new
-                        {
-                            success = false,
-                            info = "save button setting fail!"
                         };
                         var json = JsonHelper.SerializeToJson(responseObj);
                         context.Response.ContentType = "text/json";

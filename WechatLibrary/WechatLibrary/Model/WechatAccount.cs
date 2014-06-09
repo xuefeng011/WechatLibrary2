@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model.AutoResponse.Match;
+using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatLibrary.Model
 {
@@ -204,6 +205,63 @@ namespace WechatLibrary.Model
         /// 该微信帐号拥有的微信资源。
         /// </summary>
         public virtual List<WechatResource> WechatResources
+        {
+            get;
+            set;
+        }
+
+
+
+
+        /// <summary>
+        /// 匹配后自动回复的图片。
+        /// </summary>
+        public virtual List<ImageAutoResponseResult> ImageAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 匹配后自动回复的音乐。
+        /// </summary>
+        public virtual List<MusicAutoResponseResult> MusicAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 匹配后自动回复的图文。
+        /// </summary>
+        public virtual List<NewsAutoResponseResult> NewsAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 匹配后自动回复的文本。
+        /// </summary>
+        public virtual List<TextAutoResponseResult> TextAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 匹配后自动回复的视频。
+        /// </summary>
+        public virtual List<VideoAutoResponseResult> VideoAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 匹配后自动回复的语音。
+        /// </summary>
+        public virtual List<VoiceAutoResponseResult> VoiceAutoResponseResults
         {
             get;
             set;

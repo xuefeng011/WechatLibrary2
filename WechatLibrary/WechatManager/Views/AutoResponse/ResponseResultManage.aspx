@@ -14,19 +14,20 @@
     <script src="../../ViewModels/AutoResponse/responseResultManageViewModel.js"></script>
     <ext:Store runat="server" ID="storeTextMessage" IDMode="Explicit">
         <Proxy>
-            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+            <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllTextResult.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
                 <Fields>
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="content"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
     </ext:Store>
     <ext:Store runat="server" ID="storeImageMessage" IDMode="Explicit">
         <Proxy>
-            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+            <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllImageResult.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
@@ -55,12 +56,28 @@
                     <ext:Panel runat="server" Title="回复文本消息" Closable="False">
                         <Items>
                             <ext:GridPanel runat="server">
+                                <TopBar>
+                                    <ext:Toolbar runat="server">
+                                        <Items>
+                                            <ext:Button runat="server" Text="新增" Icon="Add">
+                                                <Listeners>
+                                                    <Click Handler="window.viewModel.addNewTextResponseCommand(arguments)"></Click>
+                                                </Listeners>
+                                            </ext:Button>
+                                        </Items>
+                                    </ext:Toolbar>
+                                </TopBar>
                                 <ColumnModel>
                                     <Columns>
+                                        <ext:Column runat="server" Text="内容" DataIndex="content"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server"></ext:GridCommand>
+                                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify"></ext:GridCommand>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
                                             </Commands>
+                                            <Listeners>
+                                                <Command Handler="window.viewModel.textResponseCommandClickCommand(arguments)"></Command>
+                                            </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
@@ -101,5 +118,29 @@
             </ext:TabPanel>
         </Items>
     </ext:Viewport>
+    <ext:Window runat="server" Modal="True" Title="添加新文本回复" CloseAction="Hide" Layout="FormLayout" ID="winNewTextMessage">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="回复内容" ID="txtNewTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="Add" Text="添加">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitNewTextResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="回复内容" ID="txtModifyTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="NoteEdit" Text="修改">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitModifyTextResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
 </body>
 </html>

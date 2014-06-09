@@ -112,17 +112,9 @@ namespace WechatManager.Service.WechatAccountService
                 currentWechatAccount.WechatId = newWechatId;
                 currentWechatAccount.Namespace = @namespace;
 
-                if (entities.SaveChanges() > 0)
+                entities.SaveChanges();
                 {
                     var responseObj = new {success=true,info="modify the WechatAccount success!"};
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                else
-                {
-                    var responseObj = new {success=false,info="modify the WechatAccount fail!"};
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
