@@ -64,7 +64,7 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base  occurred an error!"
+                        info = "data base occurred an error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
