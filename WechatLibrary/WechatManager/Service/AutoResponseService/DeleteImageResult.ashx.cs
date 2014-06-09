@@ -71,6 +71,34 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
+                var wechatAccount = query.First();
+                var deleteItemQuery =
+                    wechatAccount.ImageAutoResponseResults.Where(temp => temp.Id.ToString() == deleteId);
+                if (deleteItemQuery.Count() != 1)
+                {
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "this item is not exist in the data base!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
+                wechatAccount.ImageAutoResponseResults.Remove(deleteItemQuery.First());
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "delete success!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 
