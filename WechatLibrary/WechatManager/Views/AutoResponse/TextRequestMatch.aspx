@@ -58,7 +58,7 @@
     </ext:Viewport>
     <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout">
         <Items>
-            <ext:TextField runat="server" FieldLabel="匹配内容" ID="txt"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtNewTextMatch"></ext:TextField>
         </Items>
         <Buttons>
             <ext:Button runat="server" Text="添加">

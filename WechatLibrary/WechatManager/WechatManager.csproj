@@ -108,6 +108,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AutoResponseService\GetAllImageResult.ashx.cs">
+      <DependentUpon>GetAllImageResult.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AutoResponseService\GetAllTextResult.ashx.cs">
+      <DependentUpon>GetAllTextResult.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\LocalMenuService\AddNewFirstMenu.ashx.cs">
       <DependentUpon>AddNewFirstMenu.ashx</DependentUpon>
     </Compile>
@@ -321,6 +327,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\TextRequestMatchService\Modify.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\GetAllTextResult.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\GetAllImageResult.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
