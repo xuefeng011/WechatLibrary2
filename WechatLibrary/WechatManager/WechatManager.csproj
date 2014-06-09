@@ -126,6 +126,9 @@
     <Compile Include="Service\AutoResponseService\GetAllTextResult.ashx.cs">
       <DependentUpon>GetAllTextResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\AutoResponseService\ModifyTextResult.ashx.cs">
+      <DependentUpon>ModifyTextResult.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\LocalMenuService\AddNewFirstMenu.ashx.cs">
       <DependentUpon>AddNewFirstMenu.ashx</DependentUpon>
     </Compile>
@@ -357,6 +360,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\AutoResponseService\AddImageResult.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\ModifyTextResult.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
