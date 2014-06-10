@@ -150,6 +150,31 @@
                     });
                 }
             },
+            newsResponseCommandClickCommand: function (parameters) {
+                var commandName = parameters[1];
+                var data = parameters[2].data;
+
+                if (commandName == "modify") {
+
+                } else if (commandName == "delete") {
+                    Ext.Msg.confirm('Warning', 'delete this news response?', function (btn) {
+                        if (btn == 'yes') {
+                            Ext.Ajax.request({
+                                url: '/Service/AutoResponseService/DeleteNewsResult.ashx',
+                                method: 'POST',
+                                params: {
+
+                                },
+                                success: function (response, options) {
+                                },
+                                failure: function (response, options) {
+                                    Ext.Msg.alert('Error', 'delete fail!');
+                                }
+                            });
+                        }
+                    });
+                }
+            },
             submitModifyTextResponseCommand: function (parameters) {
                 var id = window.viewModel.winModifyTextMessage.editId;
                 var text = window.viewModel.txtModifyTextMessageContent.getValue();

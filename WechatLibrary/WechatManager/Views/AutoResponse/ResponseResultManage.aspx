@@ -46,6 +46,9 @@
             <ext:Model runat="server">
                 <Fields>
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Title"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Content"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Count"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -118,13 +121,31 @@
                     </ext:Panel>
                     <ext:Panel runat="server" Title="回复图文消息" Closable="False">
                         <Items>
-                            <ext:GridPanel runat="server">
+                            <ext:GridPanel runat="server" StoreID="storeNewsMessage">
+                                <TopBar>
+                                    <ext:ToolBar runat="server">
+                                        <Items>
+                                            <ext:Button runat="server" Icon="Add" Text="添加">
+                                                <Listeners>
+                                                    <Click Handler="window.viewModel.addNewNewsResponseCommand(arguments)"></Click>
+                                                </Listeners>
+                                            </ext:Button>
+                                        </Items>
+                                    </ext:ToolBar>
+                                </TopBar>
                                 <ColumnModel>
                                     <Columns>
+                                        <ext:Column runat="server" Text="第一条标题" DataIndex="Title"></ext:Column>
+                                        <ext:Column runat="server" Text="第一条内容" DataIndex="Content"></ext:Column>
+                                        <ext:Column runat="server" Text="条数" DataIndex="Count"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
+                                                <ext:GridCommand runat="server" Icon="Newspaper" Text="修改" CommandName="modify"></ext:GridCommand>
                                                 <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
                                             </Commands>
+                                            <Listeners>
+                                                <Command Handler="window.viewModel.newsResponseCommandClickCommand(arguments)"></Command>
+                                            </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
