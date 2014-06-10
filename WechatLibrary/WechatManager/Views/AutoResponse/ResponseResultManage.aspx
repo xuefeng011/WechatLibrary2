@@ -33,6 +33,7 @@
             <ext:Model runat="server">
                 <Fields>
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="mediaId"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -55,7 +56,7 @@
                 <Items>
                     <ext:Panel runat="server" Title="回复文本消息" Closable="False">
                         <Items>
-                            <ext:GridPanel runat="server">
+                            <ext:GridPanel runat="server" StoreID="storeTextMessage">
                                 <TopBar>
                                     <ext:Toolbar runat="server">
                                         <Items>
@@ -86,7 +87,18 @@
                     </ext:Panel>
                     <ext:Panel runat="server" Title="回复图片消息" Closable="False">
                         <Items>
-                            <ext:GridPanel runat="server">
+                            <ext:GridPanel runat="server" StoreID="storeImageMessage">
+                                <TopBar>
+                                    <ext:Toolbar runat="server">
+                                        <Items>
+                                            <ext:Button runat="server" Text="新增" Icon="Add">
+                                                <Listeners>
+                                                    <Click Handler="window.viewModel.addNewImageResponseCommand(arguments)"></Click>
+                                                </Listeners>
+                                            </ext:Button>
+                                        </Items>
+                                    </ext:Toolbar>
+                                </TopBar>
                                 <ColumnModel>
                                     <Columns>
                                         <ext:CommandColumn runat="server">
@@ -118,7 +130,7 @@
             </ext:TabPanel>
         </Items>
     </ext:Viewport>
-    <ext:Window runat="server" Modal="True" Title="添加新文本回复" CloseAction="Hide" Layout="FormLayout" ID="winNewTextMessage">
+    <ext:Window runat="server" Modal="True" Title="添加新文本回复" CloseAction="Hide" Layout="FormLayout" ID="winNewTextMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
         <Items>
             <ext:TextField runat="server" FieldLabel="回复内容" ID="txtNewTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
         </Items>
@@ -130,7 +142,19 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage">
+    <ext:Window runat="server" Modal="True" Title="添加新图片回复" CloseAction="Hide" Layout="FormLayout" ID="winNewImageMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtNewImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="Add" Text="添加">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitNewImageResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage" Hidden="True">
         <Items>
             <ext:TextField runat="server" FieldLabel="回复内容" ID="txtModifyTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
         </Items>

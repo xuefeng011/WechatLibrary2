@@ -67,7 +67,7 @@ namespace WechatManager.Service.AutoResponseService
                                           Id = temp.Id,
                                           content = temp.Content
                                       };
-                    var json = JsonHelper.SerializeToJson(responseObj);
+                    var json = JsonHelper.SerializeToJson(responseObj.ToList());
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;

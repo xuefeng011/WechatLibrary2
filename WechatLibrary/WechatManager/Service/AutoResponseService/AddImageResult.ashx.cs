@@ -31,7 +31,7 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            var mediaId = context.Request["mediaId"];
+            var mediaId = context.Request["MediaId"];
             if (string.IsNullOrEmpty(mediaId) == true)
             {
                 var responseObj = new
