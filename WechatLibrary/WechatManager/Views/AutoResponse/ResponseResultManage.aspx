@@ -101,10 +101,15 @@
                                 </TopBar>
                                 <ColumnModel>
                                     <Columns>
+                                        <ext:Column runat="server" Text="图片MediaId" DataIndex="mediaId"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
+                                                <ext:GridCommand runat="server" Icon="ImageEdit" Text="修改" CommandName="modify"></ext:GridCommand>
                                                 <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
                                             </Commands>
+                                            <Listeners>
+                                                <Command Handler="window.viewModel.imageResponseCommandClickCommand(arguments)"></Command>
+                                            </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
@@ -154,7 +159,7 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage" Hidden="True">
+    <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage" Hidden="True" Icon="NoteEdit" Width="300" BodyPadding="8">
         <Items>
             <ext:TextField runat="server" FieldLabel="回复内容" ID="txtModifyTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
         </Items>

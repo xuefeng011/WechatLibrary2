@@ -56,12 +56,12 @@
             </ext:Panel>
         </Items>
     </ext:Viewport>
-    <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout">
+    <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5">
         <Items>
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtNewTextMatch"></ext:TextField>
         </Items>
         <Buttons>
-            <ext:Button runat="server" Text="添加">
+            <ext:Button runat="server" Text="添加" Icon="Add">
                 <Listeners>
                     <Click Handler="window.viewModel.saveNewWechatTextRequestMatchCommand(arguments)"></Click>
                 </Listeners>

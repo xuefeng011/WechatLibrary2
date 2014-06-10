@@ -39,6 +39,7 @@
                         if (responseObj.success) {
                             Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeTextMessage.load();
+                                window.viewModel.winNewTextMessage.close();
                             });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
@@ -67,6 +68,7 @@
                         if (responseObj.success) {
                             Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeImageMessage.load();
+                                window.viewModel.winNewImageMessage.close();
                             });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
@@ -164,6 +166,7 @@
                         if (responseObj.success) {
                             Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeTextMessage.load();
+                                window.viewModel.winModifyTextMessage.close();
                             });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
@@ -190,6 +193,7 @@
                         if (responseObj.success) {
                             Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeImageMessage.load();
+                                window.viewModel.winModifyImageMessage.close();
                             });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
