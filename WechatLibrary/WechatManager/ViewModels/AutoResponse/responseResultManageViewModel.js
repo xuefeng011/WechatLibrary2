@@ -166,6 +166,13 @@
 
                                 },
                                 success: function (response, options) {
+                                    var responseText = response.responseText;
+                                    var responseObj = Ext.decode(responseText);
+                                    if (responseObj.success) {
+                                        
+                                    } else {
+                                        
+                                    }
                                 },
                                 failure: function (response, options) {
                                     Ext.Msg.alert('Error', 'delete fail!');
