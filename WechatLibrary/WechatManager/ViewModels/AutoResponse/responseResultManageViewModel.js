@@ -163,15 +163,15 @@
                                 url: '/Service/AutoResponseService/DeleteNewsResult.ashx',
                                 method: 'POST',
                                 params: {
-
+                                    Id: data.Id
                                 },
                                 success: function (response, options) {
                                     var responseText = response.responseText;
                                     var responseObj = Ext.decode(responseText);
                                     if (responseObj.success) {
-                                        
+
                                     } else {
-                                        
+                                        Ext.Msg.alert('Error', responseObj.info);
                                     }
                                 },
                                 failure: function (response, options) {
