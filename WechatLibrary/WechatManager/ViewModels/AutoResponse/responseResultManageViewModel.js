@@ -11,6 +11,8 @@
             txtNewImageMessageMediaId: Ext.getCmp('txtNewImageMessageMediaId'),
             winModifyTextMessage: Ext.getCmp('winModifyTextMessage'),
             txtModifyTextMessageContent: Ext.getCmp('txtModifyTextMessageContent'),
+            winModifyImageMessage: Ext.getCmp('winModifyImageMessage'),
+            txtModifyImageMessageMediaId: Ext.getCmp('txtModifyImageMessageMediaId'),
             addNewTextResponseCommand: function (parameters) {
                 window.viewModel.txtNewTextMessageContent.setRawValue('');
                 window.viewModel.winNewTextMessage.show();
@@ -80,6 +82,9 @@
                 var data = parameters[2].data;
 
                 if (commandName == "modify") {
+                    window.viewModel.txtModifyTextMessageContent.setRawValue(data.content);
+                    window.viewModel.winModifyTextMessage.editId = data.Id;
+                    window.viewModel.winModifyTextMessage.show();
                 } else if (commandName == "delete") {
                     Ext.Msg.confirm('Warning', 'delete this text response?', function (btn) {
                         if (btn == "yes") {
@@ -107,6 +112,93 @@
                         }
                     });
                 }
+            },
+            imageResponseCommandClickCommand: function (parameters) {
+                var commandName = parameters[1];
+                var data = parameters[2].data;
+
+                if (commandName == "modify") {
+                    window.viewModel.txtModifyImageMessageMediaId.setRawValue(data.mediaId);
+                    window.viewModel.winModifyImageMessage.editId = data.Id;
+                    window.viewModel.winModifyImageMessage.show();
+                }
+                else if (commandName == "delete") {
+                    Ext.Msg.confirm('Warning', 'delete the image response?', function (btn) {
+                        if (btn == "yes") {
+                            Ext.Ajax.request({
+                                url: '/Service/AutoResponseService/DeleteImageResult.ashx',
+                                method: 'POST',
+                                params: { Id: data.Id },
+                                success: function (response, options) {
+                                    var responseText = response.responseText;
+                                    var responseObj = Ext.decode(responseText);
+                                    if (responseObj.success) {
+                                        Ext.Msg.alert('Success', responseObj.info, function () {
+                                            window.viewModel.storeImageMessage.load();
+                                        });
+                                    } else {
+                                        Ext.Msg.alert('Error', responseObj.info);
+                                    }
+                                },
+                                failure: function (response, options) {
+                                    Ext.Msg.alert('Error', 'delete fail!');
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            submitModifyTextResponseCommand: function (parameters) {
+                var id = window.viewModel.winModifyTextMessage.editId;
+                var text = window.viewModel.txtModifyTextMessageContent.getValue();
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/ModifyTextResult.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: id,
+                        Content: text
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.storeTextMessage.load();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'edit fail!');
+                    }
+                });
+            },
+            submitModifyImageResponseCommand: function (parameters) {
+                var id = window.viewModel.winModifyImageMessage.editId;
+                var mediaId = window.viewModel.txtModifyImageMessageMediaId.getValue();
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/ModifyImageResult.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: id,
+                        MediaId: mediaId
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.storeImageMessage.load();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'edit fail!');
+                    }
+                });
             }
         };
     });

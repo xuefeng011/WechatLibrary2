@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
@@ -10,9 +9,9 @@ using WechatLibrary.Model;
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// ModifyTextResult 的摘要说明
+    /// ModifyImageResult 的摘要说明
     /// </summary>
-    public class ModifyTextResult : IHttpHandler, IRequiresSessionState
+    public class ModifyImageResult : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -32,25 +31,25 @@ namespace WechatManager.Service.AutoResponseService
             }
 
             var modifyId = context.Request["Id"];
-            var content = context.Request["Content"];
+            var mediaId = context.Request["MediaId"];
             if (string.IsNullOrEmpty(modifyId) == true)
             {
                 var responseObj = new
                 {
                     success = false,
-                    info = "please select an item to edit!"
+                    info = "please select an item to modify!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
                 context.Response.Write(json);
                 return;
             }
-            if (string.IsNullOrEmpty(content) == true)
+            if (string.IsNullOrEmpty(mediaId) == true)
             {
                 var responseObj = new
                 {
                     success = false,
-                    info = "please input the text message content!"
+                    info = "please input mediaId!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -61,7 +60,7 @@ namespace WechatManager.Service.AutoResponseService
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
-                if (query.Count() <= 0)
+                if (query.Count() < 1)
                 {
                     var responseObj = new
                     {
@@ -86,13 +85,13 @@ namespace WechatManager.Service.AutoResponseService
                     return;
                 }
                 var wechatAccount = query.First();
-                var modifyQuery = wechatAccount.TextAutoResponseResults.Where(temp => temp.Id.ToString() == modifyId);
+                var modifyQuery = wechatAccount.ImageAutoResponseResults.Where(temp => temp.Id.ToString() == modifyId);
                 if (modifyQuery.Count() < 1)
                 {
                     var responseObj = new
                     {
                         success = false,
-                        info = "please select an item to edit!"
+                        info = "please select an item to modify"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -104,7 +103,7 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error!"
+                        info = "data base error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -112,13 +111,13 @@ namespace WechatManager.Service.AutoResponseService
                     return;
                 }
                 var modifyItem = modifyQuery.First();
-                modifyItem.Content = content;
+                modifyItem.MediaId = mediaId;
                 entities.SaveChanges();
                 {
                     var responseObj = new
                     {
                         success = true,
-                        info = "edit success!"
+                        info = "modify success!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";

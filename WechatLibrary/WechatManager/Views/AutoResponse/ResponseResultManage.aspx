@@ -166,5 +166,17 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="修改图片回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyImageMessage" Hidden="True">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtModifyImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="NoteEdit" Text="修改">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitModifyImageResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
 </body>
 </html>
