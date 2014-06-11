@@ -62,7 +62,7 @@
             </ext:Panel>
         </Items>
     </ext:Viewport>
-    <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5">
+    <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5" Icon="Add" Width="300">
         <Items>
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtNewTextMatch"></ext:TextField>
         </Items>
@@ -74,7 +74,7 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" ID="modifyWindow" Title="修改文本消息自动匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5" Hidden="True" Icon="PageEdit">
+    <ext:Window runat="server" ID="modifyWindow" Title="修改文本消息自动匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5" Hidden="True" Icon="PageEdit" Width="500" Height="300">
         <Items>
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtModifyTextMatchContent" AnchorHorizontal="100%"></ext:TextField>
             <ext:ComboBox runat="server" FieldLabel="匹配方式" ID="cmbModifyTextMatchOption" AnchorHorizontal="100%">
@@ -85,8 +85,31 @@
                     <ext:ListItem Text="不区分大小写部分匹配" />
                 </Items>
             </ext:ComboBox>
-            <ext:TextField runat="server" FieldLabel=""></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="匹配等级" ID="txtModifyTextMatchLevel" AnchorHorizontal="100%"></ext:TextField>
+            <ext:ComboBox runat="server" FieldLabel="自动回复类型" ID="cmbResponseType" AnchorHorizontal="100%">
+                <Items>
+                    <ext:ListItem Text="文本" />
+                    <ext:ListItem Text="图片" />
+                    <ext:ListItem Text="图文" />
+                </Items>
+                <Listeners>
+                    <Select Handler="window.viewModel.cmbResponseTypeSelected(arguments)"></Select>
+                </Listeners>
+            </ext:ComboBox>
+            <%--文本消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%"></ext:ComboBox>
+            <%--图片消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%"></ext:ComboBox>
+            <%--图文消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%"></ext:ComboBox>
         </Items>
+        <Buttons>
+            <ext:Button runat="server" Text="修改" Icon="NoteEdit">
+                <Listeners>
+                    <Click Handler=""></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
     </ext:Window>
 </body>
 </html>

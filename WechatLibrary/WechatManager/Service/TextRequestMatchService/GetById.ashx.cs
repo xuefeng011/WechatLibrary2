@@ -4,17 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
-using Newtonsoft.Json;
-using WechatLibrary;
 using WechatLibrary.Model;
-using WechatLibrary.Model.AutoResponse.Match;
 
 namespace WechatManager.Service.TextRequestMatchService
 {
     /// <summary>
-    /// Add 的摘要说明
+    /// GetById 的摘要说明
     /// </summary>
-    public class Add : IHttpHandler, IRequiresSessionState
+    public class GetById : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -33,14 +30,24 @@ namespace WechatManager.Service.TextRequestMatchService
                 return;
             }
 
-#warning not finish
-            var matchContent = context.Request["Content"];
-            var matchOption = "equals";//context.Request[""];
+            var queryId = context.Request["Id"];
+            if (string.IsNullOrEmpty(queryId) == true)
+            {
+                var responseObj = new
+                {
+                    success = false,
+                    info = "please select an item to query!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
+                context.Response.ContentType = "text/json";
+                context.Response.Write(json);
+                return;
+            }
 
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
-                if (query.Count() <= 0)
+                if (query.Count() < 1)
                 {
                     var responseObj = new
                     {
@@ -57,7 +64,7 @@ namespace WechatManager.Service.TextRequestMatchService
                     var responseObj = new
                     {
                         success = false,
-                        info = "please contact the manager, there is an error occurred in data base!"
+                        info = "data base occurred an error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -65,42 +72,45 @@ namespace WechatManager.Service.TextRequestMatchService
                     return;
                 }
                 var wechatAccount = query.First();
-
-                // Get current max match level.
-                // The new match level will be this value plus 1.
-                int maxMatchLevel = 0;
-                if (wechatAccount.TextMessageMatches.Count() > 0)
+                try
                 {
-                    maxMatchLevel = wechatAccount.TextMessageMatches.Max(temp => temp.MatchLevel);
-                }
-
-                wechatAccount.TextMessageMatches.Add(new TextMessageMatch()
-                {
-                    Id = Guid.NewGuid(),
-                    MatchContent = matchContent,
-                    MatchLevel = maxMatchLevel + 1,
-                    MatchOption = matchOption,
-                    WechatAccount = wechatAccount
-                });
-
-                if (entities.SaveChanges() > 0)
-                {
-                    var responseObj = new
+                    var queryItem = wechatAccount.TextMessageMatches.Where(temp => temp.Id.ToString() == queryId).SingleOrDefault();
+                    if (queryItem == null)
                     {
-                        success = true,
-                        info = "add new wechat text request match success!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
+                        var responseObj = new
+                        {
+                            success = false,
+                            info = "please select an item to query!"
+                        };
+                        var json = JsonHelper.SerializeToJson(responseObj);
+                        context.Response.ContentType = "text/json";
+                        context.Response.Write(json);
+                        return;
+                    }
+                    else
+                    {
+                        var responseObj = new
+                        {
+                            success = true,
+                            data = new
+                                {
+                                    Id = queryItem.Id,
+                                    MatchContent = queryItem.MatchContent,
+                                    MatchOption = queryItem.MatchOption
+                                }
+                        };
+                        var json = JsonHelper.SerializeToJson(responseObj);
+                        context.Response.ContentType = "text/json";
+                        context.Response.Write(json);
+                        return;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
                     var responseObj = new
                     {
                         success = false,
-                        info = "add new wechat text request match failed!"
+                        info = ex.ToString()
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";

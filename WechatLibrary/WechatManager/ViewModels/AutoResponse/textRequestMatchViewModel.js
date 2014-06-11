@@ -6,6 +6,15 @@
             modifyWindow: Ext.getCmp('modifyWindow'),
             txtNewTextMatch: Ext.getCmp('txtNewTextMatch'),
             storeTextMatches: Ext.StoreManager.get('storeTextMatches'),
+            cmbResponseType: Ext.getCmp('cmbResponseType'),
+            cmbResponseTypeSelected: function (parameters) {
+                var selectedValue = window.viewModel.cmbResponseType.value;
+                if (selectedValue == '文本') {
+                    
+                } else if (selectedValue == '图片') {
+                } else if (selectedValue == '图文') {
+                }
+            },
             addNewWehcatTextRequestMatchCommand: function (parameters) {
                 window.viewModel.txtNewTextMatch.setRawValue('');
                 window.viewModel.addWindow.show();
@@ -21,6 +30,10 @@
                         var responseText = response.responseText;
                         var responseObj = Ext.decode(responseText);
                         if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.storeTextMatches.load();
+                                window.viewModel.addWindow.close();
+                            });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
                         }
@@ -35,28 +48,54 @@
                 var data = parameters[2].data;
 
                 if (commandName == "modify") {
-                    window.viewModel.modifyWindow.show();
-                } else if (commandName == "delete") {
                     Ext.Ajax.request({
-                        url: '/Service/TextRequestMatchService/Delete.ashx',
+                        url: '/Service/TextRequestMatchService/GetById.ashx',
                         method: 'POST',
-                        params: {
-                            Id: data.Id
-                        },
+                        params: { Id: data.Id },
                         success: function (response, options) {
                             var responseText = response.responseText;
                             var responseObj = Ext.decode(responseText);
                             if (responseObj.success) {
-                                Ext.Msg.alert('Success', responseObj.info, function () {
-                                    // Refresh the grid panel.
-                                    window.viewModel.storeTextMatches.load();
-                                });
+                                // Get the text match data from json object.
+                                var data = responseObj.data;
+
+                                // Set each control value;
+
+                                // Show the setting window.
+                                window.viewModel.modifyWindow.show();
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
                             }
                         },
                         failure: function (response, options) {
-                            Ext.Msg.alert('Error', 'delete fail!');
+                            Ext.Msg.alert('Error', 'load information fail!');
+                        }
+                    });
+                } else if (commandName == "delete") {
+                    Ext.Msg.confirm('Warning', 'make sure to delete this match?', function (btn) {
+                        if (btn == 'yes') {
+                            Ext.Ajax.request({
+                                url: '/Service/TextRequestMatchService/Delete.ashx',
+                                method: 'POST',
+                                params: {
+                                    Id: data.Id
+                                },
+                                success: function (response, options) {
+                                    var responseText = response.responseText;
+                                    var responseObj = Ext.decode(responseText);
+                                    if (responseObj.success) {
+                                        Ext.Msg.alert('Success', responseObj.info, function () {
+                                            // Refresh the grid panel.
+                                            window.viewModel.storeTextMatches.load();
+                                        });
+                                    } else {
+                                        Ext.Msg.alert('Error', responseObj.info);
+                                    }
+                                },
+                                failure: function (response, options) {
+                                    Ext.Msg.alert('Error', 'delete fail!');
+                                }
+                            });
                         }
                     });
                 }
