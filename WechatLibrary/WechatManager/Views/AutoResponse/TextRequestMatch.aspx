@@ -77,7 +77,7 @@
     <ext:Window runat="server" ID="modifyWindow" Title="修改文本消息自动匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5" Hidden="True" Icon="PageEdit" Width="500" Height="300">
         <Items>
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtModifyTextMatchContent" AnchorHorizontal="100%"></ext:TextField>
-            <ext:ComboBox runat="server" FieldLabel="匹配方式" ID="cmbModifyTextMatchOption" AnchorHorizontal="100%">
+            <ext:ComboBox runat="server" FieldLabel="匹配方式" ID="cmbModifyTextMatchOption" AnchorHorizontal="100%" Editable="False">
                 <Items>
                     <ext:ListItem Text="完全匹配" />
                     <ext:ListItem Text="不区分大小写完全匹配" />
@@ -86,7 +86,7 @@
                 </Items>
             </ext:ComboBox>
             <ext:TextField runat="server" FieldLabel="匹配等级" ID="txtModifyTextMatchLevel" AnchorHorizontal="100%"></ext:TextField>
-            <ext:ComboBox runat="server" FieldLabel="自动回复类型" ID="cmbResponseType" AnchorHorizontal="100%">
+            <ext:ComboBox runat="server" FieldLabel="自动回复类型" ID="cmbResponseType" AnchorHorizontal="100%" Editable="False">
                 <Items>
                     <ext:ListItem Text="文本" />
                     <ext:ListItem Text="图片" />
@@ -106,7 +106,7 @@
         <Buttons>
             <ext:Button runat="server" Text="修改" Icon="NoteEdit">
                 <Listeners>
-                    <Click Handler=""></Click>
+                    <Click Handler="window.viewModel.submitModify(arguments)"></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>

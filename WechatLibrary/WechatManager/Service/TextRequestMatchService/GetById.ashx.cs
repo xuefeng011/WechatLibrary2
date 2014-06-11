@@ -96,7 +96,8 @@ namespace WechatManager.Service.TextRequestMatchService
                                 {
                                     Id = queryItem.Id,
                                     MatchContent = queryItem.MatchContent,
-                                    MatchOption = queryItem.MatchOption
+                                    MatchOption = queryItem.MatchOption,
+                                    MatchLevel = queryItem.MatchLevel
                                 }
                         };
                         var json = JsonHelper.SerializeToJson(responseObj);
