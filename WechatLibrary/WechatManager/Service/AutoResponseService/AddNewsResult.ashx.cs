@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
-using Ext.Net.Utilities;
 using WechatLibrary.Model;
+using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// DeleteNewsResult 的摘要说明
+    /// AddNewsResult 的摘要说明
     /// </summary>
-    public class DeleteNewsResult : IHttpHandler, IRequiresSessionState
+    public class AddNewsResult : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -31,19 +32,10 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            var deleteId = context.Request["Id"];
-            if (string.IsNullOrEmpty(deleteId) == true)
-            {
-                var responseObj = new
-                {
-                    success = false,
-                    info = "please select an item to delete!"
-                };
-                var json = JsonHelper.SerializeToJson(responseObj);
-                context.Response.ContentType = "text/json";
-                context.Response.Write(json);
-                return;
-            }
+            var title = context.Request["Title"];
+            var description = context.Request["Description"];
+            var url = context.Request["Url"];
+            var picUrl = context.Request["PicUrl"];
 
             using (var entities = new WechatEntities())
             {
@@ -65,7 +57,7 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "there is an error occurred in the data base!"
+                        info = "data base error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -73,39 +65,26 @@ namespace WechatManager.Service.AutoResponseService
                     return;
                 }
                 var wechatAccount = query.First();
-                var deleteQuery = wechatAccount.NewsAutoResponseResults.Where(temp => temp.Id.ToString() == deleteId);
-                if (deleteQuery.Count() < 1)
+                var newResult = new NewsAutoResponseResult()
                 {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "please select an item to delete!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                if (deleteQuery.Count() > 1)
+                    Id = Guid.NewGuid()
+                };
+                newResult.NewsAutoResponseArticles = newResult.NewsAutoResponseArticles ?? new List<NewsAutoResponseArticle>();
+                newResult.NewsAutoResponseArticles.Add(new NewsAutoResponseArticle()
                 {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "data base occurred an error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                var deleteItem = deleteQuery.First();
-                wechatAccount.NewsAutoResponseResults.Remove(deleteItem);
+                    Id = Guid.NewGuid(),
+                    Title = title,
+                    Description = description,
+                    Url = url,
+                    PicUrl = url
+                });
+                wechatAccount.NewsAutoResponseResults.Add(newResult);
                 entities.SaveChanges();
                 {
                     var responseObj = new
                     {
                         success = true,
-                        info = "delete success!"
+                        info = "add success!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";

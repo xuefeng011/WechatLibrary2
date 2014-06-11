@@ -40,7 +40,7 @@
     </ext:Store>
     <ext:Store runat="server" ID="storeNewsMessage" IDMode="Explicit">
         <Proxy>
-            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+            <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllNewsResult.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
@@ -123,7 +123,7 @@
                         <Items>
                             <ext:GridPanel runat="server" StoreID="storeNewsMessage">
                                 <TopBar>
-                                    <ext:ToolBar runat="server">
+                                    <ext:Toolbar runat="server">
                                         <Items>
                                             <ext:Button runat="server" Icon="Add" Text="添加">
                                                 <Listeners>
@@ -131,7 +131,7 @@
                                                 </Listeners>
                                             </ext:Button>
                                         </Items>
-                                    </ext:ToolBar>
+                                    </ext:Toolbar>
                                 </TopBar>
                                 <ColumnModel>
                                     <Columns>
@@ -192,7 +192,7 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="修改图片回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyImageMessage" Hidden="True">
+    <ext:Window runat="server" Modal="True" Title="修改图片回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyImageMessage" Hidden="True" Icon="PictureEdit" Width="300" BodyPadding="8">
         <Items>
             <ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtModifyImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>
         </Items>
@@ -200,6 +200,21 @@
             <ext:Button runat="server" Icon="NoteEdit" Text="修改">
                 <Listeners>
                     <Click Handler="window.viewModel.submitModifyImageResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="添加图文回复" CloseAction="Hide" Layout="FormLayout" ID="winNewNewsMessage" Hidden="True" Width="300" BodyPadding="8" Icon="NewspaperAdd">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="标题" ID="txtNewNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="内容" ID="txtNewNewsMessageDescription" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtNewNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="图片链接" ID="txtNewNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="NewspaperAdd" Text="添加">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitNewNewsImageResponseCommand(arguments)"></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>

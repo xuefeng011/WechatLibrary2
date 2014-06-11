@@ -13,6 +13,11 @@
             txtModifyTextMessageContent: Ext.getCmp('txtModifyTextMessageContent'),
             winModifyImageMessage: Ext.getCmp('winModifyImageMessage'),
             txtModifyImageMessageMediaId: Ext.getCmp('txtModifyImageMessageMediaId'),
+            winNewNewsMessage: Ext.getCmp('winNewNewsMessage'),
+            txtNewNewsMessageTitle: Ext.getCmp('txtNewNewsMessageTitle'),
+            txtNewNewsMessageDescription: Ext.getCmp('txtNewNewsMessageDescription'),
+            txtNewNewsMessageUrl: Ext.getCmp('txtNewNewsMessageUrl'),
+            txtNewNewsMessagePicUrl: Ext.getCmp('txtNewNewsMessagePicUrl'),
             addNewTextResponseCommand: function (parameters) {
                 window.viewModel.txtNewTextMessageContent.setRawValue('');
                 window.viewModel.winNewTextMessage.show();
@@ -20,6 +25,13 @@
             addNewImageResponseCommand: function (parameters) {
                 window.viewModel.txtNewImageMessageMediaId.setRawValue('');
                 window.viewModel.winNewImageMessage.show();
+            },
+            addNewNewsResponseCommand: function (parameters) {
+                window.viewModel.txtNewNewsMessageTitle.setRawValue('');
+                window.viewModel.txtNewNewsMessageDescription.setRawValue('');
+                window.viewModel.txtNewNewsMessageUrl.setRawValue('');
+                window.viewModel.txtNewNewsMessagePicUrl.setRawValue('');
+                window.viewModel.winNewNewsMessage.show();
             },
             submitNewTextResponseCommand: function (parameters) {
                 var content = window.viewModel.txtNewTextMessageContent.getValue();
@@ -69,6 +81,37 @@
                             Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeImageMessage.load();
                                 window.viewModel.winNewImageMessage.close();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'add fail!');
+                    }
+                });
+            },
+            submitNewNewsImageResponseCommand: function (parameters) {
+                var title = window.viewModel.txtNewNewsMessageTitle.getRawValue();
+                var description = window.viewModel.txtNewNewsMessageDescription.getRawValue();
+                var url = window.viewModel.txtNewNewsMessageUrl.getRawValue();
+                var picUrl = window.viewModel.txtNewNewsMessagePicUrl.getRawValue();
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/AddNewsResult.ashx',
+                    method: 'POST',
+                    params: {
+                        Title: title,
+                        Description: description,
+                        Url: url,
+                        PicUrl: picUrl
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.storeNewsMessage.load();
+                                window.viewModel.winNewNewsMessage.close();
                             });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
@@ -155,7 +198,7 @@
                 var data = parameters[2].data;
 
                 if (commandName == "modify") {
-
+                    alert('modify!!!');
                 } else if (commandName == "delete") {
                     Ext.Msg.confirm('Warning', 'delete this news response?', function (btn) {
                         if (btn == 'yes') {
@@ -169,7 +212,9 @@
                                     var responseText = response.responseText;
                                     var responseObj = Ext.decode(responseText);
                                     if (responseObj.success) {
-
+                                        Ext.Msg.alert('Success', responseObj.info, function () {
+                                            window.viewModel.storeNewsMessage.load();
+                                        });
                                     } else {
                                         Ext.Msg.alert('Error', responseObj.info);
                                     }
