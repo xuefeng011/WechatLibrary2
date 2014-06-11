@@ -34,8 +34,8 @@ namespace WechatManager.Service.TextRequestMatchService
             }
 
 #warning not finish
-            var matchContent = context.Request[""];
-            var matchOption = context.Request[""];
+            var matchContent = context.Request["Content"];
+            var matchOption = "equals";//context.Request[""];
 
             using (var entities = new WechatEntities())
             {
@@ -68,7 +68,7 @@ namespace WechatManager.Service.TextRequestMatchService
 
                 // Get current max match level.
                 // The new match level will be this value plus 1.
-                var maxMatchLevel = wechatAccount.TextMessageMatches.Max(temp => temp.MatchLevel);
+                int maxMatchLevel = wechatAccount.TextMessageMatches.Max(temp => temp.MatchLevel);
 
                 wechatAccount.TextMessageMatches.Add(new TextMessageMatch()
                 {

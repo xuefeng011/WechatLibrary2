@@ -9,14 +9,14 @@ using WechatLibrary.Model;
 namespace WechatManager.Service.TextRequestMatchService
 {
     /// <summary>
-    /// Delete 的摘要说明
+    /// GetAll 的摘要说明
     /// </summary>
-    public class Delete : IHttpHandler, IRequiresSessionState
+    public class GetAll : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
-            string wechatId = context.Session["WechatId"] as string;
+            var wechatId = context.Session["WechatId"] as string;
             if (string.IsNullOrEmpty(wechatId) == true)
             {
                 var responseObj = new
@@ -30,23 +30,10 @@ namespace WechatManager.Service.TextRequestMatchService
                 return;
             }
 
-            var deleteId = context.Request["Id"];
-            if (string.IsNullOrEmpty(deleteId) == true)
-            {
-                var responseObj = new
-                {
-                    success = false,
-                    info = "please select an item to delete!"
-                };
-                var json = JsonHelper.SerializeToJson(responseObj);
-                context.Response.ContentType = "text/json";
-                return;
-            }
-
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
-                if (query.Count() <= 0)
+                if (query.Count() < 1)
                 {
                     var responseObj = new
                     {
@@ -63,50 +50,24 @@ namespace WechatManager.Service.TextRequestMatchService
                     var responseObj = new
                     {
                         success = false,
-                        info = "please contact the manager the data base occurred an error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                // Get the wechat account.
-                var wechatAccount = query.First();
-
-                var deleteQuery = wechatAccount.TextMessageMatches.Where(temp => temp.Id.ToString() == deleteId);
-                if (deleteQuery.Count() < 1)
-                {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "please select an item to delete!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                if (deleteQuery.Count() > 1)
-                {
-                    var responseObj = new
-                    {
-                        success = false,
                         info = "data base occurred an error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
-                    return;
                 }
-                var deleteItem = deleteQuery.First();
-                wechatAccount.TextMessageMatches.Remove(deleteItem);
-                entities.SaveChanges();
+                var wechatAccount = query.First();
+                var list = wechatAccount.TextMessageMatches;
+                var list2 = from temp in list
+                            select new
+                            {
+                                Id = temp.Id,
+                                MatchContent = temp.MatchContent,
+                                MatchOption = temp.MatchOption
+                            };
+                var list3 = list2.ToList();
                 {
-                    var responseObj = new
-                    {
-                        success = true,
-                        info = "delete success!"
-                    };
+                    var responseObj = list3;
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);

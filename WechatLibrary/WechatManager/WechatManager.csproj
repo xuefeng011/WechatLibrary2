@@ -171,6 +171,9 @@
     <Compile Include="Service\TextRequestMatchService\Delete.ashx.cs">
       <DependentUpon>Delete.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\TextRequestMatchService\GetAll.ashx.cs">
+      <DependentUpon>GetAll.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\TextRequestMatchService\Modify.ashx.cs">
       <DependentUpon>Modify.ashx</DependentUpon>
     </Compile>
@@ -387,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\AutoResponseService\AddNewsResult.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\TextRequestMatchService\GetAll.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
