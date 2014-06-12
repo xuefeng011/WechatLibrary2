@@ -16,14 +16,58 @@
             cmbResponseTypeSelected: function (parameters) {
                 var selectedValue = window.viewModel.cmbResponseType.value;
                 if (selectedValue == '文本') {
-
+                    // Set combobox visible.
+                    window.viewModel.cmbResponseTextMessage.show();
+                    window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.cmbResponseNewsMessage.hide();
                 } else if (selectedValue == '图片') {
+                    // Set combobox visible.
+                    window.viewModel.cmbResponseTextMessage.hide();
+                    window.viewModel.cmbResponseImageMessage.show();
+                    window.viewModel.cmbResponseNewsMessage.hide();
                 } else if (selectedValue == '图文') {
+                    // Set combobox visible.
+                    window.viewModel.cmbResponseTextMessage.hide();
+                    window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.cmbResponseNewsMessage.show();
                 }
             },
             addNewWehcatTextRequestMatchCommand: function (parameters) {
                 window.viewModel.txtNewTextMatch.setRawValue('');
                 window.viewModel.addWindow.show();
+            },
+            submitModify: function (parameters) {
+                var matchContent = window.viewModel.txtModifyTextMatchContent.getValue();
+
+                var matchOption = window.viewModel.cmbModifyTextMatchOption.value;
+                if (matchOption == '完全匹配') {
+                    matchOption = 'equals';
+                } else if (matchOption == '不区分大小写完全匹配') {
+                    matchOption = 'equalsignore';
+                } else if (matchOption == '部分匹配') {
+                    matchOption = 'contains';
+                } else if (matchOption == '不区分大小写部分匹配') {
+                    matchOption = 'containsignore';
+                } else {
+                    Ext.Msg.alert('Error', 'match option must select!');
+                    return;
+                }
+
+                var matchLevel = window.viewModel.txtModifyTextMatchLevel.getValue();
+
+                var isLevelValidate = parseInt(matchLevel) == matchLevel && parseInt(matchLevel) > 0;
+                if (isLevelValidate == false) {
+                    Ext.Msg.alert('Error', 'match level must be integer and must bigger than zero.');
+                    return;
+                }
+
+                var responseType = window.viewModel.cmbResponseType.value;
+                if (responseType != '文本' || responseType != '图片' || responseType != '图文') {
+                    Ext.Msg.alert('Error', 'Auto response type must selected!');
+                    return;
+                }
+
+                alert('submit');
             },
             saveNewWechatTextRequestMatchCommand: function (parameters) {
                 Ext.Ajax.request({
