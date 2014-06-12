@@ -18,6 +18,11 @@
             txtNewNewsMessageDescription: Ext.getCmp('txtNewNewsMessageDescription'),
             txtNewNewsMessageUrl: Ext.getCmp('txtNewNewsMessageUrl'),
             txtNewNewsMessagePicUrl: Ext.getCmp('txtNewNewsMessagePicUrl'),
+            winModifyNewsMessage: Ext.getCmp('winModifyNewsMessage'),
+            txtModifyNewsMessageTitle: Ext.getCmp('txtModifyNewsMessageTitle'),
+            txtModifyNewsMessageDescription: Ext.getCmp('txtModifyNewsMessageDescription'),
+            txtModifyNewsMessageUrl: Ext.getCmp('txtModifyNewsMessageUrl'),
+            txtModifyNewsMessagePicUrl: Ext.getCmp('txtModifyNewsMessagePicUrl'),
             addNewTextResponseCommand: function (parameters) {
                 window.viewModel.txtNewTextMessageContent.setRawValue('');
                 window.viewModel.winNewTextMessage.show();
@@ -198,7 +203,26 @@
                 var data = parameters[2].data;
 
                 if (commandName == "modify") {
-                    alert('modify!!!');
+                    var modifyId = data.Id;
+                    Ext.Ajax.request({
+                        url: '/Service/AutoResponseService/GetNewsResultById.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: modifyId
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                
+                            } else {
+                                Ext.Msg.alert('Error',responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error','load information fail!');
+                        }
+                    });
                 } else if (commandName == "delete") {
                     Ext.Msg.confirm('Warning', 'delete this news response?', function (btn) {
                         if (btn == 'yes') {

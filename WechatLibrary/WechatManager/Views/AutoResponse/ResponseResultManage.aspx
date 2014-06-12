@@ -208,6 +208,7 @@
         <Items>
             <ext:TextField runat="server" FieldLabel="标题" ID="txtNewNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="内容" ID="txtNewNewsMessageDescription" AnchorHorizontal="100%"></ext:TextField>
+            xiu
             <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtNewNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="图片链接" ID="txtNewNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
         </Items>
@@ -215,6 +216,36 @@
             <ext:Button runat="server" Icon="NewspaperAdd" Text="添加">
                 <Listeners>
                     <Click Handler="window.viewModel.submitNewNewsImageResponseCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="修改图文回复" Hidden="True" ID="winModifyNewsMessage" BodyPadding="8" Icon="Newspaper" CloseAction="Hide" Layout="FormLayout">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="标题" ID="txtModifyNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="内容" ID="txtModifyNewsMessageDescription" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtModifyNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="图片链接" ID="txtModifyNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
+            <ext:GridPanel runat="server">
+                <ColumnModel>
+                    <Columns>
+                        <ext:Column runat="server"></ext:Column>
+                        <ext:CommandColumn runat="server">
+                            <Commands>
+                                <ext:GridCommand></ext:GridCommand>
+                            </Commands>
+                            <Listeners>
+                                <Command Handler=""></Command>
+                            </Listeners>
+                        </ext:CommandColumn>
+                    </Columns>
+                </ColumnModel>
+            </ext:GridPanel>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="Disk" Text="保存修改">
+                <Listeners>
+                    <Click Handler=""></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>
