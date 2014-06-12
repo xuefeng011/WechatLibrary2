@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
-using WechatLibrary;
 using WechatLibrary.Model;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// GetAllNewsResult 的摘要说明
+    /// DeleteNewsArticle 的摘要说明
     /// </summary>
-    public class GetAllNewsResult : IHttpHandler, IRequiresSessionState
+    public class DeleteNewsArticle : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -24,6 +23,20 @@ namespace WechatManager.Service.AutoResponseService
                 {
                     success = false,
                     info = "please login again!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
+                context.Response.ContentType = "text/json";
+                context.Response.Write(json);
+                return;
+            }
+
+            var deleteId = context.Request["Id"];
+            if (string.IsNullOrEmpty(deleteId) == true)
+            {
+                var responseObj = new
+                {
+                    success = false,
+                    info = "please select an item to delete!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -51,26 +64,48 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurrred an error, please contact the manager!"
+                        info = "data base occurred an error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
-                var wechatAccount = query.First();
-                var list = wechatAccount.NewsAutoResponseResults.ToList();
-                var list2 = list.Where(temp => temp.NewsAutoResponseArticles.Count > 0);
-                var list3 = from temp in list2
-                            select new
-                                {
-                                    Id = temp.Id,
-                                    Title = temp.NewsAutoResponseArticles.OrderBy(temp0 => temp0.Index).ElementAt(0).Title,
-                                    Content = temp.NewsAutoResponseArticles.OrderBy(temp0 => temp0.Index).ElementAt(0).Description,
-                                    Count = temp.NewsAutoResponseArticles.Count
-                                };
+
+                var deleteQuery = entities.NewsAutoResponseArticles.Where(temp => temp.Id.ToString() == deleteId);
+                if (deleteQuery.Count() < 1)
                 {
-                    var responseObj = list3.ToList();
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "this news article is not exist in the data base, the program could not delete this news article, please try again!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
+                if (deleteQuery.Count() > 1)
+                {
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "data base occurred an error, there are one more news article in the data base with the same primary key! please contact the manager!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
+                var deleteNewsArticle = deleteQuery.First();
+                entities.NewsAutoResponseArticles.Remove(deleteNewsArticle);
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "delete the news article success!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);

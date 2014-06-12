@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
+using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// GetNewsArticels 的摘要说明
+    /// AddNewsArticle 的摘要说明
     /// </summary>
-    public class GetNewsArticles : IHttpHandler, IRequiresSessionState
+    public class AddNewsArticle : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -32,13 +31,17 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            var newsMessageId = context.Request["Id"];
-            if (string.IsNullOrEmpty(newsMessageId) == true)
+            var messageId = context.Request["MessageId"];
+            var title = context.Request["Title"];
+            var description = context.Request["Description"];
+            var url = context.Request["Url"];
+            var picUrl = context.Request["PicUrl"];
+            if (string.IsNullOrEmpty(messageId) == true)
             {
                 var responseObj = new
                 {
                     success = false,
-                    info = "please select an item to modify!"
+                    info = "please select an item to add!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -66,30 +69,28 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error, please contact the manager!"
+                        info = "data base occurred an error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
-
                 var wechatAccount = query.First();
-                var newsMessageQuery =
-                    wechatAccount.NewsAutoResponseResults.Where(temp => temp.Id.ToString() == newsMessageId);
-                if (newsMessageQuery.Count() < 1)
+                var messageQuery = wechatAccount.NewsAutoResponseResults.Where(temp => temp.Id.ToString() == messageId);
+                if (messageQuery.Count() < 1)
                 {
                     var responseObj = new
                     {
                         success = false,
-                        info = "please select an item to modify!"
+                        info = "current news message is not exist in the data base!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
-                if (newsMessageQuery.Count() > 1)
+                if (messageQuery.Count() > 1)
                 {
                     var responseObj = new
                     {
@@ -101,43 +102,28 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
-                var newsMessage = newsMessageQuery.First();
+                var newsMessage = messageQuery.First();
                 if (newsMessage.NewsAutoResponseArticles == null)
                 {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "news message error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
+                    newsMessage.NewsAutoResponseArticles = new List<NewsAutoResponseArticle>();
                 }
-                if (newsMessage.NewsAutoResponseArticles.Count() < 1)
+                newsMessage.NewsAutoResponseArticles.Add(new NewsAutoResponseArticle()
+                {
+                    Id = Guid.NewGuid(),
+                    Title = title,
+                    Description = description,
+                    Url = url,
+                    PicUrl = picUrl,
+                    Index = newsMessage.NewsAutoResponseArticles.Count
+                });
+                entities.SaveChanges();
                 {
                     var responseObj = new
                     {
-                        success = false,
-                        info = "news message error!"
+                        success = true,
+                        info = "add success!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                var list = newsMessage.NewsAutoResponseArticles.OrderBy(temp => temp.Index).Skip(1);// skip the first.
-                {
-                    var responseObj = from temp in list
-                                      select new
-                                      {
-                                          Id = temp.Id,
-                                          Title = temp.Title,
-                                          Description = temp.Description,
-                                          Url = temp.Url,
-                                          PicUrl = temp.PicUrl
-                                      };
-                    var json = JsonHelper.SerializeToJson(responseObj.ToList());
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;

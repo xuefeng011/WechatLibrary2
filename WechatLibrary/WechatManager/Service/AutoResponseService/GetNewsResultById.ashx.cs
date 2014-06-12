@@ -110,7 +110,7 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
-                var modifyArticle = modifyItem.NewsAutoResponseArticles.ElementAtOrDefault(0);
+                var modifyArticle = modifyItem.NewsAutoResponseArticles.OrderBy(temp => temp.Index).ElementAtOrDefault(0);
                 if (modifyArticle == null)
                 {
                     var responseObj = new

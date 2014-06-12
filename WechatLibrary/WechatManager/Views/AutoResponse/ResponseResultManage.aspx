@@ -242,19 +242,30 @@
             <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtModifyNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="图片链接" ID="txtModifyNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
             <ext:GridPanel runat="server" StoreID="storeNewsArticles">
+                <TopBar>
+                    <ext:Toolbar runat="server">
+                        <Items>
+                            <ext:Button runat="server" Icon="Add" Text="添加">
+                                <Listeners>
+                                    <Click Handler="window.viewModel.addNewNewsArticle(arguments)"></Click>
+                                </Listeners>
+                            </ext:Button>
+                        </Items>
+                    </ext:Toolbar>
+                </TopBar>
                 <ColumnModel>
                     <Columns>
-                        <ext:Column runat="server" Text="标题"></ext:Column>
-                        <ext:Column runat="server" Text="内容"></ext:Column>
-                        <ext:Column runat="server" Text="跳转链接"></ext:Column>
-                        <ext:Column runat="server" Text="图片链接"></ext:Column>
+                        <ext:Column runat="server" Text="标题" DataIndex="Title"></ext:Column>
+                        <ext:Column runat="server" Text="内容" DataIndex="Description"></ext:Column>
+                        <ext:Column runat="server" Text="跳转链接" DataIndex="Url"></ext:Column>
+                        <ext:Column runat="server" Text="图片链接" DataIndex="PicUrl"></ext:Column>
                         <ext:CommandColumn runat="server">
                             <Commands>
-                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改"></ext:GridCommand>
-                                <ext:GridCommand runat="server" Icon="Delete" Text="删除"></ext:GridCommand>
+                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify"></ext:GridCommand>
+                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
                             </Commands>
                             <Listeners>
-                                <Command Handler=""></Command>
+                                <Command Handler="window.viewModel.gridNewsArticleCommandClickCommand(arguments)"></Command>
                             </Listeners>
                         </ext:CommandColumn>
                     </Columns>
@@ -265,6 +276,36 @@
             <ext:Button runat="server" Icon="Disk" Text="保存修改">
                 <Listeners>
                     <Click Handler="window.viewModel.submitNewsMessageChange(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Icon="NewspaperAdd" Hidden="True" Modal="True" Title="添加新图文消息项" ID="winAddNewNewsArticle" BodyPadding="8" Layout="FormLayout" Width="300">
+        <Items>
+            <ext:TextField runat="server" ID="txtNewNewsArticleTitle" AnchorHorizontal="100%" FieldLabel="标题"></ext:TextField>
+            <ext:TextField runat="server" ID="txtNewNewsArticleDescription" AnchorHorizontal="100%" FieldLabel="内容"></ext:TextField>
+            <ext:TextField runat="server" ID="txtNewNewsArticleUrl" AnchorHorizontal="100%" FieldLabel=" 跳转链接"></ext:TextField>
+            <ext:TextField runat="server" ID="txtNewNewsArticlePicUrl" AnchorHorizontal="100%" FieldLabel="图片链接"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Text="添加" Icon="Add">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitNewNewsArticle(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" ID="winModifyNewsArticle" Hidden="True" Icon="Newspaper" Layout="FormLayout" Title="修改图文回复项" BodyPadding="5" Width="300">
+        <Items>
+            <ext:TextField runat="server" FieldLabel="标题" AnchorHorizontal="100%" ID="txtModifyNewsArticleTitle"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="内容" AnchorHorizontal="100%" ID="txtModifyNewsArticleDescription"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="跳转链接" AnchorHorizontal="100%" ID="txtModifyNewsArticleUrl"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="图片链接" AnchorHorizontal="100%" ID="txtModifyNewsArticlePicUrl"></ext:TextField>
+        </Items>
+        <Buttons>
+            <ext:Button runat="server" Icon="Disk" Text="保存修改">
+                <Listeners>
+                    <Click Handler="window.viewModel.submitModifyNewsArticleChange(arguments)"></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>

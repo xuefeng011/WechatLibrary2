@@ -57,5 +57,14 @@ namespace WechatLibrary.Model.AutoResponse.Result
             get;
             set;
         }
+
+        /// <summary>
+        /// 代表当前图文消息项的位置，从 0 开始。
+        /// </summary>
+        public int Index
+        {
+            get;
+            set;
+        }
     }
 }

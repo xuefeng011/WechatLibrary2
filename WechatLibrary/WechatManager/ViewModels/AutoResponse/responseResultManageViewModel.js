@@ -6,6 +6,16 @@
             storeImageMessage: Ext.StoreManager.get('storeImageMessage'),
             storeNewsMessage: Ext.StoreManager.get('storeNewsMessage'),
             storeNewsArticles: Ext.StoreManager.get('storeNewsArticles'),
+            winModifyNewsArticle: Ext.getCmp('winModifyNewsArticle'),
+            txtModifyNewsArticleTitle: Ext.getCmp('txtModifyNewsArticleTitle'),
+            txtModifyNewsArticleDescription: Ext.getCmp('txtModifyNewsArticleDescription'),
+            txtModifyNewsArticleUrl: Ext.getCmp('txtModifyNewsArticleUrl'),
+            txtModifyNewsArticlePicUrl: Ext.getCmp('txtModifyNewsArticlePicUrl'),
+            winAddNewNewsArticle: Ext.getCmp('winAddNewNewsArticle'),
+            txtNewNewsArticleTitle: Ext.getCmp('txtNewNewsArticleTitle'),
+            txtNewNewsArticleDescription: Ext.getCmp('txtNewNewsArticleDescription'),
+            txtNewNewsArticleUrl: Ext.getCmp('txtNewNewsArticleUrl'),
+            txtNewNewsArticlePicUrl: Ext.getCmp('txtNewNewsArticlePicUrl'),
             winNewTextMessage: Ext.getCmp('winNewTextMessage'),
             txtNewTextMessageContent: Ext.getCmp('txtNewTextMessageContent'),
             winNewImageMessage: Ext.getCmp('winNewImageMessage'),
@@ -24,6 +34,116 @@
             txtModifyNewsMessageDescription: Ext.getCmp('txtModifyNewsMessageDescription'),
             txtModifyNewsMessageUrl: Ext.getCmp('txtModifyNewsMessageUrl'),
             txtModifyNewsMessagePicUrl: Ext.getCmp('txtModifyNewsMessagePicUrl'),
+            submitModifyNewsArticleChange: function (parameters) {
+                var id = window.viewModel.winModifyNewsArticle.ArticleId;
+                var title = window.viewModel.txtModifyNewsArticleTitle.getValue();
+                var description = window.viewModel.txtModifyNewsArticleDescription.getValue();
+                var url = window.viewModel.txtModifyNewsArticleUrl.getValue();
+                var picUrl = window.viewModel.txtModifyNewsArticlePicUrl.getValue();
+
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/ModifyNewsArticle.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: id,
+                        Title: title,
+                        Description: description,
+                        Url: url,
+                        PicUrl: picUrl
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+
+                                // Refresh the grid.
+                                window.viewModel.storeNewsArticles.load();
+                                window.viewModel.winModifyNewsArticle.close();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'modify fail!');
+                    }
+                });
+            },
+            gridNewsArticleCommandClickCommand: function (parameters) {
+                var commandName = parameters[1];
+                var data = parameters[2].data;
+
+                if (commandName == 'modify') {
+                    var modifyId = data.Id;
+                    window.viewModel.winModifyNewsArticle.ArticleId = modifyId;
+                    window.viewModel.txtModifyNewsArticleTitle.setRawValue(data.Title);
+                    window.viewModel.txtModifyNewsArticleDescription.setRawValue(data.Description);
+                    window.viewModel.txtModifyNewsArticleUrl.setRawValue(data.Url);
+                    window.viewModel.txtModifyNewsArticlePicUrl.setRawValue(data.PicUrl);
+                    window.viewModel.winModifyNewsArticle.show();
+                } else if (commandName == 'delete') {
+                    var deleteId = data.Id;
+                    Ext.Ajax.request({
+                        url: '/Service/AutoResponseService/DeleteNewsArticle.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: deleteId
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                Ext.Msg.alert('Success', responseObj.info, function () {
+
+
+                                    // Refresh the count.
+                                    window.viewModel.storeNewsMessage.load();
+                                    // Refresh the grid.
+                                    window.viewModel.storeNewsArticles.load();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'delete fail!');
+                        }
+                    });
+                }
+            },
+            submitNewNewsArticle: function (parameters) {
+                var messageId = window.viewModel.winAddNewNewsArticle.MessageId;
+                var title = window.viewModel.txtNewNewsArticleTitle.getValue();
+                var description = window.viewModel.txtNewNewsArticleDescription.getValue();
+                var url = window.viewModel.txtNewNewsArticleUrl.getValue();
+                var picUrl = window.viewModel.txtNewNewsArticlePicUrl.getValue();
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/AddNewsArticle.ashx',
+                    method: 'POST',
+                    params: { MessageId: messageId, Title: title, Description: description, Url: url, PicUrl: picUrl },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+
+                                // Refresh the count.
+                                window.viewModel.storeNewsMessage.load();
+
+                                // Refresh the grid.
+                                window.viewModel.storeNewsArticles.load();
+                                window.viewModel.winAddNewNewsArticle.close();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'add fail!');
+                    }
+                });
+            },
             addNewTextResponseCommand: function (parameters) {
                 window.viewModel.txtNewTextMessageContent.setRawValue('');
                 window.viewModel.winNewTextMessage.show();
@@ -295,6 +415,20 @@
                     }
                 });
             },
+            addNewNewsArticle: function (parameters) {
+                // Get message id from window.
+                var messageId = window.viewModel.winModifyNewsMessage.MessageId;
+
+                // Cache message id to the setting window.
+                window.viewModel.winAddNewNewsArticle.MessageId = messageId;
+
+                // clear control value.
+                window.viewModel.txtNewNewsArticleTitle.setRawValue('');
+                window.viewModel.txtNewNewsArticleDescription.setRawValue('');
+                window.viewModel.txtNewNewsArticleUrl.setRawValue('');
+                window.viewModel.txtNewNewsArticlePicUrl.setRawValue('');
+                window.viewModel.winAddNewNewsArticle.show();
+            },
             submitNewsMessageChange: function (parameters) {
                 var modifyArticleId = window.viewModel.winModifyNewsMessage.ArticleId;
                 var title = window.viewModel.txtModifyNewsMessageTitle.getValue();
@@ -316,7 +450,11 @@
                         var responseText = response.responseText;
                         var responseObj = Ext.decode(responseText);
                         if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.storeNewsMessage.load();
+                            });
                         } else {
+                            Ext.Msg.alert('Error', responseObj.info);
                         }
                     },
                     failure: function (response, options) {

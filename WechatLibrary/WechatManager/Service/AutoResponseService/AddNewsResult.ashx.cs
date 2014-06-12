@@ -76,7 +76,8 @@ namespace WechatManager.Service.AutoResponseService
                     Title = title,
                     Description = description,
                     Url = url,
-                    PicUrl = url
+                    PicUrl = picUrl,
+                    Index = 0
                 });
                 wechatAccount.NewsAutoResponseResults.Add(newResult);
                 entities.SaveChanges();

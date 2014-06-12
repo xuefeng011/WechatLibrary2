@@ -129,7 +129,7 @@ namespace WechatLibrary.Converter
         public static ResponseResultBase ConvertTo(NewsAutoResponseResult responseResult)
         {
             List<NewsArticle> newsArticles = new List<NewsArticle>();
-            foreach (var newsAutoResponseArticle in responseResult.NewsAutoResponseArticles)
+            foreach (var newsAutoResponseArticle in responseResult.NewsAutoResponseArticles.OrderBy(temp => temp.Index))
             {
                 newsArticles.Add(new NewsArticle()
                 {

@@ -111,6 +111,9 @@
     <Compile Include="Service\AutoResponseService\AddImageResult.ashx.cs">
       <DependentUpon>AddImageResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\AutoResponseService\AddNewsArticle.ashx.cs">
+      <DependentUpon>AddNewsArticle.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\AutoResponseService\AddNewsResult.ashx.cs">
       <DependentUpon>AddNewsResult.ashx</DependentUpon>
     </Compile>
@@ -119,6 +122,9 @@
     </Compile>
     <Compile Include="Service\AutoResponseService\DeleteImageResult.ashx.cs">
       <DependentUpon>DeleteImageResult.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AutoResponseService\DeleteNewsArticle.ashx.cs">
+      <DependentUpon>DeleteNewsArticle.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\AutoResponseService\DeleteNewsResult.ashx.cs">
       <DependentUpon>DeleteNewsResult.ashx</DependentUpon>
@@ -417,6 +423,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\AutoResponseService\ModifyNewsArticle.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\AddNewsArticle.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\DeleteNewsArticle.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
