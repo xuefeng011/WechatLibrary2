@@ -115,6 +115,7 @@
     <Compile Include="Model\Message\Response\TextResult.cs" />
     <Compile Include="Model\Message\Response\VideoResult.cs" />
     <Compile Include="Model\Message\Response\VoiceResult.cs" />
+    <Compile Include="Model\ResultLog\ResultLog.cs" />
     <Compile Include="Model\Return\AccessTokenReturn.cs" />
     <Compile Include="Model\Return\OAuth2AccessTokenReturn.cs" />
     <Compile Include="Model\Return\OAuth2UserInfoReturn.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.GetMessageTypeFromXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.LogMessage.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.LogResult.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />

@@ -28,6 +28,10 @@ namespace WechatLibrary.ProcessPipeline
                 }
                 ReceiveLog log = new ReceiveLog();
                 log.Id = Guid.NewGuid();
+
+                // 暂存记录的 Id，为记录响应提供支持。
+                this.LogId = log.Id;
+
                 if (this.RequestMessage is TextMessage)
                 {
                     log.Content = (this.RequestMessage as TextMessage).Content;

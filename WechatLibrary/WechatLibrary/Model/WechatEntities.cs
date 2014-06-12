@@ -161,5 +161,23 @@ namespace WechatLibrary.Model
             get;
             set;
         }
+
+        /// <summary>
+        /// 记录的用户消息集合。
+        /// </summary>
+        public DbSet<ReceiveLog.ReceiveLog> ReceiveLogs
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 记录的响应消息集合。
+        /// </summary>
+        public DbSet<ResultLog.ResultLog> ResultLogs
+        {
+            get;
+            set;
+        }
     }
 }

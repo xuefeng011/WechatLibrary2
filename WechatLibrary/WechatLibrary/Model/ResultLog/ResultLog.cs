@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace WechatLibrary.Model.ReceiveLog
+namespace WechatLibrary.Model.ResultLog
 {
     /// <summary>
-    /// 接收到的消息记录。
+    /// 响应消息记录。
     /// </summary>
-    public partial class ReceiveLog
+    public partial class ResultLog
     {
         /// <summary>
         /// 数据库主键。
@@ -23,7 +22,7 @@ namespace WechatLibrary.Model.ReceiveLog
         }
 
         /// <summary>
-        /// 开发者微信号
+        /// 接收方帐号（收到的 OpenID）。
         /// </summary>
         public string ToUserName
         {
@@ -32,7 +31,7 @@ namespace WechatLibrary.Model.ReceiveLog
         }
 
         /// <summary>
-        /// 发送方帐号（一个OpenID）。
+        /// 开发者微信号。
         /// </summary>
         public string FromUserName
         {
@@ -50,7 +49,7 @@ namespace WechatLibrary.Model.ReceiveLog
         }
 
         /// <summary>
-        /// 用户消息。
+        /// 响应消息 XML 原文。
         /// </summary>
         public string XmlSource
         {
@@ -59,27 +58,9 @@ namespace WechatLibrary.Model.ReceiveLog
         }
 
         /// <summary>
-        /// 文本消息的内容，仅文本消息记录，其他消息时为空。
-        /// </summary>
-        public string Content
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 记录该消息的时间。
+        /// 记录该响应消息的时间。
         /// </summary>
         public DateTime LogTime
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 对应的服务器端回复的消息。
-        /// </summary>
-        public virtual ResultLog.ResultLog Result
         {
             get;
             set;

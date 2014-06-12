@@ -556,5 +556,39 @@ namespace WechatLibrary
                 SerializeResponseResultAndWriteToResponseStreamEnd(processPipeline, EventArgs.Empty);
             }
         }
+
+        /// <summary>
+        /// 开始记录响应消息到数据库。
+        /// </summary>
+        public static event EventHandler LogResultStart;
+
+        /// <summary>
+        /// 触发开始记录响应消息到数据库。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireLogResultStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogResultStart != null)
+            {
+                LogResultStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// 结束记录响应消息到数据库。
+        /// </summary>
+        public static event EventHandler LogResultEnd;
+
+        /// <summary>
+        /// 触发结束记录响应消息到数据库。
+        /// </summary>
+        /// <param name="processPipeline">触发事件所在处理管道。</param>
+        internal static void FireLogResultEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogResultEnd != null)
+            {
+                LogResultEnd(processPipeline, EventArgs.Empty);
+            }
+        }
     }
 }

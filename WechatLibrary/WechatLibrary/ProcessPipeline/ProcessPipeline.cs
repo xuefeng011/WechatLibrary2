@@ -117,6 +117,15 @@ namespace WechatLibrary.ProcessPipeline
         }
 
         /// <summary>
+        /// 记录用户消息的 Id。
+        /// </summary>
+        public Guid LogId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 创建微信消息处理管道。
         /// </summary>
         /// <param name="context">处理的 Http 上下文。</param>
@@ -177,6 +186,10 @@ namespace WechatLibrary.ProcessPipeline
                     break;
                 }
                 if (this.SetDefaultValue() == false)
+                {
+                    break;
+                }
+                if (this.LogResult() == false)
                 {
                     break;
                 }
