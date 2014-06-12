@@ -104,6 +104,23 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
+                var modifyItem = modifyQuery.First();
+                modifyItem.Title = title;
+                modifyItem.Description = description;
+                modifyItem.Url = url;
+                modifyItem.PicUrl = picUrl;
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "save change success!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 
