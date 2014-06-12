@@ -20,16 +20,19 @@
                     window.viewModel.cmbResponseTextMessage.show();
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
+                    // Load Text Messages From Data Base.
                 } else if (selectedValue == '图片') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.show();
                     window.viewModel.cmbResponseNewsMessage.hide();
+                    // Load Image Messages From Data Base.
                 } else if (selectedValue == '图文') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.show();
+                    // Load News Message From Data Base.
                 }
             },
             addNewWehcatTextRequestMatchCommand: function (parameters) {

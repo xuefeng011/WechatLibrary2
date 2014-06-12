@@ -416,6 +416,13 @@
                 });
             },
             addNewNewsArticle: function (parameters) {
+                // check store count.
+                var count = window.viewModel.storeNewsArticles.data.length;
+                if (count >= 9) {
+                    Ext.Msg.alert('Error', 'news message articles count must less than 11.');
+                    return;
+                }
+
                 // Get message id from window.
                 var messageId = window.viewModel.winModifyNewsMessage.MessageId;
 

@@ -17,6 +17,10 @@ namespace WechatManager.Controllers
 
         public ActionResult Index()
         {
+            if (Session["WechatId"] != null)
+            {
+                return Redirect("/Desktop/Index");
+            }
             return View();
         }
 
