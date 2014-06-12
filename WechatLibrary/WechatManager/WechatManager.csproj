@@ -135,11 +135,17 @@
     <Compile Include="Service\AutoResponseService\GetAllTextResult.ashx.cs">
       <DependentUpon>GetAllTextResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\AutoResponseService\GetNewsArticles.ashx.cs">
+      <DependentUpon>GetNewsArticles.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\AutoResponseService\GetNewsResultById.ashx.cs">
       <DependentUpon>GetNewsResultById.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\AutoResponseService\ModifyImageResult.ashx.cs">
       <DependentUpon>ModifyImageResult.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AutoResponseService\ModifyNewsArticle.ashx.cs">
+      <DependentUpon>ModifyNewsArticle.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\AutoResponseService\ModifyTextResult.ashx.cs">
       <DependentUpon>ModifyTextResult.ashx</DependentUpon>
@@ -405,6 +411,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\AutoResponseService\GetNewsResultById.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\GetNewsArticles.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\ModifyNewsArticle.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

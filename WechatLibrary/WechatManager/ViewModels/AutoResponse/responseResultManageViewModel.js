@@ -5,6 +5,7 @@
             storeTextMessage: Ext.StoreManager.get('storeTextMessage'),
             storeImageMessage: Ext.StoreManager.get('storeImageMessage'),
             storeNewsMessage: Ext.StoreManager.get('storeNewsMessage'),
+            storeNewsArticles: Ext.StoreManager.get('storeNewsArticles'),
             winNewTextMessage: Ext.getCmp('winNewTextMessage'),
             txtNewTextMessageContent: Ext.getCmp('txtNewTextMessageContent'),
             winNewImageMessage: Ext.getCmp('winNewImageMessage'),
@@ -214,13 +215,29 @@
                             var responseText = response.responseText;
                             var responseObj = Ext.decode(responseText);
                             if (responseObj.success) {
-                                
+                                var data = responseObj.data;
+                                window.viewModel.txtModifyNewsMessageTitle.setRawValue(data.Title);
+                                window.viewModel.txtModifyNewsMessageDescription.setRawValue(data.Description);
+                                window.viewModel.txtModifyNewsMessageUrl.setRawValue(data.Url);
+                                window.viewModel.txtModifyNewsMessagePicUrl.setRawValue(data.PicUrl);
+                                // Refresh the 2-10 news article grid.
+                                window.viewModel.storeNewsArticles.proxy.url = "/Service/AutoResponseService/GetNewsArticles.ashx" + "?Id=" + data.MessageId;
+                                window.viewModel.storeNewsArticles.load();
+
+                                // Cache the modify messsage id.
+                                window.viewModel.winModifyNewsMessage.MessageId = data.MessageId;
+
+                                // Cache the modify article id.
+                                window.viewModel.winModifyNewsMessage.ArticleId = data.ArticleId;
+
+                                // Show the setting window.
+                                window.viewModel.winModifyNewsMessage.show();
                             } else {
-                                Ext.Msg.alert('Error',responseObj.info);
+                                Ext.Msg.alert('Error', responseObj.info);
                             }
                         },
                         failure: function (response, options) {
-                            Ext.Msg.alert('Error','load information fail!');
+                            Ext.Msg.alert('Error', 'load information fail!');
                         }
                     });
                 } else if (commandName == "delete") {
@@ -275,6 +292,35 @@
                     },
                     failure: function (response, options) {
                         Ext.Msg.alert('Error', 'edit fail!');
+                    }
+                });
+            },
+            submitNewsMessageChange: function (parameters) {
+                var modifyArticleId = window.viewModel.winModifyNewsMessage.ArticleId;
+                var title = window.viewModel.txtModifyNewsMessageTitle.getValue();
+                var description = window.viewModel.txtModifyNewsMessageDescription.getValue();
+                var url = window.viewModel.txtModifyNewsMessageUrl.getValue();
+                var picUrl = window.viewModel.txtModifyNewsMessagePicUrl.getValue();
+
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/ModifyNewsArticle.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: modifyArticleId,
+                        Title: title,
+                        Description: description,
+                        Url: url,
+                        PicUrl: picUrl
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                        } else {
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'Modify the news article fail!');
                     }
                 });
             },

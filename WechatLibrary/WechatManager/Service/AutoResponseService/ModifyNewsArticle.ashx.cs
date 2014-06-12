@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.SessionState;
+using System.Web.UI;
 using Common.Serialization.Json;
+using WechatLibrary;
 using WechatLibrary.Model;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// GetNewsResultById 的摘要说明
+    /// ModifyNewsArticle 的摘要说明
     /// </summary>
-    public class GetNewsResultById : IHttpHandler, IRequiresSessionState
+    public class ModifyNewsArticle : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -31,8 +32,13 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            var modifyId = context.Request["Id"];
-            if (string.IsNullOrEmpty(modifyId) == true)
+            var modifyNewsArticleId = context.Request["Id"];
+            var title = context.Request["Title"];
+            var description = context.Request["Description"];
+            var url = context.Request["Url"];
+            var picUrl = context.Request["PicUrl"];
+
+            if (string.IsNullOrEmpty(modifyNewsArticleId) == true)
             {
                 var responseObj = new
                 {
@@ -70,9 +76,10 @@ namespace WechatManager.Service.AutoResponseService
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
+                    return;
                 }
-                var wechatAccount = query.First();
-                var modifyQuery = wechatAccount.NewsAutoResponseResults.Where(temp => temp.Id.ToString() == modifyId);
+
+                var modifyQuery = entities.NewsAutoResponseArticles.Where(temp => temp.Id.ToString() == modifyNewsArticleId);
                 if (modifyQuery.Count() < 1)
                 {
                     var responseObj = new
@@ -90,52 +97,7 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                var modifyItem = modifyQuery.First();
-                if (modifyItem.NewsAutoResponseArticles == null)
-                {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "item error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                var modifyArticle = modifyItem.NewsAutoResponseArticles.ElementAtOrDefault(0);
-                if (modifyArticle == null)
-                {
-                    var responseObj = new
-                    {
-                        success = false,
-                        info = "item error!"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
-                {
-                    var responseObj = new
-                    {
-                        success = true,
-                        data = new
-                        {
-                            MessageId = modifyItem.Id,
-                            ArticleId = modifyArticle.Id,
-                            Title = modifyArticle.Title,
-                            Description = modifyArticle.Description,
-                            Url = modifyArticle.Url,
-                            PicUrl = modifyArticle.PicUrl
-                        }
+                        info = "data base primary key error!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";

@@ -53,6 +53,22 @@
             </ext:Model>
         </Model>
     </ext:Store>
+    <ext:Store runat="server" ID="storeNewsArticles" IDMode="Explicit" AutoLoad="False">
+        <Proxy>
+            <ext:AjaxProxy Url="/Service/AutoResponseService/GetNewsArticels.ashx" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Title"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Description"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="Url"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="PicUrl"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
             <ext:TabPanel runat="server" Region="Center">
@@ -208,7 +224,6 @@
         <Items>
             <ext:TextField runat="server" FieldLabel="标题" ID="txtNewNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="内容" ID="txtNewNewsMessageDescription" AnchorHorizontal="100%"></ext:TextField>
-            xiu
             <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtNewNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="图片链接" ID="txtNewNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
         </Items>
@@ -220,19 +235,23 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="修改图文回复" Hidden="True" ID="winModifyNewsMessage" BodyPadding="8" Icon="Newspaper" CloseAction="Hide" Layout="FormLayout">
+    <ext:Window runat="server" Modal="True" Title="修改图文回复" Hidden="True" ID="winModifyNewsMessage" BodyPadding="8" Icon="Newspaper" CloseAction="Hide" Layout="FormLayout" Maximized="True">
         <Items>
             <ext:TextField runat="server" FieldLabel="标题" ID="txtModifyNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="内容" ID="txtModifyNewsMessageDescription" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="跳转链接" ID="txtModifyNewsMessageUrl" AnchorHorizontal="100%"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="图片链接" ID="txtModifyNewsMessagePicUrl" AnchorHorizontal="100%"></ext:TextField>
-            <ext:GridPanel runat="server">
+            <ext:GridPanel runat="server" StoreID="storeNewsArticles">
                 <ColumnModel>
                     <Columns>
-                        <ext:Column runat="server"></ext:Column>
+                        <ext:Column runat="server" Text="标题"></ext:Column>
+                        <ext:Column runat="server" Text="内容"></ext:Column>
+                        <ext:Column runat="server" Text="跳转链接"></ext:Column>
+                        <ext:Column runat="server" Text="图片链接"></ext:Column>
                         <ext:CommandColumn runat="server">
                             <Commands>
-                                <ext:GridCommand></ext:GridCommand>
+                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改"></ext:GridCommand>
+                                <ext:GridCommand runat="server" Icon="Delete" Text="删除"></ext:GridCommand>
                             </Commands>
                             <Listeners>
                                 <Command Handler=""></Command>
@@ -245,7 +264,7 @@
         <Buttons>
             <ext:Button runat="server" Icon="Disk" Text="保存修改">
                 <Listeners>
-                    <Click Handler=""></Click>
+                    <Click Handler="window.viewModel.submitNewsMessageChange(arguments)"></Click>
                 </Listeners>
             </ext:Button>
         </Buttons>

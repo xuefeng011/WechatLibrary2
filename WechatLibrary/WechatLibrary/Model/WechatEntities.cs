@@ -109,6 +109,15 @@ namespace WechatLibrary.Model
         }
 
         /// <summary>
+        /// 自动回复图文消息项集合。
+        /// </summary>
+        public DbSet<NewsAutoResponseArticle> NewsAutoResponseArticles
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// AccessToken。
         /// </summary>
         public DbSet<AccessToken> AccessTokens
