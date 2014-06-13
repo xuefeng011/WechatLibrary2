@@ -21,6 +21,25 @@
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
                     // Load Text Messages From Data Base.
+                    Ext.Ajax.request({
+                        url: '',
+                        method: 'POST',
+                        params: {
+                            Id: window.viewModel.modifyWindow.modifyId
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+
+                            } else {
+                                Ext.Msg.alert('Error',responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error','load text resources fail!');
+                        }
+                    });
                 } else if (selectedValue == '图片') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
@@ -127,7 +146,8 @@
                                     window.viewModel.cmbModifyTextMatchOption.select('');
                                 }
                                 window.viewModel.txtModifyTextMatchLevel.setRawValue(data.MatchLevel);
-
+                                // Cache the modify item id.
+                                window.viewModel.modifyWindow.modifyId = data.Id;
 
                                 // Show the setting window.
                                 window.viewModel.modifyWindow.show();
