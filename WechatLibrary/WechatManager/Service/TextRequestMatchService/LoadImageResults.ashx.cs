@@ -9,9 +9,9 @@ using WechatLibrary.Model;
 namespace WechatManager.Service.TextRequestMatchService
 {
     /// <summary>
-    /// LoadTextResults 的摘要说明
+    /// LoadImageResults 的摘要说明
     /// </summary>
-    public class LoadTextResults : IHttpHandler, IRequiresSessionState
+    public class LoadImageResults : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -64,16 +64,17 @@ namespace WechatManager.Service.TextRequestMatchService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error!"
+                        info = "data base occurred an error, please contact the manager!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;
                 }
+
                 var wechatAccount = query.First();
 
-                var list = wechatAccount.TextAutoResponseResults.ToList();
+                var list = wechatAccount.ImageAutoResponseResults.ToList();
 
                 {
                     var responseObj = new
@@ -83,7 +84,7 @@ namespace WechatManager.Service.TextRequestMatchService
                                 select new
                                 {
                                     Id = temp.Id,
-                                    Content = temp.Content
+                                    MediaId = temp.MediaId
                                 }).ToList()
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);

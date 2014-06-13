@@ -192,6 +192,9 @@
     <Compile Include="Service\TextRequestMatchService\GetById.ashx.cs">
       <DependentUpon>GetById.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\TextRequestMatchService\LoadImageResults.ashx.cs">
+      <DependentUpon>LoadImageResults.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\TextRequestMatchService\LoadTextResults.ashx.cs">
       <DependentUpon>LoadTextResults.ashx</DependentUpon>
     </Compile>
@@ -435,6 +438,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\TextRequestMatchService\LoadTextResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\TextRequestMatchService\LoadImageResults.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

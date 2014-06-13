@@ -22,7 +22,7 @@
                     window.viewModel.cmbResponseNewsMessage.hide();
                     // Load Text Messages From Data Base.
                     Ext.Ajax.request({
-                        url: '',
+                        url: '/Service/TextRequestMatchService/LoadTextResults.ashx',
                         method: 'POST',
                         params: {
                             Id: window.viewModel.modifyWindow.modifyId
@@ -31,13 +31,21 @@
                             var responseText = response.responseText;
                             var responseObj = Ext.decode(responseText);
                             if (responseObj.success) {
-
+                                var data = responseObj.data;
+                                /* Remove the combobox old datas.*/
+                                while (window.viewModel.cmbResponseTextMessage.store.getCount() > 0) {
+                                    window.viewModel.cmbResponseTextMessage.removeByIndex(0);
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    /* The first parameter is the display field and the second parameter is the value field. */
+                                    window.viewModel.cmbResponseTextMessage.addItem(data[i].Content, data[i].Id);
+                                }
                             } else {
-                                Ext.Msg.alert('Error',responseObj.info);
+                                Ext.Msg.alert('Error', responseObj.info);
                             }
                         },
                         failure: function (response, options) {
-                            Ext.Msg.alert('Error','load text resources fail!');
+                            Ext.Msg.alert('Error', 'load text resources fail!');
                         }
                     });
                 } else if (selectedValue == '图片') {
@@ -46,6 +54,33 @@
                     window.viewModel.cmbResponseImageMessage.show();
                     window.viewModel.cmbResponseNewsMessage.hide();
                     // Load Image Messages From Data Base.
+                    Ext.Ajax.request({
+                        url: '/Service/TextRequestMatchService/LoadImageResults.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: window.viewModel.modifyWindow.modifyId
+                },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                var data = responseObj.data;
+                                /* Remove the combobox old datas.*/
+                                while (window.viewModel.cmbResponseImageMessage.store.getCount()>0) {
+                                    window.viewModel.cmbResponseImageMessage.removeByIndex(0);
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    /* The first parameter is the display field and the second parameter is the value field. */
+                                    window.viewModel.cmbResponseImageMessage.addItem(data[i].MediaId,data[i].Id);
+                                }
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'Load image resources fail!');
+                        }
+                    });
                 } else if (selectedValue == '图文') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
