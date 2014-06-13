@@ -9,9 +9,9 @@ using WechatLibrary.Model;
 namespace WechatManager.Service.TextRequestMatchService
 {
     /// <summary>
-    /// LoadImageResults 的摘要说明
+    /// LoadNewsResults 的摘要说明
     /// </summary>
-    public class LoadImageResults : IHttpHandler, IRequiresSessionState
+    public class LoadNewsResults : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -64,7 +64,7 @@ namespace WechatManager.Service.TextRequestMatchService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error, please contact the manager!"
+                        info = "data base occurred an error, the same wechat account wechatid appear more than one times, please contact the manager!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -74,7 +74,7 @@ namespace WechatManager.Service.TextRequestMatchService
 
                 var wechatAccount = query.First();
 
-                var list = wechatAccount.ImageAutoResponseResults.ToList();
+                var list = wechatAccount.NewsAutoResponseResults.ToList();
 
                 var query2 = wechatAccount.TextMessageMatches.Where(temp => temp.Id.ToString() == currentTextMatchId);
 
@@ -86,10 +86,10 @@ namespace WechatManager.Service.TextRequestMatchService
                     if (matchResultMapping != null)
                     {
                         var resultType = matchResultMapping.ResultType;
-                        if (resultType.IndexOf("image", StringComparison.OrdinalIgnoreCase) > -1)
+                        if (resultType.IndexOf("news", StringComparison.OrdinalIgnoreCase) > -1)
                         {
                             var query3 =
-                                entities.ImageAutoResponseResults.Where(temp => temp.Id == matchResultMapping.ResultId);
+                                entities.NewsAutoResponseArticles.Where(temp => temp.Id == matchResultMapping.ResultId);
                             if (query3.Count() == 1)
                             {
                                 selectedId = query3.First().Id.ToString();
@@ -99,16 +99,21 @@ namespace WechatManager.Service.TextRequestMatchService
                 }
 
                 {
-                    var responseObj = new
-                    {
-                        success = true,
-                        data = (from temp in list
+                    var list2 = from temp in list
+                                where temp.NewsAutoResponseArticles.Count() > 0
+                                select temp;
+                    var list3 = from temp in list2
                                 select new
                                 {
                                     Id = temp.Id,
-                                    MediaId = temp.MediaId
-                                }).ToList(),
-                        selectedId = selectedId
+                                    Title = temp.NewsAutoResponseArticles.OrderBy(temp2 => temp2.Index).First().Title
+                                };
+
+                    var responseObj = new
+                    {
+                        success = true,
+                        data = list3.ToList(),
+                        selectId = selectedId
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";

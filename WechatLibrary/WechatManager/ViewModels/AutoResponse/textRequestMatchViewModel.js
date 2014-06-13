@@ -40,6 +40,11 @@
                                     /* The first parameter is the display field and the second parameter is the value field. */
                                     window.viewModel.cmbResponseTextMessage.addItem(data[i].Content, data[i].Id);
                                 }
+                                // set current set response.
+                                var selectedId = data.selectedId;
+                                if (selectedId != "") {
+                                    window.viewModel.cmbResponseTextMessage.setValue(selectedId);
+                                }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
                             }
@@ -59,19 +64,24 @@
                         method: 'POST',
                         params: {
                             Id: window.viewModel.modifyWindow.modifyId
-                },
+                        },
                         success: function (response, options) {
                             var responseText = response.responseText;
                             var responseObj = Ext.decode(responseText);
                             if (responseObj.success) {
                                 var data = responseObj.data;
                                 /* Remove the combobox old datas.*/
-                                while (window.viewModel.cmbResponseImageMessage.store.getCount()>0) {
+                                while (window.viewModel.cmbResponseImageMessage.store.getCount() > 0) {
                                     window.viewModel.cmbResponseImageMessage.removeByIndex(0);
                                 }
                                 for (var i = 0; i < data.length; i++) {
                                     /* The first parameter is the display field and the second parameter is the value field. */
-                                    window.viewModel.cmbResponseImageMessage.addItem(data[i].MediaId,data[i].Id);
+                                    window.viewModel.cmbResponseImageMessage.addItem(data[i].MediaId, data[i].Id);
+                                }
+                                // set current set response.
+                                var selectedId = data.selectedId;
+                                if (selectedId != "") {
+                                    window.viewModel.cmbResponseImageMessage.setValue(selectedId);
                                 }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);

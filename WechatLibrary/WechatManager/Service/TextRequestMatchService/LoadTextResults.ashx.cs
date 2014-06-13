@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
+using WechatLibrary.Model.AutoResponse;
 
 namespace WechatManager.Service.TextRequestMatchService
 {
@@ -75,6 +77,27 @@ namespace WechatManager.Service.TextRequestMatchService
 
                 var list = wechatAccount.TextAutoResponseResults.ToList();
 
+                var query2 = wechatAccount.TextMessageMatches.Where(temp => temp.Id.ToString() == currentTextMatchId);
+
+                var selectedId = string.Empty;
+
+                if (query2.Count() == 1)
+                {
+                    var matchResultMapping = query2.First().MatchResultMapping;
+                    if (matchResultMapping != null)
+                    {
+                        var resultType = matchResultMapping.ResultType;
+                        if (resultType.IndexOf("text", StringComparison.OrdinalIgnoreCase) > -1)
+                        {
+                            var query3 = entities.TextAutoResponseResults.Where(temp => temp.Id == matchResultMapping.ResultId);
+                            if (query3.Count() == 1)
+                            {
+                                selectedId = query3.First().Id.ToString();
+                            }
+                        }
+                    }
+                }
+
                 {
                     var responseObj = new
                     {
@@ -84,7 +107,8 @@ namespace WechatManager.Service.TextRequestMatchService
                                 {
                                     Id = temp.Id,
                                     Content = temp.Content
-                                }).ToList()
+                                }).ToList(),
+                        selectedId = selectedId
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
