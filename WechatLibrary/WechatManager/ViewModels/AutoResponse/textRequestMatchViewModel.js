@@ -97,6 +97,38 @@
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.show();
                     // Load News Message From Data Base.
+                    Ext.Ajax.request({
+                        url: '/Service/TextRequestMatchService/LoadNewsResults.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: window.viewModel.modifyWindow.modifyId
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                var data = responseObj.data;
+                                /* Remove the combobox old datas. */
+                                while (window.viewModel.cmbResponseNewsMessage.store.getCount() > 0) {
+                                    window.viewModel.cmbResponseNewsMessage.removeByIndex(0);
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    /* The first parameter is the display field and the second parameter is the value field. */
+                                    window.viewModel.cmbResponseNewsMessage.addItem(data[i].Title, data[i].Id);
+                                }
+                                // set current set response.
+                                var selectedId = data.selectedId;
+                                if (selectedId != "") {
+                                    window.viewModel.cmbResponseNewsMessage.setValue(selectedId);
+                                }
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'Load news resources fail!');
+                        }
+                    });
                 }
             },
             addNewWehcatTextRequestMatchCommand: function (parameters) {
@@ -105,6 +137,11 @@
             },
             submitModify: function (parameters) {
                 var matchContent = window.viewModel.txtModifyTextMatchContent.getValue();
+
+                if (matchContent == '') {
+                    Ext.Msg.alert('Error', 'match content must input!');
+                    return;
+                }
 
                 var matchOption = window.viewModel.cmbModifyTextMatchOption.value;
                 if (matchOption == '完全匹配') {
@@ -129,12 +166,58 @@
                 }
 
                 var responseType = window.viewModel.cmbResponseType.value;
-                if (responseType != '文本' || responseType != '图片' || responseType != '图文') {
+                if (responseType != '文本' && responseType != '图片' && responseType != '图文') {
                     Ext.Msg.alert('Error', 'Auto response type must selected!');
                     return;
                 }
 
-                alert('submit');
+                if (responseType == '文本') {
+                    responseType = 'text';
+                }
+                if (responseType == '图片') {
+                    responseType = 'image';
+                }
+                if (responseType == '图文') {
+                    responseType = 'news';
+                }
+
+                var responseId = "";
+                if (responseType == "text") {
+                    responseId = window.viewModel.cmbResponseTextMessage.getValue();
+                }
+                if (responseType == 'image') {
+                    responseId = window.viewModel.cmbResponseImageMessage.getValue();
+                }
+                if (responseType == 'news') {
+                    responseId = window.viewModel.cmbResponseNewsMessage.getValue();
+                }
+
+                Ext.Ajax.request({
+                    url: '/Service/TextRequestMatchService/Modify.ashx',
+                    method: 'POST',
+                    params: {
+                        TextMatchId: window.viewModel.modifyWindow.modifyId,
+                        MatchContent: matchContent,
+                        MatchOption: matchOption,
+                        MatchLevel: matchLevel,
+                        ResponseType: responseType,
+                        ResponseItemId: responseId
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.modifyWindow.close();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'save text match change information fail');
+                    }
+                });
             },
             saveNewWechatTextRequestMatchCommand: function (parameters) {
                 Ext.Ajax.request({
@@ -191,6 +274,23 @@
                                     window.viewModel.cmbModifyTextMatchOption.select('');
                                 }
                                 window.viewModel.txtModifyTextMatchLevel.setRawValue(data.MatchLevel);
+
+                                // Set AutoResponseType.
+                                if (data.ResponseType == 'text') {
+                                    window.viewModel.cmbResponseType.select('文本');
+                                    window.viewModel.cmbResponseTypeSelected();
+                                }
+                                else if (data.ResponseType == 'image') {
+                                    window.viewModel.cmbResponseType.select('图片');
+                                    window.viewModel.cmbResponseTypeSelected();
+                                }
+                                else if (data.ResponseType == 'news') {
+                                    window.viewModel.cmbResponseType.select('图文');
+                                    window.viewModel.cmbResponseTypeSelected();
+                                } else {
+                                    window.viewModel.cmbResponseType.select();
+                                }
+
                                 // Cache the modify item id.
                                 window.viewModel.modifyWindow.modifyId = data.Id;
 

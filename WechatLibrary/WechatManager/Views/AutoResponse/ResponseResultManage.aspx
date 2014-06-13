@@ -174,7 +174,7 @@
     </ext:Viewport>
     <ext:Window runat="server" Modal="True" Title="添加新文本回复" CloseAction="Hide" Layout="FormLayout" ID="winNewTextMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
         <Items>
-            <ext:TextField runat="server" FieldLabel="回复内容" ID="txtNewTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextArea runat="server" FieldLabel="回复内容" ID="txtNewTextMessageContent" AnchorHorizontal="100%"></ext:TextArea>
         </Items>
         <Buttons>
             <ext:Button runat="server" Icon="Add" Text="添加">
@@ -198,7 +198,7 @@
     </ext:Window>
     <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage" Hidden="True" Icon="NoteEdit" Width="300" BodyPadding="8">
         <Items>
-            <ext:TextField runat="server" FieldLabel="回复内容" ID="txtModifyTextMessageContent" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextArea runat="server" FieldLabel="回复内容" ID="txtModifyTextMessageContent" AnchorHorizontal="100%"></ext:TextArea>
         </Items>
         <Buttons>
             <ext:Button runat="server" Icon="NoteEdit" Text="修改">

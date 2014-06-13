@@ -9,6 +9,7 @@
             txtKey: Ext.getCmp('txtKey'),
             txtUrl: Ext.getCmp('txtUrl'),
             currentId: "",
+            currentLevel: 0,
             storeFirstMenu: Ext.StoreManager.get('storeFirstMenu'),
             storeSecondMenu: Ext.StoreManager.get('storeSecondMenu'),
             addNewFirstMenuCommand: function (parameters) {
@@ -21,6 +22,10 @@
                     if (btn == "ok") {
                         if (text == "") {
                             Ext.Msg.alert('Error', '菜单按钮名字不能为空！');
+                            return;
+                        }
+                        if (text.length > 4) {
+                            Ext.Msg.alert('Error', '一级菜单按钮最多 4 个汉字');
                             return;
                         }
 
@@ -65,6 +70,10 @@
 
                 Ext.Msg.prompt('添加二级菜单按钮', '按钮名称', function (btn, text) {
                     if (btn == "ok") {
+                        if (text.length > 7) {
+                            Ext.Msg.alert('Error', '二级菜单按钮最多 7 个汉字');
+                            return;
+                        }
                         if (text == "") {
                             Ext.Msg.alert('Error', 'button name could not be empty!');
                             return;
@@ -103,6 +112,9 @@
                 if (commandName == "modify") {
                     // cache current first btn id
                     window.viewModel.currentId = data.Id;
+
+                    // cache current level.
+                    window.viewModel.currentLevel = 1;
 
                     // load second panel
                     var secondStore = window.viewModel.storeSecondMenu;
@@ -197,6 +209,9 @@
                     // cache current first btn id
                     window.viewModel.currentId = data.Id;
 
+                    // cache current level.
+                    window.viewModel.currentLevel = 2;
+
                     // load setting panel
                     Ext.Ajax.request({
                         url: '/Service/LocalMenuService/GetMenuButtonSetting.ashx',
@@ -282,6 +297,19 @@
                     return;
                 }
                 var name = window.viewModel.txtName.getRawValue();
+
+                if (window.viewModel.currentLevel == 1) {
+                    if (name.length > 4) {
+                        Ext.Msg.alert('Error', '一级菜单名字不能超过 4 个汉字。');
+                        return;
+                    }
+                } else if (window.viewModel.currentLevel == 2) {
+                    if (name.length > 7) {
+                        Ext.Msg.alert('Error', '二级菜单名字不能超过 7 个汉字。');
+                        return;
+                    }
+                }
+
                 var type;
                 if (window.viewModel.rdoClick.checked) {
                     type = "click";

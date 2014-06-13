@@ -54,7 +54,9 @@ namespace WechatLibrary.Model
 
                             using (WechatEntities entities = new WechatEntities())
                             {
-                                entities.AccessTokens.Attach(this);
+                                var dbAccessToken = entities.AccessTokens.Where(temp => temp.Id == this.Id).First();
+                                dbAccessToken.Value = accessToken.AccessToken;
+                                dbAccessToken.ExpiresTime = DateTime.Now.AddSeconds(accessToken.ExpiresIn).AddMinutes(-5);
                                 entities.SaveChanges();
                             }
                             break;

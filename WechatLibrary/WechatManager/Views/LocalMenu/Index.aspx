@@ -56,7 +56,8 @@
                             <ext:GridPanel runat="server" StoreID="storeFirstMenu">
                                 <ColumnModel>
                                     <Columns>
-                                        <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" Resizable="False"></ext:Column>
+                                        <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" Resizable="False">
+                                        </ext:Column>
                                         <ext:CommandColumn runat="server" Width="150" Resizable="False">
                                             <Commands>
                                                 <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
@@ -115,7 +116,7 @@
                     </ext:Panel>
                     <ext:Panel runat="server" Title="菜单按钮设置" Flex="1" TitleAlign="Center" BodyPadding="10" Layout="FormLayout">
                         <Items>
-                            <ext:RadioGroup runat="server" Layout="HBoxLayout" FieldLabel="按钮类型">
+                            <ext:RadioGroup runat="server" Layout="HBoxLayout" FieldLabel="按钮类型" LabelWidth="50">
                                 <LayoutConfig>
                                     <ext:HBoxLayoutConfig runat="server" Align="Top" />
                                 </LayoutConfig>
@@ -125,9 +126,9 @@
                                     <ext:Radio runat="server" BoxLabel="View" Margins="0 5 0 5" ID="rdoView"></ext:Radio>
                                 </Items>
                             </ext:RadioGroup>
-                            <ext:TextField runat="server" FieldLabel="Name" EmptyText="按钮名字" ID="txtName"></ext:TextField>
-                            <ext:TextField runat="server" FieldLabel="Key" EmptyText="Key" ID="txtKey"></ext:TextField>
-                            <ext:TextField runat="server" FieldLabel="Url" EmptyText="Url" ID="txtUrl"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Name" EmptyText="按钮名字" ID="txtName" LabelWidth="50"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Key" EmptyText="Key" ID="txtKey" LabelWidth="50"></ext:TextField>
+                            <ext:TextField runat="server" FieldLabel="Url" EmptyText="Url" ID="txtUrl" LabelWidth="50"></ext:TextField>
                         </Items>
                         <Buttons>
                             <ext:Button runat="server" Text="保存修改" Icon="Disk">

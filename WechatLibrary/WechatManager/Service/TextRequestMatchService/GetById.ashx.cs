@@ -89,6 +89,10 @@ namespace WechatManager.Service.TextRequestMatchService
                     }
                     else
                     {
+                        var responseType = queryItem.MatchResultMapping == null
+                            ? string.Empty
+                            : queryItem.MatchResultMapping.ResultType;
+
                         var responseObj = new
                         {
                             success = true,
@@ -97,7 +101,8 @@ namespace WechatManager.Service.TextRequestMatchService
                                     Id = queryItem.Id,
                                     MatchContent = queryItem.MatchContent,
                                     MatchOption = queryItem.MatchOption,
-                                    MatchLevel = queryItem.MatchLevel
+                                    MatchLevel = queryItem.MatchLevel,
+                                    ResponseType = responseType
                                 }
                         };
                         var json = JsonHelper.SerializeToJson(responseObj);

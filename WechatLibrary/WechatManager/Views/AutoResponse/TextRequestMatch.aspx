@@ -99,9 +99,9 @@
             <%--文本消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Content"></ext:ComboBox>
             <%--图片消息资源--%>
-            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True"></ext:ComboBox>
+            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="MediaId"></ext:ComboBox>
             <%--图文消息资源--%>
-            <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True"></ext:ComboBox>
+            <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Title"></ext:ComboBox>
         </Items>
         <Buttons>
             <ext:Button runat="server" Text="修改" Icon="NoteEdit">
