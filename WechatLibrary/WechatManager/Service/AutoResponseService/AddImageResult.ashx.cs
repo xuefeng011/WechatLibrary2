@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
@@ -31,13 +32,27 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            var mediaId = context.Request["MediaId"];
-            if (string.IsNullOrEmpty(mediaId) == true)
+            //var mediaId = context.Request["MediaId"];
+            //if (string.IsNullOrEmpty(mediaId) == true)
+            //{
+            //    var responseObj = new
+            //    {
+            //        success = false,
+            //        info = "please input media id!"
+            //    };
+            //    var json = JsonHelper.SerializeToJson(responseObj);
+            //    context.Response.ContentType = "text/json";
+            //    context.Response.Write(json);
+            //    return;
+            //}
+
+            var imgUrl = context.Request["ImgUrl"];
+            if (string.IsNullOrEmpty(imgUrl) == true)
             {
                 var responseObj = new
                 {
                     success = false,
-                    info = "please input media id!"
+                    info = "please input image url!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
@@ -72,7 +87,16 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
+                
+                // Get current user.
                 var wechatAccount = query.First();
+
+                WebClient wc=new WebClient();
+                wc.Dispose();
+
+
+
+
                 wechatAccount.ImageAutoResponseResults.Add(new ImageAutoResponseResult()
                 {
                     Id = Guid.NewGuid(),

@@ -23,7 +23,7 @@ namespace WechatLibrary.ProcessPipeline
                 {
 #if DEBUG
                     Random rand = new Random();
-                    this.RequestXml = @"<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + "random content" + rand.Next(100000) + "]]></Content><MsgId>" + rand.Next(100000) + "</MsgId></xml>";
+                    this.RequestXml = @"<xml><ToUserName><![CDATA[gh_5728cc2d22a6]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + "random content" + rand.Next(100000) + "]]></Content><MsgId>" + rand.Next(100000) + "</MsgId></xml>";
 #else
                     this.RequestXml = sr.ReadToEnd();
 #endif

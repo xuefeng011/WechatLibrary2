@@ -19,7 +19,8 @@
             winNewTextMessage: Ext.getCmp('winNewTextMessage'),
             txtNewTextMessageContent: Ext.getCmp('txtNewTextMessageContent'),
             winNewImageMessage: Ext.getCmp('winNewImageMessage'),
-            txtNewImageMessageMediaId: Ext.getCmp('txtNewImageMessageMediaId'),
+            txtNewImageMessageUrl: Ext.getCmp('txtNewImageMessageUrl'),
+            /*txtNewImageMessageMediaId: Ext.getCmp('txtNewImageMessageMediaId'),*/
             winModifyTextMessage: Ext.getCmp('winModifyTextMessage'),
             txtModifyTextMessageContent: Ext.getCmp('txtModifyTextMessageContent'),
             winModifyImageMessage: Ext.getCmp('winModifyImageMessage'),
@@ -160,7 +161,8 @@
                 window.viewModel.winNewTextMessage.show();
             },
             addNewImageResponseCommand: function (parameters) {
-                window.viewModel.txtNewImageMessageMediaId.setRawValue('');
+                window.viewModel.txtNewImageMessageUrl.setRawValue('');
+                /*window.viewModel.txtNewImageMessageMediaId.setRawValue('');*/
                 window.viewModel.winNewImageMessage.show();
             },
             addNewNewsResponseCommand: function (parameters) {
@@ -200,7 +202,7 @@
                 });
             },
             submitNewImageResponseCommand: function (parameters) {
-                var mediaId = window.viewModel.txtNewImageMessageMediaId.getValue();
+                /*var mediaId = window.viewModel.txtNewImageMessageMediaId.getValue();
                 if (mediaId == "") {
                     Ext.Msg.alert('Error', 'please input mediaId');
                     return;
@@ -225,6 +227,33 @@
                     },
                     failure: function (response, options) {
                         Ext.Msg.alert('Error', 'add fail!');
+                    }
+                });*/
+                var imgUrl = window.viewModel.txtNewImageMessageUrl.getValue();
+                if (imgUrl=='') {
+                    Ext.Msg.alert('Error', 'please input img url!');
+                    return;
+                }
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/AddImageResult.ashx',
+                    method: 'POST',
+                    params: {
+                        ImgUrl:imgUrl
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            Ext.Msg.alert('Success',responseObj.info, function() {
+                                window.viewModel.storeImageMessage.load();
+                                window.viewModel.winNewImageMessage.close();
+                            });
+                        } else {
+                            Ext.Msg.alert('Error',responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error','add fail!');
                     }
                 });
             },

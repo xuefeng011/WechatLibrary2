@@ -76,7 +76,7 @@
                 var pnl = window.viewModel.pnlMain;
                 var loader = pnl.loader;
                 loader.suspendEvents();
-                loader.url = "/";
+                loader.url = "/MessageLog/Index";
                 pnl.load();
             },
             groupSendCommand: function (parameters) {

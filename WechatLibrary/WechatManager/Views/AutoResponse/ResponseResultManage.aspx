@@ -198,7 +198,8 @@
     </ext:Window>
     <ext:Window runat="server" Modal="True" Title="添加新图片回复" CloseAction="Hide" Layout="FormLayout" ID="winNewImageMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
         <Items>
-            <ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtNewImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>
+            <ext:TextField runat="server" FieldLabel="图片Url" ID="txtNewImageMessageUrl" AnchorHorizontal="100%"></ext:TextField>
+            <%--<ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtNewImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>--%>
         </Items>
         <Buttons>
             <ext:Button runat="server" Icon="Add" Text="添加">
