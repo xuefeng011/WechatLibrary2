@@ -92,8 +92,10 @@
                                         <ext:Column runat="server" Text="内容" DataIndex="content"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify"></ext:GridCommand>
-                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                                <%--<ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify">
+                                                </ext:GridCommand>--%>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
+                                                </ext:GridCommand>
                                             </Commands>
                                             <Listeners>
                                                 <Command Handler="window.viewModel.textResponseCommandClickCommand(arguments)"></Command>
@@ -101,6 +103,9 @@
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
+                                <Listeners>
+                                    <CellClick Handler="window.viewModel.textResponseModifyCommand(arguments)"></CellClick>
+                                </Listeners>
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>
@@ -123,8 +128,10 @@
                                         <ext:Column runat="server" Text="图片MediaId" DataIndex="mediaId"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server" Icon="ImageEdit" Text="修改" CommandName="modify"></ext:GridCommand>
-                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                                <%--<ext:GridCommand runat="server" Icon="ImageEdit" Text="修改" CommandName="modify">
+                                                </ext:GridCommand>--%>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
+                                                </ext:GridCommand>
                                             </Commands>
                                             <Listeners>
                                                 <Command Handler="window.viewModel.imageResponseCommandClickCommand(arguments)"></Command>
@@ -156,8 +163,10 @@
                                         <ext:Column runat="server" Text="条数" DataIndex="Count"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
-                                                <ext:GridCommand runat="server" Icon="Newspaper" Text="修改" CommandName="modify"></ext:GridCommand>
-                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                                <%--<ext:GridCommand runat="server" Icon="Newspaper" Text="修改" CommandName="modify">
+                                                </ext:GridCommand>--%>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
+                                                </ext:GridCommand>
                                             </Commands>
                                             <Listeners>
                                                 <Command Handler="window.viewModel.newsResponseCommandClickCommand(arguments)"></Command>
@@ -165,6 +174,9 @@
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
+                                <Listeners>
+                                    <CellClick Handler="window.viewModel.newsResponseModifyCommand(arguments)"></CellClick>
+                                </Listeners>
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>
@@ -261,8 +273,10 @@
                         <ext:Column runat="server" Text="图片链接" DataIndex="PicUrl"></ext:Column>
                         <ext:CommandColumn runat="server">
                             <Commands>
-                                <ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify"></ext:GridCommand>
-                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete"></ext:GridCommand>
+                                <%--<ext:GridCommand runat="server" Icon="NoteEdit" Text="修改" CommandName="modify">
+                                </ext:GridCommand>--%>
+                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
+                                </ext:GridCommand>
                             </Commands>
                             <Listeners>
                                 <Command Handler="window.viewModel.gridNewsArticleCommandClickCommand(arguments)"></Command>
@@ -270,6 +284,9 @@
                         </ext:CommandColumn>
                     </Columns>
                 </ColumnModel>
+                <Listeners>
+                    <CellClick Handler="window.viewModel.gridNewsArticleModifyCommand(arguments)"></CellClick>
+                </Listeners>
             </ext:GridPanel>
         </Items>
         <Buttons>

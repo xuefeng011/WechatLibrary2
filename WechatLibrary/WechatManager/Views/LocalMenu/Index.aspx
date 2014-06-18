@@ -60,9 +60,9 @@
                                         </ext:Column>
                                         <ext:CommandColumn runat="server" Width="150" Resizable="False">
                                             <Commands>
-                                                <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
+                                                <%--<ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
                                                     <ToolTip Text="修改"></ToolTip>
-                                                </ext:GridCommand>
+                                                </ext:GridCommand>--%>
                                                 <ext:GridCommand Icon="Delete" Text="删除" CommandName="delete">
                                                     <ToolTip Text="删除"></ToolTip>
                                                 </ext:GridCommand>
@@ -73,6 +73,9 @@
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
+                                <Listeners>
+                                    <CellClick Handler="window.viewModel.firstMenuModifyCommand(arguments)"></CellClick>
+                                </Listeners>
                             </ext:GridPanel>
                         </Items>
                         <Buttons>
@@ -91,9 +94,9 @@
                                         <ext:Column runat="server" Text="Name" DataIndex="name" Hideable="False" Resizable="False"></ext:Column>
                                         <ext:CommandColumn runat="server" Width="150" Resizable="False">
                                             <Commands>
-                                                <ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
+                                                <%--<ext:GridCommand Icon="TableEdit" Text="修改" CommandName="modify">
                                                     <ToolTip Text="修改"></ToolTip>
-                                                </ext:GridCommand>
+                                                </ext:GridCommand>--%>
                                                 <ext:GridCommand Icon="Delete" Text="删除" CommandName="delete">
                                                     <ToolTip Text="删除"></ToolTip>
                                                 </ext:GridCommand>
@@ -104,6 +107,9 @@
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
+                                <Listeners>
+                                    <CellClick Handler="window.viewModel.secondMenuModifyCommand(arguments)"></CellClick>
+                                </Listeners>
                             </ext:GridPanel>
                         </Items>
                         <Buttons>

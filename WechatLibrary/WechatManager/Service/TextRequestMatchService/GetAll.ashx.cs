@@ -63,7 +63,8 @@ namespace WechatManager.Service.TextRequestMatchService
                             {
                                 Id = temp.Id,
                                 MatchContent = temp.MatchContent,
-                                MatchOption = temp.MatchOption
+                                MatchOption = temp.MatchOption,
+                                MatchLevel = temp.MatchLevel,
                             };
                 var list3 = list2.ToList();
                 {

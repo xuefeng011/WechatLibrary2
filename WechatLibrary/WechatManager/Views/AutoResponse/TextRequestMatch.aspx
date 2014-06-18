@@ -22,6 +22,7 @@
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
                     <ext:ModelField runat="server" Name="MatchContent"></ext:ModelField>
                     <ext:ModelField runat="server" Name="MatchOption"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="MatchLevel"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -46,10 +47,13 @@
                             <Columns>
                                 <ext:Column runat="server" DataIndex="MatchContent" Text="匹配文本"></ext:Column>
                                 <ext:Column runat="server" DataIndex="MatchOption" Text="匹配方式"></ext:Column>
+                                <ext:Column runat="server" DataIndex="MatchLevel" Text="匹配等级"></ext:Column>
                                 <ext:CommandColumn runat="server">
                                     <Commands>
-                                        <ext:GridCommand Text="修改" Icon="NoteEdit" CommandName="modify"></ext:GridCommand>
-                                        <ext:GridCommand Text="删除" Icon="Delete" CommandName="delete"></ext:GridCommand>
+                                        <%--<ext:GridCommand Text="修改" Icon="NoteEdit" CommandName="modify">
+                                        </ext:GridCommand>--%>
+                                        <ext:GridCommand Text="删除" Icon="Delete" CommandName="delete">
+                                        </ext:GridCommand>
                                     </Commands>
                                     <Listeners>
                                         <Command Handler="window.viewModel.textMatchesCommandClickCommand(arguments)"></Command>
@@ -57,6 +61,9 @@
                                 </ext:CommandColumn>
                             </Columns>
                         </ColumnModel>
+                        <Listeners>
+                            <CellClick Handler="window.viewModel.textMatchesModifyCommand(arguments)"></CellClick>
+                        </Listeners>
                     </ext:GridPanel>
                 </Items>
             </ext:Panel>

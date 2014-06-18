@@ -70,6 +70,17 @@
                     }
                 });
             },
+            gridNewsArticleModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                var modifyId = data.Id;
+                window.viewModel.winModifyNewsArticle.ArticleId = modifyId;
+                window.viewModel.txtModifyNewsArticleTitle.setRawValue(data.Title);
+                window.viewModel.txtModifyNewsArticleDescription.setRawValue(data.Description);
+                window.viewModel.txtModifyNewsArticleUrl.setRawValue(data.Url);
+                window.viewModel.txtModifyNewsArticlePicUrl.setRawValue(data.PicUrl);
+                window.viewModel.winModifyNewsArticle.show();
+            },
             gridNewsArticleCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];
                 var data = parameters[2].data;
@@ -248,6 +259,13 @@
                     }
                 });
             },
+            textResponseModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                window.viewModel.txtModifyTextMessageContent.setRawValue(data.content);
+                window.viewModel.winModifyTextMessage.editId = data.Id;
+                window.viewModel.winModifyTextMessage.show();
+            },
             textResponseCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];
                 var data = parameters[2].data;
@@ -284,6 +302,13 @@
                     });
                 }
             },
+            imageResponseModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                window.viewModel.txtModifyImageMessageMediaId.setRawValue(data.mediaId);
+                window.viewModel.winModifyImageMessage.editId = data.Id;
+                window.viewModel.winModifyImageMessage.show();
+            },
             imageResponseCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];
                 var data = parameters[2].data;
@@ -318,6 +343,46 @@
                         }
                     });
                 }
+            },
+            newsResponseModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                var modifyId = data.Id;
+                Ext.Ajax.request({
+                    url: '/Service/AutoResponseService/GetNewsResultById.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: modifyId
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            var data = responseObj.data;
+                            window.viewModel.txtModifyNewsMessageTitle.setRawValue(data.Title);
+                            window.viewModel.txtModifyNewsMessageDescription.setRawValue(data.Description);
+                            window.viewModel.txtModifyNewsMessageUrl.setRawValue(data.Url);
+                            window.viewModel.txtModifyNewsMessagePicUrl.setRawValue(data.PicUrl);
+                            // Refresh the 2-10 news article grid.
+                            window.viewModel.storeNewsArticles.proxy.url = "/Service/AutoResponseService/GetNewsArticles.ashx" + "?Id=" + data.MessageId;
+                            window.viewModel.storeNewsArticles.load();
+
+                            // Cache the modify messsage id.
+                            window.viewModel.winModifyNewsMessage.MessageId = data.MessageId;
+
+                            // Cache the modify article id.
+                            window.viewModel.winModifyNewsMessage.ArticleId = data.ArticleId;
+
+                            // Show the setting window.
+                            window.viewModel.winModifyNewsMessage.show();
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'load information fail!');
+                    }
+                });
             },
             newsResponseCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];

@@ -285,6 +285,7 @@
     <Content Include="ViewModels\Home\addWechatAccountViewModel.js" />
     <Content Include="ViewModels\Home\indexViewModel.js" />
     <Content Include="ViewModels\LocalMenu\indexViewModel.js" />
+    <Content Include="ViewModels\MessageLog\indexViewModel.js" />
     <Content Include="ViewModels\WechatServerMenu\indexViewModel.js" />
     <Content Include="Views\AutoResponse\TextRequestMatch.aspx" />
     <Content Include="Views\AutoResponse\ResponseResultManage.aspx" />
@@ -292,6 +293,7 @@
     <Content Include="Views\Desktop\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LocalMenu\Index.aspx" />
+    <Content Include="Views\MessageLog\Index.aspx" />
     <Content Include="Views\WechatServerMenu\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -105,6 +105,57 @@
                     }
                 });
             },
+            firstMenuModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                // cache current first btn id
+                window.viewModel.currentId = data.Id;
+
+                // cache current level.
+                window.viewModel.currentLevel = 1;
+
+                // load second panel
+                var secondStore = window.viewModel.storeSecondMenu;
+                secondStore.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx?Id=" + data.Id;
+                secondStore.load();
+
+                // load setting panel
+                Ext.Ajax.request({
+                    url: '/Service/LocalMenuService/GetMenuButtonSetting.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: data.Id
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            var data = responseObj.data;
+                            window.viewModel.txtName.setRawValue(data.name);
+                            window.viewModel.txtKey.setRawValue(data.key);
+                            window.viewModel.txtUrl.setRawValue(data.url);
+                            if (data.type == "click") {
+                                window.viewModel.rdoClick.setRawValue(true);
+                                window.viewModel.rdoView.setRawValue(false);
+                                window.viewModel.rdoNone.setRawValue(false);
+                            } else if (data.type == "view") {
+                                window.viewModel.rdoView.setRawValue(true);
+                                window.viewModel.rdoClick.setRawValue(false);
+                                window.viewModel.rdoNone.setRawValue(false);
+                            } else {
+                                window.viewModel.rdoNone.setRawValue(true);
+                                window.viewModel.rdoClick.setRawValue(false);
+                                window.viewModel.rdoView.setRawValue(false);
+                            }
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'load setting fail!');
+                    }
+                });
+            },
             firstMenuCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];
                 var data = parameters[2].data;
@@ -200,6 +251,52 @@
                         }
                     });
                 }
+            },
+            secondMenuModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+
+                // cache current first btn id
+                window.viewModel.currentId = data.Id;
+
+                // cache current level.
+                window.viewModel.currentLevel = 2;
+
+                // load setting panel
+                Ext.Ajax.request({
+                    url: '/Service/LocalMenuService/GetMenuButtonSetting.ashx',
+                    method: 'POST',
+                    params: {
+                        Id: data.Id
+                    },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            var data = responseObj.data;
+                            window.viewModel.txtName.setRawValue(data.name);
+                            window.viewModel.txtKey.setRawValue(data.key);
+                            window.viewModel.txtUrl.setRawValue(data.url);
+                            if (data.type == "click") {
+                                window.viewModel.rdoClick.setRawValue(true);
+                                window.viewModel.rdoView.setRawValue(false);
+                                window.viewModel.rdoNone.setRawValue(false);
+                            } else if (data.type == "view") {
+                                window.viewModel.rdoView.setRawValue(true);
+                                window.viewModel.rdoClick.setRawValue(false);
+                                window.viewModel.rdoNone.setRawValue(false);
+                            } else {
+                                window.viewModel.rdoNone.setRawValue(true);
+                                window.viewModel.rdoClick.setRawValue(false);
+                                window.viewModel.rdoView.setRawValue(false);
+                            }
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'load setting fail!');
+                    }
+                });
             },
             secondMenuCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];

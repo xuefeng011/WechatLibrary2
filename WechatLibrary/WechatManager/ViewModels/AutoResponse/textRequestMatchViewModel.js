@@ -243,6 +243,66 @@
                     }
                 });
             },
+            textMatchesModifyCommand: function (parameters) {
+                var data = parameters[3].data;
+                
+                Ext.Ajax.request({
+                    url: '/Service/TextRequestMatchService/GetById.ashx',
+                    method: 'POST',
+                    params: { Id: data.Id },
+                    success: function (response, options) {
+                        var responseText = response.responseText;
+                        var responseObj = Ext.decode(responseText);
+                        if (responseObj.success) {
+                            // Get the text match data from json object.
+                            var data = responseObj.data;
+
+                            // Set each control value;
+                            window.viewModel.txtModifyTextMatchContent.setRawValue(data.MatchContent);
+                            var matchOption = data.MatchOption;
+                            if (matchOption == 'equals') {
+                                window.viewModel.cmbModifyTextMatchOption.select('完全匹配');
+                            } else if (matchOption == 'equalsignore') {
+                                window.viewModel.cmbModifyTextMatchOption.select('不区分大小写完全匹配');
+                            } else if (matchOption == 'contains') {
+                                window.viewModel.cmbModifyTextMatchOption.select('部分匹配');
+                            } else if (matchOption == 'containsignore') {
+                                window.viewModel.cmbModifyTextMatchOption.select('不区分大小写部分匹配');
+                            } else {
+                                window.viewModel.cmbModifyTextMatchOption.select('');
+                            }
+                            window.viewModel.txtModifyTextMatchLevel.setRawValue(data.MatchLevel);
+
+                            // Set AutoResponseType.
+                            if (data.ResponseType == 'text') {
+                                window.viewModel.cmbResponseType.select('文本');
+                                window.viewModel.cmbResponseTypeSelected();
+                            }
+                            else if (data.ResponseType == 'image') {
+                                window.viewModel.cmbResponseType.select('图片');
+                                window.viewModel.cmbResponseTypeSelected();
+                            }
+                            else if (data.ResponseType == 'news') {
+                                window.viewModel.cmbResponseType.select('图文');
+                                window.viewModel.cmbResponseTypeSelected();
+                            } else {
+                                window.viewModel.cmbResponseType.select();
+                            }
+
+                            // Cache the modify item id.
+                            window.viewModel.modifyWindow.modifyId = data.Id;
+
+                            // Show the setting window.
+                            window.viewModel.modifyWindow.show();
+                        } else {
+                            Ext.Msg.alert('Error', responseObj.info);
+                        }
+                    },
+                    failure: function (response, options) {
+                        Ext.Msg.alert('Error', 'load information fail!');
+                    }
+                });
+            },
             textMatchesCommandClickCommand: function (parameters) {
                 var commandName = parameters[1];
                 var data = parameters[2].data;
