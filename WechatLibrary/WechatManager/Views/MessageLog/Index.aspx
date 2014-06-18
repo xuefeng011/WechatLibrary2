@@ -14,7 +14,7 @@
     <script src="../../ViewModels/MessageLog/indexViewModel.js"></script>
     <ext:Store runat="server">
         <Proxy>
-            <ext:AjaxProxy Url="" Json="True"></ext:AjaxProxy>
+            <ext:AjaxProxy Url="/Service/MessageLogService/GetAll.ashx" Json="True"></ext:AjaxProxy>
         </Proxy>
         <Model>
             <ext:Model runat="server">
@@ -36,6 +36,7 @@
             <ext:GridPanel runat="server" Region="Center">
                 <ColumnModel>
                     <Columns>
+                        <ext:Column runat="server" DataIndex="RequestType"></ext:Column>
                     </Columns>
                 </ColumnModel>
             </ext:GridPanel>
