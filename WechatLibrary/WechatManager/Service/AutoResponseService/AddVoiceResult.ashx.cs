@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
-using WechatLibrary.Model.AutoResponse.Result;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// AddImageResult 的摘要说明
+    /// AddVoiceResult 的摘要说明
     /// </summary>
-    public class AddImageResult : IHttpHandler, IRequiresSessionState
+    public class AddVoiceResult : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -32,38 +30,10 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
-            //var mediaId = context.Request["MediaId"];
-            //if (string.IsNullOrEmpty(mediaId) == true)
-            //{
-            //    var responseObj = new
-            //    {
-            //        success = false,
-            //        info = "please input media id!"
-            //    };
-            //    var json = JsonHelper.SerializeToJson(responseObj);
-            //    context.Response.ContentType = "text/json";
-            //    context.Response.Write(json);
-            //    return;
-            //}
-
-            var imgUrl = context.Request["ImgUrl"];
-            if (string.IsNullOrEmpty(imgUrl) == true)
-            {
-                var responseObj = new
-                {
-                    success = false,
-                    info = "please input image url!"
-                };
-                var json = JsonHelper.SerializeToJson(responseObj);
-                context.Response.ContentType = "text/json";
-                context.Response.Write(json);
-                return;
-            }
-
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
-                if (query.Count() <= 0)
+                if (query.Count() < 1)
                 {
                     var responseObj = new
                     {
@@ -87,33 +57,8 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
-                
-                // Get current user.
+
                 var wechatAccount = query.First();
-
-                WebClient wc=new WebClient();
-                wc.Dispose();
-
-
-
-
-                wechatAccount.ImageAutoResponseResults.Add(new ImageAutoResponseResult()
-                {
-                    Id = Guid.NewGuid(),
-                    /*MediaId = mediaId*/
-                });
-                entities.SaveChanges();
-                {
-                    var responseObj = new
-                    {
-                        success = true,
-                        info = "add success"
-                    };
-                    var json = JsonHelper.SerializeToJson(responseObj);
-                    context.Response.ContentType = "text/json";
-                    context.Response.Write(json);
-                    return;
-                }
             }
         }
 

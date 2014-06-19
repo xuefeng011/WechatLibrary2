@@ -34,3 +34,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+// 使 internal 修饰的类、方法等，对 WechatManager 程序集可见。
+[assembly: InternalsVisibleTo("WechatManager", AllInternalsVisible = true)]

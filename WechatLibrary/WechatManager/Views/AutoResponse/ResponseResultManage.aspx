@@ -38,6 +38,18 @@
             </ext:Model>
         </Model>
     </ext:Store>
+    <ext:Store runat="server" ID="storeVoiceMessage" IDMode="Explicit">
+        <Proxy>
+            <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllVoiceResult.ashx" Json="True"></ext:AjaxProxy>
+        </Proxy>
+        <Model>
+            <ext:Model runat="server">
+                <Fields>
+                    <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                </Fields>
+            </ext:Model>
+        </Model>
+    </ext:Store>
     <ext:Store runat="server" ID="storeNewsMessage" IDMode="Explicit">
         <Proxy>
             <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllNewsResult.ashx" Json="True"></ext:AjaxProxy>
@@ -139,6 +151,37 @@
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
+                            </ext:GridPanel>
+                        </Items>
+                    </ext:Panel>
+                    <ext:Panel runat="server" Title="回复语音消息" Closable="False">
+                        <Items>
+                            <ext:GridPanel runat="server" StoreID="storeVoiceMessage">
+                                <TopBar>
+                                    <ext:Toolbar runat="server">
+                                        <Items>
+                                            <ext:Button runat="server" Icon="Add" Text="添加">
+                                                <Listeners>
+                                                    <Click Handler="window.viewModel.addNewVoiceResponseCommand(arguments)"></Click>
+                                                </Listeners>
+                                            </ext:Button>
+                                        </Items>
+                                    </ext:Toolbar>
+                                </TopBar>
+                                <ColumnModel>
+                                    <Columns>
+                                        <ext:Column runat="server" Text=""></ext:Column>
+                                        <ext:CommandColumn runat="server">
+                                            <Commands>
+                                                <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
+                                                </ext:GridCommand>
+                                            </Commands>
+                                        </ext:CommandColumn>
+                                    </Columns>
+                                </ColumnModel>
+                                <Listeners>
+                                    <CellClick Handler="window.viewModel.voiceResponseModifyCommand(arguments)"></CellClick>
+                                </Listeners>
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>

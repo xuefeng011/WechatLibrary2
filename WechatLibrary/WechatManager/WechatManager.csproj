@@ -121,6 +121,9 @@
     <Compile Include="Service\AutoResponseService\AddTextResult.ashx.cs">
       <DependentUpon>AddTextResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\AutoResponseService\AddVoiceResult.ashx.cs">
+      <DependentUpon>AddVoiceResult.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\AutoResponseService\DeleteImageResult.ashx.cs">
       <DependentUpon>DeleteImageResult.ashx</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
     </Compile>
     <Compile Include="Service\AutoResponseService\GetAllTextResult.ashx.cs">
       <DependentUpon>GetAllTextResult.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AutoResponseService\GetAllVoiceResult.ashx.cs">
+      <DependentUpon>GetAllVoiceResult.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\AutoResponseService\GetNewsArticles.ashx.cs">
       <DependentUpon>GetNewsArticles.ashx</DependentUpon>
@@ -468,6 +474,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\MessageLogService\GetResponseResultSource.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\GetAllVoiceResult.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\AddVoiceResult.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
