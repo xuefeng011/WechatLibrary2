@@ -11,7 +11,8 @@
 <body>
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
-    <script src="../../ViewModels/AutoResponse/responseResultManageViewModel.js"></script>
+    <script src="<%= "../../ViewModels/AutoResponse/responseResultManageViewModel.js?ticks="+DateTime.Now.Ticks %>"></script>
+    <%--<script src="../../ViewModels/AutoResponse/responseResultManageViewModel.js"></script>--%>
     <ext:Store runat="server" ID="storeTextMessage" IDMode="Explicit">
         <Proxy>
             <ext:AjaxProxy Url="/Service/AutoResponseService/GetAllTextResult.ashx" Json="True"></ext:AjaxProxy>
@@ -250,6 +251,24 @@
                     <Click Handler="window.viewModel.submitNewImageResponseCommand(arguments)"></Click>
                 </Listeners>
             </ext:Button>
+        </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" Modal="True" Title="添加新语音回复" CloseAction="Hide" Layout="FormLayout" ID="winNewVoiceMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="400">
+        <Items>
+            <ext:FormPanel runat="server" Method="POST" ID="formNewVoiceMessage" Url="/Service/AutoResponseService/AddVoiceResult.ashx">
+                <Items>
+                    <ext:FileUploadField runat="server" FieldLabel="音频文件" LabelWidth="60" ID="fileNewVoiceMessage" AnchorHorizontal="100%"></ext:FileUploadField>
+                </Items>
+                <Buttons>
+                    <ext:Button runat="server" Icon="Add" Text="添加">
+                        <Listeners>
+                            <Click Handler="window.viewModel.submitNewVoiceResponseCommand(arguments)"></Click>
+                        </Listeners>
+                    </ext:Button>
+                </Buttons>
+            </ext:FormPanel>
+        </Items>
+        <Buttons>
         </Buttons>
     </ext:Window>
     <ext:Window runat="server" Modal="True" Title="修改文本回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyTextMessage" Hidden="True" Icon="NoteEdit" Width="300" BodyPadding="8">

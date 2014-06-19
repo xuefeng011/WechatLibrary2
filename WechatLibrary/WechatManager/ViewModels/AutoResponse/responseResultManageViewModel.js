@@ -4,6 +4,7 @@
         window.viewModel = window.viewModel || {
             storeTextMessage: Ext.StoreManager.get('storeTextMessage'),
             storeImageMessage: Ext.StoreManager.get('storeImageMessage'),
+            storeVoiceMessage: Ext.StoreManager.get('storeVoiceMessage'),
             storeNewsMessage: Ext.StoreManager.get('storeNewsMessage'),
             storeNewsArticles: Ext.StoreManager.get('storeNewsArticles'),
             winModifyNewsArticle: Ext.getCmp('winModifyNewsArticle'),
@@ -35,6 +36,8 @@
             txtModifyNewsMessageDescription: Ext.getCmp('txtModifyNewsMessageDescription'),
             txtModifyNewsMessageUrl: Ext.getCmp('txtModifyNewsMessageUrl'),
             txtModifyNewsMessagePicUrl: Ext.getCmp('txtModifyNewsMessagePicUrl'),
+            winNewVoiceMessage: Ext.getCmp('winNewVoiceMessage'),
+            formNewVoiceMessage: Ext.getCmp('formNewVoiceMessage'),
             submitModifyNewsArticleChange: function (parameters) {
                 var id = window.viewModel.winModifyNewsArticle.ArticleId;
                 var title = window.viewModel.txtModifyNewsArticleTitle.getValue();
@@ -230,7 +233,7 @@
                     }
                 });*/
                 var imgUrl = window.viewModel.txtNewImageMessageUrl.getValue();
-                if (imgUrl=='') {
+                if (imgUrl == '') {
                     Ext.Msg.alert('Error', 'please input img url!');
                     return;
                 }
@@ -238,22 +241,22 @@
                     url: '/Service/AutoResponseService/AddImageResult.ashx',
                     method: 'POST',
                     params: {
-                        ImgUrl:imgUrl
+                        ImgUrl: imgUrl
                     },
                     success: function (response, options) {
                         var responseText = response.responseText;
                         var responseObj = Ext.decode(responseText);
                         if (responseObj.success) {
-                            Ext.Msg.alert('Success',responseObj.info, function() {
+                            Ext.Msg.alert('Success', responseObj.info, function () {
                                 window.viewModel.storeImageMessage.load();
                                 window.viewModel.winNewImageMessage.close();
                             });
                         } else {
-                            Ext.Msg.alert('Error',responseObj.info);
+                            Ext.Msg.alert('Error', responseObj.info);
                         }
                     },
                     failure: function (response, options) {
-                        Ext.Msg.alert('Error','add fail!');
+                        Ext.Msg.alert('Error', 'add fail!');
                     }
                 });
             },
@@ -589,6 +592,12 @@
                         Ext.Msg.alert('Error', 'edit fail!');
                     }
                 });
+            },
+            addNewVoiceResponseCommand: function (parameters) {
+                window.viewModel.winNewVoiceMessage.show();
+            },
+            submitNewVoiceResponseCommand: function (parameters) {
+                alert('test click!');
             }
         };
     });

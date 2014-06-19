@@ -11,7 +11,8 @@
 <body>
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
-    <script src="../../ViewModels/MessageLog/indexViewModel.js"></script>
+    <script src="<%="../../ViewModels/MessageLog/indexViewModel.js?ticks="+DateTime.Now.Ticks %>">
+    </script>
     <%--<ext:Store runat="server" ID="storeMessageLog">
         <Proxy>
             <ext:AjaxProxy Url="/Service/MessageLogService/GetAll.ashx" Json="True">
@@ -84,10 +85,12 @@
                     </Columns>
                 </ColumnModel>
                 <SelectionModel>
-                    <ext:RowSelectionModel runat="server" Mode="Single"></ext:RowSelectionModel>
+                    <ext:RowSelectionModel runat="server" Mode="Single">
+                    </ext:RowSelectionModel>
                 </SelectionModel>
                 <BottomBar>
-                    <ext:PagingToolbar runat="server"></ext:PagingToolbar>
+                    <ext:PagingToolbar runat="server">
+                    </ext:PagingToolbar>
                 </BottomBar>
                 <Listeners>
                     <CellClick Handler="window.viewModel.showMessageDetailCommand(arguments)"></CellClick>
@@ -97,17 +100,20 @@
     </ext:Viewport>
     <ext:Window runat="server" ID="winMessageDetail" Modal="True" CloseAction="Hide" Title="消息原文" Hidden="True" Maximized="True" Layout="HBoxLayout" TitleAlign="Center">
         <LayoutConfig>
-            <ext:HBoxLayoutConfig runat="server" Align="Stretch"></ext:HBoxLayoutConfig>
+            <ext:HBoxLayoutConfig runat="server" Align="Stretch">
+            </ext:HBoxLayoutConfig>
         </LayoutConfig>
         <Items>
             <ext:Panel ID="pnlRequestMessage" runat="server" Title="请求消息" TitleAlign="Center" Flex="1">
                 <Loader runat="server" AutoLoad="False" DisableCaching="True" Mode="Frame">
-                    <LoadMask Msg="Loading..." ShowMask="True"></LoadMask>
+                    <LoadMask Msg="Loading..." ShowMask="True">
+                    </LoadMask>
                 </Loader>
             </ext:Panel>
             <ext:Panel ID="pnlResponseResult" runat="server" Title="返回消息" TitleAlign="Center" Flex="1">
                 <Loader runat="server" AutoLoad="False" DisableCaching="True" Mode="Frame">
-                    <LoadMask Msg="Loading..." ShowMask="True"></LoadMask>
+                    <LoadMask Msg="Loading..." ShowMask="True">
+                    </LoadMask>
                 </Loader>
             </ext:Panel>
         </Items>
