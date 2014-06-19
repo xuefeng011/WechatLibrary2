@@ -93,7 +93,8 @@
                     </ext:PagingToolbar>
                 </BottomBar>
                 <Listeners>
-                    <CellClick Handler="window.viewModel.showMessageDetailCommand(arguments)"></CellClick>
+                    <CellClick Handler="window.viewModel.showMessageDetailCommand(arguments)">
+                    </CellClick>
                 </Listeners>
             </ext:GridPanel>
         </Items>
