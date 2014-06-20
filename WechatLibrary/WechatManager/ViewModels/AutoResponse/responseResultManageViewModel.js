@@ -7,6 +7,7 @@
             storeVoiceMessage: Ext.StoreManager.get('storeVoiceMessage'),
             storeNewsMessage: Ext.StoreManager.get('storeNewsMessage'),
             storeNewsArticles: Ext.StoreManager.get('storeNewsArticles'),
+            formNewImageMessage: Ext.getCmp('formNewImageMessage'),
             winModifyNewsArticle: Ext.getCmp('winModifyNewsArticle'),
             txtModifyNewsArticleTitle: Ext.getCmp('txtModifyNewsArticleTitle'),
             txtModifyNewsArticleDescription: Ext.getCmp('txtModifyNewsArticleDescription'),
@@ -20,7 +21,7 @@
             winNewTextMessage: Ext.getCmp('winNewTextMessage'),
             txtNewTextMessageContent: Ext.getCmp('txtNewTextMessageContent'),
             winNewImageMessage: Ext.getCmp('winNewImageMessage'),
-            txtNewImageMessageUrl: Ext.getCmp('txtNewImageMessageUrl'),
+            /*txtNewImageMessageUrl: Ext.getCmp('txtNewImageMessageUrl'),*/
             /*txtNewImageMessageMediaId: Ext.getCmp('txtNewImageMessageMediaId'),*/
             winModifyTextMessage: Ext.getCmp('winModifyTextMessage'),
             txtModifyTextMessageContent: Ext.getCmp('txtModifyTextMessageContent'),
@@ -164,7 +165,8 @@
                 window.viewModel.winNewTextMessage.show();
             },
             addNewImageResponseCommand: function (parameters) {
-                window.viewModel.txtNewImageMessageUrl.setRawValue('');
+                window.viewModel.formNewImageMessage.reset();
+                /*window.viewModel.txtNewImageMessageUrl.setRawValue('');*/
                 /*window.viewModel.txtNewImageMessageMediaId.setRawValue('');*/
                 window.viewModel.winNewImageMessage.show();
             },
@@ -232,31 +234,44 @@
                         Ext.Msg.alert('Error', 'add fail!');
                     }
                 });*/
-                var imgUrl = window.viewModel.txtNewImageMessageUrl.getValue();
-                if (imgUrl == '') {
-                    Ext.Msg.alert('Error', 'please input img url!');
-                    return;
-                }
-                Ext.Ajax.request({
-                    url: '/Service/AutoResponseService/AddImageResult.ashx',
-                    method: 'POST',
-                    params: {
-                        ImgUrl: imgUrl
+                //var imgUrl = window.viewModel.txtNewImageMessageUrl.getValue();
+                //if (imgUrl == '') {
+                //    Ext.Msg.alert('Error', 'please input img url!');
+                //    return;
+                //}
+                //Ext.Ajax.request({
+                //    url: '/Service/AutoResponseService/AddImageResult.ashx',
+                //    method: 'POST',
+                //    params: {
+                //        ImgUrl: imgUrl
+                //    },
+                //    success: function (response, options) {
+                //        var responseText = response.responseText;
+                //        var responseObj = Ext.decode(responseText);
+                //        if (responseObj.success) {
+                //            Ext.Msg.alert('Success', responseObj.info, function () {
+                //                window.viewModel.storeImageMessage.load();
+                //                window.viewModel.winNewImageMessage.close();
+                //            });
+                //        } else {
+                //            Ext.Msg.alert('Error', responseObj.info);
+                //        }
+                //    },
+                //    failure: function (response, options) {
+                //        Ext.Msg.alert('Error', 'add fail!');
+                //    }
+                //});
+                window.viewModel.formNewImageMessage.submit({
+                    success: function (form, action) {
+                        var responseObj = action.result;
+                        Ext.Msg.alert('Success', responseObj.info, function () {
+                            window.viewModel.storeImageMessage.load();
+                            window.viewModel.winNewImageMessage.close();
+                        });
                     },
-                    success: function (response, options) {
-                        var responseText = response.responseText;
-                        var responseObj = Ext.decode(responseText);
-                        if (responseObj.success) {
-                            Ext.Msg.alert('Success', responseObj.info, function () {
-                                window.viewModel.storeImageMessage.load();
-                                window.viewModel.winNewImageMessage.close();
-                            });
-                        } else {
-                            Ext.Msg.alert('Error', responseObj.info);
-                        }
-                    },
-                    failure: function (response, options) {
-                        Ext.Msg.alert('Error', 'add fail!');
+                    failure: function (form, action) {
+                        var responseObj = action.result;
+                        Ext.Msg.alert('Error', responseObj.info);
                     }
                 });
             },
@@ -349,6 +364,9 @@
                     window.viewModel.txtModifyImageMessageMediaId.setRawValue(data.mediaId);
                     window.viewModel.winModifyImageMessage.editId = data.Id;
                     window.viewModel.winModifyImageMessage.show();
+                }
+                else if (commandName == 'view') {
+                    window.open('/Resource/ViewImage?id=' + data.Id);
                 }
                 else if (commandName == "delete") {
                     Ext.Msg.confirm('Warning', 'delete the image response?', function (btn) {
@@ -597,7 +615,19 @@
                 window.viewModel.winNewVoiceMessage.show();
             },
             submitNewVoiceResponseCommand: function (parameters) {
-                alert('test click!');
+                window.viewModel.formNewVoiceMessage.submit({
+                    success: function (form, action) {
+                        var responseObj = action.result;
+                        Ext.Msg.alert('Success', responseObj.info, function () {
+                            window.viewModel.storeVoiceMessage.load();
+                            window.viewModel.winNewVoiceMessage.close();
+                        });
+                    },
+                    failure: function (form, action) {
+                        var responseObj = action.result;
+                        Ext.Msg.alert('Error', responseObj.info);
+                    }
+                });
             }
         };
     });

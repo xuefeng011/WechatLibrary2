@@ -46,19 +46,38 @@ namespace WechatManager.Service.AutoResponseService
             //    return;
             //}
 
-            var imgUrl = context.Request["ImgUrl"];
-            if (string.IsNullOrEmpty(imgUrl) == true)
+            //var imgUrl = context.Request["ImgUrl"];
+            //if (string.IsNullOrEmpty(imgUrl) == true)
+            //{
+            //    var responseObj = new
+            //    {
+            //        success = false,
+            //        info = "please input image url!"
+            //    };
+            //    var json = JsonHelper.SerializeToJson(responseObj);
+            //    context.Response.ContentType = "text/json";
+            //    context.Response.Write(json);
+            //    return;
+            //}
+
+            if (context.Request.Files.Count != 1)
             {
                 var responseObj = new
                 {
                     success = false,
-                    info = "please input image url!"
+                    info = "please select an image to upload!"
                 };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
                 context.Response.Write(json);
                 return;
             }
+
+            HttpPostedFile file = context.Request.Files[0];
+            var fileName = file.FileName;
+            var bytesCount = file.ContentLength;
+            var bytes = new byte[bytesCount];
+            file.InputStream.Read(bytes, 0, bytesCount);
 
             using (var entities = new WechatEntities())
             {
@@ -87,21 +106,28 @@ namespace WechatManager.Service.AutoResponseService
                     context.Response.Write(json);
                     return;
                 }
-                
+
                 // Get current user.
                 var wechatAccount = query.First();
 
-                WebClient wc=new WebClient();
-                wc.Dispose();
+                var imageAutoResponseResult = new ImageAutoResponseResult();
 
+                var wechatResource = new WechatResource();
 
+                wechatAccount.ImageAutoResponseResults.Add(imageAutoResponseResult);
 
+                wechatResource.Id = Guid.NewGuid();
+                wechatResource.Bytes = bytes;
+                wechatResource.Name = fileName;
+                wechatResource.Owner = wechatAccount;
+                wechatResource.OwnerWechatAccountId = wechatAccount.Id;
+                wechatResource.Type = "image";
+                wechatResource.ExpiresTime = new DateTime(1970, 1, 1);
+                wechatResource.RefreshTime = new DateTime(1970, 1, 1);
 
-                wechatAccount.ImageAutoResponseResults.Add(new ImageAutoResponseResult()
-                {
-                    Id = Guid.NewGuid(),
-                    /*MediaId = mediaId*/
-                });
+                imageAutoResponseResult.Id = Guid.NewGuid();
+                imageAutoResponseResult.WechatResource = wechatResource;
+
                 entities.SaveChanges();
                 {
                     var responseObj = new

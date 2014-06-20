@@ -91,8 +91,7 @@ namespace WechatManager.Service.WechatAccountService
                     return;
                 }
 
-                // add entity.
-                entities.WechatAccounts.Add(new WechatAccount()
+                var wechatAccount = new WechatAccount()
                 {
                     Id = Guid.NewGuid(),
                     AppId = appId,
@@ -100,11 +99,22 @@ namespace WechatManager.Service.WechatAccountService
                     Token = token,
                     WechatId = wechatId,
                     Namespace = @namespace
-                });
+                };
+
+                // add entity.
+                entities.WechatAccounts.Add(wechatAccount);
 
                 // try save change.
                 if (entities.SaveChanges() > 0)
                 {
+                    wechatAccount.AccessToken = new AccessToken()
+                    {
+                        Id = Guid.NewGuid(),
+                        WechatAccount = wechatAccount,
+                        ExpiresTime = new DateTime(1970, 1, 1)
+                    };
+                    entities.SaveChanges();
+
                     var responseObj = new
                     {
                         success = true,

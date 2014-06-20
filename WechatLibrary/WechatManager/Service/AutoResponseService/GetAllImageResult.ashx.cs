@@ -65,7 +65,7 @@ namespace WechatManager.Service.AutoResponseService
                                       select new
                                       {
                                           Id = temp.Id,
-                                          mediaId = temp.MediaId
+                                          ImgName = temp.WechatResource == null ? string.Empty : temp.WechatResource.Name
                                       };
                     var json = JsonHelper.SerializeToJson(responseObj.ToList());
                     context.Response.ContentType = "text/json";

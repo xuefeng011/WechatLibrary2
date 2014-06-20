@@ -42,6 +42,7 @@ namespace WechatLibrary.Model
         {
             get
             {
+#if !DEBUG
                 if (string.IsNullOrEmpty(_value) == true || _expiresTime == default(DateTime))
                 {
                     while (true)
@@ -63,6 +64,7 @@ namespace WechatLibrary.Model
                         }
                     }
                 }
+#endif
 
                 return _value;
             }

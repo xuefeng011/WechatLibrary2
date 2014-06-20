@@ -80,21 +80,37 @@ namespace WechatManager.Service.AutoResponseService
                     return;
                 }
 
+                // Get current user.
                 var wechatAccount = query.First();
 
-                var voiceResource = new WechatResource();
-                voiceResource.Owner = wechatAccount;
-                voiceResource.OwnerWechatAccountId = wechatAccount.Id;
-                voiceResource.Name = fileName;
-                voiceResource.Id = Guid.NewGuid();
-                voiceResource.Type = "voice";
-                voiceResource.Bytes = bytes;
-
-                var uploadReturn = WechatResourceService.Upload(voiceResource);
-                voiceResource.MediaId = uploadReturn.MediaId;
-                
                 var voiceAutoResponseResult = new VoiceAutoResponseResult();
 
+                var wechatResource = new WechatResource();
+
+                wechatResource.Id = Guid.NewGuid();
+                wechatResource.Bytes = bytes;
+                wechatResource.Name = fileName;
+                wechatResource.Owner = wechatAccount;
+                wechatResource.OwnerWechatAccountId = wechatAccount.Id;
+                wechatResource.Type = "voice";
+
+                voiceAutoResponseResult.Id = Guid.NewGuid();
+                voiceAutoResponseResult.WechatResource = wechatResource;
+
+                wechatAccount.VoiceAutoResponseResults.Add(voiceAutoResponseResult);
+
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "add success"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
             }
         }
 

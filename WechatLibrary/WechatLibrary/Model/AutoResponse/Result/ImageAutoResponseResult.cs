@@ -22,10 +22,11 @@ namespace WechatLibrary.Model.AutoResponse.Result
             set;
         }
 
+
         /// <summary>
-        /// 通过上传多媒体文件，得到的id。
+        /// 该自动回复消息映射的资源。
         /// </summary>
-        public string MediaId
+        public virtual WechatResource WechatResource
         {
             get;
             set;

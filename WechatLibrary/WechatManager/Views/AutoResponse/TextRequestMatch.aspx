@@ -11,7 +11,7 @@
 <body>
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
-    <script src="../../ViewModels/AutoResponse/textRequestMatchViewModel.js"></script>
+    <script src="<%="../../ViewModels/AutoResponse/textRequestMatchViewModel.js?ticks="+DateTime.Now.Ticks %>"></script>
     <ext:Store runat="server" ID="storeTextMatches" IDMode="Explicit">
         <Proxy>
             <ext:AjaxProxy Url="/Service/TextRequestMatchService/GetAll.ashx" Json="True"></ext:AjaxProxy>
@@ -106,7 +106,7 @@
             <%--文本消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Content"></ext:ComboBox>
             <%--图片消息资源--%>
-            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="MediaId"></ext:ComboBox>
+            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="ImgName"></ext:ComboBox>
             <%--图文消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Title"></ext:ComboBox>
         </Items>

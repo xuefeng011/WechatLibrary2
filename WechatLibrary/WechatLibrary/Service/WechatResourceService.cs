@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
 using WechatLibrary.Model.Return;
@@ -34,7 +36,7 @@ namespace WechatLibrary.Service
             }
             if (wechatResource.Owner == null)
             {
-                throw new ArgumentException("该微信资源没有绑定微信帐号","wechatResource");
+                throw new ArgumentException("该微信资源没有绑定微信帐号", "wechatResource");
             }
             string type = wechatResource.Type;
             switch (type)
@@ -44,15 +46,26 @@ namespace WechatLibrary.Service
                 case "video":
                 case "thumb":
                     {
+                        using (var entities=new WechatEntities())
+                        {
+                            var wechatAccount =
+                                entities.WechatAccounts.FirstOrDefault(temp => temp.Id == wechatResource.OwnerWechatAccountId);
+                            if (wechatAccount!=null)
+                            {
+                                wechatResource.Owner = wechatAccount;
+                                entities.SaveChanges();
+                            }
+                        }
+
                         string url = string.Format(UploadUrlTemplate, wechatResource.Owner.AccessToken.Value, type);
                         byte[] responseBytes;
                         using (var wc = new WebClient())
                         {
                             // 添加 Http 头。
-                            wc.Headers.Add("fileName", wechatResource.Name);
+                            wc.Headers.Add("fileName", wechatResource.Id.ToString() + Path.GetExtension(wechatResource.Name));
                             wc.Headers.Add("filelength", wechatResource.Bytes.Length.ToString());
                             wc.Headers.Add("content-type", "application/x-www-form-urlencoded");
-                            
+
                             // 上传数据。
                             responseBytes = wc.UploadData(url, wechatResource.Bytes);
                         }

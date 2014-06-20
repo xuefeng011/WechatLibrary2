@@ -106,7 +106,7 @@ namespace WechatManager.Service.TextRequestMatchService
                                 select new
                                 {
                                     Id = temp.Id,
-                                    MediaId = temp.MediaId
+                                    ImgName = temp.WechatResource == null ? string.Empty : temp.WechatResource.Name
                                 }).ToList(),
                         selectedId = selectedId
                     };

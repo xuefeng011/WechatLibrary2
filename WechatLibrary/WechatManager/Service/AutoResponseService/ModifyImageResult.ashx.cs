@@ -111,7 +111,7 @@ namespace WechatManager.Service.AutoResponseService
                     return;
                 }
                 var modifyItem = modifyQuery.First();
-                modifyItem.MediaId = mediaId;
+                // modifyItem.MediaId = mediaId;
                 entities.SaveChanges();
                 {
                     var responseObj = new

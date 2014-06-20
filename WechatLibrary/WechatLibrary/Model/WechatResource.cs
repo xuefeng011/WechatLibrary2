@@ -42,21 +42,42 @@ namespace WechatLibrary.Model
         {
             get
             {
-                if (string.IsNullOrEmpty(_mediaId) == true
-                    || this._expiresTime == default(DateTime)
-                    || this._expiresTime < DateTime.Now)
+#if !DEBUG
+                if (string.IsNullOrEmpty(_mediaId) == true// 未获取。
+                    || this._expiresTime == default(DateTime)// 未获取。
+                    || this._expiresTime < DateTime.Now)// 过期。
                 {
                     var uploadReturn = WechatResourceService.Upload(this);
                     if (uploadReturn.ErrorCode == 0)
                     {
                         this._mediaId = uploadReturn.MediaId;
                         this._expiresTime = DateTime.Now.AddDays(2);
+
+                        this.RefreshTime = DateTime.Now;
+
+                        using (var entities = new WechatEntities())
+                        {
+                            var resource = entities.WechatResources.FirstOrDefault(temp => temp.Id == this.Id);
+                            if (resource != null)
+                            {
+                                resource.Bytes = this.Bytes;
+                                resource.ExpiresTime = this.ExpiresTime;
+                                resource.MediaId = this.MediaId;
+                                resource.Name = this.Name;
+                                resource.Owner = this.Owner;
+                                resource.OwnerWechatAccountId = this.OwnerWechatAccountId;
+                                resource.RefreshTime = this.RefreshTime;
+                                resource.Type = this.Type;
+                                entities.SaveChanges();
+                            }
+                        }
                     }
                     else
                     {
                         return string.Empty;
                     }
                 }
+#endif
                 return _mediaId;
             }
             set
@@ -134,6 +155,15 @@ namespace WechatLibrary.Model
         }
 
         /// <summary>
+        /// 刷新 MediaId 的时间。
+        /// </summary>
+        public DateTime RefreshTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 拥有该微信资源的微信帐号的数据库主键。
         /// </summary>
         [ForeignKey("Owner")]
@@ -147,7 +177,7 @@ namespace WechatLibrary.Model
         /// <summary>
         /// 拥有该微信资源的微信帐号。
         /// </summary>
-        public WechatAccount Owner
+        public virtual WechatAccount Owner
         {
             get;
             set;

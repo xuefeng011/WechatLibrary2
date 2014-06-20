@@ -41,7 +41,7 @@
                                     window.viewModel.cmbResponseTextMessage.addItem(data[i].Content, data[i].Id);
                                 }
                                 // set current set response.
-                                var selectedId = data.selectedId;
+                                var selectedId = responseObj.selectedId;
                                 if (selectedId != "") {
                                     window.viewModel.cmbResponseTextMessage.setValue(selectedId);
                                 }
@@ -76,12 +76,20 @@
                                 }
                                 for (var i = 0; i < data.length; i++) {
                                     /* The first parameter is the display field and the second parameter is the value field. */
-                                    window.viewModel.cmbResponseImageMessage.addItem(data[i].MediaId, data[i].Id);
+                                    window.viewModel.cmbResponseImageMessage.addItem(data[i].ImgName, data[i].Id);
                                 }
                                 // set current set response.
-                                var selectedId = data.selectedId;
+                                var selectedId = responseObj.selectedId;
                                 if (selectedId != "") {
-                                    window.viewModel.cmbResponseImageMessage.setValue(selectedId);
+                                    var selectedName;
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].Id == selectedId) {
+                                            selectedName = data[i].ImgName;
+                                        }
+                                    }
+                                    if (selectedName) {
+                                        window.viewModel.cmbResponseImageMessage.select(selectedName);
+                                    }
                                 }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
@@ -117,7 +125,7 @@
                                     window.viewModel.cmbResponseNewsMessage.addItem(data[i].Title, data[i].Id);
                                 }
                                 // set current set response.
-                                var selectedId = data.selectedId;
+                                var selectedId = responseObj.selectedId;
                                 if (selectedId != "") {
                                     window.viewModel.cmbResponseNewsMessage.setValue(selectedId);
                                 }
@@ -245,7 +253,7 @@
             },
             textMatchesModifyCommand: function (parameters) {
                 var data = parameters[3].data;
-                
+
                 Ext.Ajax.request({
                     url: '/Service/TextRequestMatchService/GetById.ashx',
                     method: 'POST',
@@ -256,6 +264,9 @@
                         if (responseObj.success) {
                             // Get the text match data from json object.
                             var data = responseObj.data;
+
+                            // Cache the modify item id.
+                            window.viewModel.modifyWindow.modifyId = data.Id;
 
                             // Set each control value;
                             window.viewModel.txtModifyTextMatchContent.setRawValue(data.MatchContent);
@@ -270,6 +281,9 @@
                                 window.viewModel.cmbModifyTextMatchOption.select('不区分大小写部分匹配');
                             } else {
                                 window.viewModel.cmbModifyTextMatchOption.select('');
+                                window.viewModel.cmbResponseTextMessage.hide();
+                                window.viewModel.cmbResponseImageMessage.hide();
+                                window.viewModel.cmbResponseNewsMessage.hide();
                             }
                             window.viewModel.txtModifyTextMatchLevel.setRawValue(data.MatchLevel);
 
@@ -287,10 +301,10 @@
                                 window.viewModel.cmbResponseTypeSelected();
                             } else {
                                 window.viewModel.cmbResponseType.select();
+                                window.viewModel.cmbResponseTextMessage.hide();
+                                window.viewModel.cmbResponseImageMessage.hide();
+                                window.viewModel.cmbResponseNewsMessage.hide();
                             }
-
-                            // Cache the modify item id.
-                            window.viewModel.modifyWindow.modifyId = data.Id;
 
                             // Show the setting window.
                             window.viewModel.modifyWindow.show();
@@ -318,6 +332,9 @@
                             if (responseObj.success) {
                                 // Get the text match data from json object.
                                 var data = responseObj.data;
+
+                                // Cache the modify item id.
+                                window.viewModel.modifyWindow.modifyId = data.Id;
 
                                 // Set each control value;
                                 window.viewModel.txtModifyTextMatchContent.setRawValue(data.MatchContent);
@@ -350,9 +367,6 @@
                                 } else {
                                     window.viewModel.cmbResponseType.select();
                                 }
-
-                                // Cache the modify item id.
-                                window.viewModel.modifyWindow.modifyId = data.Id;
 
                                 // Show the setting window.
                                 window.viewModel.modifyWindow.show();

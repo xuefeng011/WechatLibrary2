@@ -36,7 +36,6 @@
                         }
                     },
                     failure: function (response, options) {
-                        alert(response.responseText);
                         Ext.Msg.alert('Error', '添加失败！');
                     }
                 });

@@ -72,7 +72,7 @@ namespace WechatLibrary.Converter
         {
             return new ImageResult()
             {
-                MediaId = responseResult.MediaId
+                MediaId = responseResult.WechatResource == null ? string.Empty : responseResult.WechatResource.MediaId
             };
         }
 
@@ -85,7 +85,7 @@ namespace WechatLibrary.Converter
         {
             return new VoiceResult()
             {
-                MediaId = responseResult.MediaId
+                MediaId = responseResult.WechatResource == null ? string.Empty : responseResult.WechatResource.MediaId
             };
         }
 

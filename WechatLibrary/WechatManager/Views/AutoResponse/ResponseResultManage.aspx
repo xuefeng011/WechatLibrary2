@@ -34,7 +34,7 @@
             <ext:Model runat="server">
                 <Fields>
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
-                    <ext:ModelField runat="server" Name="mediaId"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="ImgName"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -138,11 +138,14 @@
                                 </TopBar>
                                 <ColumnModel>
                                     <Columns>
-                                        <ext:Column runat="server" Text="图片MediaId" DataIndex="mediaId"></ext:Column>
+                                        <ext:Column runat="server" Text="图片名称" DataIndex="ImgName"></ext:Column>
+                                        <%--<ext:Column runat="server" Text="图片MediaId" DataIndex="mediaId"></ext:Column>--%>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
                                                 <%--<ext:GridCommand runat="server" Icon="ImageEdit" Text="修改" CommandName="modify">
                                                 </ext:GridCommand>--%>
+                                                <ext:GridCommand runat="server" Icon="Image" Text="查看" CommandName="view">
+                                                </ext:GridCommand>
                                                 <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
                                                 </ext:GridCommand>
                                             </Commands>
@@ -242,22 +245,36 @@
     </ext:Window>
     <ext:Window runat="server" Modal="True" Title="添加新图片回复" CloseAction="Hide" Layout="FormLayout" ID="winNewImageMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
         <Items>
-            <ext:TextField runat="server" FieldLabel="图片Url" ID="txtNewImageMessageUrl" AnchorHorizontal="100%"></ext:TextField>
+            <ext:FormPanel runat="server" ID="formNewImageMessage" Method="POST" Url="/Service/AutoResponseService/AddImageResult.ashx">
+                <Items>
+                    <ext:FileUploadField runat="server" FieldLabel="图片" ID="fileNewImageMessage" AnchorHorizontal="100%" AllowBlank="False">
+                    </ext:FileUploadField>
+                </Items>
+                <Buttons>
+                    <ext:Button runat="server" Icon="Add" Text="添加">
+                        <Listeners>
+                            <Click Handler="window.viewModel.submitNewImageResponseCommand(arguments)">
+                            </Click>
+                        </Listeners>
+                    </ext:Button>
+                </Buttons>
+            </ext:FormPanel>
+            <%--<ext:TextField runat="server" FieldLabel="图片Url" ID="txtNewImageMessageUrl" AnchorHorizontal="100%"></ext:TextField>--%>
             <%--<ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtNewImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>--%>
         </Items>
-        <Buttons>
+        <%--<Buttons>
             <ext:Button runat="server" Icon="Add" Text="添加">
                 <Listeners>
                     <Click Handler="window.viewModel.submitNewImageResponseCommand(arguments)"></Click>
                 </Listeners>
             </ext:Button>
-        </Buttons>
+        </Buttons>--%>
     </ext:Window>
     <ext:Window runat="server" Modal="True" Title="添加新语音回复" CloseAction="Hide" Layout="FormLayout" ID="winNewVoiceMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="400">
         <Items>
             <ext:FormPanel runat="server" Method="POST" ID="formNewVoiceMessage" Url="/Service/AutoResponseService/AddVoiceResult.ashx">
                 <Items>
-                    <ext:FileUploadField runat="server" FieldLabel="音频文件" LabelWidth="60" ID="fileNewVoiceMessage" AnchorHorizontal="100%"></ext:FileUploadField>
+                    <ext:FileUploadField runat="server" FieldLabel="音频文件" LabelWidth="60" ID="fileNewVoiceMessage" AnchorHorizontal="100%" AllowBlank="False"></ext:FileUploadField>
                 </Items>
                 <Buttons>
                     <ext:Button runat="server" Icon="Add" Text="添加">
@@ -283,7 +300,7 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="修改图片回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyImageMessage" Hidden="True" Icon="PictureEdit" Width="300" BodyPadding="8">
+    <%--<ext:Window runat="server" Modal="True" Title="修改图片回复" CloseAction="Hide" Layout="FormLayout" ID="winModifyImageMessage" Hidden="True" Icon="PictureEdit" Width="300" BodyPadding="8">
         <Items>
             <ext:TextField runat="server" FieldLabel="图片MediaId" ID="txtModifyImageMessageMediaId" AnchorHorizontal="100%"></ext:TextField>
         </Items>
@@ -294,7 +311,7 @@
                 </Listeners>
             </ext:Button>
         </Buttons>
-    </ext:Window>
+    </ext:Window>--%>
     <ext:Window runat="server" Modal="True" Title="添加图文回复" CloseAction="Hide" Layout="FormLayout" ID="winNewNewsMessage" Hidden="True" Width="300" BodyPadding="8" Icon="NewspaperAdd">
         <Items>
             <ext:TextField runat="server" FieldLabel="标题" ID="txtNewNewsMessageTitle" AnchorHorizontal="100%"></ext:TextField>
