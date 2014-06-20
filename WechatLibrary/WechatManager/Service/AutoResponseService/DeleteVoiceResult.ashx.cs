@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
-using WechatLibrary;
+using Ext.Net;
 using WechatLibrary.Model;
 
 namespace WechatManager.Service.AutoResponseService
 {
     /// <summary>
-    /// GetAllVoiceResult 的摘要说明
+    /// DeleteVoiceResult 的摘要说明
     /// </summary>
-    public class GetAllVoiceResult : IHttpHandler, IRequiresSessionState
+    public class DeleteVoiceResult : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -31,10 +31,24 @@ namespace WechatManager.Service.AutoResponseService
                 return;
             }
 
+            var deleteId = context.Request["Id"];
+            if (string.IsNullOrEmpty(deleteId) == true)
+            {
+                var responseObj = new
+                {
+                    success = false,
+                    info = "please select an item to delete!"
+                };
+                var json = JsonHelper.SerializeToJson(responseObj);
+                context.Response.ContentType = "text/json";
+                context.Response.Write(json);
+                return;
+            }
+
             using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == wechatId);
-                if (query.Count() <= 0)
+                if (query.Count() < 1)
                 {
                     var responseObj = new
                     {
@@ -51,7 +65,7 @@ namespace WechatManager.Service.AutoResponseService
                     var responseObj = new
                     {
                         success = false,
-                        info = "data base occurred an error, please contact the manager!"
+                        info = "data base occurred an error! please contact the manager!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
@@ -60,16 +74,29 @@ namespace WechatManager.Service.AutoResponseService
                 }
 
                 var wechatAccount = query.First();
-                var list = wechatAccount.VoiceAutoResponseResults.ToList();
-
+                var deleteItemQuery = wechatAccount.VoiceAutoResponseResults.Where(temp => temp.Id.ToString() == deleteId);
+                if (deleteItemQuery.Count() != 1)
                 {
-                    var responseObj = from temp in list
-                                      select new
-                                      {
-                                          Id = temp.Id,
-                                          VoiceName = temp.WechatResource == null ? string.Empty : temp.WechatResource.Name
-                                      };
-                    var json = JsonHelper.SerializeToJson(responseObj.ToList());
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "this item is not exist in the data base!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
+                    context.Response.ContentType = "text/json";
+                    context.Response.Write(json);
+                    return;
+                }
+
+                wechatAccount.VoiceAutoResponseResults.Remove(deleteItemQuery.First());
+                entities.SaveChanges();
+                {
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "delete success!"
+                    };
+                    var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
                     return;

@@ -97,6 +97,7 @@
                 <Items>
                     <ext:ListItem Text="文本" />
                     <ext:ListItem Text="图片" />
+                    <ext:ListItem Text="语音" />
                     <ext:ListItem Text="图文" />
                 </Items>
                 <Listeners>
@@ -107,6 +108,8 @@
             <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Content"></ext:ComboBox>
             <%--图片消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="ImgName"></ext:ComboBox>
+            <%--语音消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="语音消息" ID="cmbResponseVoiceMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="VoiceName"></ext:ComboBox>
             <%--图文消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Title"></ext:ComboBox>
         </Items>

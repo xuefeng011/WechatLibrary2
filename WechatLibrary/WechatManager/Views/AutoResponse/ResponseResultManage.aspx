@@ -47,6 +47,7 @@
             <ext:Model runat="server">
                 <Fields>
                     <ext:ModelField runat="server" Name="Id"></ext:ModelField>
+                    <ext:ModelField runat="server" Name="VoiceName"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -166,7 +167,8 @@
                                         <Items>
                                             <ext:Button runat="server" Icon="Add" Text="添加">
                                                 <Listeners>
-                                                    <Click Handler="window.viewModel.addNewVoiceResponseCommand(arguments)"></Click>
+                                                    <Click Handler="window.viewModel.addNewVoiceResponseCommand(arguments)">
+                                                    </Click>
                                                 </Listeners>
                                             </ext:Button>
                                         </Items>
@@ -174,18 +176,24 @@
                                 </TopBar>
                                 <ColumnModel>
                                     <Columns>
-                                        <ext:Column runat="server" Text=""></ext:Column>
+                                        <ext:Column runat="server" Text="语音名称" DataIndex="VoiceName"></ext:Column>
                                         <ext:CommandColumn runat="server">
                                             <Commands>
+                                                <ext:GridCommand runat="server" Icon="DiskDownload" Text="下载" CommandName="download">
+                                                </ext:GridCommand>
                                                 <ext:GridCommand runat="server" Icon="Delete" Text="删除" CommandName="delete">
                                                 </ext:GridCommand>
                                             </Commands>
+                                            <Listeners>
+                                                <Command Handler="window.viewModel.voiceResponseCommandClickCommand(arguments)"></Command>
+                                            </Listeners>
                                         </ext:CommandColumn>
                                     </Columns>
                                 </ColumnModel>
-                                <Listeners>
-                                    <CellClick Handler="window.viewModel.voiceResponseModifyCommand(arguments)"></CellClick>
-                                </Listeners>
+                                <%--<Listeners>
+                                    <CellClick Handler="window.viewModel.voiceResponseModifyCommand(arguments)">
+                                    </CellClick>
+                                </Listeners>--%>
                             </ext:GridPanel>
                         </Items>
                     </ext:Panel>
@@ -243,7 +251,7 @@
             </ext:Button>
         </Buttons>
     </ext:Window>
-    <ext:Window runat="server" Modal="True" Title="添加新图片回复" CloseAction="Hide" Layout="FormLayout" ID="winNewImageMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="300">
+    <ext:Window runat="server" Modal="True" Title="添加新图片回复" CloseAction="Hide" Layout="FormLayout" ID="winNewImageMessage" Hidden="True" BodyPadding="8" Icon="Add" Width="400">
         <Items>
             <ext:FormPanel runat="server" ID="formNewImageMessage" Method="POST" Url="/Service/AutoResponseService/AddImageResult.ashx">
                 <Items>

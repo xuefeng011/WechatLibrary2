@@ -13,6 +13,7 @@
             cmbResponseImageMessage: Ext.getCmp('cmbResponseImageMessage'),
             cmbResponseNewsMessage: Ext.getCmp('cmbResponseNewsMessage'),
             txtModifyTextMatchLevel: Ext.getCmp('txtModifyTextMatchLevel'),
+            cmbResponseVoiceMessage: Ext.getCmp('cmbResponseVoiceMessage'),
             cmbResponseTypeSelected: function (parameters) {
                 var selectedValue = window.viewModel.cmbResponseType.value;
                 if (selectedValue == '文本') {
@@ -43,7 +44,15 @@
                                 // set current set response.
                                 var selectedId = responseObj.selectedId;
                                 if (selectedId != "") {
-                                    window.viewModel.cmbResponseTextMessage.setValue(selectedId);
+                                    var selectedName;
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].Id == selectedId) {
+                                            selectedName = data[i].ImgName;
+                                        }
+                                    }
+                                    if (selectedName) {
+                                        window.viewModel.cmbResponseTextMessage.select(selectedName);
+                                    }
                                 }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
@@ -127,7 +136,15 @@
                                 // set current set response.
                                 var selectedId = responseObj.selectedId;
                                 if (selectedId != "") {
-                                    window.viewModel.cmbResponseNewsMessage.setValue(selectedId);
+                                    var selectedName;
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].Id == selectedId) {
+                                            selectedName = data[i].ImgName;
+                                        }
+                                    }
+                                    if (selectedName) {
+                                        window.viewModel.cmbResponseNewsMessage.select(selectedName);
+                                    }
                                 }
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);

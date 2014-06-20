@@ -87,17 +87,19 @@ namespace WechatManager.Service.AutoResponseService
 
                 var wechatResource = new WechatResource();
 
+                wechatAccount.VoiceAutoResponseResults.Add(voiceAutoResponseResult);
+
                 wechatResource.Id = Guid.NewGuid();
                 wechatResource.Bytes = bytes;
                 wechatResource.Name = fileName;
                 wechatResource.Owner = wechatAccount;
                 wechatResource.OwnerWechatAccountId = wechatAccount.Id;
                 wechatResource.Type = "voice";
+                wechatResource.ExpiresTime = new DateTime(1970, 1, 1);
+                wechatResource.RefreshTime = new DateTime(1970, 1, 1);
 
                 voiceAutoResponseResult.Id = Guid.NewGuid();
                 voiceAutoResponseResult.WechatResource = wechatResource;
-
-                wechatAccount.VoiceAutoResponseResults.Add(voiceAutoResponseResult);
 
                 entities.SaveChanges();
                 {

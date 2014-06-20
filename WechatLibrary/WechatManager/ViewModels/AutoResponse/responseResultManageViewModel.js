@@ -628,6 +628,40 @@
                         Ext.Msg.alert('Error', responseObj.info);
                     }
                 });
+            },
+            voiceResponseCommandClickCommand: function (parameters) {
+                var commandName = parameters[1];
+                var data = parameters[2].data;
+
+                if (commandName == 'download') {
+                    window.open('/Resource/DownloadVoice?id=' + data.Id);
+                } else if (commandName == 'delete') {
+                    Ext.Msg.confirm('Warning', 'delete this voice response?', function (btn) {
+                        if (btn == 'yes') {
+                            Ext.Ajax.request({
+                                url: '/Service/AutoResponseService/DeleteVoiceResult.ashx',
+                                method: 'POST',
+                                params: {
+                                    Id: data.Id
+                                },
+                                success: function (response, options) {
+                                    var responseText = response.responseText;
+                                    var responseObj = Ext.decode(responseText);
+                                    if (responseObj.success) {
+                                        Ext.Msg.alert('Success', responseObj.info, function () {
+                                            window.viewModel.storeVoiceMessage.load();
+                                        });
+                                    } else {
+                                        Ext.Msg.alert('Error', responseObj.info);
+                                    }
+                                },
+                                failure: function (response, options) {
+                                    Ext.Msg.alert('Error', 'delete fail!');
+                                }
+                            });
+                        }
+                    });
+                }
             }
         };
     });

@@ -137,6 +137,9 @@
     <Compile Include="Service\AutoResponseService\DeleteTextResult.ashx.cs">
       <DependentUpon>DeleteTextResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\AutoResponseService\DeleteVoiceResult.ashx.cs">
+      <DependentUpon>DeleteVoiceResult.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\AutoResponseService\GetAllImageResult.ashx.cs">
       <DependentUpon>GetAllImageResult.ashx</DependentUpon>
     </Compile>
@@ -481,6 +484,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\AutoResponseService\AddVoiceResult.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\AutoResponseService\DeleteVoiceResult.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

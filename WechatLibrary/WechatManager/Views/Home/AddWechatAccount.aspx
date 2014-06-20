@@ -12,7 +12,7 @@
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
     <script src="../../ViewModels/Home/addWechatAccountViewModel.js"></script>
-    <ext:Window runat="server" Modal="True" Layout="FormLayout" Icon="Add" Title="添加新微信帐号" Width="350" Padding="10" BodyPadding="10">
+    <ext:Window runat="server" Modal="True" Layout="FormLayout" Icon="Add" Title="添加新微信帐号" Width="400" Padding="10" BodyPadding="10">
         <Items>
             <ext:TextField runat="server" FieldLabel="AppId" AnchorHorizontal="100%" ID="txtAppId" AllowBlank="False" EmptyText="AppId"></ext:TextField>
             <ext:TextField runat="server" FieldLabel="Secret" AnchorHorizontal="100%" ID="txtSecret" AllowBlank="False" EmptyText="Secret"></ext:TextField>
