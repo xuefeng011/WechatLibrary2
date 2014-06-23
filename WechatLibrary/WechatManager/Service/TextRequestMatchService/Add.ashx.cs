@@ -33,9 +33,45 @@ namespace WechatManager.Service.TextRequestMatchService
                 return;
             }
 
-#warning not finish
             var matchContent = context.Request["Content"];
-            var matchOption = "equals";//context.Request[""];
+            var matchOption = context.Request["Option"];
+
+            if (matchOption == "完全匹配")
+            {
+                matchOption = "equals";
+            }
+            if (matchOption == "不区分大小写完全匹配")
+            {
+                matchOption = "equalsignore";
+            }
+            if (matchOption == "部分匹配")
+            {
+                matchOption = "contains";
+            }
+            if (matchOption == "不区分大小写部分匹配")
+            {
+                matchOption = "containsignore";
+            }
+
+            switch (matchOption)
+            {
+                case "equals":
+                case "equalsignore":
+                case "contains":
+                case "containsignore": break;
+                default:
+                    {
+                        var responseObj = new
+                        {
+                            success = false,
+                            info = "请选择正确的匹配方式。"
+                        };
+                        var json = JsonHelper.SerializeToJson(responseObj);
+                        context.Response.ContentType = "text/json";
+                        context.Response.Write(json);
+                        return;
+                    }
+            }
 
             using (var entities = new WechatEntities())
             {

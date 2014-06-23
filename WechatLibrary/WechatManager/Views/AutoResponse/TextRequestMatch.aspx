@@ -72,6 +72,15 @@
     <ext:Window runat="server" Hidden="True" ID="addWindow" Title="添加新匹配" CloseAction="Hide" Layout="FormLayout" Modal="True" BodyPadding="5" Icon="Add" Width="300">
         <Items>
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtNewTextMatch"></ext:TextField>
+            <ext:ComboBox runat="server" FieldLabel="匹配方式" ID="cmbNewTextMatchOption" AnchorHorizontal="100%" Editable="False">
+                <Items>
+                    <ext:ListItem Text="完全匹配"/>
+                    <ext:ListItem Text="不区分大小写完全匹配"/>
+                    <ext:ListItem Text="部分匹配"/>
+                    <ext:ListItem Text="不区分大小写部分匹配"/>
+                </Items>
+                </ext:ComboBox>
+            <ext:TextField runat="server" FieldLabel="匹配等级" ID="txtNewTextMatchLevel" AnchorHorizontal="100%"></ext:TextField>
         </Items>
         <Buttons>
             <ext:Button runat="server" Text="添加" Icon="Add">

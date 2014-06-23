@@ -14,12 +14,15 @@
             cmbResponseNewsMessage: Ext.getCmp('cmbResponseNewsMessage'),
             txtModifyTextMatchLevel: Ext.getCmp('txtModifyTextMatchLevel'),
             cmbResponseVoiceMessage: Ext.getCmp('cmbResponseVoiceMessage'),
+            cmbNewTextMatchOption: Ext.getCmp('cmbNewTextMatchOption'),
+            txtNewTextMatchLevel: Ext.getCmp('txtNewTextMatchLevel'),
             cmbResponseTypeSelected: function (parameters) {
                 var selectedValue = window.viewModel.cmbResponseType.value;
                 if (selectedValue == '文本') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.show();
                     window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.cmbResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
                     // Load Text Messages From Data Base.
                     Ext.Ajax.request({
@@ -66,6 +69,7 @@
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.show();
+                    window.viewModel.cmbResposneVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
                     // Load Image Messages From Data Base.
                     Ext.Ajax.request({
@@ -108,10 +112,58 @@
                             Ext.Msg.alert('Error', 'Load image resources fail!');
                         }
                     });
+                } else if (selectedValue == '语音') {
+                    // Set combobox visible.
+                    window.viewModel.cmbResponseTextMessage.hide();
+                    window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.cmbResponseVoiceMessage.show();
+                    window.viewModel.cmbResponseNewsMessage.hide();
+                    // Load Voice Message From Data Base.
+                    Ext.Ajax.request({
+                        url: '/Service/TextRequestMatchService/LoadVoiceResults.ashx',
+                        method: 'POST',
+                        params: {
+                            Id: window.viewModel.modifyWindow.modifyId
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                var data = responseObj.data;
+                                /* Remove the combobox old datas. */
+                                while (window.viewModel.cmbResponseVoiceMessage.store.getCount() > 0) {
+                                    window.viewModel.cmbResponseVoiceMessage.removeByIndex(0);
+                                }
+                                for (var i = 0; i < data.length; i++) {
+                                    /* The first parameter is the display field and the second parameter is the value field. */
+                                    window.viewModel.cmbResponseVoiceMessage.addItem(data[i].VoiceName, data[i].Id);
+                                }
+                                // Set current set response.
+                                var selectedId = responseObj.selectedId;
+                                if (selectedId != "") {
+                                    var selectedName;
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].Id == selectedId) {
+                                            selectedName = data[i].VoiceName;
+                                        }
+                                    }
+                                    if (selectedName) {
+                                        window.viewModel.cmbResponseVoiceMessage.select(selectedName);
+                                    }
+                                }
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'Load voice resources fail!');
+                        }
+                    });
                 } else if (selectedValue == '图文') {
                     // Set combobox visible.
                     window.viewModel.cmbResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.cmbResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.show();
                     // Load News Message From Data Base.
                     Ext.Ajax.request({
@@ -191,7 +243,7 @@
                 }
 
                 var responseType = window.viewModel.cmbResponseType.value;
-                if (responseType != '文本' && responseType != '图片' && responseType != '图文') {
+                if (responseType != '文本' && responseType != '图片' && responseType != '语音' && responseType != '图文') {
                     Ext.Msg.alert('Error', 'Auto response type must selected!');
                     return;
                 }
@@ -201,6 +253,9 @@
                 }
                 if (responseType == '图片') {
                     responseType = 'image';
+                }
+                if (responseType == '语音') {
+                    responseType = 'voice';
                 }
                 if (responseType == '图文') {
                     responseType = 'news';
@@ -212,6 +267,9 @@
                 }
                 if (responseType == 'image') {
                     responseId = window.viewModel.cmbResponseImageMessage.getValue();
+                }
+                if (responseType == 'voice') {
+                    responseId = window.viewModel.cmbResponseVoiceMessage.getValue();
                 }
                 if (responseType == 'news') {
                     responseId = window.viewModel.cmbResponseNewsMessage.getValue();
@@ -249,7 +307,9 @@
                     url: '/Service/TextRequestMatchService/Add.ashx',
                     method: 'POST',
                     params: {
-                        Content: window.viewModel.txtNewTextMatch.getRawValue()
+                        Content: window.viewModel.txtNewTextMatch.getRawValue(),
+                        Level: window.viewModel.txtNewTextMatchLevel.getRawValue(),
+                        Option: window.viewModel.cmbNewTextMatchOption.value
                     },
                     success: function (response, options) {
                         var responseText = response.responseText;
@@ -300,6 +360,7 @@
                                 window.viewModel.cmbModifyTextMatchOption.select('');
                                 window.viewModel.cmbResponseTextMessage.hide();
                                 window.viewModel.cmbResponseImageMessage.hide();
+                                window.viewModel.cmbResponseVoiceMessage.hide();
                                 window.viewModel.cmbResponseNewsMessage.hide();
                             }
                             window.viewModel.txtModifyTextMatchLevel.setRawValue(data.MatchLevel);
@@ -308,18 +369,20 @@
                             if (data.ResponseType == 'text') {
                                 window.viewModel.cmbResponseType.select('文本');
                                 window.viewModel.cmbResponseTypeSelected();
-                            }
-                            else if (data.ResponseType == 'image') {
+                            } else if (data.ResponseType == 'image') {
                                 window.viewModel.cmbResponseType.select('图片');
                                 window.viewModel.cmbResponseTypeSelected();
-                            }
-                            else if (data.ResponseType == 'news') {
+                            } else if (data.ResponseType == 'voice') {
+                                window.viewModel.cmbResponseType.select('语音');
+                                window.viewModel.cmbResponseTypeSelected();
+                            } else if (data.ResponseType == 'news') {
                                 window.viewModel.cmbResponseType.select('图文');
                                 window.viewModel.cmbResponseTypeSelected();
                             } else {
                                 window.viewModel.cmbResponseType.select();
                                 window.viewModel.cmbResponseTextMessage.hide();
                                 window.viewModel.cmbResponseImageMessage.hide();
+                                window.viewModel.cmbResponseVoiceMessage.hide();
                                 window.viewModel.cmbResponseNewsMessage.hide();
                             }
 
@@ -373,12 +436,13 @@
                                 if (data.ResponseType == 'text') {
                                     window.viewModel.cmbResponseType.select('文本');
                                     window.viewModel.cmbResponseTypeSelected();
-                                }
-                                else if (data.ResponseType == 'image') {
+                                } else if (data.ResponseType == 'image') {
                                     window.viewModel.cmbResponseType.select('图片');
                                     window.viewModel.cmbResponseTypeSelected();
-                                }
-                                else if (data.ResponseType == 'news') {
+                                } else if (data.ResponseType == 'voice') {
+                                    window.viewModel.cmbResponseType.select('语音');
+                                    window.viewModel.cmbResponseTypeSelected();
+                                } else if (data.ResponseType == 'news') {
                                     window.viewModel.cmbResponseType.select('图文');
                                     window.viewModel.cmbResponseTypeSelected();
                                 } else {
