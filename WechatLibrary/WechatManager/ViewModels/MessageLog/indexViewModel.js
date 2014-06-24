@@ -21,7 +21,11 @@
             },
             winMessageDetail: Ext.getCmp('winMessageDetail'),
             pnlRequestMessage: Ext.getCmp('pnlRequestMessage'),
-            pnlResponseResult: Ext.getCmp('pnlResponseResult')
+            pnlResponseResult: Ext.getCmp('pnlResponseResult'),
+            winSendCustomerServiceMessage: Ext.getCmp('winSendCustomerServiceMessage'),
+            sendCommandClickCommand: function (parameters) {
+
+            }
         };
     });
 }());

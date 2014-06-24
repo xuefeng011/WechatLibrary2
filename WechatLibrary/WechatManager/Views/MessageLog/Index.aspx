@@ -82,6 +82,15 @@
                         </ext:Column>
                         <ext:Column runat="server" DataIndex="ResponseLogTime" Text="记录返回消息时间" Width="200">
                         </ext:Column>
+                        <ext:CommandColumn runat="server">
+                            <Commands>
+                                <ext:GridCommand runat="server" Icon="Email" Text="发送客服消息" CommandName="send">
+                                </ext:GridCommand>
+                            </Commands>
+                            <Listeners>
+                                <Command Handler="window.viewModel.sendCommandClickCommand(arguments)"></Command>
+                            </Listeners>
+                        </ext:CommandColumn>
                     </Columns>
                 </ColumnModel>
                 <SelectionModel>
@@ -117,6 +126,11 @@
                     </LoadMask>
                 </Loader>
             </ext:Panel>
+        </Items>
+    </ext:Window>
+    <ext:Window runat="server" ID="winSendCustomerServiceMessage" Modal="True" CloseAction="Hide" Title="发送客服消息" Hidden="True" TitleAlign="Center" Layout="FormLayout">
+        <Items>
+            <ext:ComboBox runat="server"></ext:ComboBox>
         </Items>
     </ext:Window>
 </body>

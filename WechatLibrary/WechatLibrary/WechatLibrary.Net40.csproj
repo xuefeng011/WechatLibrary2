@@ -147,6 +147,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.SetDefaultValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccessTokenService.cs" />
+    <Compile Include="Service\CustomerServiceMessageService.cs" />
     <Compile Include="Service\MessageLogService.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\MessageTypeService.cs" />
