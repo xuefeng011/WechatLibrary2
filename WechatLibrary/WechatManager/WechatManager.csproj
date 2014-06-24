@@ -200,6 +200,18 @@
     <Compile Include="Service\MessageLogService\GetResponseResultSource.ashx.cs">
       <DependentUpon>GetResponseResultSource.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\MessageLogService\LoadImageResults.ashx.cs">
+      <DependentUpon>LoadImageResults.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageLogService\LoadNewsResults.ashx.cs">
+      <DependentUpon>LoadNewsResults.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageLogService\LoadTextResults.ashx.cs">
+      <DependentUpon>LoadTextResults.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageLogService\LoadVoiceResults.ashx.cs">
+      <DependentUpon>LoadVoiceResults.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\TextRequestMatchService\Add.ashx.cs">
       <DependentUpon>Add.ashx</DependentUpon>
     </Compile>
@@ -226,6 +238,9 @@
     </Compile>
     <Compile Include="Service\TextRequestMatchService\Modify.ashx.cs">
       <DependentUpon>Modify.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\TextRequestMatchService\Send.ashx.cs">
+      <DependentUpon>Send.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\WechatAccountService\AddNewWechatAccount.ashx.cs">
       <DependentUpon>AddNewWechatAccount.ashx</DependentUpon>
@@ -493,6 +508,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\TextRequestMatchService\LoadVoiceResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\LoadTextResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\LoadImageResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\LoadVoiceResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\LoadNewsResults.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\TextRequestMatchService\Send.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

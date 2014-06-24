@@ -128,10 +128,40 @@
             </ext:Panel>
         </Items>
     </ext:Window>
-    <ext:Window runat="server" ID="winSendCustomerServiceMessage" Modal="True" CloseAction="Hide" Title="发送客服消息" Hidden="True" TitleAlign="Center" Layout="FormLayout">
+    <ext:Window runat="server" ID="winSendCustomerServiceMessage" Modal="True" CloseAction="Hide" Title="发送客服消息" Hidden="True" TitleAlign="Center" Layout="FormLayout" Width="350" Height="250" BodyPadding="8" Icon="Email">
         <Items>
-            <ext:ComboBox runat="server"></ext:ComboBox>
+            <ext:ComboBox runat="server" FieldLabel="回复类型" ID="cmbResponseType" AnchorHorizontal="100%" Editable="False">
+                <Items>
+                    <ext:ListItem Text="文本" />
+                    <ext:ListItem Text="图片" />
+                    <ext:ListItem Text="语音" />
+                    <ext:ListItem Text="图文" />
+                </Items>
+                <Listeners>
+                    <Select Handler="window.viewModel.cmbResponseTypeSelected(arguments)">
+                    </Select>
+                </Listeners>
+            </ext:ComboBox>
+            <%--文本消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Content">
+            </ext:ComboBox>
+            <%--图片消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="ImgName">
+            </ext:ComboBox>
+            <%--语音消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="语音消息" ID="cmbResponseVoiceMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="VoiceName">
+            </ext:ComboBox>
+            <%--图文消息资源--%>
+            <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Title">
+            </ext:ComboBox>
         </Items>
+        <Buttons>
+            <ext:Button runat="server" Text="发送" Icon="EmailGo">
+                <Listeners>
+                    <Click Handler="window.viewModel.sendCustomerMessageCommand(arguments)"></Click>
+                </Listeners>
+            </ext:Button>
+        </Buttons>
     </ext:Window>
 </body>
 </html>

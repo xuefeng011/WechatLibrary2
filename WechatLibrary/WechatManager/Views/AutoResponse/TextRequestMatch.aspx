@@ -74,12 +74,12 @@
             <ext:TextField runat="server" FieldLabel="匹配内容" ID="txtNewTextMatch"></ext:TextField>
             <ext:ComboBox runat="server" FieldLabel="匹配方式" ID="cmbNewTextMatchOption" AnchorHorizontal="100%" Editable="False">
                 <Items>
-                    <ext:ListItem Text="完全匹配"/>
-                    <ext:ListItem Text="不区分大小写完全匹配"/>
-                    <ext:ListItem Text="部分匹配"/>
-                    <ext:ListItem Text="不区分大小写部分匹配"/>
+                    <ext:ListItem Text="完全匹配" />
+                    <ext:ListItem Text="不区分大小写完全匹配" />
+                    <ext:ListItem Text="部分匹配" />
+                    <ext:ListItem Text="不区分大小写部分匹配" />
                 </Items>
-                </ext:ComboBox>
+            </ext:ComboBox>
             <ext:TextField runat="server" FieldLabel="匹配等级" ID="txtNewTextMatchLevel" AnchorHorizontal="100%"></ext:TextField>
         </Items>
         <Buttons>
@@ -110,7 +110,8 @@
                     <ext:ListItem Text="图文" />
                 </Items>
                 <Listeners>
-                    <Select Handler="window.viewModel.cmbResponseTypeSelected(arguments)"></Select>
+                    <Select Handler="window.viewModel.cmbResponseTypeSelected(arguments)">
+                    </Select>
                 </Listeners>
             </ext:ComboBox>
             <%--文本消息资源--%>
