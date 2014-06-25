@@ -148,7 +148,7 @@ namespace WechatLibrary.Service
         // Notice:
         // This method is copyed from https://github.com/JamesYing/JCWX/blob/9b48369ea21a06632b4e11e02c04c7a5fca8b892/Business/Common/HttpHelper.cs
         // I'm not sure can it work successfully.
-        private static string HttpPost(string url, string content)
+        internal static string HttpPost(string url, string content)
         {
             HttpWebRequest req = HttpWebRequest.Create(url)
                      as HttpWebRequest;

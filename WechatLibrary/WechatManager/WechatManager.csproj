@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AutoResponseController.cs" />
+    <Compile Include="Controllers\GroupSendController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\MessageLogController.cs" />
     <Compile Include="Controllers\WechatServerMenuController.cs" />
@@ -167,6 +168,18 @@
     <Compile Include="Service\AutoResponseService\ModifyTextResult.ashx.cs">
       <DependentUpon>ModifyTextResult.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\GroupSendService\SendImage.ashx.cs">
+      <DependentUpon>SendImage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\GroupSendService\SendNews.ashx.cs">
+      <DependentUpon>SendNews.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\GroupSendService\SendText.ashx.cs">
+      <DependentUpon>SendText.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\GroupSendService\SendVoice.ashx.cs">
+      <DependentUpon>SendVoice.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\LocalMenuService\AddNewFirstMenu.ashx.cs">
       <DependentUpon>AddNewFirstMenu.ashx</DependentUpon>
     </Compile>
@@ -212,6 +225,9 @@
     <Compile Include="Service\MessageLogService\LoadVoiceResults.ashx.cs">
       <DependentUpon>LoadVoiceResults.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\MessageLogService\Send.ashx.cs">
+      <DependentUpon>Send.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\TextRequestMatchService\Add.ashx.cs">
       <DependentUpon>Add.ashx</DependentUpon>
     </Compile>
@@ -238,9 +254,6 @@
     </Compile>
     <Compile Include="Service\TextRequestMatchService\Modify.ashx.cs">
       <DependentUpon>Modify.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Service\TextRequestMatchService\Send.ashx.cs">
-      <DependentUpon>Send.ashx</DependentUpon>
     </Compile>
     <Compile Include="Service\WechatAccountService\AddNewWechatAccount.ashx.cs">
       <DependentUpon>AddNewWechatAccount.ashx</DependentUpon>
@@ -320,6 +333,7 @@
     <Content Include="ViewModels\AutoResponse\responseResultManageViewModel.js" />
     <Content Include="ViewModels\AutoResponse\textRequestMatchViewModel.js" />
     <Content Include="ViewModels\Desktop\indexViewModel.js" />
+    <Content Include="ViewModels\GroupSend\indexViewModel.js" />
     <Content Include="ViewModels\Home\addWechatAccountViewModel.js" />
     <Content Include="ViewModels\Home\indexViewModel.js" />
     <Content Include="ViewModels\LocalMenu\indexViewModel.js" />
@@ -327,6 +341,7 @@
     <Content Include="ViewModels\WechatServerMenu\indexViewModel.js" />
     <Content Include="Views\AutoResponse\TextRequestMatch.aspx" />
     <Content Include="Views\AutoResponse\ResponseResultManage.aspx" />
+    <Content Include="Views\GroupSend\Index.aspx" />
     <Content Include="Views\Home\AddWechatAccount.aspx" />
     <Content Include="Views\Desktop\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
@@ -522,7 +537,19 @@
     <Content Include="Service\MessageLogService\LoadNewsResults.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service\TextRequestMatchService\Send.ashx" />
+    <Content Include="Service\MessageLogService\Send.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\GroupSendService\SendText.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\GroupSendService\SendImage.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\GroupSendService\SendVoice.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\GroupSendService\SendNews.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

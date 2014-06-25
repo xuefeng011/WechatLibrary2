@@ -13,7 +13,7 @@ namespace WechatManager.Controllers
     {
         //
         // GET: /Home/
-        
+
         public ActionResult Index()
         {
             if (Session["WechatId"] == null)
@@ -57,6 +57,7 @@ namespace WechatManager.Controllers
                 var wechatAccount = query.First();
 
                 // save wechatId to session.
+                Session.Timeout = 60 * 24;
                 Session["WechatId"] = wechatAccount.WechatId;
 
                 return Json(new

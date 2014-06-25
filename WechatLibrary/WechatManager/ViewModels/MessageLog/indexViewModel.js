@@ -32,6 +32,24 @@
                 var data = parameters[2].data;
 
                 if (commandName == 'send') {
+                    var requestLogTime = data.RequestLogTime;
+
+                    var checkTimeIsExpires = function (str) {
+                        str = str.replace('年', '-').replace('月', '-').replace('日', 'T').replace('时', ':').replace('分', ':').replace('秒', '');
+                        var date = new Date(str);
+                        var now = new Date();
+                        if (now - date > 1000 * 60 * 60 * 48) {
+                            return true;// 超过 48 小时，不能回复。
+                        } else {
+                            return false;
+                        }
+                    };
+
+                    if (checkTimeIsExpires(requestLogTime) === true) {
+                        Ext.Msg.alert('Error', '该消息超过 48 小时，无法回复！');
+                        return;
+                    }
+
                     window.viewModel.cmbResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseVoiceMessage.hide();
@@ -214,7 +232,9 @@
                         var responseText = response.responseText;
                         var responseObj = Ext.decode(responseText);
                         if (responseObj.success) {
-
+                            Ext.Msg.alert('Success', responseObj.info, function () {
+                                window.viewModel.winSendCustomerServiceMessage.close();
+                            });
                         } else {
                             Ext.Msg.alert('Error', responseObj.info);
                         }

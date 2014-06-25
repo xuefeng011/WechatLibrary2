@@ -83,7 +83,7 @@
                 var pnl = window.viewModel.pnlMain;
                 var loader = pnl.loader;
                 loader.suspendEvents();
-                loader.url = "/";
+                loader.url = "/GroupSend/Index";
                 pnl.load();
             },
             // when the setting window is showed, load current wechat account information from data base.

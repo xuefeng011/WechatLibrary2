@@ -6,7 +6,7 @@ using System.Web.SessionState;
 using Common.Serialization.Json;
 using WechatLibrary.Model;
 
-namespace WechatManager.Service.TextRequestMatchService
+namespace WechatManager.Service.MessageLogService
 {
     /// <summary>
     /// Send 的摘要说明
@@ -107,8 +107,7 @@ namespace WechatManager.Service.TextRequestMatchService
                 {
                     case "text":
                         {
-                            var query2 =
-                                wechatAccount.TextAutoResponseResults.Where(temp => temp.Id.ToString() == responseResourceId);
+                            var query2 = wechatAccount.TextAutoResponseResults.Where(temp => temp.Id.ToString() == responseResourceId);
                             var textResult = query2.FirstOrDefault();
                             if (textResult == null)
                             {
@@ -130,20 +129,101 @@ namespace WechatManager.Service.TextRequestMatchService
                                     success = success,
                                     info = success ? "send success" : "send fail"
                                 };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
                             }
-                            break;
                         }
                     case "image":
                         {
-                            break;
+                            var query2 = wechatAccount.ImageAutoResponseResults.Where(temp => temp.Id.ToString() == responseResourceId);
+                            var imageResult = query2.FirstOrDefault();
+                            if (imageResult == null)
+                            {
+                                var responseObj = new
+                                {
+                                    success = false,
+                                    info = "item not exist"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
+                            var imageJson = WechatLibrary.Service.CustomerServiceMessageService.ConvertToJson(imageResult, toUserName);
+                            var success = WechatLibrary.Service.CustomerServiceMessageService.Send(wechatAccount, imageJson);
+                            {
+                                var responseObj = new
+                                {
+                                    success = success,
+                                    info = success ? "send success" : "send fail"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
                         }
                     case "voice":
                         {
-                            break;
+                            var query2 = wechatAccount.VoiceAutoResponseResults.Where(temp => temp.Id.ToString() == responseResourceId);
+                            var voiceResult = query2.FirstOrDefault();
+                            if (voiceResult == null)
+                            {
+                                var responseObj = new
+                                {
+                                    success = false,
+                                    info = "item not exist"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
+                            var voiceJson = WechatLibrary.Service.CustomerServiceMessageService.ConvertToJson(voiceResult, toUserName);
+                            var success = WechatLibrary.Service.CustomerServiceMessageService.Send(wechatAccount, voiceJson);
+                            {
+                                var responseObj = new
+                                {
+                                    success = success,
+                                    info = success ? "send success" : "send fail"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
                         }
                     case "news":
                         {
-                            break;
+                            var query2 = wechatAccount.NewsAutoResponseResults.Where(temp => temp.Id.ToString() == responseResourceId);
+                            var newsResult = query2.FirstOrDefault();
+                            if (newsResult == null)
+                            {
+                                var responseObj = new
+                                {
+                                    success = false,
+                                    info = "item not exist"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
+                            var newsJson = WechatLibrary.Service.CustomerServiceMessageService.ConvertToJson(newsResult, toUserName);
+                            var success = WechatLibrary.Service.CustomerServiceMessageService.Send(wechatAccount, newsJson);
+                            {
+                                var responseObj = new
+                                {
+                                    success = success,
+                                    info = success ? "send success" : "send fail"
+                                };
+                                var json = JsonHelper.SerializeToJson(responseObj);
+                                context.Response.ContentType = "text/json";
+                                context.Response.Write(json);
+                                return;
+                            }
                         }
                 }
             }

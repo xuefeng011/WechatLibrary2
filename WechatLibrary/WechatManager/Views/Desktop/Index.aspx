@@ -11,7 +11,8 @@
 <body>
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
-    <script src="../../ViewModels/Desktop/indexViewModel.js"></script>
+    <script src="<%="../../ViewModels/Desktop/indexViewModel.js?ticks="+DateTime.Now.Ticks%>">
+    </script>
     <ext:Viewport runat="server" Layout="BorderLayout">
         <Items>
             <ext:Panel runat="server" Layout="BorderLayout" Region="Center">
