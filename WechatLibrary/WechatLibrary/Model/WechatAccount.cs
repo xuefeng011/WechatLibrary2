@@ -122,6 +122,15 @@ namespace WechatLibrary.Model
             }
         }
 
+        /// <summary>
+        /// 是否服务号。
+        /// </summary>
+        public bool IsServerAccount
+        {
+            get;
+            set;
+        }
+
         private AccessToken _accessToken;
 
         /// <summary>

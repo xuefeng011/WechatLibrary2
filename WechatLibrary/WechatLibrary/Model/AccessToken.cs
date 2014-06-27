@@ -42,10 +42,15 @@ namespace WechatLibrary.Model
         {
             get
             {
+                if (WechatAccount==null)
+                {
+                    return string.Empty;
+                }
 #if !DEBUG
                 if (string.IsNullOrEmpty(_value) == true || _expiresTime == default(DateTime))
                 {
-                    while (true)
+                    int times = 5;
+                    while (times>0)
                     {
                         var accessToken = Service.AccessTokenService.Refresh(WechatAccount);
                         if (accessToken.ErrorCode == 0)
@@ -62,6 +67,8 @@ namespace WechatLibrary.Model
                             }
                             break;
                         }
+                        // try 5 times, if get error.
+                        times--;
                     }
                 }
 #endif

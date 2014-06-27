@@ -34,10 +34,6 @@ namespace WechatLibrary.Service
             {
                 throw new ArgumentNullException("wechatResource");
             }
-            if (wechatResource.Owner == null)
-            {
-                throw new ArgumentException("该微信资源没有绑定微信帐号", "wechatResource");
-            }
             string type = wechatResource.Type;
             switch (type)
             {
@@ -46,31 +42,50 @@ namespace WechatLibrary.Service
                 case "video":
                 case "thumb":
                     {
-                        using (var entities=new WechatEntities())
+                        using (var entities = new WechatEntities())
                         {
-                            var wechatAccount =
-                                entities.WechatAccounts.FirstOrDefault(temp => temp.Id == wechatResource.OwnerWechatAccountId);
-                            if (wechatAccount!=null)
+                            var wechatAccount = entities.WechatAccounts.FirstOrDefault(temp => temp.Id == wechatResource.OwnerWechatAccountId);
+                            if (wechatAccount == null)
                             {
-                                wechatResource.Owner = wechatAccount;
-                                entities.SaveChanges();
+                                return new UploadReturn()
+                                {
+                                    ErrorCode = 1,
+                                    ErrorMessage = "wechat account not exist"
+                                };
+                            }
+                            //if (wechatAccount != null)
+                            //{
+                            //    wechatResource.Owner = wechatAccount;
+                            //    entities.SaveChanges();
+                            //}
+
+                            string url = string.Format(UploadUrlTemplate, wechatResource.Owner.AccessToken.Value, type);
+                            byte[] responseBytes;
+                            using (var wc = new WebClient())
+                            {
+                                // 添加 Http 头。
+                                wc.Headers.Add("fileName", wechatResource.Id.ToString() + Path.GetExtension(wechatResource.Name));
+                                wc.Headers.Add("filelength", wechatResource.Bytes.Length.ToString());
+                                wc.Headers.Add("content-type", "application/x-www-form-urlencoded");
+
+                                // 上传数据。
+                                try
+                                {
+                                    responseBytes = wc.UploadData(url, wechatResource.Bytes);
+                                }
+                                catch (Exception)
+                                {
+                                    return new UploadReturn()
+                                    {
+                                        ErrorCode = 2,
+                                        ErrorMessage = "url error"
+                                    };
+                                }
+
+                                var json = Encoding.Default.GetString(responseBytes);
+                                return JsonHelper.Deserialize<UploadReturn>(json);
                             }
                         }
-
-                        string url = string.Format(UploadUrlTemplate, wechatResource.Owner.AccessToken.Value, type);
-                        byte[] responseBytes;
-                        using (var wc = new WebClient())
-                        {
-                            // 添加 Http 头。
-                            wc.Headers.Add("fileName", wechatResource.Id.ToString() + Path.GetExtension(wechatResource.Name));
-                            wc.Headers.Add("filelength", wechatResource.Bytes.Length.ToString());
-                            wc.Headers.Add("content-type", "application/x-www-form-urlencoded");
-
-                            // 上传数据。
-                            responseBytes = wc.UploadData(url, wechatResource.Bytes);
-                        }
-                        var json = Encoding.Default.GetString(responseBytes);
-                        return JsonHelper.Deserialize<UploadReturn>(json);
                     }
                 default:
                     {

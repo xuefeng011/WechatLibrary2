@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Common.Serialization.Json;
+using WechatLibrary;
 using WechatLibrary.Model;
 
 namespace WechatManager.Service.WechatAccountService
@@ -68,7 +69,8 @@ namespace WechatManager.Service.WechatAccountService
                             Secret = wechatAccount.Secret,
                             Token = wechatAccount.Token,
                             WechatId = wechatAccount.WechatId,
-                            Namespace = wechatAccount.Namespace
+                            Namespace = wechatAccount.Namespace,
+                            Type = wechatAccount.IsServerAccount
                         }
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);

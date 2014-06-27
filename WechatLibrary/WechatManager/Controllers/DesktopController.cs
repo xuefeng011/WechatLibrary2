@@ -56,6 +56,17 @@ namespace WechatManager.Controllers
 
                 var wechatAccount = query.First();
 
+                if (wechatAccount.AccessToken == null)
+                {
+                    wechatAccount.AccessToken = new AccessToken()
+                    {
+                        ExpiresTime = new DateTime(1970, 1, 1),
+                        Id = Guid.NewGuid(),
+                        WechatAccount = wechatAccount
+                    };
+                    entities.SaveChanges();
+                }
+
                 // save wechatId to session.
                 Session.Timeout = 60 * 24;
                 Session["WechatId"] = wechatAccount.WechatId;

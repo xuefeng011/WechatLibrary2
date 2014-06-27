@@ -82,7 +82,7 @@ namespace WechatManager.Service.LocalMenuService
                     entities.SaveChanges();
                     var responseObj = new
                     {
-                        success = false,
+                        success = true,
                         info = "delete success!"
                     };
                     var json = JsonHelper.SerializeToJson(responseObj);

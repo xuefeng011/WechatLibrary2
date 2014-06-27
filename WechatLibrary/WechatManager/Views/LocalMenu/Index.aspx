@@ -11,7 +11,7 @@
 <body>
     <ext:ResourceManager runat="server" Theme="Gray">
     </ext:ResourceManager>
-    <script src="../../ViewModels/LocalMenu/indexViewModel.js"></script>
+    <script src="<%="../../ViewModels/LocalMenu/indexViewModel.js?ticks="+DateTime.Now.Ticks %>"></script>
     <ext:Store runat="server" ID="storeFirstMenu" IDMode="Explicit">
         <Proxy>
             <ext:AjaxProxy Url="/Service/LocalMenuService/GetLocalFirstMenu.ashx" Json="True"></ext:AjaxProxy>
@@ -84,6 +84,11 @@
                                     <Click Handler="window.viewModel.addNewFirstMenuCommand(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
+                            <ext:Button runat="server" Text="刷新" Icon="PageRefresh">
+                                <Listeners>
+                                    <Click Handler="window.viewModel.refreshFirstMenu(arguments)"></Click>
+                                </Listeners>
+                            </ext:Button>
                         </Buttons>
                     </ext:Panel>
                     <ext:Panel runat="server" Title="二级菜单按钮" Flex="1" TitleAlign="Center">
@@ -116,6 +121,11 @@
                             <ext:Button runat="server" Text="添加" Icon="Add">
                                 <Listeners>
                                     <Click Handler="window.viewModel.addNewSecondMenuCommand(arguments)"></Click>
+                                </Listeners>
+                            </ext:Button>
+                            <ext:Button runat="server" Text="刷新" Icon="PageRefresh">
+                                <Listeners>
+                                    <Click Handler="window.viewModel.refreshSecondMenu(arguments)"></Click>
                                 </Listeners>
                             </ext:Button>
                         </Buttons>

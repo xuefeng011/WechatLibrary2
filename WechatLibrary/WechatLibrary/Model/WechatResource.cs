@@ -42,6 +42,10 @@ namespace WechatLibrary.Model
         {
             get
             {
+                if (Owner == null)
+                {
+                    return string.Empty;
+                }
 #if !DEBUG
                 if (string.IsNullOrEmpty(_mediaId) == true// 未获取。
                     || this._expiresTime == default(DateTime)// 未获取。

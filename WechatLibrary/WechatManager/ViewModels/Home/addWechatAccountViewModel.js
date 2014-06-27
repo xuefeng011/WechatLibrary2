@@ -9,6 +9,15 @@
             txtNamespace: Ext.getCmp('txtNamespace'),
             // check other control value, if validate success, add to the data base and navigate to /home/index.
             addCommand: function (parameters) {
+
+                var type;
+
+                if (window.viewModel.rdoServerAccount.checked) {
+                    type = "serverAccount";
+                } else {
+                    type = "notServerAccount";
+                }
+
                 Ext.Ajax.request({
                     url: '/Service/WechatAccountService/AddNewWechatAccount.ashx',
                     method: 'POST',
@@ -17,7 +26,8 @@
                         Secret: window.viewModel.txtSecret.getValue(),
                         Token: window.viewModel.txtToken.getValue(),
                         WechatId: window.viewModel.txtWechatId.getValue(),
-                        Namespace: window.viewModel.txtNamespace.getValue()
+                        Namespace: window.viewModel.txtNamespace.getValue(),
+                        IsServerAccount:type
                     },
                     success: function (response, options) {
                         // get response text.
@@ -43,7 +53,9 @@
             // when close the window, navigate to /home/index.
             closeCommand: function (parameters) {
                 window.location.href = "/Home/Index";
-            }
+            },
+            rdoNotServerAccount: Ext.getCmp('rdoNotServerAccount'),
+            rdoServerAccount: Ext.getCmp('rdoServerAccount')
         };
     });
 }());

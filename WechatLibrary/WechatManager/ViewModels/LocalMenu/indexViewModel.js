@@ -360,7 +360,7 @@
                                             // Reload store.
                                             window.viewModel.storeFirstMenu.load();
                                             // Clear store.
-                                            window.viewModel.secondStore.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx";
+                                            window.viewModel.storeSecondMenu.proxy.url = "/Service/LocalMenuService/GetLocalSecondMenu.ashx?Id=" + window.viewModel.currentId;
                                             window.viewModel.storeSecondMenu.load();
                                             // Clear up button selected.
                                             window.viewModel.currentId = "";
@@ -442,6 +442,12 @@
                         Ext.Msg.alert('Error', 'save setting fail!');
                     }
                 });
+            },
+            refreshFirstMenu: function (parameters) {
+                window.viewModel.storeFirstMenu.load();
+            },
+            refreshSecondMenu: function (parameters) {
+                window.viewModel.storeSecondMenu.load();
             }
         };
     });

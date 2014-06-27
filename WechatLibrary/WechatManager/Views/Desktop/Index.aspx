@@ -92,6 +92,15 @@
             <ext:TextField runat="server" ID="txtToken" EmptyText="Token" FieldLabel="Token" AnchorHorizontal="100%" AllowBlank="False"></ext:TextField>
             <ext:TextField runat="server" ID="txtWechatId" EmptyText="WechatId" FieldLabel="WechatId" AnchorHorizontal="100%" AllowBlank="False"></ext:TextField>
             <ext:TextField runat="server" ID="txtNamespace" EmptyText="Namespace" FieldLabel="Namespace" AnchorHorizontal="100%"></ext:TextField>
+            <ext:RadioGroup runat="server" Layout="HBoxLayout" FieldLabel="账号类型">
+                <LayoutConfig>
+                    <ext:HBoxLayoutConfig runat="server" Align="Top" />
+                </LayoutConfig>
+                <Items>
+                    <ext:Radio runat="server" BoxLabel="订阅号" Margins="0 5 0 5" ID="rdoNotServerAccount"></ext:Radio>
+                    <ext:Radio runat="server" BoxLabel="服务号" Margins="0 5 0 5" ID="rdoServerAccount"></ext:Radio>
+                </Items>
+            </ext:RadioGroup>
         </Items>
         <Listeners>
             <Show Handler="window.viewModel.loadCurrentWechatAccountCommand(arguments)">

@@ -101,6 +101,13 @@
                             window.viewModel.txtToken.setRawValue(data.Token);
                             window.viewModel.txtWechatId.setRawValue(data.WechatId);
                             window.viewModel.txtNamespace.setRawValue(data.Namespace);
+                            if (data.Type) {
+                                window.viewModel.rdoServerAccount.setRawValue(true);
+                                window.viewModel.rdoNotServerAccount.setRawValue(false);
+                            } else {
+                                window.viewModel.rdoServerAccount.setRawValue(false);
+                                window.viewModel.rdoNotServerAccount.setRawValue(true);
+                            }
                         } else {
                             Ext.Msg.alert('Error', responseObj.info, function () {
                                 window.viewModel.winWechatAccountSetting.hide();
@@ -120,6 +127,7 @@
                 var token = window.viewModel.txtToken.getRawValue();
                 var wechatId = window.viewModel.txtWechatId.getRawValue();
                 var namespace = window.viewModel.txtNamespace.getRawValue();
+                var type = window.viewModel.rdoNotServerAccount.checked ? "notServerAccount" : "serverAccount";
                 Ext.Ajax.request({
                     url: '/Service/WechatAccountService/SaveWechatAccountSetting.ashx',
                     method: 'POST',
@@ -128,7 +136,8 @@
                         Secret: secret,
                         Token: token,
                         WechatId: wechatId,
-                        Namespace: namespace
+                        Namespace: namespace,
+                        Type: type
                     },
                     success: function (response, options) {
                         var responseText = response.responseText;
@@ -145,7 +154,9 @@
                         Ext.Msg.alert('Error', 'save the change fail!');
                     }
                 });
-            }
+            },
+            rdoNotServerAccount: Ext.getCmp('rdoNotServerAccount'),
+            rdoServerAccount: Ext.getCmp('rdoServerAccount')
         };
         // load login wechatId after dom ready.
         window.viewModel.loadCurrentWechatIdCommand();

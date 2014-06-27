@@ -23,6 +23,8 @@ namespace WechatManager.Service.WechatAccountService
             var token = request["Token"] ?? string.Empty;
             var wechatId = request["WechatId"] ?? string.Empty;
             var @namespace = request["Namespace"] ?? string.Empty;
+            // 是否服务号。
+            bool isServerAccount = request["IsServerAccount"] == "serverAccount";
 
             // set response type.
             context.Response.ContentType = "text/json";
@@ -98,23 +100,24 @@ namespace WechatManager.Service.WechatAccountService
                     Secret = secret,
                     Token = token,
                     WechatId = wechatId,
-                    Namespace = @namespace
+                    Namespace = @namespace,
+                    IsServerAccount = isServerAccount
+                };
+
+                wechatAccount.AccessToken = new AccessToken()
+                {
+                    Id = Guid.NewGuid(),
+                    WechatAccount = wechatAccount,
+                    ExpiresTime = new DateTime(1970, 1, 1)
                 };
 
                 // add entity.
                 entities.WechatAccounts.Add(wechatAccount);
+                entities.AccessTokens.Add(wechatAccount.AccessToken);
 
                 // try save change.
                 if (entities.SaveChanges() > 0)
                 {
-                    wechatAccount.AccessToken = new AccessToken()
-                    {
-                        Id = Guid.NewGuid(),
-                        WechatAccount = wechatAccount,
-                        ExpiresTime = new DateTime(1970, 1, 1)
-                    };
-                    entities.SaveChanges();
-
                     var responseObj = new
                     {
                         success = true,

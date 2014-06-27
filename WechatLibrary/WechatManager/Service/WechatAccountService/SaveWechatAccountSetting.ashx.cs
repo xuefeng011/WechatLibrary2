@@ -37,6 +37,7 @@ namespace WechatManager.Service.WechatAccountService
             var token = request["Token"] ?? string.Empty;
             var newWechatId = request["WechatId"] ?? string.Empty;
             var @namespace = request["Namespace"] ?? string.Empty;
+            var type = request["Type"] == "serverAccount";
 
             if (string.IsNullOrEmpty(appId) == true)
             {
@@ -79,19 +80,27 @@ namespace WechatManager.Service.WechatAccountService
 
             if (string.IsNullOrEmpty(newWechatId) == true)
             {
-                var responseObj = new {success=false,info="WechatId could not be null or empty!"};
+                var responseObj = new
+                {
+                    success = false,
+                    info = "WechatId could not be null or empty!"
+                };
                 var json = JsonHelper.SerializeToJson(responseObj);
                 context.Response.ContentType = "text/json";
                 context.Response.Write(json);
                 return;
             }
 
-            using (var entities =new  WechatEntities())
+            using (var entities = new WechatEntities())
             {
                 var query = entities.WechatAccounts.Where(temp => temp.WechatId == currentWechatId);
                 if (query.Count() <= 0)
                 {
-                    var responseObj = new {success=false,info="please login again!"};
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "please login again!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
@@ -99,11 +108,15 @@ namespace WechatManager.Service.WechatAccountService
                 }
                 if (query.Count() > 1)
                 {
-                    var responseObj = new {success=false,info="there is something wrong in the data base, please contact the manager!"};
+                    var responseObj = new
+                    {
+                        success = false,
+                        info = "there is something wrong in the data base, please contact the manager!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
-                   return;
+                    return;
                 }
                 var currentWechatAccount = query.First();
                 currentWechatAccount.AppId = appId;
@@ -111,10 +124,15 @@ namespace WechatManager.Service.WechatAccountService
                 currentWechatAccount.Token = token;
                 currentWechatAccount.WechatId = newWechatId;
                 currentWechatAccount.Namespace = @namespace;
+                currentWechatAccount.IsServerAccount = type;
 
                 entities.SaveChanges();
                 {
-                    var responseObj = new {success=true,info="modify the WechatAccount success!"};
+                    var responseObj = new
+                    {
+                        success = true,
+                        info = "modify the WechatAccount success!"
+                    };
                     var json = JsonHelper.SerializeToJson(responseObj);
                     context.Response.ContentType = "text/json";
                     context.Response.Write(json);
