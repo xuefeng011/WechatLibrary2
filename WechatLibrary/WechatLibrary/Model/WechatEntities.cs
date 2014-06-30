@@ -9,6 +9,7 @@ using WechatLibrary.Model.AutoResponse.Match;
 using WechatLibrary.Model.AutoResponse.Result;
 using WechatLibrary.Model.Menu;
 using WechatLibrary.Model.Return;
+using WechatLibrary.Model.UserManagement;
 
 namespace WechatLibrary.Model
 {
@@ -175,6 +176,12 @@ namespace WechatLibrary.Model
         /// 记录的响应消息集合。
         /// </summary>
         public DbSet<ResultLog.ResultLog> ResultLogs
+        {
+            get;
+            set;
+        }
+
+        public DbSet<UserInfoReturn> UserInfos
         {
             get;
             set;

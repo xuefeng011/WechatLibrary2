@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Core.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,7 @@ namespace WechatLibrary.Model.Return
         /// 返回的错误码。
         /// </summary>
         [Json(Name = "errcode")]
+        [NotMapped]
         public int ErrorCode
         {
             get
@@ -36,6 +39,7 @@ namespace WechatLibrary.Model.Return
         /// 返回的错误信息。
         /// </summary>
         [Json(Name = "errmsg")]
+        [NotMapped]
         public string ErrorMessage
         {
             get

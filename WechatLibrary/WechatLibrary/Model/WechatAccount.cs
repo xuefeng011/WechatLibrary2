@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WechatLibrary.Model.AutoResponse.Match;
 using WechatLibrary.Model.AutoResponse.Result;
+using WechatLibrary.Model.UserManagement;
 
 namespace WechatLibrary.Model
 {
@@ -271,6 +272,15 @@ namespace WechatLibrary.Model
         /// 匹配后自动回复的语音。
         /// </summary>
         public virtual List<VoiceAutoResponseResult> VoiceAutoResponseResults
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 用户资料。
+        /// </summary>
+        public virtual List<UserInfoReturn> UserInfos
         {
             get;
             set;

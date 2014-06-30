@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Serialization.Json;
 
 namespace WechatLibrary.Model.AutoResponse.Result
 {
@@ -53,6 +54,7 @@ namespace WechatLibrary.Model.AutoResponse.Result
         /// <summary>
         /// 该自动回复创建时间。
         /// </summary>
+        [Json(Ignore = true)]
         public DateTime CreateTime
         {
             get;

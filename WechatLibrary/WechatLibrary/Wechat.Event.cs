@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace WechatLibrary
 {
@@ -240,6 +241,26 @@ namespace WechatLibrary
             if (LogMessageEnd != null)
             {
                 LogMessageEnd(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler LogUserInfoStart;
+
+        internal static void FireLogUserInfoStart(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogUserInfoStart != null)
+            {
+                LogUserInfoStart(processPipeline, EventArgs.Empty);
+            }
+        }
+
+        public static event EventHandler LogUserInfoEnd;
+
+        internal static void FireLogUserInfoEnd(ProcessPipeline.ProcessPipeline processPipeline)
+        {
+            if (LogUserInfoEnd != null)
+            {
+                LogUserInfoEnd(processPipeline, EventArgs.Empty);
             }
         }
 

@@ -131,6 +131,7 @@
     <Compile Include="Model\ReceiveLog\ReceiveLog.cs" />
     <Compile Include="Model\Return\UploadReturn.cs" />
     <Compile Include="Model\UserManagement\UserInfoLanguage.cs" />
+    <Compile Include="Model\UserManagement\UserInfoReturn.cs" />
     <Compile Include="Model\WechatAccount.cs" />
     <Compile Include="Model\WechatEntities.cs" />
     <Compile Include="Model\WechatResource.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.InvokeHandlerIfHandlerConstructorDelegateAndProcessRequestMethodExist.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.LogMessage.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.LogResult.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.LogUserInfo.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ParseXmlToXDocument.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ReadRequestXml.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.SerializeResponseResultAndWriteToResponseStream.cs" />
