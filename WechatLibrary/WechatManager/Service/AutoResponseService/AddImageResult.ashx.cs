@@ -127,6 +127,7 @@ namespace WechatManager.Service.AutoResponseService
 
                 imageAutoResponseResult.Id = Guid.NewGuid();
                 imageAutoResponseResult.WechatResource = wechatResource;
+                imageAutoResponseResult.CreateTime = DateTime.Now;
 
                 entities.SaveChanges();
                 {

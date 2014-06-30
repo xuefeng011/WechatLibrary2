@@ -67,7 +67,8 @@ namespace WechatManager.Service.AutoResponseService
                 var wechatAccount = query.First();
                 var newResult = new NewsAutoResponseResult()
                 {
-                    Id = Guid.NewGuid()
+                    Id = Guid.NewGuid(),
+                    CreateTime = DateTime.Now
                 };
                 newResult.NewsAutoResponseArticles = newResult.NewsAutoResponseArticles ?? new List<NewsAutoResponseArticle>();
                 newResult.NewsAutoResponseArticles.Add(new NewsAutoResponseArticle()

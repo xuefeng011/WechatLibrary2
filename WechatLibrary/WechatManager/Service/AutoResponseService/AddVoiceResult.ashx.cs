@@ -100,6 +100,7 @@ namespace WechatManager.Service.AutoResponseService
 
                 voiceAutoResponseResult.Id = Guid.NewGuid();
                 voiceAutoResponseResult.WechatResource = wechatResource;
+                voiceAutoResponseResult.CreateTime = DateTime.Now;
 
                 entities.SaveChanges();
                 {

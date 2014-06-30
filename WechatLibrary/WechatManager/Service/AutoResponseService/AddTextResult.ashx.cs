@@ -77,7 +77,8 @@ namespace WechatManager.Service.AutoResponseService
                 wechatAccount.TextAutoResponseResults.Add(new TextAutoResponseResult()
                 {
                     Id = Guid.NewGuid(),
-                    Content = content
+                    Content = content,
+                    CreateTime = DateTime.Now
                 });
                 entities.SaveChanges();
                 {

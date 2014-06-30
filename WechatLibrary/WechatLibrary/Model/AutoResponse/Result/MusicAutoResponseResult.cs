@@ -67,5 +67,14 @@ namespace WechatLibrary.Model.AutoResponse.Result
             get;
             set;
         }
+
+        /// <summary>
+        /// 该自动回复创建时间。
+        /// </summary>
+        public DateTime CreateTime
+        {
+            get;
+            set;
+        }
     }
 }
