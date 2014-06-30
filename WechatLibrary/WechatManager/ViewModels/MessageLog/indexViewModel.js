@@ -51,8 +51,11 @@
                     }
 
                     window.viewModel.cmbResponseTextMessage.hide();
+                    window.viewModel.pnlResponseTextMessage.hide();
                     window.viewModel.cmbResponseImageMessage.hide();
+                    window.viewModel.pnlResponseImageMessage.hide();
                     window.viewModel.cmbResponseVoiceMessage.hide();
+                    window.viewModel.pnlResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
                     window.viewModel.cmbResponseType.setValue('');
 
@@ -70,6 +73,10 @@
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
+                    // Set panel visible.
+                    window.viewModel.pnlResponseTextMessage.show();
+                    window.viewModel.pnlResponseImageMessage.hide();
+                    window.viewModel.pnlResponseVoiceMessage.hide();
                     // Load Text Message From Data Base.
                     Ext.Ajax.request({
                         url: '/Service/MessageLogService/LoadTextResults.ashx',
@@ -87,6 +94,8 @@
                                     /* The first parameter is the display field and the second parameter is the value field. */
                                     window.viewModel.cmbResponseTextMessage.addItem(data[i].Content, data[i].Id);
                                 }
+                                window.viewModel.chkResponseTextMessage.setValue(false);
+                                window.viewModel.txtResponseTextMessage.setValue('');
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
                             }
@@ -101,6 +110,10 @@
                     window.viewModel.cmbResponseImageMessage.show();
                     window.viewModel.cmbResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.hide();
+                    // Set panel visible.
+                    window.viewModel.pnlResponseTextMessage.hide();
+                    window.viewModel.pnlResponseImageMessage.show();
+                    window.viewModel.pnlResponseVoiceMessage.hide();
                     // Load Image Messages From Data Base.
                     Ext.Ajax.request({
                         url: '/Service/MessageLogService/LoadImageResults.ashx',
@@ -118,6 +131,8 @@
                                     /* The first parameter is the display field and the second parameter is the value field. */
                                     window.viewModel.cmbResponseImageMessage.addItem(data[i].ImgName, data[i].Id);
                                 }
+                                window.viewModel.chkResponseImageMessage.setValue(false);
+                                window.viewModel.fileResponseImageMessage.reset();
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
                             }
@@ -132,6 +147,10 @@
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseVoiceMessage.show();
                     window.viewModel.cmbResponseNewsMessage.hide();
+                    // Set panel visible.
+                    window.viewModel.pnlResponseTextMessage.hide();
+                    window.viewModel.pnlResponseImageMessage.hide();
+                    window.viewModel.pnlResponseVoiceMessage.show();
                     // Load Voice Message From Data Base.
                     Ext.Ajax.request({
                         url: '/Service/MessageLogService/LoadVoiceResults.ashx',
@@ -149,6 +168,8 @@
                                     /* The first parameter is the display field and the second parameter is the value field. */
                                     window.viewModel.cmbResponseVoiceMessage.addItem(data[i].VoiceName, data[i].Id);
                                 }
+                                window.viewModel.chkResponseVoiceMessage.setValue(false);
+                                window.viewModel.fileResponseVoiceMessage.reset();
                             } else {
                                 Ext.Msg.alert('Error', responseObj.info);
                             }
@@ -163,6 +184,10 @@
                     window.viewModel.cmbResponseImageMessage.hide();
                     window.viewModel.cmbResponseVoiceMessage.hide();
                     window.viewModel.cmbResponseNewsMessage.show();
+                    // Set panel visible.
+                    window.viewModel.pnlResponseTextMessage.hide();
+                    window.viewModel.pnlResponseImageMessage.hide();
+                    window.viewModel.pnlResponseVoiceMessage.hide();
                     // Load News Message From Data Base.
                     Ext.Ajax.request({
                         url: '/Service/MessageLogService/LoadNewsResults.ashx',
@@ -220,6 +245,85 @@
                     return;
                 }
 
+                if (responseType == 'text' && window.viewModel.chkResponseTextMessage.checked) {
+                    Ext.Ajax.request({
+                        url: '/Service/MessageLogService/SendTextCustom.ashx',
+                        method: 'POST',
+                        params: {
+                            ToUserName: window.viewModel.winSendCustomerServiceMessage.toUserName,
+                            Content: window.viewModel.txtResponseTextMessage.getValue()
+                        },
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj = Ext.decode(responseText);
+                            if (responseObj.success) {
+                                Ext.Msg.alert('Success', responseObj.info, function () {
+                                    window.viewModel.winSendCustomerServiceMessage.close();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (response, options) {
+                            Ext.Msg.alert('Error', 'send fail!');
+                        }
+                    });
+                    return;
+                }
+
+                if (responseType == 'image' && window.viewModel.chkResponseImageMessage.checked) {
+                    window.viewModel.formResponseImageMessage.getForm().submit({
+                        url: '/Service/MessageLogService/SendImageCustom.ashx?ToUserName=' + window.viewModel.winSendCustomerServiceMessage.toUserName,
+                        success: function (form, action) {
+                            var responseObj = action.result;
+                            if (responseObj.success) {
+                                Ext.Msg.alert('Success', responseObj.info, function () {
+                                    window.viewModel.winSendCustomerServiceMessage.close();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (form, action) {
+                            var responseObj = action.result;
+                            if (responseObj.success) {
+                                Ext.Msg.alert('Success', responseObj.info, function () {
+                                    window.viewModel.winSendCustomerServiceMessage.close();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        }
+                    });
+                    return;
+                }
+
+                if (responseType == 'voice' && window.viewModel.chkResponseVoiceMessage.checked) {
+                    window.viewModel.formResponseVoiceMessage.getForm().submit({
+                        url: '/Service/MessageLogService/SendVoiceCustom.ashx?ToUserName=' + window.viewModel.winSendCustomerServiceMessage.toUserName,
+                        success: function (form, action) {
+                            var responseObj = action.result;
+                            if (responseObj.success) {
+                                Ext.Msg.alert("Success", responseObj.info, function () {
+                                    window.viewModel.winSendCustomerServiceMessage.close();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        },
+                        failure: function (form, action) {
+                            var responseObj = action.result;
+                            if (responseObj.success) {
+                                Ext.Msg.alert('Success', responseObj.info, function () {
+                                    window.viewModel.winSendCustomerServiceMessage.close();
+                                });
+                            } else {
+                                Ext.Msg.alert('Error', responseObj.info);
+                            }
+                        }
+                    });
+                }
+
                 Ext.Ajax.request({
                     url: '/Service/MessageLogService/Send.ashx',
                     method: 'POST',
@@ -243,7 +347,19 @@
                         Ext.Msg.alert('Error', 'send fail!');
                     }
                 });
-            }
+            },
+            pnlResponseTextMessage: Ext.getCmp('pnlResponseTextMessage'),
+            chkResponseTextMessage: Ext.getCmp('chkResponseTextMessage'),
+            txtResponseTextMessage: Ext.getCmp('txtResponseTextMessage'),
+            pnlResponseImageMessage: Ext.getCmp('pnlResponseImageMessage'),
+            formResponseImageMessage: Ext.getCmp('formResponseImageMessage'),
+            chkResponseImageMessage: Ext.getCmp('chkResponseImageMessage'),
+            fileResponseImageMessage: Ext
+.getCmp('fileResponseImageMessage'),
+            pnlResponseVoiceMessage: Ext.getCmp('pnlResponseVoiceMessage'),
+            formResponseVoiceMessage: Ext.getCmp('formResponseVoiceMessage'),
+            chkResponseVoiceMessage: Ext.getCmp('chkResponseVoiceMessage'),
+            fileResponseVoiceMessage: Ext.getCmp('fileResponseVoiceMessage')
         };
     });
 }());

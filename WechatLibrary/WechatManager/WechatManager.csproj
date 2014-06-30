@@ -228,6 +228,15 @@
     <Compile Include="Service\MessageLogService\Send.ashx.cs">
       <DependentUpon>Send.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\MessageLogService\SendImageCustom.ashx.cs">
+      <DependentUpon>SendImageCustom.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageLogService\SendTextCustom.ashx.cs">
+      <DependentUpon>SendTextCustom.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageLogService\SendVoiceCustom.ashx.cs">
+      <DependentUpon>SendVoiceCustom.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\TextRequestMatchService\Add.ashx.cs">
       <DependentUpon>Add.ashx</DependentUpon>
     </Compile>
@@ -550,6 +559,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\GroupSendService\SendNews.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\SendTextCustom.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\SendImageCustom.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\SendVoiceCustom.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

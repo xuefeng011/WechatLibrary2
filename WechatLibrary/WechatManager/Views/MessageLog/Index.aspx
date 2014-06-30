@@ -145,12 +145,38 @@
             <%--文本消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="文本消息" ID="cmbResponseTextMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Content">
             </ext:ComboBox>
+            <ext:Panel runat="server" Border="False" ID="pnlResponseTextMessage" AnchorHorizontal="100%" Hidden="True" Layout="FormLayout">
+                <Items>
+                    <ext:Checkbox runat="server" ID="chkResponseTextMessage" FieldLabel="使用自定义内容" AnchorHorizontal="100%"></ext:Checkbox>
+                    <ext:TextArea runat="server" ID="txtResponseTextMessage" FieldLabel="文本内容" AnchorHorizontal="100%"></ext:TextArea>
+                </Items>
+            </ext:Panel>
             <%--图片消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="图片消息" ID="cmbResponseImageMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="ImgName">
             </ext:ComboBox>
+            <ext:Panel runat="server" Border="False" ID="pnlResponseImageMessage" AnchorHorizontal="100%" Hidden="True" Layout="FormLayout">
+                <Items>
+                    <ext:FormPanel runat="server" ID="formResponseImageMessage" Method="POST" Url="/Service/MessageLogService/SendImageCustom.ashx">
+                        <Items>
+                            <ext:Checkbox runat="server" ID="chkResponseImageMessage" FieldLabel="使用自定义内容" AnchorHorizontal="100%"></ext:Checkbox>
+                            <ext:FileUploadField runat="server" ID="fileResponseImageMessage" FieldLabel="图片" AnchorHorizontal="100%"></ext:FileUploadField>
+                        </Items>
+                    </ext:FormPanel>
+                </Items>
+            </ext:Panel>
             <%--语音消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="语音消息" ID="cmbResponseVoiceMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="VoiceName">
             </ext:ComboBox>
+            <ext:Panel runat="server" Border="False" ID="pnlResponseVoiceMessage" AnchorHorizontal="100%" Hidden="True" Layout="FormLayout">
+                <Items>
+                    <ext:FormPanel runat="server" ID="formResponseVoiceMessage" Method="POST" Url="/Service/MessageLogService/SendVoiceCustom.ashx">
+                        <Items>
+                            <ext:Checkbox runat="server" ID="chkResponseVoiceMessage" FieldLabel="使用自定义内容" AnchorHorizontal="100%"></ext:Checkbox>
+                            <ext:FileUploadField runat="server" ID="fileResponseVoiceMessage" FieldLabel="语音" AnchorHorizontal="100%"></ext:FileUploadField>
+                        </Items>
+                    </ext:FormPanel>
+                </Items>
+            </ext:Panel>
             <%--图文消息资源--%>
             <ext:ComboBox runat="server" FieldLabel="图文消息" ID="cmbResponseNewsMessage" AnchorHorizontal="100%" Editable="False" Hidden="True" ValueField="Id" DisplayField="Title">
             </ext:ComboBox>
