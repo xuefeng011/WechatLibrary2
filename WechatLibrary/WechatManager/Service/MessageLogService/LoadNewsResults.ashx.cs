@@ -64,7 +64,7 @@ namespace WechatManager.Service.MessageLogService
 
                 var wechatAccount = query.First();
 
-                var list = wechatAccount.NewsAutoResponseResults.ToList();
+                var list = wechatAccount.NewsAutoResponseResults.ToList().OrderByDescending(temp => temp.CreateTime).ToList();
 
                 {
                     var list2 = from temp in list

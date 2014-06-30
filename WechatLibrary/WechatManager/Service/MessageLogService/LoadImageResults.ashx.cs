@@ -60,7 +60,7 @@ namespace WechatManager.Service.MessageLogService
 
                 var wechatAccount = query.First();
 
-                var list = wechatAccount.ImageAutoResponseResults.ToList();
+                var list = wechatAccount.ImageAutoResponseResults.ToList().OrderByDescending(temp => temp.CreateTime).ToList();
 
                 {
                     var responseObj = new
