@@ -47,6 +47,16 @@ namespace HZFTest
     {
         public WechatLibrary.Model.Message.Response.ResponseResultBase ProcessRequest(WechatLibrary.Model.Message.Request.Normal.TextMessage message, ref bool dbProcess)
         {
+            var newsResult = new NewsResult();
+            newsResult.Articles.Add(new NewsArticle()
+            {
+                Title = "title",
+                Description = "description",
+                PicUrl = "http://www.baidu.com/img/bdlogo.gif",
+                Url = "www.baidu.com"
+            });
+            return newsResult;
+
             var pre = MessageLogService.GetPrevTextMessage(message);
             if (pre != null)
             {

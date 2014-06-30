@@ -72,6 +72,10 @@ namespace WechatManager.Service.MessageLogService
                     }
 
                     var responseXml = result.XmlSource;
+                    context.Session["xml"] = responseXml;
+                    context.Response.Redirect("/MessageLog/RenderResponse");
+                    return;
+
                     // Just for format the xml.
                     var responseXDocument = XDocument.Parse(responseXml);
                     responseXml = responseXDocument.ToString();

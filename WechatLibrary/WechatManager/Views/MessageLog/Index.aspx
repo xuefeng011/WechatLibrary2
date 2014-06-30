@@ -82,9 +82,13 @@
                         </ext:Column>
                         <ext:Column runat="server" DataIndex="ResponseLogTime" Text="记录返回消息时间" Width="200">
                         </ext:Column>
-                        <ext:CommandColumn runat="server">
+                        <ext:CommandColumn runat="server" Width="200">
                             <Commands>
                                 <ext:GridCommand runat="server" Icon="Email" Text="发送客服消息" CommandName="send">
+                                </ext:GridCommand>
+                            </Commands>
+                            <Commands>
+                                <ext:GridCommand runat="server" Icon="User" Text="查看用户资料" CommandName="detail">
                                 </ext:GridCommand>
                             </Commands>
                             <Listeners>
@@ -188,6 +192,16 @@
                 </Listeners>
             </ext:Button>
         </Buttons>
+    </ext:Window>
+    <ext:Window runat="server" ID="winUserInfo" Hidden="True" Maximized="True" Modal="True" Layout="BorderLayout">
+        <Items>
+            <ext:Panel ID="pnlUserInfo" runat="server" Flex="1" Region="Center">
+                <Loader runat="server" AutoLoad="False" DisableCaching="True" Mode="Frame">
+                    <LoadMask Msg="Loading..." ShowMask="True">
+                    </LoadMask>
+                </Loader>
+            </ext:Panel>
+        </Items>
     </ext:Window>
 </body>
 </html>

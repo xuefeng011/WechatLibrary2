@@ -31,6 +31,48 @@
                 var commandName = parameters[1];
                 var data = parameters[2].data;
 
+                if (commandName == 'detail') {
+                    var openid = data.FromUserName;
+
+                    Ext.Ajax.request({
+                        url: '/Service/MessageLogService/GetUserInfo.ashx?openid=' + openid,
+                        success: function (response, options) {
+                            var responseText = response.responseText;
+                            var responseObj;
+                            try {
+                                responseObj = Ext.decode(responseText);
+
+                                Ext.Msg.alert('Error', responseObj.info);
+                            } catch (e) {
+                                var pnlUserInfo = Ext.getCmp('pnlUserInfo');
+                                var loaderUserInfo = pnlUserInfo.loader;
+                                loaderUserInfo.suspendEvents();
+                                loaderUserInfo.url = "/Service/MessageLogService/GetUserInfo.ashx?openid=" + openid;
+                                pnlUserInfo.load();
+
+                                Ext.getCmp('winUserInfo').show();
+                            }
+                        }
+                    });
+
+
+                    //Ext.Ajax.request({
+                    //    url: '/Service/MessageLogService/GetUserInfo.ashx?openid=' + openid,
+                    //    success: function (response, options) {
+                    //        var responseText = response.responseText;
+                    //        var responseObj = Ext.decode(responseText);
+                    //        if (responseObj.success) {
+
+                    //        } else {
+                    //            Ext.Msg.alert('Error', responseObj.info);
+                    //        }
+                    //    },
+                    //    failure: function (response, options) {
+                    //        Ext.Msg.alert('Error','load user info fail');
+                    //    }
+                    //});
+                }
+
                 if (commandName == 'send') {
                     var requestLogTime = data.RequestLogTime;
 

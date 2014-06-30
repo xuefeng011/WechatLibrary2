@@ -142,6 +142,7 @@
     <Compile Include="ProcessPipeline\ProcessPipeline.CheckHadResponseCurrentNormalMessage.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.DeserializeXDocumentByMessageType.cs" />
+    <Compile Include="ProcessPipeline\ProcessPipeline.DownloadResource.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.ExecuteDataBaseProcess.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerConstructorDelegateFromCacheByMessageType.cs" />
     <Compile Include="ProcessPipeline\ProcessPipeline.GetHandlerProcessRequestMethodFromCacheByMessageType.cs" />

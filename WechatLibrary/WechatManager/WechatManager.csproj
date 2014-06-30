@@ -213,6 +213,9 @@
     <Compile Include="Service\MessageLogService\GetResponseResultSource.ashx.cs">
       <DependentUpon>GetResponseResultSource.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\MessageLogService\GetUserInfo.ashx.cs">
+      <DependentUpon>GetUserInfo.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\MessageLogService\LoadImageResults.ashx.cs">
       <DependentUpon>LoadImageResults.ashx</DependentUpon>
     </Compile>
@@ -355,6 +358,10 @@
     <Content Include="Views\Desktop\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LocalMenu\Index.aspx" />
+    <Content Include="Views\MessageLog\News.aspx" />
+    <Content Include="Views\MessageLog\Voice.aspx" />
+    <Content Include="Views\MessageLog\Image.aspx" />
+    <Content Include="Views\MessageLog\RenderUserInfo.aspx" />
     <Content Include="Views\MessageLog\Index.aspx" />
     <Content Include="Views\WechatServerMenu\Index.aspx" />
     <Content Include="Web.config" />
@@ -568,6 +575,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\MessageLogService\SendVoiceCustom.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service\MessageLogService\GetUserInfo.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
